@@ -38,6 +38,7 @@ namespace Negocio
 
         public bool AgregarUsuario(string nombre, string apellido, string username, PerfilUsuario perfil)
         {
+            //password no agregada porque este metodo solo se usa para primera creación con static password. 
             if (!SonValidosLosDatos(nombre, apellido, username))
             {
                 return false;
@@ -55,13 +56,13 @@ namespace Negocio
             //validaciones propias de datos, deberian ser desde presentación
             if (string.IsNullOrEmpty(nombre) || nombre.Length <= 2 || nombre.Any(char.IsDigit))
             {
-                Console.WriteLine("El nombre no puede estar vacío, debe tener más de 2 caracteres y no puede contener números.");
+                Console.WriteLine("El nombre no puede estar vacío, debe tener por lo menos 2 caracteres y no puede contener números.");
                 return false;
             }
 
             if (string.IsNullOrEmpty(apellido) || apellido.Length <= 2 || apellido.Any(char.IsDigit))
             {
-                Console.WriteLine("El apellido no puede estar vacío, debe tener más de 2 caracteres y no puede contener números.");
+                Console.WriteLine("El apellido no puede estar vacío, debe tener por lo menos 2 caracteres y no puede contener números.");
                 return false;
             }
 
@@ -73,6 +74,11 @@ namespace Negocio
             else if (username.Length > 15)
             {
                 Console.WriteLine("El nombre de usuario debe tener un máximo de 15 caracteres.");
+                return false;
+            }
+            else if (username.Contains(nombre))
+            {
+                Console.WriteLine("El nombre de usuario no debe contener el apellido.");
                 return false;
             }
             else if (username.Contains(apellido))

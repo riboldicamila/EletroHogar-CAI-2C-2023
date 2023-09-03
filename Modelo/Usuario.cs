@@ -48,6 +48,16 @@
                 }
             }
 
+            public string Password
+            {
+            //se va a necesitar acceder desde negocio para implementar la logica
+                get { return password; }
+                set 
+                { 
+                    password = value; 
+                }
+            }
+
             public DateTime UltimoCambioPass
             {
                 get { return ultimoCambioPass; }
