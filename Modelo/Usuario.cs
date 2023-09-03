@@ -18,7 +18,7 @@
             {
                 this.nombre = nombre;
                 this.apellido = apellido;
-                this.Username = username; // Usa la propiedad para validarlo
+                this.Username = username; 
                 this.password = GenerarPasswordTemporal();
                 this.ultimoCambioPass = DateTime.Now;
                 this.intentosCambioPass = 0;
