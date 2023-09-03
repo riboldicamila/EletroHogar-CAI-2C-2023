@@ -90,13 +90,46 @@ namespace MyApp
 
             Console.Write("Seleccione una opción: ");
             var opcionSeleccionada = Console.ReadLine();
+            
 
+
+            if (perfil == PerfilUsuario.ADMINISTRADOR && opcionSeleccionada == "1")
+            {
+                Console.WriteLine("Alta de usuarios Supervisores");
+                string nombre = Nombre();
+                string apellido = Apellido();
+                string username = Username();
+                //hay que PEDIR DATOS, VALIDAR INTEGRIDAD (NO DE NEGOCIO), LLAMAR A NEGOCIO
+                //si agregar devuelve TRUE, se agrego al usuario successfully 
+                
+                
+                //llama a agregar usuario
+                gestorUsuarios.AgregarUsuario(nombre, apellido, username, PerfilUsuario.SUPERVISOR);
+                Console.WriteLine("Usuario " + username + " agregado con exito");
+                //para chequear que los agrega
+                gestorUsuarios.ObtenerUsuarios();
+                  
+
+            }
+           //ALTA Vendedores
+            if (perfil == PerfilUsuario.ADMINISTRADOR && opcionSeleccionada == "4")
+            {
+                Console.WriteLine("Alta de usuarios Vendedores");
+                string nombre = Nombre();
+                string apellido = Apellido();
+                string username = Username();
+                
+
+                //llama a agregar usuario
+                
+                gestorUsuarios.AgregarUsuario(nombre, apellido, username, PerfilUsuario.VENDEDOR);
+                Console.WriteLine("Usuario " + username + " agregado con exito");
+                gestorUsuarios.ObtenerUsuarios();
+            }
             //Pedir datos al usuario
 
-            string nombre = Nombre();
-            string apellido = Apellido();
-            string username = Username();
             
+
             //Validar datos
             static string Nombre()
             {
@@ -148,38 +181,6 @@ namespace MyApp
                     else flagnombre = true;
                 } while (flagnombre == false);
                 return nuevousername;
-            }
-
-            if (perfil == PerfilUsuario.ADMINISTRADOR && opcionSeleccionada == "1")
-            {
-                Console.WriteLine("Alta de usuarios Supervisores");
-                //hay que PEDIR DATOS, VALIDAR INTEGRIDAD (NO DE NEGOCIO), LLAMAR A NEGOCIO
-                //si agregar devuelve TRUE, se agrego al usuario successfully 
-                Nombre();
-                Apellido();
-                Username();
-                
-                //llama a agregar usuario
-                gestorUsuarios.AgregarUsuario(nombre, apellido, username, PerfilUsuario.VENDEDOR);
-                Console.WriteLine("Usuario " + username + " agregado con exito");
-                //para chequear que los agrega
-                gestorUsuarios.ObtenerUsuarios();
-                  
-
-            }
-           //ALTA Vendedores
-            if (perfil == PerfilUsuario.ADMINISTRADOR && opcionSeleccionada == "4")
-            {
-                Console.WriteLine("Alta de usuarios Vendedores");
-                Nombre();
-                Apellido();
-                Username();
-
-                //llama a agregar usuario
-                
-                gestorUsuarios.AgregarUsuario(nombre, apellido, username, PerfilUsuario.SUPERVISOR);
-                Console.WriteLine("Usuario " + username + " agregado con exito");
-                gestorUsuarios.ObtenerUsuarios();
             }
 
 
