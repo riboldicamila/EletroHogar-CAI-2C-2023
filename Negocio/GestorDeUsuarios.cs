@@ -38,6 +38,19 @@ namespace Negocio
 
         public bool AgregarUsuario(string nombre, string apellido, string username, PerfilUsuario perfil)
         {
+            if (!SonValidosLosDatos(nombre, apellido, username))
+            {
+                return false;
+            }
+
+            var nuevoUsuario = new Usuario(nombre, apellido, username, perfil);
+            usuarios.Add(nuevoUsuario);
+            return true;
+        }
+
+
+        private bool SonValidosLosDatos(string nombre, string apellido, string username)
+        {
             if (string.IsNullOrEmpty(nombre) || nombre.Length <= 2 || nombre.Any(char.IsDigit))
             {
                 Console.WriteLine("El nombre no puede estar vacío, debe tener más de 2 caracteres y no puede contener números.");
@@ -66,11 +79,8 @@ namespace Negocio
                 return false;
             }
 
-            var nuevoUsuario = new Usuario(nombre, apellido, username, perfil);
-            usuarios.Add(nuevoUsuario);
             return true;
         }
-
 
         public IEnumerable<Usuario> ListarVendedores()
         {
