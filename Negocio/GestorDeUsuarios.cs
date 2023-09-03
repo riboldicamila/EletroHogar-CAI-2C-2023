@@ -33,7 +33,11 @@ namespace Negocio
         // Método para obtener todos los usuarios (opcional, si necesitas listarlos en algún punto)
         public List<Usuario> ObtenerUsuarios()
         {
+            //lista los nombres de usuario
+            usuarios.ForEach(u => { Console.WriteLine(u.Username); }) ;
             return usuarios;
+            
+       
         }
 
         public bool AgregarUsuario(string nombre, string apellido, string username, PerfilUsuario perfil)
