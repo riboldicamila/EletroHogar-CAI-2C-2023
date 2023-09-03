@@ -86,6 +86,19 @@ namespace MyApp
             // }
 
             Console.Write("Seleccione una opción: ");
+            var opcionSeleccionada = Console.ReadLine();
+
+            if (perfil == PerfilUsuario.ADMINISTRADOR && opcionSeleccionada == "1")
+            {
+                Console.WriteLine("Alta de usuarios Supervisores");
+            }
+
+            if (perfil == PerfilUsuario.ADMINISTRADOR && opcionSeleccionada == "4")
+            {
+                Console.WriteLine("Alta de usuarios Vendedores");
+            }
+
+
             Environment.Exit(0);
         }
 
