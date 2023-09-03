@@ -51,6 +51,8 @@ namespace Negocio
 
         private bool SonValidosLosDatos(string nombre, string apellido, string username)
         {
+            //validaciones de NEGOCIO
+            //validaciones propias de datos, deberian ser desde presentación
             if (string.IsNullOrEmpty(nombre) || nombre.Length <= 2 || nombre.Any(char.IsDigit))
             {
                 Console.WriteLine("El nombre no puede estar vacío, debe tener más de 2 caracteres y no puede contener números.");

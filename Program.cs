@@ -88,9 +88,13 @@ namespace MyApp
             Console.Write("Seleccione una opción: ");
             var opcionSeleccionada = Console.ReadLine();
 
+
+
             if (perfil == PerfilUsuario.ADMINISTRADOR && opcionSeleccionada == "1")
             {
                 Console.WriteLine("Alta de usuarios Supervisores");
+                //hay que PEDIR DATOS, VALIDAR INTEGRIDAD (NO DE NEGOCIO), LLAMAR A NEGOCIO
+                //si agregar devuelve TRUE, se agrego al usuario successfully 
             }
 
             if (perfil == PerfilUsuario.ADMINISTRADOR && opcionSeleccionada == "4")
