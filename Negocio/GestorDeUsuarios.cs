@@ -38,16 +38,16 @@ namespace Negocio
 
         public bool AgregarUsuario(string nombre, string apellido, string username, PerfilUsuario perfil)
         {
-            if (string.IsNullOrEmpty(nombre))
+            if (string.IsNullOrEmpty(nombre) || nombre.Length <= 2 || nombre.Any(char.IsDigit))
             {
-                Console.WriteLine("El nombre no debe estar vacío.");
-                return false;  
+                Console.WriteLine("El nombre no puede estar vacío, debe tener más de 2 caracteres y no puede contener números.");
+                return false;
             }
 
-            if (string.IsNullOrEmpty(apellido))
+            if (string.IsNullOrEmpty(apellido) || apellido.Length <= 2 || apellido.Any(char.IsDigit))
             {
-                Console.WriteLine("El apellido no debe estar vacío.");
-                return false;  
+                Console.WriteLine("El apellido no puede estar vacío, debe tener más de 2 caracteres y no puede contener números.");
+                return false;
             }
 
             if (username.Length < 8)
