@@ -38,28 +38,39 @@ namespace Negocio
 
         public bool AgregarUsuario(string nombre, string apellido, string username, PerfilUsuario perfil)
         {
-            try
+            if (string.IsNullOrEmpty(nombre))
             {
-                var nuevoUsuario = new Usuario(nombre, apellido, username, perfil);
-
-                if (nombre.Length < 8)
-                    throw new ArgumentException("El nombre de usuario debe tener mínimo 8 caracteres.");
-                else if (nombre.Length > 15)
-                    throw new ArgumentException("El nombre de usuario debe tener un máximo de 15 caracteres.");
-                else if (nombre.Contains(apellido))
-                    throw new ArgumentException("El nombre de usuario no debe contener el apellido.");
-                else
-                {
-                    usuarios.Add(nuevoUsuario);
-                    return true;
-                }
+                Console.WriteLine("El nombre no debe estar vacío.");
+                return false;  
             }
-            catch (ArgumentException ex)
+
+            if (string.IsNullOrEmpty(apellido))
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("El apellido no debe estar vacío.");
+                return false;  
+            }
+
+            if (username.Length < 8)
+            {
+                Console.WriteLine("El nombre de usuario debe tener mínimo 8 caracteres.");
                 return false;
             }
+            else if (username.Length > 15)
+            {
+                Console.WriteLine("El nombre de usuario debe tener un máximo de 15 caracteres.");
+                return false;
+            }
+            else if (username.Contains(apellido))
+            {
+                Console.WriteLine("El nombre de usuario no debe contener el apellido.");
+                return false;
+            }
+
+            var nuevoUsuario = new Usuario(nombre, apellido, username, perfil);
+            usuarios.Add(nuevoUsuario);
+            return true;
         }
+
 
         public IEnumerable<Usuario> ListarVendedores()
         {
