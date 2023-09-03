@@ -41,8 +41,18 @@ namespace Negocio
             try
             {
                 var nuevoUsuario = new Usuario(nombre, apellido, username, perfil);
-                usuarios.Add(nuevoUsuario);
-                return true;
+
+                if (nombre.Length < 8)
+                    throw new ArgumentException("El nombre de usuario debe tener mínimo 8 caracteres.");
+                else if (nombre.Length > 15)
+                    throw new ArgumentException("El nombre de usuario debe tener un máximo de 15 caracteres.");
+                else if (nombre.Contains(apellido))
+                    throw new ArgumentException("El nombre de usuario no debe contener el apellido.");
+                else
+                {
+                    usuarios.Add(nuevoUsuario);
+                    return true;
+                }
             }
             catch (ArgumentException ex)
             {

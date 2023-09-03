@@ -44,8 +44,6 @@
                 get { return username; }
                 set
                 {
-                    if (value.Length < 8 || value.Length > 15 || value.Contains(nombre) || value.Contains(apellido))
-                        throw new ArgumentException("El nombre de usuario no es válido.");
                     username = value;
                 }
             }
