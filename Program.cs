@@ -7,7 +7,6 @@ namespace MyApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World commit 3");
             MenuConsola menu = new MenuConsola();
             menu.Iniciar();
         }
