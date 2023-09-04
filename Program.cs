@@ -22,22 +22,39 @@ namespace MyApp
         public void Iniciar()
         {
             Console.WriteLine("Bienvenido al sistema");
-            Console.WriteLine("Ingrese su nombre de usuario:");
-            var username = Console.ReadLine();
 
-            Console.WriteLine("Ingrese su contraseña:");
-            var password = Console.ReadLine();
-
-            // Usamos el gestor de usuarios para autenticar
-            var perfil = gestorUsuarios.Login(username, password);
-
-            if (perfil.HasValue)
+            while (true)
             {
-                MostrarMenu(perfil.Value);
-            }
-            else
-            {
-                Console.WriteLine("Credenciales inválidas.");
+                Console.WriteLine("Ingrese su nombre de usuario:");
+                var username = Console.ReadLine();
+
+                Console.WriteLine("Ingrese su contraseña:");
+                var password = Console.ReadLine();
+
+                // Usamos el gestor de usuarios para autenticar
+                var perfil = gestorUsuarios.Login(username, password);
+
+                if (perfil.HasValue)
+                {
+                    MostrarMenu(perfil.Value);
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Credenciales inválidas.");
+                    Console.WriteLine();
+                    Console.WriteLine("1. Volver a intentarlo");
+                    Console.WriteLine("2. Salir");
+                    Console.Write("Ingrese su opción: ");
+
+                    var opcion = Console.ReadLine();
+                    Console.WriteLine();
+
+                    if (opcion == "2")
+                    {
+                        Environment.Exit(0);
+                    }
+                }
             }
         }
         
