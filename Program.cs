@@ -37,7 +37,7 @@ namespace MyApp
                 if (perfil.HasValue)
                 {
                     MostrarMenu(perfil.Value);
-                    break;
+                    return;
                 }
                 else
                 {
@@ -107,27 +107,24 @@ namespace MyApp
 
             Console.Write("Seleccione una opción: ");
             var opcionSeleccionada = Console.ReadLine();
+            Console.Clear();
             
-
-
             if (perfil == PerfilUsuario.ADMINISTRADOR && opcionSeleccionada == "1")
             {
                 Console.WriteLine("Alta de usuarios Supervisores");
                 string nombre = Nombre();
                 string apellido = Apellido();
                 string username = Username();
-                //hay que PEDIR DATOS, VALIDAR INTEGRIDAD (NO DE NEGOCIO), LLAMAR A NEGOCIO
-                //si agregar devuelve TRUE, se agrego al usuario successfully 
-                
-                
+
+                               
                 //llama a agregar usuario
                 gestorUsuarios.AgregarUsuario(nombre, apellido, username, PerfilUsuario.SUPERVISOR);
-                Console.WriteLine("Usuario " + username + " agregado con exito");
+                Console.WriteLine();
+                Console.WriteLine("Lista de usuarios existentes: ");
                 //para chequear que los agrega
                 gestorUsuarios.ObtenerUsuarios();
-                  
-
             }
+
            //ALTA Vendedores
             if (perfil == PerfilUsuario.ADMINISTRADOR && opcionSeleccionada == "4")
             {
@@ -135,77 +132,75 @@ namespace MyApp
                 string nombre = Nombre();
                 string apellido = Apellido();
                 string username = Username();
-                
 
                 //llama a agregar usuario
-                
                 gestorUsuarios.AgregarUsuario(nombre, apellido, username, PerfilUsuario.VENDEDOR);
-                Console.WriteLine("Usuario " + username + " agregado con exito");
+
+                Console.WriteLine();
+                Console.WriteLine("Lista de usuarios existentes: ");
                 gestorUsuarios.ObtenerUsuarios();
-            }
-            //Pedir datos al usuario
-
-            
-
-            //Validar datos
-            static string Nombre()
-            {
-                string nuevonombre;
-                bool flagnombre = false;
-                Console.WriteLine("Ingrese el Nombre:");
-                nuevonombre = Console.ReadLine();
-                do
-                {
-                    if (string.IsNullOrEmpty(nuevonombre))
-                    {
-                        Console.WriteLine("el nombre no puede estar vacío");
-                        nuevonombre = Console.ReadLine();
-                    }
-                    else flagnombre = true;
-                } while (flagnombre == false);
-                return nuevonombre;
-            }
-            static string Apellido()
-            {
-                string nuevoapellido;
-                bool flagapellido = false;
-                Console.WriteLine("Ingrese el Apellido:");
-                nuevoapellido = Console.ReadLine();
-                do
-                {
-                    if (string.IsNullOrEmpty(nuevoapellido))
-                    {
-                        Console.WriteLine("el apellido no puede estar vacío");
-                        nuevoapellido = Console.ReadLine();
-                    }
-                    else flagapellido = true;
-                } while (flagapellido == false);
-                return nuevoapellido;
-            }
-            static string Username()
-            {
-                string nuevousername;
-                bool flagnombre = false;
-                Console.WriteLine("Ingrese el Nombre de usuario:");
-                nuevousername = Console.ReadLine();
-                do
-                {
-                    if (string.IsNullOrEmpty(nuevousername))
-                    {
-                        Console.WriteLine("el nombre de usuario no puede estar vacío");
-                        nuevousername = Console.ReadLine();
-                    }
-                    else flagnombre = true;
-                } while (flagnombre == false);
-                return nuevousername;
+                Console.WriteLine();
+                Console.WriteLine();
             }
 
-
-            Environment.Exit(0);
-            
+            Console.WriteLine("Cerrando sesión...");
+            Console.Clear();
+            Iniciar();
 
         }
-       
+
+        static string Nombre()
+            {
+                string nuevoNombre;
+                bool flagnombre = false;
+                Console.WriteLine("Ingrese el Nombre:");
+                nuevoNombre = Console.ReadLine();
+                do
+                {
+                    if (string.IsNullOrEmpty(nuevoNombre))
+                    {
+                        Console.WriteLine("El nombre no puede estar vacío");
+                        nuevoNombre = Console.ReadLine();
+                    }
+                    else flagnombre = true;
+                } while (flagnombre == false);
+                return nuevoNombre;
+            }
+        static string Apellido()
+        {
+            string nuevoapellido;
+            bool flagapellido = false;
+            Console.WriteLine("Ingrese el Apellido:");
+            nuevoapellido = Console.ReadLine();
+            do
+            {
+                if (string.IsNullOrEmpty(nuevoapellido))
+                {
+                    Console.WriteLine("el apellido no puede estar vacío");
+                    nuevoapellido = Console.ReadLine();
+                }
+                else flagapellido = true;
+            } while (flagapellido == false);
+            return nuevoapellido;
+        }
+        static string Username()
+        {
+            string nuevousername;
+            bool flagnombre = false;
+            Console.WriteLine("Ingrese el Nombre de usuario:");
+            nuevousername = Console.ReadLine();
+            do
+            {
+                if (string.IsNullOrEmpty(nuevousername))
+                {
+                    Console.WriteLine("el nombre de usuario no puede estar vacío");
+                    nuevousername = Console.ReadLine();
+                }
+                else flagnombre = true;
+            } while (flagnombre == false);
+            return nuevousername;
+        }
+
 
 
     }

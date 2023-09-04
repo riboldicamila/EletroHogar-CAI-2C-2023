@@ -50,6 +50,8 @@ namespace Negocio
 
             var nuevoUsuario = new Usuario(nombre, apellido, username, perfil);
             usuarios.Add(nuevoUsuario);
+            Console.WriteLine("Usuario " + username + " agregado con exito");
+            Console.WriteLine();
             return true;
         }
 
