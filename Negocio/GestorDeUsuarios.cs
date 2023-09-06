@@ -9,6 +9,7 @@ namespace Negocio
 
         public GestorDeUsuarios()
         {
+            //Constructor 
             // Inicialización de la lista y generación de usuarios de ejemplo al instanciar el gestor. 
             // Usamos esta lista para harcodear usuarios y probar
             usuarios = new List<Usuario>

@@ -163,8 +163,8 @@ namespace MyApp
                 Console.WriteLine();
             }
 
-
             Console.WriteLine("Cerrando sesión...");
+            Thread.Sleep(2000);  
             Console.Clear();
             Iniciar();
         }
