@@ -14,9 +14,9 @@ namespace Negocio
             // Usamos esta lista para harcodear usuarios y probar
             usuarios = new List<Usuario>
             {
-                new Usuario("Juan", "Pérez", "juanp1234", PerfilUsuario.VENDEDOR,"Pass1234"),// aca tuve agregar un parametro mas por el constructor
-                new Usuario("Ana", "Gómez", "anag1234", PerfilUsuario.SUPERVISOR,"Pass5678"),
-                new Usuario("Luis", "Martínez", "luism1234", PerfilUsuario.ADMINISTRADOR,"Pass9012")
+                new Usuario("Juan", "Pérez", "juanp1234", PerfilUsuario.VENDEDOR),// aca tuve agregar un parametro mas por el constructor
+                new Usuario("Ana", "Gómez", "anag1234", PerfilUsuario.SUPERVISOR),
+                new Usuario("Luis", "Martínez", "luism1234", PerfilUsuario.ADMINISTRADOR)
             };
 
             // Estableciendo contraseñas de ejemplo
@@ -25,11 +25,14 @@ namespace Negocio
             usuarios[2].SetPassword("Pass9012");
         }
 
-        public PerfilUsuario? Login(string username, string password)  // o devuelve un perfil de usuario o devuelve null
+        public (PerfilUsuario? perfil, bool cambiarContrasena, Usuario usuario) Login(string username, string password)
         {
             var usuario = usuarios.Find(u => u.Username == username && u.EsPasswordValida(password));
-            return usuario?.Perfil;
+            bool necesitaCambiarContrasena = usuario?.Password == "Temp1234";
+            return (usuario?.Perfil, necesitaCambiarContrasena, usuario);
         }
+
+
 
         // Método para obtener todos los usuarios (opcional, si necesitas listarlos en algún punto)
         public List<Usuario> ObtenerUsuarios()
@@ -41,15 +44,40 @@ namespace Negocio
        
         }
 
-        public bool AgregarUsuario(string nombre, string apellido, string username, PerfilUsuario perfil,string nuevopass) // Aca esta el nuevo parametro para Agregar al usuario nuevo
+        public bool EstablecerContraseña(Usuario usuario, string newPassword)
+        {
+            if (!newPassword.Any(char.IsUpper) || !newPassword.Any(char.IsDigit))
+            {
+                Console.WriteLine("La contraseña debe contener al menos una letra mayúscula y un número.");
+                return false;
+            }
+
+            if (newPassword == usuario.Password)
+            {
+                Console.WriteLine("La nueva contraseña no puede ser igual a la anterior.");
+                return false;
+            }
+
+            if (newPassword.Length < 8 || newPassword.Length > 15)
+            {
+                Console.WriteLine("La contraseña debe tener entre 8 y 15 caracteres.");
+                return false;
+            }
+
+            usuario.SetPassword(newPassword);
+            return true;
+        }
+
+
+        public bool AgregarUsuario(string nombre, string apellido, string username, PerfilUsuario perfil) // Aca esta el nuevo parametro para Agregar al usuario nuevo
         {
             //password no agregada porque este metodo solo se usa para primera creación con static password. 
-            if (!SonValidosLosDatos(nombre, apellido, username,nuevopass))
+            if (!SonValidosLosDatos(nombre, apellido, username))
             {
                 return false;
             }
 
-            var nuevoUsuario = new Usuario(nombre, apellido, username,perfil,nuevopass);//Aca tambien esta agregado
+            var nuevoUsuario = new Usuario(nombre, apellido, username,perfil);//Aca tambien esta agregado
             usuarios.Add(nuevoUsuario);
             Console.WriteLine("Usuario " + username +"agregado con exito");
             Console.WriteLine();
@@ -57,7 +85,7 @@ namespace Negocio
         }
 
 
-        private bool SonValidosLosDatos(string nombre, string apellido, string username,string nuevopass) // Aca tambien 
+        private bool SonValidosLosDatos(string nombre, string apellido, string username) // Aca tambien 
         {
             //validaciones de NEGOCIO
             //validaciones propias de datos, deberian ser desde presentación

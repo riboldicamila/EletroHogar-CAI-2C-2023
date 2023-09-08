@@ -19,7 +19,7 @@ namespace Modelo
 
 
             // Constructor
-            public Usuario(string nombre, string apellido, string username, PerfilUsuario perfil,string nuevopass)
+            public Usuario(string nombre, string apellido, string username, PerfilUsuario perfil)
             {
                 this.nombre = nombre;
                 this.apellido = apellido;
@@ -29,8 +29,6 @@ namespace Modelo
                 this.intentosCambioPass = 0;
                 this.estado = EstadoUsuario.INACTIVO;
                 this.perfil = perfil;
-                this.nuevoPass = nuevopass; // la nueva variable en el constructor
-
 
             }
 
@@ -103,35 +101,17 @@ namespace Modelo
                 private set { intentosCambioPass = value; }
             }
 
-            
+
         // Métodos
-        public bool SetPassword(string nuevopass) // aca cambie newpassword por nuevopass
-            {
-                // Validar que la pass tenga por lo menos una letra mayúscula y un número
-                if (!nuevopass.Any(char.IsUpper) || !nuevopass.Any(char.IsDigit))
-                {
-                    throw new ArgumentException("La contraseña debe contener al menos una letra mayúscula y un número.");
-                }
+        public void SetPassword(string newPassword)
+        {
+            this.password = newPassword;
+            this.ultimoCambioPass = DateTime.Now;
+            this.intentosCambioPass = 0;
+        }
 
-                // Validar que la nueva pass no sea igual a la anterior
-                if (nuevopass == this.password)
-                {
-                    throw new ArgumentException("La nueva contraseña no puede ser igual a la anterior.");
-                }
 
-                // Validar que la pass tenga entre 8 y 15 caracteres
-                if (nuevopass.Length < 8 || nuevopass.Length > 15)
-                {
-                    throw new ArgumentException("La contraseña debe tener entre 8 y 15 caracteres.");
-                }
-
-                this.password = nuevopass;
-                this.ultimoCambioPass = DateTime.Now;
-                this.intentosCambioPass = 0;
-                return true;
-            }
-
-            public bool EsPasswordValida(string password)
+        public bool EsPasswordValida(string password)
             {
                 // Validar si la pass venció
                 if ((DateTime.Now - ultimoCambioPass).TotalDays > 30)

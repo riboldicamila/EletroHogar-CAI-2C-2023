@@ -2,9 +2,8 @@
 using Modelo; //solo para usar PerfilUsuario, no deberiamos llamar nunca  a Usuario directamente acá, siempre sería a través de GestordeUsuarios
 using System.Timers;
 using System.Security.Cryptography.X509Certificates;
-using System.ComponentModel;
 
-namespace MyApp 
+namespace MyApp
 {
     internal class Program
     {
@@ -18,7 +17,7 @@ namespace MyApp
     public class MenuConsola
     {
         private GestorDeUsuarios gestorUsuarios = new GestorDeUsuarios();
-        
+
 
         public void Iniciar()
         {
@@ -33,13 +32,27 @@ namespace MyApp
                 var password = Console.ReadLine();
 
                 // Usamos el gestor de usuarios para autenticar
-                var perfil = gestorUsuarios.Login(username, password);
+                var (perfil, necesitaCambiarContrasena, usuarioActual) = gestorUsuarios.Login(username, password);
 
                 if (perfil.HasValue)
                 {
+                    if (necesitaCambiarContrasena)
+                    {
+                        Console.WriteLine("Debe cambiar su contraseña.");
+                        string nuevaContrasena;
+                        bool cambioExitoso;
+                        do
+                        {
+                            Console.WriteLine("Ingrese la nueva contraseña:");
+                            nuevaContrasena = Console.ReadLine();
+                            cambioExitoso = gestorUsuarios.EstablecerContraseña(usuarioActual, nuevaContrasena);
+                        } while (!cambioExitoso);
+                    }
                     MostrarMenu(perfil.Value);
                     return;
                 }
+
+
                 else
                 {
                     Console.WriteLine("Credenciales inválidas.");
@@ -58,52 +71,52 @@ namespace MyApp
                 }
             }
         }
-        
+
         private void MostrarMenu(PerfilUsuario perfil)
         {
-           /* while (true)
-            {*/
-                Console.Clear();
-                Console.WriteLine($"Menu de {perfil.ToString()}");
+            /* while (true)
+             {*/
+            Console.Clear();
+            Console.WriteLine($"Menu de {perfil.ToString()}");
 
-                switch (perfil)
-                {
-                    case PerfilUsuario.VENDEDOR:
-                        Console.WriteLine("1. Venta");
-                        Console.WriteLine("2. Reporte de ventas por vendedor");
-                        Console.WriteLine("3. Salir");
-                        break;
+            switch (perfil)
+            {
+                case PerfilUsuario.VENDEDOR:
+                    Console.WriteLine("1. Venta");
+                    Console.WriteLine("2. Reporte de ventas por vendedor");
+                    Console.WriteLine("3. Salir");
+                    break;
 
-                    case PerfilUsuario.SUPERVISOR:
-                        Console.WriteLine("1. Alta de Productos");
-                        Console.WriteLine("2. Modificación de Productos");
-                        Console.WriteLine("3. Baja de Productos");
-                        Console.WriteLine("4. Devolución");
-                        Console.WriteLine("5. Reporte de stock crítico");
-                        Console.WriteLine("6. Reporte de ventas por vendedor");
-                        Console.WriteLine("7. Reporte de productos más vendidos por categoría");
-                        Console.WriteLine("8. Salir");
-                        break;
+                case PerfilUsuario.SUPERVISOR:
+                    Console.WriteLine("1. Alta de Productos");
+                    Console.WriteLine("2. Modificación de Productos");
+                    Console.WriteLine("3. Baja de Productos");
+                    Console.WriteLine("4. Devolución");
+                    Console.WriteLine("5. Reporte de stock crítico");
+                    Console.WriteLine("6. Reporte de ventas por vendedor");
+                    Console.WriteLine("7. Reporte de productos más vendidos por categoría");
+                    Console.WriteLine("8. Salir");
+                    break;
 
-                    case PerfilUsuario.ADMINISTRADOR:
-                        Console.WriteLine("1. Alta de usuarios Supervisores");
-                        Console.WriteLine("2. Modificación de usuarios Supervisores");
-                        Console.WriteLine("3. Baja de usuarios Supervisores");
-                        Console.WriteLine("4. Alta de usuarios Vendedores");
-                        Console.WriteLine("5. Modificación de usuarios Vendedores");
-                        Console.WriteLine("6. Baja de usuarios Vendedores");
-                        Console.WriteLine("7. Alta de Proveedores");
-                        Console.WriteLine("8. Modificación de Proveedores");
-                        Console.WriteLine("9. Baja de Proveedores");
-                        Console.WriteLine("10. Alta de Productos");
-                        Console.WriteLine("11. Modificación de Productos");
-                        Console.WriteLine("12. Baja de Productos");
-                        Console.WriteLine("13. Reporte de stock crítico");
-                        Console.WriteLine("14. Reporte de ventas por vendedor");
-                        Console.WriteLine("15. Reporte de productos más vendidos por categoría");
-                        Console.WriteLine("16. Salir");
-                        break;
-                }
+                case PerfilUsuario.ADMINISTRADOR:
+                    Console.WriteLine("1. Alta de usuarios Supervisores");
+                    Console.WriteLine("2. Modificación de usuarios Supervisores");
+                    Console.WriteLine("3. Baja de usuarios Supervisores");
+                    Console.WriteLine("4. Alta de usuarios Vendedores");
+                    Console.WriteLine("5. Modificación de usuarios Vendedores");
+                    Console.WriteLine("6. Baja de usuarios Vendedores");
+                    Console.WriteLine("7. Alta de Proveedores");
+                    Console.WriteLine("8. Modificación de Proveedores");
+                    Console.WriteLine("9. Baja de Proveedores");
+                    Console.WriteLine("10. Alta de Productos");
+                    Console.WriteLine("11. Modificación de Productos");
+                    Console.WriteLine("12. Baja de Productos");
+                    Console.WriteLine("13. Reporte de stock crítico");
+                    Console.WriteLine("14. Reporte de ventas por vendedor");
+                    Console.WriteLine("15. Reporte de productos más vendidos por categoría");
+                    Console.WriteLine("16. Salir");
+                    break;
+            }
             // }
 
             Console.Write("Seleccione una opción: ");
@@ -112,14 +125,23 @@ namespace MyApp
 
             if (perfil == PerfilUsuario.ADMINISTRADOR && opcionSeleccionada == "1")
             {
-                Console.WriteLine("Alta de usuarios Supervisores");
-                string nombre = Nombre();
-                string apellido = Apellido();
-                string username = Username();
+                bool response = false;
+                do
+                {
+                    Console.WriteLine("GENERAR ALTA/NUEVO USUARIO SUPERVISOR");
+                    string nombre = Nombre();
+                    string apellido = Apellido();
+                    string username = Username();
 
-                               
-                //llama a agregar usuario
-                gestorUsuarios.AgregarUsuario(nombre, apellido, username, PerfilUsuario.SUPERVISOR);
+                    response = gestorUsuarios.AgregarUsuario(nombre, apellido, username, PerfilUsuario.SUPERVISOR);
+
+                    if (!response)
+                    {
+                        Console.WriteLine("Hubo un error al agregar el usuario supervisor. Por favor intente nuevamente.");
+                        Console.WriteLine();
+                    }
+                } while (!response);
+
                 Console.WriteLine();
                 Console.WriteLine("Lista de usuarios existentes: ");
                 gestorUsuarios.ObtenerUsuarios();
@@ -131,13 +153,22 @@ namespace MyApp
             //ALTA Vendedores
             if (perfil == PerfilUsuario.ADMINISTRADOR && opcionSeleccionada == "4")
             {
-                Console.WriteLine("Alta de usuarios Vendedores");
-                string nombre = Nombre();
-                string apellido = Apellido();
-                string username = Username();
+                bool response = false;
+                do
+                {
+                    Console.WriteLine("GENERAR ALTA/NUEVO USUARIO VENDEDORES");
+                    string nombre = Nombre();
+                    string apellido = Apellido();
+                    string username = Username();
 
-                //llama a agregar usuario
-                gestorUsuarios.AgregarUsuario(nombre, apellido, username, PerfilUsuario.VENDEDOR);
+                    response = gestorUsuarios.AgregarUsuario(nombre, apellido, username, PerfilUsuario.VENDEDOR);
+
+                    if (!response)
+                    {
+                        Console.WriteLine("Hubo un error al agregar el usuario. Por favor intente nuevamente.");
+                        Console.WriteLine();
+                    }
+                } while (!response);
 
                 Console.WriteLine();
                 Console.WriteLine("Lista de usuarios existentes: ");
@@ -146,60 +177,29 @@ namespace MyApp
                 Console.WriteLine();
             }
 
-
-            if (opcionSeleccionada == "8" || opcionSeleccionada == "3")
-            {
-                Console.WriteLine("Antes de cerrar Cambie el Password");
-
-                string nuevopass = newpass();//Aca no se como llevar el valor de nuevopass a SetPassword?
-
-            }
-
-
-            
-                 
-               
-
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             Console.WriteLine("Cerrando sesión...");
-            Thread.Sleep(2000);  
+            Thread.Sleep(2000);
             Console.Clear();
             Iniciar();
-
         }
 
-            static string Nombre()
+        static string Nombre()
+        {
+            string nuevoNombre;
+            bool flagnombre = false;
+            Console.WriteLine("Ingrese el NOMBRE del nuevo usuario:");
+            nuevoNombre = Console.ReadLine();
+            do
             {
-                string nuevoNombre;
-                bool flagnombre = false;
-                Console.WriteLine("Ingrese el NOMBRE del nuevo usuario:");
-                nuevoNombre = Console.ReadLine();
-                do
+                if (string.IsNullOrEmpty(nuevoNombre))
                 {
-                    if (string.IsNullOrEmpty(nuevoNombre))
-                    {
-                        Console.WriteLine("El nombre no puede estar vacío");
-                        nuevoNombre = Console.ReadLine();
-                    }
-                    else flagnombre = true;
-                } while (flagnombre == false);
-                return nuevoNombre;
-            }
+                    Console.WriteLine("El nombre no puede estar vacío");
+                    nuevoNombre = Console.ReadLine();
+                }
+                else flagnombre = true;
+            } while (flagnombre == false);
+            return nuevoNombre;
+        }
         static string Apellido()
         {
             string nuevoapellido;
@@ -234,33 +234,9 @@ namespace MyApp
             } while (flagnombre == false);
             return nuevousername;
         }
-        static string newpass()
-        {
-            string nuevopass;
-            bool flagpass = false;
-            Console.WriteLine("Ingrese la nueva pass:");
-            nuevopass = Console.ReadLine();
-            do
-            {
-                if (string.IsNullOrEmpty(nuevopass))
-                {
-                    Console.WriteLine("el password no puede estar vacío");
-                    nuevopass = Console.ReadLine();
-                }
-                else flagpass = true;
-            } while (flagpass == false);
-            return nuevopass;
-
-
-
-
-        }
 
 
 
     }
 
 }
-
-
-
