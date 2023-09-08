@@ -109,45 +109,36 @@ namespace MyApp
             Console.Write("Seleccione una opción: ");
             var opcionSeleccionada = Console.ReadLine();
             Console.Clear();
-            
+
             if (perfil == PerfilUsuario.ADMINISTRADOR && opcionSeleccionada == "1")
             {
                 Console.WriteLine("Alta de usuarios Supervisores");
                 string nombre = Nombre();
                 string apellido = Apellido();
                 string username = Username();
-                string nuevopass = "";// agregue este parametro vacio para que la agregue a nuevo usuario en esta instancia
-                
-
-                
-                
-
-                
 
                                
                 //llama a agregar usuario
-                gestorUsuarios.AgregarUsuario(nombre, apellido, username, PerfilUsuario.SUPERVISOR,nuevopass);
+                gestorUsuarios.AgregarUsuario(nombre, apellido, username, PerfilUsuario.SUPERVISOR);
                 Console.WriteLine();
                 Console.WriteLine("Lista de usuarios existentes: ");
-                //para chequear que los agrega
                 gestorUsuarios.ObtenerUsuarios();
+                Console.WriteLine();
+                Console.WriteLine();
             }
 
-           //ALTA Vendedores
+            //ALTA Vendedores
+            //ALTA Vendedores
             if (perfil == PerfilUsuario.ADMINISTRADOR && opcionSeleccionada == "4")
             {
                 Console.WriteLine("Alta de usuarios Vendedores");
                 string nombre = Nombre();
                 string apellido = Apellido();
                 string username = Username();
-                string nuevopass = "";// agregue este parametro vacio para que la agregue a nuevo usuario en esta instancia
-
-
-
 
                 //llama a agregar usuario
-                gestorUsuarios.AgregarUsuario(nombre, apellido, username, PerfilUsuario.VENDEDOR,nuevopass);
-                
+                gestorUsuarios.AgregarUsuario(nombre, apellido, username, PerfilUsuario.VENDEDOR);
+
                 Console.WriteLine();
                 Console.WriteLine("Lista de usuarios existentes: ");
                 gestorUsuarios.ObtenerUsuarios();
@@ -186,23 +177,17 @@ namespace MyApp
 
 
             Console.WriteLine("Cerrando sesión...");
+            Thread.Sleep(2000);  
             Console.Clear();
             Iniciar();
 
-            
-
-
-
-
-
-
-            }
+        }
 
             static string Nombre()
             {
                 string nuevoNombre;
                 bool flagnombre = false;
-                Console.WriteLine("Ingrese el Nombre:");
+                Console.WriteLine("Ingrese el NOMBRE del nuevo usuario:");
                 nuevoNombre = Console.ReadLine();
                 do
                 {
@@ -219,7 +204,7 @@ namespace MyApp
         {
             string nuevoapellido;
             bool flagapellido = false;
-            Console.WriteLine("Ingrese el Apellido:");
+            Console.WriteLine("Ingrese el APELLIDO del nuevo usuario:");
             nuevoapellido = Console.ReadLine();
             do
             {
@@ -236,7 +221,7 @@ namespace MyApp
         {
             string nuevousername;
             bool flagnombre = false;
-            Console.WriteLine("Ingrese el Nombre de usuario:");
+            Console.WriteLine("Ingrese el NOMBRE DE USUARIO/USERNAME del nuevo usuario:");
             nuevousername = Console.ReadLine();
             do
             {
