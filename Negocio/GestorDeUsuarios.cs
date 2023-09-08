@@ -13,9 +13,9 @@ namespace Negocio
             // Usamos esta lista para harcodear usuarios y probar
             usuarios = new List<Usuario>
             {
-                new Usuario("Juan", "Pérez", "juanp1234", PerfilUsuario.VENDEDOR),
-                new Usuario("Ana", "Gómez", "anag1234", PerfilUsuario.SUPERVISOR),
-                new Usuario("Luis", "Martínez", "luism1234", PerfilUsuario.ADMINISTRADOR)
+                new Usuario("Juan", "Pérez", "juanp1234", PerfilUsuario.VENDEDOR,"Pass1234"),// aca tuve agregar un parametro mas por el constructor
+                new Usuario("Ana", "Gómez", "anag1234", PerfilUsuario.SUPERVISOR,"Pass5678"),
+                new Usuario("Luis", "Martínez", "luism1234", PerfilUsuario.ADMINISTRADOR,"Pass9012")
             };
 
             // Estableciendo contraseñas de ejemplo
@@ -40,23 +40,23 @@ namespace Negocio
        
         }
 
-        public bool AgregarUsuario(string nombre, string apellido, string username, PerfilUsuario perfil)
+        public bool AgregarUsuario(string nombre, string apellido, string username, PerfilUsuario perfil,string nuevopass) // Aca esta el nuevo parametro para Agregar al usuario nuevo
         {
             //password no agregada porque este metodo solo se usa para primera creación con static password. 
-            if (!SonValidosLosDatos(nombre, apellido, username))
+            if (!SonValidosLosDatos(nombre, apellido, username,nuevopass))
             {
                 return false;
             }
 
-            var nuevoUsuario = new Usuario(nombre, apellido, username, perfil);
+            var nuevoUsuario = new Usuario(nombre, apellido, username,perfil,nuevopass);//Aca tambien esta agregado
             usuarios.Add(nuevoUsuario);
-            Console.WriteLine("Usuario " + username + " agregado con exito");
+            Console.WriteLine("Usuario " + username +"agregado con exito");
             Console.WriteLine();
             return true;
         }
 
 
-        private bool SonValidosLosDatos(string nombre, string apellido, string username)
+        private bool SonValidosLosDatos(string nombre, string apellido, string username,string nuevopass) // Aca tambien 
         {
             //validaciones de NEGOCIO
             //validaciones propias de datos, deberian ser desde presentación

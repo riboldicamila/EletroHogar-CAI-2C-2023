@@ -2,6 +2,7 @@
 using Modelo; //solo para usar PerfilUsuario, no deberiamos llamar nunca  a Usuario directamente acá, siempre sería a través de GestordeUsuarios
 using System.Timers;
 using System.Security.Cryptography.X509Certificates;
+using System.ComponentModel;
 
 namespace MyApp 
 {
@@ -115,10 +116,17 @@ namespace MyApp
                 string nombre = Nombre();
                 string apellido = Apellido();
                 string username = Username();
+                string nuevopass = "";// agregue este parametro vacio para que la agregue a nuevo usuario en esta instancia
+                
+
+                
+                
+
+                
 
                                
                 //llama a agregar usuario
-                gestorUsuarios.AgregarUsuario(nombre, apellido, username, PerfilUsuario.SUPERVISOR);
+                gestorUsuarios.AgregarUsuario(nombre, apellido, username, PerfilUsuario.SUPERVISOR,nuevopass);
                 Console.WriteLine();
                 Console.WriteLine("Lista de usuarios existentes: ");
                 //para chequear que los agrega
@@ -132,10 +140,14 @@ namespace MyApp
                 string nombre = Nombre();
                 string apellido = Apellido();
                 string username = Username();
+                string nuevopass = "";// agregue este parametro vacio para que la agregue a nuevo usuario en esta instancia
+
+
+
 
                 //llama a agregar usuario
-                gestorUsuarios.AgregarUsuario(nombre, apellido, username, PerfilUsuario.VENDEDOR);
-
+                gestorUsuarios.AgregarUsuario(nombre, apellido, username, PerfilUsuario.VENDEDOR,nuevopass);
+                
                 Console.WriteLine();
                 Console.WriteLine("Lista de usuarios existentes: ");
                 gestorUsuarios.ObtenerUsuarios();
@@ -143,13 +155,50 @@ namespace MyApp
                 Console.WriteLine();
             }
 
+
+            if (opcionSeleccionada == "8" || opcionSeleccionada == "3")
+            {
+                Console.WriteLine("Antes de cerrar Cambie el Password");
+
+                string nuevopass = newpass();//Aca no se como llevar el valor de nuevopass a SetPassword?
+
+            }
+
+
+            
+                 
+               
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             Console.WriteLine("Cerrando sesión...");
             Console.Clear();
             Iniciar();
 
-        }
+            
 
-        static string Nombre()
+
+
+
+
+
+            }
+
+            static string Nombre()
             {
                 string nuevoNombre;
                 bool flagnombre = false;
@@ -199,6 +248,27 @@ namespace MyApp
                 else flagnombre = true;
             } while (flagnombre == false);
             return nuevousername;
+        }
+        static string newpass()
+        {
+            string nuevopass;
+            bool flagpass = false;
+            Console.WriteLine("Ingrese la nueva pass:");
+            nuevopass = Console.ReadLine();
+            do
+            {
+                if (string.IsNullOrEmpty(nuevopass))
+                {
+                    Console.WriteLine("el password no puede estar vacío");
+                    nuevopass = Console.ReadLine();
+                }
+                else flagpass = true;
+            } while (flagpass == false);
+            return nuevopass;
+
+
+
+
         }
 
 

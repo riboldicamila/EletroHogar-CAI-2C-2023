@@ -1,4 +1,6 @@
-﻿namespace Modelo
+﻿using System.ComponentModel;
+
+namespace Modelo
 {
 
         public class Usuario
@@ -12,18 +14,24 @@
             private int intentosCambioPass;
             private EstadoUsuario estado;
             private PerfilUsuario perfil;
+            private string nuevoPass;// Aca agregue esta variable donde va a tomar la nueva pass
+            
+
 
             // Constructor
-            public Usuario(string nombre, string apellido, string username, PerfilUsuario perfil)
+            public Usuario(string nombre, string apellido, string username, PerfilUsuario perfil,string nuevopass)
             {
                 this.nombre = nombre;
                 this.apellido = apellido;
-                this.Username = username; 
+                this.Username = username;
                 this.password = GenerarPasswordTemporal();
                 this.ultimoCambioPass = DateTime.Now;
                 this.intentosCambioPass = 0;
                 this.estado = EstadoUsuario.INACTIVO;
                 this.perfil = perfil;
+                this.nuevoPass = nuevopass; // la nueva variable en el constructor
+
+
             }
 
             // Propiedades
@@ -58,7 +66,20 @@
                 }
             }
 
-            public DateTime UltimoCambioPass
+            public string NuevoPass // nueva variable para la nueva pass
+            {
+            
+                get { return nuevoPass; }
+                set
+                {
+                 nuevoPass = value;
+                }
+            }
+
+
+
+
+        public DateTime UltimoCambioPass
             {
                 get { return ultimoCambioPass; }
                 private set { ultimoCambioPass = value; }  //solo se puede cambiar dentro de la clase Usuario
@@ -82,28 +103,29 @@
                 private set { intentosCambioPass = value; }
             }
 
-            // Métodos
-            public bool SetPassword(string newPassword)
+            
+        // Métodos
+        public bool SetPassword(string nuevopass) // aca cambie newpassword por nuevopass
             {
                 // Validar que la pass tenga por lo menos una letra mayúscula y un número
-                if (!newPassword.Any(char.IsUpper) || !newPassword.Any(char.IsDigit))
+                if (!nuevopass.Any(char.IsUpper) || !nuevopass.Any(char.IsDigit))
                 {
                     throw new ArgumentException("La contraseña debe contener al menos una letra mayúscula y un número.");
                 }
 
                 // Validar que la nueva pass no sea igual a la anterior
-                if (newPassword == this.password)
+                if (nuevopass == this.password)
                 {
                     throw new ArgumentException("La nueva contraseña no puede ser igual a la anterior.");
                 }
 
                 // Validar que la pass tenga entre 8 y 15 caracteres
-                if (newPassword.Length < 8 || newPassword.Length > 15)
+                if (nuevopass.Length < 8 || nuevopass.Length > 15)
                 {
                     throw new ArgumentException("La contraseña debe tener entre 8 y 15 caracteres.");
                 }
 
-                this.password = newPassword;
+                this.password = nuevopass;
                 this.ultimoCambioPass = DateTime.Now;
                 this.intentosCambioPass = 0;
                 return true;
@@ -119,13 +141,20 @@
                 return this.password == password; //validar si es la pass correcta
             }
 
-
             public string GenerarPasswordTemporal()  //tendriamos que mejorar la logica despues
             {
-                return "Temp1234";
+            return "Temp1234";
+            
             }
 
-            public void DeshabilitarUsuario()
+
+
+
+
+
+
+
+        public void DeshabilitarUsuario()
             {
                 this.estado = EstadoUsuario.INACTIVO;
             }
