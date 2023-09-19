@@ -130,6 +130,27 @@ namespace Negocio
             return usuarios.Where(u => u.Perfil == PerfilUsuario.VENDEDOR);
         }
 
+        public bool EliminarUsuario(string nombre, string apellido, string username) 
+        {
+
+             
+            if (!SonValidosLosDatos(nombre, apellido, username))
+            {
+                return false;
+            }
+
+            foreach (Usuario u in usuarios)
+            {
+                if (u.Nombre == nombre && u.Apellido == apellido && u.Username ==  username)
+                {
+                    
+                    usuarios.Remove(u);
+                    break;
+                }
+            }
+            
+            return true;
+        }
 
 
 

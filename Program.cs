@@ -123,6 +123,7 @@ namespace MyApp
             var opcionSeleccionada = Console.ReadLine();
             Console.Clear();
 
+            //Alta Usuarios Supervisores
             if (perfil == PerfilUsuario.ADMINISTRADOR && opcionSeleccionada == "1")
             {
                 bool response = false;
@@ -149,7 +150,36 @@ namespace MyApp
                 Console.WriteLine();
             }
 
-            //ALTA Vendedores
+            //Baja Usuarios Supervisores
+            if (perfil == PerfilUsuario.ADMINISTRADOR && opcionSeleccionada == "3")
+            {
+                bool response = false;
+                do
+                {
+                    Console.WriteLine("BAJA USUARIO SUPERVISOR");
+                    string nombre = Nombre();
+                    string apellido = Apellido();
+                    string username = Username();
+
+                    response = gestorUsuarios.EliminarUsuario(nombre, apellido, username);
+
+                    if (!response)
+                    {
+                        Console.WriteLine("Hubo un error al eliminar el usuario supervisor. Por favor intente nuevamente.");
+                        Console.WriteLine();
+                    }
+                } while (!response);
+
+                Console.WriteLine("Usuario eliminado con éxito.");
+                Console.WriteLine();
+
+                Console.WriteLine();
+                Console.WriteLine("Lista de usuarios existentes: ");
+                gestorUsuarios.ObtenerUsuarios();
+                Console.WriteLine();
+                Console.WriteLine();
+            }
+
             //ALTA Vendedores
             if (perfil == PerfilUsuario.ADMINISTRADOR && opcionSeleccionada == "4")
             {
@@ -177,6 +207,36 @@ namespace MyApp
                 Console.WriteLine();
             }
 
+            //Baja Vendedores
+            if (perfil == PerfilUsuario.ADMINISTRADOR && opcionSeleccionada == "6")
+            {
+                bool response = false;
+                do
+                {
+                    Console.WriteLine("BAJA USUARIO VENDEDOR");
+                    string nombre = Nombre();
+                    string apellido = Apellido();
+                    string username = Username();
+
+                    response = gestorUsuarios.EliminarUsuario(nombre, apellido, username);
+
+                    if (!response)
+                    {
+                        Console.WriteLine("Hubo un error al eliminar el usuario supervisor. Por favor intente nuevamente.");
+                        Console.WriteLine();
+                    }
+                } while (!response);
+
+                Console.WriteLine("Usuario eliminado con éxito.");
+                Console.WriteLine();
+
+                Console.WriteLine();
+                Console.WriteLine("Lista de usuarios existentes: ");
+                gestorUsuarios.ObtenerUsuarios();
+                Console.WriteLine();
+                Console.WriteLine();
+            }
+
             Console.WriteLine("Cerrando sesión...");
             Thread.Sleep(2000);
             Console.Clear();
@@ -187,7 +247,7 @@ namespace MyApp
         {
             string nuevoNombre;
             bool flagnombre = false;
-            Console.WriteLine("Ingrese el NOMBRE del nuevo usuario:");
+            Console.WriteLine("Ingrese el NOMBRE del usuario:");
             nuevoNombre = Console.ReadLine();
             do
             {
@@ -204,7 +264,7 @@ namespace MyApp
         {
             string nuevoapellido;
             bool flagapellido = false;
-            Console.WriteLine("Ingrese el APELLIDO del nuevo usuario:");
+            Console.WriteLine("Ingrese el APELLIDO del usuario:");
             nuevoapellido = Console.ReadLine();
             do
             {
@@ -221,7 +281,7 @@ namespace MyApp
         {
             string nuevousername;
             bool flagnombre = false;
-            Console.WriteLine("Ingrese el NOMBRE DE USUARIO/USERNAME del nuevo usuario:");
+            Console.WriteLine("Ingrese el NOMBRE DE USUARIO/USERNAME del usuario:");
             nuevousername = Console.ReadLine();
             do
             {
