@@ -143,8 +143,8 @@ namespace Negocio
             {
                 if (u.Nombre == nombre && u.Apellido == apellido && u.Username ==  username)
                 {
-                    
-                    usuarios.Remove(u);
+
+                    u.DeshabilitarUsuario();
                     break;
                 }
             }

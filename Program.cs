@@ -165,16 +165,15 @@ namespace MyApp
 
                     if (!response)
                     {
-                        Console.WriteLine("Hubo un error al eliminar el usuario supervisor. Por favor intente nuevamente.");
+                        Console.WriteLine("Hubo un error al dar de baja el usuario supervisor. Por favor intente nuevamente.");
                         Console.WriteLine();
                     }
                 } while (!response);
 
-                Console.WriteLine("Usuario eliminado con éxito.");
+                Console.WriteLine("Baja de usuario con éxito.");
                 Console.WriteLine();
 
-                Console.WriteLine();
-                Console.WriteLine("Lista de usuarios existentes: ");
+                
                 gestorUsuarios.ObtenerUsuarios();
                 Console.WriteLine();
                 Console.WriteLine();
@@ -222,12 +221,12 @@ namespace MyApp
 
                     if (!response)
                     {
-                        Console.WriteLine("Hubo un error al eliminar el usuario supervisor. Por favor intente nuevamente.");
+                        Console.WriteLine("Hubo un error al dar de baja el usuario vendedor. Por favor intente nuevamente.");
                         Console.WriteLine();
                     }
                 } while (!response);
 
-                Console.WriteLine("Usuario eliminado con éxito.");
+                Console.WriteLine("Baja de usuario con éxito.");
                 Console.WriteLine();
 
                 Console.WriteLine();
