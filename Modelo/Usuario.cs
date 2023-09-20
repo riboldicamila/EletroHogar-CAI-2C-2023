@@ -77,66 +77,60 @@ namespace Modelo
 
 
 
-        public DateTime UltimoCambioPass
-            {
-                get { return ultimoCambioPass; }
-                private set { ultimoCambioPass = value; }  //solo se puede cambiar dentro de la clase Usuario
-            }
-
-            public EstadoUsuario Estado
-            {
-                get { return estado; }
-                set { estado = value; }
-            }
-
-            public PerfilUsuario Perfil
-            {
-                get { return perfil; }
-                set { perfil = value; }
-            }
-
-            public int IntentosCambioPass
-            {
-                get { return intentosCambioPass; }
-                private set { intentosCambioPass = value; }
-            }
-
-
-        // Métodos
-        public void SetPassword(string newPassword)
-        {
-            this.password = newPassword;
-            this.ultimoCambioPass = DateTime.Now;
-            this.intentosCambioPass = 0;
-        }
-
-
-        public bool EsPasswordValida(string password)
-            {
-                // Validar si la pass venció
-                if ((DateTime.Now - ultimoCambioPass).TotalDays > 30)
+            public DateTime UltimoCambioPass
                 {
-                    throw new InvalidOperationException("La contraseña ha vencido.");
+                    get { return ultimoCambioPass; }
+                    private set { ultimoCambioPass = value; }  //solo se puede cambiar dentro de la clase Usuario
                 }
-                return this.password == password; //validar si es la pass correcta
+
+                public EstadoUsuario Estado
+                {
+                    get { return estado; }
+                    set { estado = value; }
+                }
+
+                public PerfilUsuario Perfil
+                {
+                    get { return perfil; }
+                    set { perfil = value; }
+                }
+
+                public int IntentosCambioPass
+                {
+                    get { return intentosCambioPass; }
+                    private set { intentosCambioPass = value; }
+                }
+
+
+            // Métodos
+            public void SetPassword(string newPassword)
+            {
+                this.password = newPassword;
+                this.ultimoCambioPass = DateTime.Now;
+                this.intentosCambioPass = 0;
             }
+
+
+            public bool EsPasswordValida(string password)
+                {
+                    // Validar si la pass venció
+                    if ((DateTime.Now - ultimoCambioPass).TotalDays > 30)
+                    {
+                        throw new InvalidOperationException("La contraseña ha vencido.");
+                    }
+                    return this.password == password; //validar si es la pass correcta
+                }
 
             public string GenerarPasswordTemporal()  //tendriamos que mejorar la logica despues
             {
-            return "Temp1234";
+                  return "Temp1234";
             
             }
 
 
-
-
-
-
-
-
-        public void DeshabilitarUsuario()
+            public void DeshabilitarUsuario()
             {
-                this.estado = EstadoUsuario.INACTIVO;
+                    this.estado = EstadoUsuario.INACTIVO;
             }
 
             public void HabilitarUsuario()

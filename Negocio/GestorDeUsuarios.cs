@@ -9,86 +9,45 @@ namespace Negocio
 
         public GestorDeUsuarios()
         {
-            //Constructor 
             // Inicialización de la lista y generación de usuarios de ejemplo al instanciar el gestor. 
             // Usamos esta lista para harcodear usuarios y probar
             usuarios = new List<Usuario>
             {
-                new Usuario("Juan", "Pérez", "juanp1234", PerfilUsuario.VENDEDOR),// aca tuve agregar un parametro mas por el constructor
+                new Usuario("Juan", "Pérez", "juanp1234", PerfilUsuario.VENDEDOR),
                 new Usuario("Ana", "Gómez", "anag1234", PerfilUsuario.SUPERVISOR),
                 new Usuario("Luis", "Martínez", "luism1234", PerfilUsuario.ADMINISTRADOR)
             };
 
-            // Estableciendo contraseñas de ejemplo
             usuarios[0].SetPassword("Pass1234");
             usuarios[1].SetPassword("Pass5678");
             usuarios[2].SetPassword("Pass9012");
         }
 
-        public (PerfilUsuario? perfil, bool cambiarContrasena, Usuario usuario) Login(string username, string password)
+        public (PerfilUsuario? perfil, bool necesitaCambiarContrasena, Usuario usuarioActual) Login(string username, string password)
         {
-            var usuario = usuarios.Find(u => u.Username == username && u.EsPasswordValida(password));
-            bool necesitaCambiarContrasena = usuario?.Password == "Temp1234";
-            return (usuario?.Perfil, necesitaCambiarContrasena, usuario);
+            var usuario = usuarios.Find(u => u.Username == username);
+            bool requiereNuevaContrasena = false;
+
+            if (usuario != null)
+            {
+                // Validar si la contraseña es correcta
+                if (usuario.Password != password)
+                {
+                    return (perfil: null, necesitaCambiarContrasena: false, usuarioActual: null);
+                }
+
+                // Validar si la contraseña esta vencida o es temporal
+                requiereNuevaContrasena = (DateTime.Now - usuario.UltimoCambioPass).TotalDays > 30 || usuario.Password == "Temp1234";
+            }
+
+            return (perfil: usuario?.Perfil, necesitaCambiarContrasena: requiereNuevaContrasena, usuarioActual: usuario);
         }
 
 
-
-        // Método para obtener todos los usuarios (opcional, si necesitas listarlos en algún punto)
-        public List<Usuario> ObtenerUsuarios()
-        {
-            //lista los nombres de usuario
-            usuarios.ForEach(u => { Console.WriteLine(u.Username); }) ;
-            return usuarios;
-            
-       
-        }
-
-        public bool EstablecerContraseña(Usuario usuario, string newPassword)
-        {
-            if (!newPassword.Any(char.IsUpper) || !newPassword.Any(char.IsDigit))
-            {
-                Console.WriteLine("La contraseña debe contener al menos una letra mayúscula y un número.");
-                return false;
-            }
-
-            if (newPassword == usuario.Password)
-            {
-                Console.WriteLine("La nueva contraseña no puede ser igual a la anterior.");
-                return false;
-            }
-
-            if (newPassword.Length < 8 || newPassword.Length > 15)
-            {
-                Console.WriteLine("La contraseña debe tener entre 8 y 15 caracteres.");
-                return false;
-            }
-
-            usuario.SetPassword(newPassword);
-            return true;
-        }
-
-
-        public bool AgregarUsuario(string nombre, string apellido, string username, PerfilUsuario perfil) // Aca esta el nuevo parametro para Agregar al usuario nuevo
-        {
-            //password no agregada porque este metodo solo se usa para primera creación con static password. 
-            if (!SonValidosLosDatos(nombre, apellido, username))
-            {
-                return false;
-            }
-
-            var nuevoUsuario = new Usuario(nombre, apellido, username,perfil);//Aca tambien esta agregado
-            usuarios.Add(nuevoUsuario);
-            Console.WriteLine("Usuario " + username +"agregado con exito");
-            Console.WriteLine();
-            return true;
-        }
-
-
-        private bool SonValidosLosDatos(string nombre, string apellido, string username) // Aca tambien 
+        //METODO0S VALIDACIONES
+        private bool SonValidosLosDatos(string nombre, string apellido, string username)
         {
             //validaciones de NEGOCIO
-            //validaciones propias de datos, deberian ser desde presentación
             if (string.IsNullOrEmpty(nombre) || nombre.Length <= 2 || nombre.Any(char.IsDigit))
             {
                 Console.WriteLine("El nombre no puede estar vacío, debe tener por lo menos 2 caracteres y no puede contener números.");
@@ -125,6 +84,59 @@ namespace Negocio
             return true;
         }
 
+        public bool EstablecerContraseña(Usuario usuario, string newPassword)
+        {
+            if (!newPassword.Any(char.IsUpper) || !newPassword.Any(char.IsDigit))
+            {
+                Console.WriteLine("La contraseña debe contener al menos una letra mayúscula y un número.");
+                return false;
+            }
+
+            if (newPassword == usuario.Password)
+            {
+                Console.WriteLine("La nueva contraseña no puede ser igual a la anterior.");
+                return false;
+            }
+
+            if (newPassword.Length < 8 || newPassword.Length > 15)
+            {
+                Console.WriteLine("La contraseña debe tener entre 8 y 15 caracteres.");
+                return false;
+            }
+
+            usuario.SetPassword(newPassword);
+            return true;
+        }
+
+
+
+        // METODOS
+        public List<Usuario> ObtenerUsuarios()
+        {
+            //lista los nombres de usuario
+            usuarios.ForEach(u => { Console.WriteLine(u.Username); }) ;
+            return usuarios;
+            
+       
+        }
+
+
+        public bool AgregarUsuario(string nombre, string apellido, string username, PerfilUsuario perfil) // Aca esta el nuevo parametro para Agregar al usuario nuevo
+        {
+            //password no agregada porque este metodo solo se usa para primera creación con static password. 
+            if (!SonValidosLosDatos(nombre, apellido, username))
+            {
+                return false;
+            }
+
+            var nuevoUsuario = new Usuario(nombre, apellido, username,perfil);//Aca tambien esta agregado
+            usuarios.Add(nuevoUsuario);
+            Console.WriteLine("Usuario " + username +"agregado con exito");
+            Console.WriteLine();
+            return true;
+        }
+
+
         public IEnumerable<Usuario> ListarVendedores()
         {
             return usuarios.Where(u => u.Perfil == PerfilUsuario.VENDEDOR);
@@ -151,7 +163,6 @@ namespace Negocio
             
             return true;
         }
-
 
 
     }

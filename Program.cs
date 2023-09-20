@@ -38,23 +38,14 @@ namespace MyApp
                 {
                     if (necesitaCambiarContrasena)
                     {
-                        Console.WriteLine("Debe cambiar su contraseña.");
-                        string nuevaContrasena;
-                        bool cambioExitoso;
-                        do
-                        {
-                            Console.WriteLine("Ingrese la nueva contraseña:");
-                            nuevaContrasena = Console.ReadLine();
-                            cambioExitoso = gestorUsuarios.EstablecerContraseña(usuarioActual, nuevaContrasena);
-                        } while (!cambioExitoso);
+                        SolicitarCambioDeContraseña(usuarioActual);
                     }
                     MostrarMenu(perfil.Value);
                     return;
                 }
 
 
-                else
-                {
+                else {
                     Console.WriteLine("Credenciales inválidas.");
                     Console.WriteLine();
                     Console.WriteLine("1. Volver a intentarlo");
@@ -293,8 +284,18 @@ namespace MyApp
             } while (flagnombre == false);
             return nuevousername;
         }
-
-
+        public void SolicitarCambioDeContraseña(Usuario usuarioActual)
+        {
+            Console.WriteLine("Debe cambiar su contraseña.");
+            string nuevaContrasena;
+            bool cambioExitoso;
+            do
+            {
+                Console.WriteLine("Ingrese la nueva contraseña:");
+                nuevaContrasena = Console.ReadLine();
+                cambioExitoso = gestorUsuarios.EstablecerContraseña(usuarioActual, nuevaContrasena);
+            } while (!cambioExitoso);
+        }
 
     }
 
