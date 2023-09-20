@@ -14,7 +14,7 @@ namespace Modelo
             private int intentosCambioPass;
             private EstadoUsuario estado;
             private PerfilUsuario perfil;
-            private string nuevoPass;// Aca agregue esta variable donde va a tomar la nueva pass
+            private string nuevoPass;
             
 
 
@@ -56,7 +56,6 @@ namespace Modelo
 
             public string Password
             {
-            //se va a necesitar acceder desde negocio para implementar la logica
                 get { return password; }
                 set 
                 { 
@@ -73,7 +72,6 @@ namespace Modelo
                  nuevoPass = value;
                 }
             }
-
 
 
 
@@ -109,17 +107,6 @@ namespace Modelo
                 this.ultimoCambioPass = DateTime.Now;
                 this.intentosCambioPass = 0;
             }
-
-
-            public bool EsPasswordValida(string password)
-                {
-                    // Validar si la pass venció
-                    if ((DateTime.Now - ultimoCambioPass).TotalDays > 30)
-                    {
-                        throw new InvalidOperationException("La contraseña ha vencido.");
-                    }
-                    return this.password == password; //validar si es la pass correcta
-                }
 
             public string GenerarPasswordTemporal()  //tendriamos que mejorar la logica despues
             {

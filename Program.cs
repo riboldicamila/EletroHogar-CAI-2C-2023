@@ -232,7 +232,6 @@ namespace MyApp
             Console.Clear();
             Iniciar();
         }
-
         static string Nombre()
         {
             string nuevoNombre;
