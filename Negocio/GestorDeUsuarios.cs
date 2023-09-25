@@ -45,43 +45,40 @@ namespace Negocio
 
 
         //METODO0S VALIDACIONES
-        private bool SonValidosLosDatos(string nombre, string apellido, string username)
+        public void ValidarNombre(string nombre)
         {
-            //validaciones de NEGOCIO
             if (string.IsNullOrEmpty(nombre) || nombre.Length <= 2 || nombre.Any(char.IsDigit))
             {
-                Console.WriteLine("El nombre no puede estar vacío, debe tener por lo menos 2 caracteres y no puede contener números.");
-                return false;
+                throw new ArgumentException("El nombre no puede estar vacío, debe tener por lo menos 2 caracteres y no puede contener números.");
             }
+        }
 
+        public void ValidarApellido(string apellido)
+        {
             if (string.IsNullOrEmpty(apellido) || apellido.Length <= 2 || apellido.Any(char.IsDigit))
             {
-                Console.WriteLine("El apellido no puede estar vacío, debe tener por lo menos 2 caracteres y no puede contener números.");
-                return false;
+                throw new ArgumentException("El apellido no puede estar vacío, debe tener por lo menos 2 caracteres y no puede contener números.");
             }
+        }
 
+        public void ValidarUsername(string nombre, string apellido, string username)
+        {
             if (username.Length < 8)
             {
-                Console.WriteLine("El nombre de usuario debe tener mínimo 8 caracteres.");
-                return false;
+                throw new ArgumentException("El nombre de usuario debe tener mínimo 8 caracteres.");
             }
             else if (username.Length > 15)
             {
-                Console.WriteLine("El nombre de usuario debe tener un máximo de 15 caracteres.");
-                return false;
+                throw new ArgumentException("El nombre de usuario debe tener un máximo de 15 caracteres.");
             }
             else if (username.Contains(nombre))
             {
-                Console.WriteLine("El nombre de usuario no debe contener el apellido.");
-                return false;
+                throw new ArgumentException("El nombre de usuario no debe contener el nombre.");
             }
             else if (username.Contains(apellido))
             {
-                Console.WriteLine("El nombre de usuario no debe contener el apellido.");
-                return false;
+                throw new ArgumentException("El nombre de usuario no debe contener el apellido.");
             }
-
-            return true;
         }
 
         public bool EstablecerContraseña(Usuario usuario, string newPassword)
@@ -121,17 +118,11 @@ namespace Negocio
         }
 
 
-        public bool AgregarUsuario(string nombre, string apellido, string username, PerfilUsuario perfil) // Aca esta el nuevo parametro para Agregar al usuario nuevo
+        public bool AgregarUsuario(string nombre, string apellido, string username, PerfilUsuario perfil)
         {
-            //password no agregada porque este metodo solo se usa para primera creación con static password. 
-            if (!SonValidosLosDatos(nombre, apellido, username))
-            {
-                return false;
-            }
-
-            var nuevoUsuario = new Usuario(nombre, apellido, username,perfil);//Aca tambien esta agregado
+            var nuevoUsuario = new Usuario(nombre, apellido, username, perfil);
             usuarios.Add(nuevoUsuario);
-            Console.WriteLine("Usuario " + username +"agregado con exito");
+            Console.WriteLine("Usuario " + username + " agregado con éxito");
             Console.WriteLine();
             return true;
         }
@@ -146,20 +137,20 @@ namespace Negocio
         {
 
              
-            if (!SonValidosLosDatos(nombre, apellido, username))
-            {
-                return false;
-            }
+            //if (!SonValidosLosDatos(nombre, apellido, username))
+            //{
+            //    return false;
+            //}
 
-            foreach (Usuario u in usuarios)
-            {
-                if (u.Nombre == nombre && u.Apellido == apellido && u.Username ==  username)
-                {
+            //foreach (Usuario u in usuarios)
+            //{
+            //    if (u.Nombre == nombre && u.Apellido == apellido && u.Username ==  username)
+            //    {
 
-                    u.DeshabilitarUsuario();
-                    break;
-                }
-            }
+            //        u.DeshabilitarUsuario();
+            //        break;
+            //    }
+            //}
             
             return true;
         }

@@ -117,22 +117,67 @@ namespace MyApp
             //Alta Usuarios Supervisores
             if (perfil == PerfilUsuario.ADMINISTRADOR && opcionSeleccionada == "1")
             {
-                bool response = false;
-                do
+                Console.WriteLine("GENERAR ALTA/NUEVO USUARIO SUPERVISOR");
+
+                string nombre = "";
+                string apellido = "";
+                string username = "";
+
+                while (true)  
                 {
-                    Console.WriteLine("GENERAR ALTA/NUEVO USUARIO SUPERVISOR");
-                    string nombre = Nombre();
-                    string apellido = Apellido();
-                    string username = Username();
-
-                    response = gestorUsuarios.AgregarUsuario(nombre, apellido, username, PerfilUsuario.SUPERVISOR);
-
-                    if (!response)
+                    try
                     {
-                        Console.WriteLine("Hubo un error al agregar el usuario supervisor. Por favor intente nuevamente.");
-                        Console.WriteLine();
+                        Console.WriteLine("✲ Ingrese el NOMBRE del usuario:");
+                        nombre = Console.ReadLine();
+                        gestorUsuarios.ValidarNombre(nombre);
+                        break; 
                     }
-                } while (!response);
+                    catch (ArgumentException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+
+                while (true)  
+                {
+                    try
+                    {
+                        Console.WriteLine("✲ Ingrese el APELLIDO del usuario:");
+                        apellido = Console.ReadLine();
+                        gestorUsuarios.ValidarApellido(apellido);
+                        break;  
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+
+                while (true) 
+                {
+                    try
+                    {
+                        Console.WriteLine("✲ Ingrese el NOMBRE DE USUARIO/USERNAME del usuario:");
+                        username = Console.ReadLine();
+                        gestorUsuarios.ValidarUsername(nombre, apellido, username);
+                        break;  
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+
+                //Todo validado, se genera el usuario. 
+                bool response = gestorUsuarios.AgregarUsuario(nombre, apellido, username, PerfilUsuario.SUPERVISOR);
+                if (!response)
+                {
+                    Console.WriteLine("Hubo un error al agregar el usuario supervisor. Por favor intente nuevamente.");
+                }
+                else
+                {
+                    Console.WriteLine("Usuario supervisor agregado con éxito.");
+                }
 
                 Console.WriteLine();
                 Console.WriteLine("Lista de usuarios existentes: ");
@@ -141,61 +186,81 @@ namespace MyApp
                 Console.WriteLine();
             }
 
-            //Baja Usuarios Supervisores
-            if (perfil == PerfilUsuario.ADMINISTRADOR && opcionSeleccionada == "3")
-            {
-                bool response = false;
-                do
-                {
-                    Console.WriteLine("BAJA USUARIO SUPERVISOR");
-                    string nombre = Nombre();
-                    string apellido = Apellido();
-                    string username = Username();
-
-                    response = gestorUsuarios.EliminarUsuario(nombre, apellido, username);
-
-                    if (!response)
-                    {
-                        Console.WriteLine("Hubo un error al dar de baja el usuario supervisor. Por favor intente nuevamente.");
-                        Console.WriteLine();
-                    }
-                } while (!response);
-
-                Console.WriteLine("Baja de usuario con éxito.");
-                Console.WriteLine();
-
-                
-                gestorUsuarios.ObtenerUsuarios();
-                Console.WriteLine();
-                Console.WriteLine();
-            }
 
             //ALTA Vendedores
             if (perfil == PerfilUsuario.ADMINISTRADOR && opcionSeleccionada == "4")
             {
-                bool response = false;
-                do
+
+                Console.WriteLine("GENERAR ALTA/NUEVO USUARIO VENDEDORES");
+                string nombre = "";
+                string apellido = "";
+                string username = "";
+
+                while (true)
                 {
-                    Console.WriteLine("GENERAR ALTA/NUEVO USUARIO VENDEDORES");
-                    string nombre = Nombre();
-                    string apellido = Apellido();
-                    string username = Username();
-
-                    response = gestorUsuarios.AgregarUsuario(nombre, apellido, username, PerfilUsuario.VENDEDOR);
-
-                    if (!response)
+                    try
                     {
-                        Console.WriteLine("Hubo un error al agregar el usuario. Por favor intente nuevamente.");
-                        Console.WriteLine();
+                        Console.WriteLine("Ingrese el NOMBRE del usuario:");
+                        nombre = Console.ReadLine();
+                        gestorUsuarios.ValidarNombre(nombre);
+                        break;
                     }
-                } while (!response);
+                    catch (ArgumentException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+
+                while (true)
+                {
+                    try
+                    {
+                        Console.WriteLine("Ingrese el APELLIDO del usuario:");
+                        apellido = Console.ReadLine();
+                        gestorUsuarios.ValidarApellido(apellido);
+                        break;
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+
+                while (true)
+                {
+                    try
+                    {
+                        Console.WriteLine("Ingrese el NOMBRE DE USUARIO/USERNAME del usuario:");
+                        username = Console.ReadLine();
+                        gestorUsuarios.ValidarUsername(nombre, apellido, username);
+                        break;
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+
+                //Todo validado, se genera el usuario. 
+                bool response = gestorUsuarios.AgregarUsuario(nombre, apellido, username, PerfilUsuario.VENDEDOR);
+                if (!response)
+                {
+                    Console.WriteLine("Hubo un error al agregar el usuario supervisor. Por favor intente nuevamente.");
+                }
+                else
+                {
+                    Console.WriteLine("Usuario supervisor agregado con éxito.");
+                }
 
                 Console.WriteLine();
                 Console.WriteLine("Lista de usuarios existentes: ");
                 gestorUsuarios.ObtenerUsuarios();
                 Console.WriteLine();
                 Console.WriteLine();
+
             }
+
+
 
             //Baja Vendedores
             if (perfil == PerfilUsuario.ADMINISTRADOR && opcionSeleccionada == "6")
