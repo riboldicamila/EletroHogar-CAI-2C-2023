@@ -31,6 +31,8 @@ namespace MyApp
                 Console.WriteLine("Ingrese su contraseña:");
                 var password = Console.ReadLine();
 
+                var intentos = gestorUsuarios.Intentosfallidos(ref username, ref password);
+
                 // Usamos el gestor de usuarios para autenticar
                 var (perfil, necesitaCambiarContrasena, usuarioActual) = gestorUsuarios.Login(username, password);
 
@@ -40,12 +42,27 @@ namespace MyApp
                     {
                         SolicitarCambioDeContraseña(usuarioActual);
                     }
+
+                    else if (intentos == true)
+                    {
+                        Iniciar();
+                    }
+
+
+
+
+
+
                     MostrarMenu(perfil.Value);
                     return;
+
+                    
                 }
+               
 
 
-                else {
+                else
+                {
                     Console.WriteLine("Credenciales inválidas.");
                     Console.WriteLine();
                     Console.WriteLine("1. Volver a intentarlo");

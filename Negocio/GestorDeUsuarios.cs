@@ -165,5 +165,53 @@ namespace Negocio
         }
 
 
+
+        public bool Intentosfallidos(ref string username, ref string password)
+        {
+
+
+            int count;
+
+            foreach (Usuario u in usuarios)
+            {
+                if (u.Username == username && u.Password == password)
+                {
+                    return true;
+
+                }
+                else if (u.Username == username && u.Password !=password)
+                {
+                    count = 0;
+                    do
+                    {
+                        Console.WriteLine("Ingrese de nuevo el acceso");
+                        password = Console.ReadLine();
+                        if (password == u.Password)
+                        {
+                            return true;
+                        }
+
+
+
+                        count = count + 1;
+                    }
+                    while (count < 3);
+
+                    Console.WriteLine("Su Usuario quedo Inactivo");
+                    u.DeshabilitarUsuario();
+                    break;
+                    
+                }
+
+
+               
+
+
+            }
+
+            return true;
+        }
+
+
     }
 }
