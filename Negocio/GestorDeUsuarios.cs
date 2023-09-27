@@ -132,7 +132,7 @@ namespace Negocio
             return usuarios.Where(u => u.Perfil == PerfilUsuario.VENDEDOR);
         }
 
-        public bool EliminarUsuario(string nombre, string apellido, string username) 
+        public bool BajaUsuario(string nombre, string apellido, string username) 
         {
 
             //if (!SonValidosLosDatos(nombre, apellido, username))

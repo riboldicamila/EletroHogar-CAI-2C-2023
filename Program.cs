@@ -54,22 +54,18 @@ namespace MyApp
 
 
                 else
-                {   if (intentos == true) //Aqui hice esto redundante para las dos acciones si -
-                                          // - el usuario ingresa mal desde el principio y cuando queda inactivo-
-                                          // - tambien se muestran los mismos mensajes para volver a inenta
-                                          // (esta era la parte de mi contradiccion),je
+                {
+                    //Aqui hice esto redundante para las dos acciones si el usuario ingresa mal desde el principio y cuando queda inactivo  // - tambien se muestran los mismos mensajes para volver a inenta (esta era la parte de mi contradiccion),je
+                    if (intentos == true) 
                     {
-
-                        
                         Console.WriteLine("Credenciales inválidas.");
                         Console.WriteLine();
                         Console.WriteLine("1. Volver a intentarlo");
-
                         Console.WriteLine("2. Salir");
                         Console.Write("Ingrese su opción: ");
                     }
-                     else if (intentos == false)
-                        {
+                    else if (intentos == false)
+                    {
                         Console.WriteLine("Credenciales inválidas.");
                         Console.WriteLine();
                         Console.WriteLine("1. Volver a intentarlo");
@@ -227,11 +223,11 @@ namespace MyApp
 
                 Console.WriteLine();
                 Console.WriteLine("Lista de usuarios existentes:");
-                Usuario usuarioABorrar = gestorUsuarios.ObtenerUsuarios().FirstOrDefault(u => u.Username == username && u.Perfil == PerfilUsuario.SUPERVISOR);
+                Usuario usuarioAInhabilitar = gestorUsuarios.ObtenerUsuarios().FirstOrDefault(u => u.Username == username && u.Perfil == PerfilUsuario.SUPERVISOR);
 
-                if (usuarioABorrar != null)
+                if (usuarioAInhabilitar != null)
                 {
-                    if (gestorUsuarios.EliminarUsuario(usuarioABorrar.Nombre, usuarioABorrar.Apellido, usuarioABorrar.Username))
+                    if (gestorUsuarios.BajaUsuario(usuarioAInhabilitar.Nombre, usuarioAInhabilitar.Apellido, usuarioAInhabilitar.Username))
                     {
                         Console.WriteLine("Baja de usuario con éxito.");
                         Console.WriteLine();
@@ -328,39 +324,47 @@ namespace MyApp
 
 
             //Baja Vendedores
-            if (perfil == PerfilUsuario.ADMINISTRADOR && opcionSeleccionada == "6")
+            if (perfil == PerfilUsuario.VENDEDOR && opcionSeleccionada == "6")
             {
-                bool response = false;
-                do
+                Console.WriteLine("BAJA USUARIO Vendedor");
+                Console.WriteLine("Ingrese el nombre de usuario (username) del vendedor que desea dar de baja:");
+                string username = Console.ReadLine();
+
+                Console.WriteLine();
+                Console.WriteLine("Lista de usuarios existentes:");
+                Usuario usuarioAInhabilitar = gestorUsuarios.ObtenerUsuarios().FirstOrDefault(u => u.Username == username && u.Perfil == PerfilUsuario.SUPERVISOR);
+
+                if (usuarioAInhabilitar != null)
                 {
-                    Console.WriteLine("BAJA USUARIO VENDEDOR");
-                    string nombre = Nombre();
-                    string apellido = Apellido();
-                    string username = Username();
-
-                    response = gestorUsuarios.EliminarUsuario(nombre, apellido, username);
-
-                    if (!response)
+                    if (gestorUsuarios.BajaUsuario(usuarioAInhabilitar.Nombre, usuarioAInhabilitar.Apellido, usuarioAInhabilitar.Username))
+                    {
+                        Console.WriteLine("Baja de usuario con éxito.");
+                        Console.WriteLine();
+                        Console.WriteLine("Lista de usuarios existentes, tras la baja del usuario: ");
+                        gestorUsuarios.ObtenerUsuarios();
+                    }
+                    else
                     {
                         Console.WriteLine("Hubo un error al dar de baja el usuario vendedor. Por favor intente nuevamente.");
-                        Console.WriteLine();
                     }
-                } while (!response);
+                }
+                else
+                {
+                    Console.WriteLine("El nombre de usuario ingresado no existe o no es de tipo vendedor.");
 
-                Console.WriteLine("Baja de usuario con éxito.");
+                }
                 Console.WriteLine();
-
-                Console.WriteLine();
-                Console.WriteLine("Lista de usuarios existentes: ");
-                gestorUsuarios.ObtenerUsuarios();
-                Console.WriteLine();
-                Console.WriteLine();
+                Thread.Sleep(4000);
             }
-
+            
             Console.WriteLine("Cerrando sesión...");
             Thread.Sleep(2000);
             Console.Clear();
             Iniciar();
+
+
+
+
         }
         static string Nombre()
         {
