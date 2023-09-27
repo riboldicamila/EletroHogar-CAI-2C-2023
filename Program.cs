@@ -413,6 +413,9 @@ namespace MyApp
             } while (flagnombre == false);
             return nuevousername;
         }
+
+
+        //EXTRACCIÓN DE METODOS PARA MANTENER ORDEN 
         public void SolicitarCambioDeContraseña(Usuario usuarioActual)
         {
             Console.WriteLine("Debe cambiar su contraseña.");
