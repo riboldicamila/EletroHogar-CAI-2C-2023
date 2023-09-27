@@ -100,6 +100,14 @@ namespace Negocio
                 return false;
             }
 
+            
+            if (newPassword.ToUpper() == usuario.Username.ToUpper() || newPassword.ToUpper().Contains(usuario.Username.ToUpper()))
+            {
+                Console.WriteLine("La contraseña no debe contener el nombre de usuario.");
+                return false;
+            }
+
+
             usuario.SetPassword(newPassword);
             return true;
         }
