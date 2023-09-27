@@ -38,22 +38,13 @@ namespace MyApp
 
                 if (perfil.HasValue)
                 {
+                    
                     if (necesitaCambiarContrasena)
                     {
                         SolicitarCambioDeContraseña(usuarioActual);
                     }
 
-                    //else if (intentos == true)
-                    //{
-                    //    Iniciar();
-                        
-                    //}
-
-
-
-
-
-
+                    
                     MostrarMenu(perfil.Value);
                     return;
 
@@ -63,17 +54,29 @@ namespace MyApp
 
 
                 else
-                {   if (intentos == true || intentos == false)
-
+                {   if (intentos == true) //Aqui hice esto redundante para las dos acciones si -
+                                          // - el usuario ingresa mal desde el principio y cuando queda inactivo-
+                                          // - tambien se muestran los mismos mensajes para volver a inenta
+                                          // (esta era la parte de mi contradiccion),je
                     {
 
+                        
+                        Console.WriteLine("Credenciales inválidas.");
+                        Console.WriteLine();
+                        Console.WriteLine("1. Volver a intentarlo");
 
-
+                        Console.WriteLine("2. Salir");
+                        Console.Write("Ingrese su opción: ");
+                    }
+                     else if (intentos == false)
+                        {
                         Console.WriteLine("Credenciales inválidas.");
                         Console.WriteLine();
                         Console.WriteLine("1. Volver a intentarlo");
                         Console.WriteLine("2. Salir");
                         Console.Write("Ingrese su opción: ");
+
+
                     }
 
 
@@ -83,6 +86,10 @@ namespace MyApp
                     if (opcion == "2")
                     {
                         Environment.Exit(0);
+                    }
+                    else if(intentos== true && opcion == "1") // aca vuelve a intentar registrandose nuevamente
+                    {
+                        Iniciar();
                     }
                 }
             }

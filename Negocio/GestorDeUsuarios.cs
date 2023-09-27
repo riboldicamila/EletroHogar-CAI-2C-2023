@@ -63,15 +63,23 @@ namespace Negocio
 
         public void ValidarUsername(string nombre, string apellido, string username)
         {
+
+
+           
+
             if (username.Length < 8)
             {
-                throw new ArgumentException("El nombre de usuario debe tener mínimo 8 caracteres.");
+                throw new ArgumentException("El nombre de usuario debe tener mínimo 8 caracteres, y empezar con letra mayuscula");
             }
             else if (username.Length > 15)
             {
                 throw new ArgumentException("El nombre de usuario debe tener un máximo de 15 caracteres.");
             }
-            else if (username.Contains(nombre))
+            else if (username != char.ToUpper(username[0]) + username.Substring(1)) // aca esta agregado el comienzo del usuario con Mayuscula
+            {
+                throw new ArgumentException("El nombre de usuario debe empezar con letra mayuscula");
+            }
+             else if (username.Contains(nombre))
             {
                 throw new ArgumentException("El nombre de usuario no debe contener el nombre.");
             }
