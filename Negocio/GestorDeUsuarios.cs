@@ -64,9 +64,6 @@ namespace Negocio
         public void ValidarUsername(string nombre, string apellido, string username)
         {
 
-
-           
-
             if (username.Length < 8)
             {
                 throw new ArgumentException("El nombre de usuario debe tener mínimo 8 caracteres, y empezar con letra mayuscula");
@@ -144,22 +141,21 @@ namespace Negocio
         public bool EliminarUsuario(string nombre, string apellido, string username) 
         {
 
-             
-            //if (!SonValidosLosDatos(nombre, apellido, username))
-            //{
-            //    return false;
-            //}
+            if (!SonValidosLosDatos(nombre, apellido, username))
+            {
+                return false;
+            }
 
-            //foreach (Usuario u in usuarios)
-            //{
-            //    if (u.Nombre == nombre && u.Apellido == apellido && u.Username ==  username)
-            //    {
+            foreach (Usuario u in usuarios)
+            {
+                if (u.Nombre == nombre && u.Apellido == apellido && u.Username == username)
+                {
 
-            //        u.DeshabilitarUsuario();
-            //        break;
-            //    }
-            //}
-            
+                    u.DeshabilitarUsuario();
+                    break;
+                }
+            }
+
             return true;
         }
 
@@ -207,6 +203,46 @@ namespace Negocio
                
 
 
+            }
+
+            return true;
+        }
+
+        private bool SonValidosLosDatos(string nombre, string apellido, string username) // Aca tambien 
+        {
+            //validaciones de NEGOCIO
+            //validaciones propias de datos, deberian ser desde presentación
+            if (string.IsNullOrEmpty(nombre) || nombre.Length <= 2 || nombre.Any(char.IsDigit))
+            {
+                Console.WriteLine("El nombre no puede estar vacío, debe tener por lo menos 2 caracteres y no puede contener números.");
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(apellido) || apellido.Length <= 2 || apellido.Any(char.IsDigit))
+            {
+                Console.WriteLine("El apellido no puede estar vacío, debe tener por lo menos 2 caracteres y no puede contener números.");
+                return false;
+            }
+
+            if (username.Length < 8)
+            {
+                Console.WriteLine("El nombre de usuario debe tener mínimo 8 caracteres.");
+                return false;
+            }
+            else if (username.Length > 15)
+            {
+                Console.WriteLine("El nombre de usuario debe tener un máximo de 15 caracteres.");
+                return false;
+            }
+            else if (username.Contains(nombre))
+            {
+                Console.WriteLine("El nombre de usuario no debe contener el apellido.");
+                return false;
+            }
+            else if (username.Contains(apellido))
+            {
+                Console.WriteLine("El nombre de usuario no debe contener el apellido.");
+                return false;
             }
 
             return true;
