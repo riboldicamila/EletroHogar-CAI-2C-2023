@@ -172,6 +172,7 @@ namespace Negocio
                 }
                 else if (u.Username == username && u.Password !=password)
                 {
+                    string passinactivo;
                     count = 0;
                     do
                     {
@@ -187,7 +188,7 @@ namespace Negocio
                         count = count + 1;
                     }
                     while (count < 3);
-
+                    passinactivo = password;
                     Console.WriteLine("Su Usuario quedo Inactivo");
                     u.DeshabilitarUsuario();
                     break;

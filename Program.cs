@@ -43,10 +43,11 @@ namespace MyApp
                         SolicitarCambioDeContraseña(usuarioActual);
                     }
 
-                    else if (intentos == true)
-                    {
-                        Iniciar();
-                    }
+                    //else if (intentos == true)
+                    //{
+                    //    Iniciar();
+                        
+                    //}
 
 
 
@@ -62,12 +63,19 @@ namespace MyApp
 
 
                 else
-                {
-                    Console.WriteLine("Credenciales inválidas.");
-                    Console.WriteLine();
-                    Console.WriteLine("1. Volver a intentarlo");
-                    Console.WriteLine("2. Salir");
-                    Console.Write("Ingrese su opción: ");
+                {   if (intentos == true || intentos == false)
+
+                    {
+
+
+
+                        Console.WriteLine("Credenciales inválidas.");
+                        Console.WriteLine();
+                        Console.WriteLine("1. Volver a intentarlo");
+                        Console.WriteLine("2. Salir");
+                        Console.Write("Ingrese su opción: ");
+                    }
+
 
                     var opcion = Console.ReadLine();
                     Console.WriteLine();
