@@ -159,7 +159,7 @@ namespace MyApp
                 {
                     try
                     {
-                        Console.WriteLine("✲ Ingrese el NOMBRE del usuario:");
+                        Console.WriteLine("Ingrese el NOMBRE del usuario:");
                         nombre = Console.ReadLine();
                         gestorUsuarios.ValidarNombre(nombre);
                         break; 
@@ -174,7 +174,7 @@ namespace MyApp
                 {
                     try
                     {
-                        Console.WriteLine("✲ Ingrese el APELLIDO del usuario:");
+                        Console.WriteLine("Ingrese el APELLIDO del usuario:");
                         apellido = Console.ReadLine();
                         gestorUsuarios.ValidarApellido(apellido);
                         break;  
@@ -189,7 +189,7 @@ namespace MyApp
                 {
                     try
                     {
-                        Console.WriteLine("✲ Ingrese el NOMBRE DE USUARIO/USERNAME del usuario:");
+                        Console.WriteLine("Ingrese el NOMBRE DE USUARIO/USERNAME del usuario:");
                         username = Console.ReadLine();
                         gestorUsuarios.ValidarUsername(nombre, apellido, username);
                         break;  

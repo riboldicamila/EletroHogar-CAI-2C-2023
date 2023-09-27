@@ -1,4 +1,5 @@
 ﻿using Modelo;
+using System.Linq;
 
 namespace Negocio
 {
@@ -63,28 +64,21 @@ namespace Negocio
 
         public void ValidarUsername(string nombre, string apellido, string username)
         {
-
             if (username.Length < 8)
             {
-                throw new ArgumentException("El nombre de usuario debe tener mínimo 8 caracteres, y empezar con letra mayuscula");
+                throw new ArgumentException("El nombre de usuario debe tener mínimo 8 caracteres.");
             }
             else if (username.Length > 15)
             {
                 throw new ArgumentException("El nombre de usuario debe tener un máximo de 15 caracteres.");
             }
-            else if (username != char.ToUpper(username[0]) + username.Substring(1)) // aca esta agregado el comienzo del usuario con Mayuscula
+            else if (username.IndexOf(nombre, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                     username.IndexOf(apellido, StringComparison.OrdinalIgnoreCase) >= 0)
             {
-                throw new ArgumentException("El nombre de usuario debe empezar con letra mayuscula");
-            }
-             else if (username.Contains(nombre))
-            {
-                throw new ArgumentException("El nombre de usuario no debe contener el nombre.");
-            }
-            else if (username.Contains(apellido))
-            {
-                throw new ArgumentException("El nombre de usuario no debe contener el apellido.");
+                throw new ArgumentException("El nombre de usuario no debe contener el nombre o el apellido.");
             }
         }
+
 
         public bool EstablecerContraseña(Usuario usuario, string newPassword)
         {
