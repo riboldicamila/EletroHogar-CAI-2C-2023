@@ -141,10 +141,10 @@ namespace Negocio
         public bool EliminarUsuario(string nombre, string apellido, string username) 
         {
 
-            if (!SonValidosLosDatos(nombre, apellido, username))
-            {
-                return false;
-            }
+            //if (!SonValidosLosDatos(nombre, apellido, username))
+            //{
+            //    return false;
+            //}
 
             foreach (Usuario u in usuarios)
             {
@@ -210,8 +210,8 @@ namespace Negocio
 
         private bool SonValidosLosDatos(string nombre, string apellido, string username) // Aca tambien 
         {
-            //validaciones de NEGOCIO
-            //validaciones propias de datos, deberian ser desde presentación
+            //a eliminar, es temporal este metodo
+
             if (string.IsNullOrEmpty(nombre) || nombre.Length <= 2 || nombre.Any(char.IsDigit))
             {
                 Console.WriteLine("El nombre no puede estar vacío, debe tener por lo menos 2 caracteres y no puede contener números.");

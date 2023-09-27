@@ -218,6 +218,40 @@ namespace MyApp
                 Console.WriteLine();
             }
 
+            //Baja Supervisores
+            if (perfil == PerfilUsuario.ADMINISTRADOR && opcionSeleccionada == "3")
+            {
+                Console.WriteLine("BAJA USUARIO SUPERVISOR");
+                Console.WriteLine("Ingrese el nombre de usuario (username) del supervisor que desea dar de baja:");
+                string username = Console.ReadLine();
+
+                Console.WriteLine();
+                Console.WriteLine("Lista de usuarios existentes:");
+                Usuario usuarioABorrar = gestorUsuarios.ObtenerUsuarios().FirstOrDefault(u => u.Username == username && u.Perfil == PerfilUsuario.SUPERVISOR);
+
+                if (usuarioABorrar != null)
+                {
+                    if (gestorUsuarios.EliminarUsuario(usuarioABorrar.Nombre, usuarioABorrar.Apellido, usuarioABorrar.Username))
+                    {
+                        Console.WriteLine("Baja de usuario con éxito.");
+                        Console.WriteLine();
+                        Console.WriteLine("Lista de usuarios existentes, tras la baja del usuario: ");
+                        gestorUsuarios.ObtenerUsuarios();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Hubo un error al dar de baja el usuario supervisor. Por favor intente nuevamente.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("El nombre de usuario ingresado no existe o no es de tipo supervisor.");
+                   
+                }
+                Console.WriteLine();
+                Thread.Sleep(4000);
+            }
+
 
             //ALTA Vendedores
             if (perfil == PerfilUsuario.ADMINISTRADOR && opcionSeleccionada == "4")
@@ -291,7 +325,6 @@ namespace MyApp
                 Console.WriteLine();
 
             }
-
 
 
             //Baja Vendedores
