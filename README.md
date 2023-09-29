@@ -8,3 +8,5 @@ Usuarios de prueba:
 Juan Pérez juanp1234 VENDEDOR Pass1234 </br>
 Ana Gómez anag1234 SUPERVISOR Pass5678 </br>
 Luis Martínez luism1234 ADMINISTRADOR Pass9012 </br>
+
+Pass temporal: Temp1234
