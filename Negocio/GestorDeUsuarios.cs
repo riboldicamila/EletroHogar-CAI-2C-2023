@@ -193,7 +193,7 @@ namespace Negocio
 
                         count = count + 1;
                     }
-                    while (count < 3);
+                    while (count < 2);
                     passinactivo = password;
                     Console.WriteLine("Su Usuario quedo Inactivo");
                     u.DeshabilitarUsuario();
