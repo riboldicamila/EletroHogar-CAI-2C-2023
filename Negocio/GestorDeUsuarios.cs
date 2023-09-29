@@ -156,8 +156,7 @@ namespace Negocio
         }
 
 
-        //habria que cambiarlo menor a 2 si tiene 3 intentos.
-        //poner reingresar contraseña o similar
+    
 
         public bool Intentosfallidos(ref string username, ref string password)
         {
@@ -176,7 +175,7 @@ namespace Negocio
                     count = 0;
                     do
                     {
-                        Console.WriteLine("Ingrese de nuevo el acceso");
+                        Console.WriteLine("Vuelva a ingresar la contraseña:");
                         password = Console.ReadLine();
                         if (password == u.Password)
                         {
