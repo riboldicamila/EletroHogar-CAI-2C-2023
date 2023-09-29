@@ -56,7 +56,7 @@ namespace Negocio
 
         public void ValidarApellido(string apellido)
         {
-            if (string.IsNullOrEmpty(apellido) || apellido.Length <= 2 || apellido.Any(char.IsDigit))
+            if (string.IsNullOrEmpty(apellido) || apellido.Length < 2 || apellido.Any(char.IsDigit))
             {
                 throw new ArgumentException("El apellido no puede estar vacío, debe tener por lo menos 2 caracteres y no puede contener números.");
             }
@@ -120,8 +120,7 @@ namespace Negocio
             //lista los nombres de usuario
             usuarios.ForEach(u => { Console.WriteLine(u.Username); }) ;
             return usuarios;
-            
-       
+           
         }
 
 
@@ -143,11 +142,6 @@ namespace Negocio
         public bool BajaUsuario(string nombre, string apellido, string username) 
         {
 
-            //if (!SonValidosLosDatos(nombre, apellido, username))
-            //{
-            //    return false;
-            //}
-
             foreach (Usuario u in usuarios)
             {
                 if (u.Nombre == nombre && u.Apellido == apellido && u.Username == username)
@@ -162,11 +156,11 @@ namespace Negocio
         }
 
 
+        //habria que cambiarlo menor a 2 si tiene 3 intentos.
+        //poner reingresar contraseña o similar
 
         public bool Intentosfallidos(ref string username, ref string password)
         {
-
-
             int count;
 
             foreach (Usuario u in usuarios)
@@ -200,56 +194,12 @@ namespace Negocio
                     break;
                     
                 }
-
-
-               
-
-
             }
 
             return true;
         }
 
-        private bool SonValidosLosDatos(string nombre, string apellido, string username) // Aca tambien 
-        {
-            //a eliminar, es temporal este metodo
-
-            if (string.IsNullOrEmpty(nombre) || nombre.Length <= 2 || nombre.Any(char.IsDigit))
-            {
-                Console.WriteLine("El nombre no puede estar vacío, debe tener por lo menos 2 caracteres y no puede contener números.");
-                return false;
-            }
-
-            if (string.IsNullOrEmpty(apellido) || apellido.Length <= 2 || apellido.Any(char.IsDigit))
-            {
-                Console.WriteLine("El apellido no puede estar vacío, debe tener por lo menos 2 caracteres y no puede contener números.");
-                return false;
-            }
-
-            if (username.Length < 8)
-            {
-                Console.WriteLine("El nombre de usuario debe tener mínimo 8 caracteres.");
-                return false;
-            }
-            else if (username.Length > 15)
-            {
-                Console.WriteLine("El nombre de usuario debe tener un máximo de 15 caracteres.");
-                return false;
-            }
-            else if (username.Contains(nombre))
-            {
-                Console.WriteLine("El nombre de usuario no debe contener el apellido.");
-                return false;
-            }
-            else if (username.Contains(apellido))
-            {
-                Console.WriteLine("El nombre de usuario no debe contener el apellido.");
-                return false;
-            }
-
-            return true;
-        }
-
+      
 
     }
 }
