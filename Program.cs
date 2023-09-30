@@ -324,7 +324,7 @@ namespace MyApp
 
 
             //Baja Vendedores
-            if (perfil == PerfilUsuario.VENDEDOR && opcionSeleccionada == "6")
+            if (perfil == PerfilUsuario.ADMINISTRADOR && opcionSeleccionada == "6")
             {
                 Console.WriteLine("BAJA USUARIO Vendedor");
                 Console.WriteLine("Ingrese el nombre de usuario (username) del vendedor que desea dar de baja:");
