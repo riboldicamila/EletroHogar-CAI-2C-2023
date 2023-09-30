@@ -231,8 +231,8 @@ namespace MyApp
                     {
                         Console.WriteLine("Baja de usuario con éxito.");
                         Console.WriteLine();
-                        Console.WriteLine("Lista de usuarios existentes, tras la baja del usuario: ");
-                        gestorUsuarios.ObtenerUsuarios();
+                        //Console.WriteLine("Lista de usuarios existentes, tras la baja del usuario: ");
+                        //gestorUsuarios.ObtenerUsuariosActivos();
                     }
                     else
                     {
@@ -340,8 +340,8 @@ namespace MyApp
                     {
                         Console.WriteLine("Baja de usuario con éxito.");
                         Console.WriteLine();
-                        Console.WriteLine("Lista de usuarios existentes, tras la baja del usuario: ");
-                        gestorUsuarios.ObtenerUsuarios();
+                        //Console.WriteLine("Lista de usuarios existentes, tras la baja del usuario: ");
+                        //gestorUsuarios.ObtenerUsuariosActivos();
                     }
                     else
                     {

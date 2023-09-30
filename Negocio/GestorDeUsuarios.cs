@@ -123,6 +123,18 @@ namespace Negocio
            
         }
 
+        public List<Usuario> ObtenerUsuariosActivos()
+        {
+            // Mostrar solo los nombres de usuarios que están en estado activo
+            var usuariosActivos = usuarios.Where(u => u.Estado == EstadoUsuario.ACTIVO);
+            foreach (var u in usuariosActivos)
+            {
+                Console.WriteLine(u.Username);
+            }
+            return usuariosActivos.ToList();
+        }
+
+
 
         public bool AgregarUsuario(string nombre, string apellido, string username, PerfilUsuario perfil)
         {
