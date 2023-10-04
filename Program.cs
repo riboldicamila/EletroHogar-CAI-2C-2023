@@ -195,7 +195,7 @@ namespace MyApp
 
                 Console.WriteLine();
                 Console.WriteLine("Lista de usuarios existentes: ");
-                gestorUsuarios.ObtenerUsuarios();
+                gestorUsuarios.ObtenerTodosLosUsuarios();
                 Console.WriteLine();
                 Console.WriteLine();
             }
@@ -209,7 +209,7 @@ namespace MyApp
 
                 Console.WriteLine();
                 Console.WriteLine("Lista de usuarios existentes antes de la baja:");
-                Usuario usuarioAInhabilitar = gestorUsuarios.ObtenerUsuarios().FirstOrDefault(u => u.Username == username && u.Perfil == PerfilUsuario.SUPERVISOR);
+                Usuario usuarioAInhabilitar = gestorUsuarios.ObtenerTodosLosUsuarios().FirstOrDefault(u => u.Username == username && u.Perfil == PerfilUsuario.SUPERVISOR);
 
                 if (usuarioAInhabilitar != null)
                 {
@@ -302,7 +302,7 @@ namespace MyApp
 
                 Console.WriteLine();
                 Console.WriteLine("Lista de usuarios existentes: ");
-                gestorUsuarios.ObtenerUsuarios();
+                gestorUsuarios.ObtenerTodosLosUsuarios();
                 Console.WriteLine();
                 Console.WriteLine();
 
@@ -318,7 +318,7 @@ namespace MyApp
 
                 Console.WriteLine();
                 Console.WriteLine("Lista de usuarios existentes antes de la baja:");
-                Usuario usuarioAInhabilitar = gestorUsuarios.ObtenerUsuarios().FirstOrDefault(u => u.Username == username && u.Perfil == PerfilUsuario.SUPERVISOR);
+                Usuario usuarioAInhabilitar = gestorUsuarios.ObtenerTodosLosUsuarios().FirstOrDefault(u => u.Username == username && u.Perfil == PerfilUsuario.SUPERVISOR);
 
                 if (usuarioAInhabilitar != null)
                 {

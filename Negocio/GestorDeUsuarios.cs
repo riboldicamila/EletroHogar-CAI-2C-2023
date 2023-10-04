@@ -124,9 +124,9 @@ namespace Negocio
 
 
         // METODOS
-        public List<Usuario> ObtenerUsuarios()
+        public List<Usuario> ObtenerTodosLosUsuarios()
         {
-            //lista los nombres de usuario
+            //lista los nombres de usuario ACTIVOS E INACTIVOS
             usuarios.ForEach(u => { Console.WriteLine(u.Username); }) ;
             return usuarios;
            
