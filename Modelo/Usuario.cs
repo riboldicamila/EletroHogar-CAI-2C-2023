@@ -28,7 +28,7 @@ namespace Modelo
                 this.ultimoCambioPass = DateTime.Now;
                 this.intentosCambioPass = 0;
                 this.perfil = perfil;
-                this.estado = EstadoUsuario.ACTIVO;
+                this.estado = EstadoUsuario.INACTIVO;
 
             }
 

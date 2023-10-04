@@ -88,34 +88,27 @@ namespace Negocio
             }
         }
 
-
         public bool EstablecerContraseña(Usuario usuario, string newPassword)
         {
             if (!newPassword.Any(char.IsUpper) || !newPassword.Any(char.IsDigit))
             {
-                Console.WriteLine("La contraseña debe contener al menos una letra mayúscula y un número.");
-                return false;
+                throw new ArgumentException("La contraseña debe contener al menos una letra mayúscula y un número.");
             }
 
             if (newPassword == usuario.Password)
             {
-                Console.WriteLine("La nueva contraseña no puede ser igual a la anterior.");
-                return false;
+                throw new InvalidOperationException("La nueva contraseña no puede ser igual a la anterior.");
             }
 
             if (newPassword.Length < 8 || newPassword.Length > 15)
             {
-                Console.WriteLine("La contraseña debe tener entre 8 y 15 caracteres.");
-                return false;
+                throw new ArgumentException("La contraseña debe tener entre 8 y 15 caracteres.");
             }
 
-            
             if (newPassword.ToUpper() == usuario.Username.ToUpper() || newPassword.ToUpper().Contains(usuario.Username.ToUpper()))
             {
-                Console.WriteLine("La contraseña no debe contener el nombre de usuario.");
-                return false;
+                throw new ArgumentException("La contraseña no debe contener el nombre de usuario.");
             }
-
 
             usuario.SetPassword(newPassword);
             return true;

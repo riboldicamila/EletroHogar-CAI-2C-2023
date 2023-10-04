@@ -410,14 +410,24 @@ namespace MyApp
         {
             Console.WriteLine("Debe cambiar su contraseña.");
             string nuevaContrasena;
-            bool cambioExitoso;
-            do
+            bool cambioExitoso = false;
+
+            while (!cambioExitoso)
             {
                 Console.WriteLine("Ingrese la nueva contraseña:");
                 nuevaContrasena = Console.ReadLine();
-                cambioExitoso = gestorUsuarios.EstablecerContraseña(usuarioActual, nuevaContrasena);
-            } while (!cambioExitoso);
+
+                try
+                {
+                    cambioExitoso = gestorUsuarios.EstablecerContraseña(usuarioActual, nuevaContrasena);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
         }
+
 
     }
 
