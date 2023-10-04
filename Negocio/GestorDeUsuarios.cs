@@ -38,7 +38,7 @@ namespace Negocio
                 }
 
                 // Verificar si el usuario esta inactivo //LO HABIAN SACADO 
-                if (usuario.Estado == EstadoUsuario.INACTIVO)
+                if (usuario.Estado == EstadoUsuario.INACTIVO && usuario.Password != "Temp1234")
                 {
                     throw new InvalidOperationException("El usuario está inactivo.");
                 }
