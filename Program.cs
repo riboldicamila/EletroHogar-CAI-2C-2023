@@ -195,7 +195,8 @@ namespace MyApp
 
                 Console.WriteLine();
                 Console.WriteLine("Lista de usuarios existentes: ");
-                gestorUsuarios.ObtenerTodosLosUsuarios();
+                DevolverListaConTodosUsuarios();
+
                 Console.WriteLine();
                 Console.WriteLine();
             }
@@ -208,7 +209,6 @@ namespace MyApp
                 string username = Console.ReadLine();
 
                 Console.WriteLine();
-                Console.WriteLine("Lista de usuarios existentes antes de la baja:");
                 Usuario usuarioAInhabilitar = gestorUsuarios.ObtenerTodosLosUsuarios().FirstOrDefault(u => u.Username == username && u.Perfil == PerfilUsuario.SUPERVISOR);
 
                 if (usuarioAInhabilitar != null)
@@ -218,7 +218,7 @@ namespace MyApp
                         Console.WriteLine("Baja de usuario con éxito.");
                         Console.WriteLine();
                         Console.WriteLine("Lista de usuarios existentes, tras la baja del usuario: ");
-                        gestorUsuarios.ObtenerUsuariosActivos();
+                        ListaUsuariosActivos();
                     }
                     else
                     {
@@ -317,7 +317,6 @@ namespace MyApp
                 string username = Console.ReadLine();
 
                 Console.WriteLine();
-                Console.WriteLine("Lista de usuarios existentes antes de la baja:");
                 Usuario usuarioAInhabilitar = gestorUsuarios.ObtenerTodosLosUsuarios().FirstOrDefault(u => u.Username == username && u.Perfil == PerfilUsuario.SUPERVISOR);
 
                 if (usuarioAInhabilitar != null)
@@ -327,7 +326,7 @@ namespace MyApp
                         Console.WriteLine("Baja de usuario con éxito.");
                         Console.WriteLine();
                         Console.WriteLine("Lista de usuarios existentes, tras la baja del usuario: ");
-                        gestorUsuarios.ObtenerUsuariosActivos();
+                        ListaUsuariosActivos();
                     }
                     else
                     {
@@ -425,6 +424,24 @@ namespace MyApp
                 {
                     Console.WriteLine(ex.Message);
                 }
+            }
+        }
+
+        public void DevolverListaConTodosUsuarios()
+        {
+            var todosLosUsuarios = gestorUsuarios.ObtenerTodosLosUsuarios();
+            foreach (var usuario in todosLosUsuarios)
+            {
+                Console.WriteLine(usuario.Username);
+            }
+        }
+
+        public void ListaUsuariosActivos()
+        {
+            var usuariosActivos = gestorUsuarios.ObtenerUsuariosActivos();
+            foreach (var usuario in usuariosActivos)
+            {
+                Console.WriteLine(usuario.Username);
             }
         }
 

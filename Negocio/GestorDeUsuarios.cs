@@ -120,7 +120,7 @@ namespace Negocio
         public List<Usuario> ObtenerTodosLosUsuarios()
         {
             //lista los nombres de usuario ACTIVOS E INACTIVOS
-            usuarios.ForEach(u => { Console.WriteLine(u.Username); }) ;
+            //usuarios.ForEach(u => { Console.WriteLine(u.Username); }) ;
             return usuarios;
            
         }
@@ -128,12 +128,7 @@ namespace Negocio
         public List<Usuario> ObtenerUsuariosActivos()
         {
             // Mostrar solo los nombres de usuarios que están en estado activo
-            var usuariosActivos = usuarios.Where(u => u.Estado == EstadoUsuario.ACTIVO);
-            foreach (var u in usuariosActivos)
-            {
-                Console.WriteLine(u.Username);
-            }
-            return usuariosActivos.ToList();
+            return usuarios.Where(u => u.Estado == EstadoUsuario.ACTIVO).ToList();
         }
 
 
