@@ -27,8 +27,8 @@ namespace Modelo
                 this.password = GenerarPasswordTemporal();
                 this.ultimoCambioPass = DateTime.Now;
                 this.intentosCambioPass = 0;
-                this.estado = EstadoUsuario.ACTIVO;
                 this.perfil = perfil;
+                this.estado = EstadoUsuario.ACTIVO;
 
             }
 
@@ -100,15 +100,19 @@ namespace Modelo
                 }
 
 
-            // Métodos
-            public void SetPassword(string newPassword)
-            {
-                this.password = newPassword;
-                this.ultimoCambioPass = DateTime.Now;
-                this.intentosCambioPass = 0;
-            }
+        // Métodos
+        public void SetPassword(string newPassword)
+        {
+            this.password = newPassword;
+            this.ultimoCambioPass = DateTime.Now;
+            this.intentosCambioPass = 0;
 
-            public string GenerarPasswordTemporal()  //tendriamos que mejorar la logica despues
+            // Si el usuario pone una nueva contraseña, lo marcamos como ACTIVO
+            this.estado = EstadoUsuario.ACTIVO;
+        }
+
+
+        public string GenerarPasswordTemporal()  //tendriamos que mejorar la logica despues
             {
                   return "Temp1234";
             
