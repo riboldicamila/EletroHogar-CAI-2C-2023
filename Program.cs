@@ -347,62 +347,8 @@ namespace MyApp
             Console.Clear();
             Iniciar();
 
-
-
-
         }
-        static string Nombre()
-        {
-            string nuevoNombre;
-            bool flagnombre = false;
-            Console.WriteLine("Ingrese el NOMBRE del usuario:");
-            nuevoNombre = Console.ReadLine();
-            do
-            {
-                if (string.IsNullOrEmpty(nuevoNombre))
-                {
-                    Console.WriteLine("El nombre no puede estar vacío");
-                    nuevoNombre = Console.ReadLine();
-                }
-                else flagnombre = true;
-            } while (flagnombre == false);
-            return nuevoNombre;
-        }
-        static string Apellido()
-        {
-            string nuevoapellido;
-            bool flagapellido = false;
-            Console.WriteLine("Ingrese el APELLIDO del usuario:");
-            nuevoapellido = Console.ReadLine();
-            do
-            {
-                if (string.IsNullOrEmpty(nuevoapellido))
-                {
-                    Console.WriteLine("el apellido no puede estar vacío");
-                    nuevoapellido = Console.ReadLine();
-                }
-                else flagapellido = true;
-            } while (flagapellido == false);
-            return nuevoapellido;
-        }
-        static string Username()
-        {
-            string nuevousername;
-            bool flagnombre = false;
-            Console.WriteLine("Ingrese el NOMBRE DE USUARIO/USERNAME del usuario:");
-            nuevousername = Console.ReadLine();
-            do
-            {
-                if (string.IsNullOrEmpty(nuevousername))
-                {
-                    Console.WriteLine("el nombre de usuario no puede estar vacío");
-                    nuevousername = Console.ReadLine();
-                }
-                else flagnombre = true;
-            } while (flagnombre == false);
-            return nuevousername;
-        }
-
+      
 
         //EXTRACCIÓN DE METODOS PARA MANTENER ORDEN 
         public void SolicitarCambioDeContraseña(Usuario usuarioActual)

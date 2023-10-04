@@ -120,7 +120,6 @@ namespace Negocio
         public List<Usuario> ObtenerTodosLosUsuarios()
         {
             //lista los nombres de usuario ACTIVOS E INACTIVOS
-            //usuarios.ForEach(u => { Console.WriteLine(u.Username); }) ;
             return usuarios;
            
         }
@@ -137,8 +136,6 @@ namespace Negocio
         {
             var nuevoUsuario = new Usuario(nombre, apellido, username, perfil);
             usuarios.Add(nuevoUsuario);
-            Console.WriteLine("Usuario " + username + " agregado con éxito");
-            Console.WriteLine();
             return true;
         }
 
