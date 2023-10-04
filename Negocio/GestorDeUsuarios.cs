@@ -37,12 +37,21 @@ namespace Negocio
                     return (perfil: null, necesitaCambiarContrasena: false, usuarioActual: null);
                 }
 
-                // Validar si la contraseña esta vencida o es temporal
+                // Verificar si el usuario esta inactivo //LO HABIAN SACADO 
+                if (usuario.Estado == EstadoUsuario.INACTIVO)
+                {
+                    throw new InvalidOperationException("El usuario está inactivo.");
+                }
+
+                // Validar si la contraseña esta vencida o es la temporal
                 requiereNuevaContrasena = (DateTime.Now - usuario.UltimoCambioPass).TotalDays > 30 || usuario.Password == "Temp1234";
+
+                return (perfil: usuario.Perfil, necesitaCambiarContrasena: requiereNuevaContrasena, usuarioActual: usuario);
             }
 
-            return (perfil: usuario?.Perfil, necesitaCambiarContrasena: requiereNuevaContrasena, usuarioActual: usuario);
+            return (perfil: null, necesitaCambiarContrasena: false, usuarioActual: null);
         }
+
 
 
         //METODO0S VALIDACIONES

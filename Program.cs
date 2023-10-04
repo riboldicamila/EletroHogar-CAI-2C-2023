@@ -33,63 +33,49 @@ namespace MyApp
 
                 var intentos = gestorUsuarios.Intentosfallidos(ref username, ref password);
 
-                // Usamos el gestor de usuarios para autenticar
-                var (perfil, necesitaCambiarContrasena, usuarioActual) = gestorUsuarios.Login(username, password);
-
-                if (perfil.HasValue)
+                try
                 {
-                    
-                    if (necesitaCambiarContrasena)
+                    var (perfil, necesitaCambiarContrasena, usuarioActual) = gestorUsuarios.Login(username, password);
+
+                    if (perfil.HasValue)
                     {
-                        SolicitarCambioDeContraseña(usuarioActual);
+                        if (necesitaCambiarContrasena)
+                        {
+                            SolicitarCambioDeContraseña(usuarioActual);
+                        }
+
+                        MostrarMenu(perfil.Value);
+                        return;
                     }
+                    else
+                    {
+                        Console.WriteLine("Credenciales inválidas.");
+                        Console.WriteLine();
+                        Console.WriteLine("1. Volver a intentarlo");
+                        Console.WriteLine("2. Salir");
+                        Console.Write("Ingrese su opción: ");
 
-                    
-                    MostrarMenu(perfil.Value);
-                    return;
+                        var opcion = Console.ReadLine();
+                        Console.WriteLine();
 
-                    
+                        if (opcion == "2")
+                        {
+                            Environment.Exit(0);
+                        }
+                        else if (intentos == true && opcion == "1")
+                        {
+                            Iniciar();
+                        }
+                    }
                 }
-               
-
-
-                else
+                catch (InvalidOperationException ex)
                 {
-                    //Aqui hice esto redundante para las dos acciones si el usuario ingresa mal desde el principio y cuando queda inactivo  // - tambien se muestran los mismos mensajes para volver a inenta (esta era la parte de mi contradiccion),je
-                    if (intentos == true) 
-                    {
-                        Console.WriteLine("Credenciales inválidas.");
-                        Console.WriteLine();
-                        Console.WriteLine("1. Volver a intentarlo");
-                        Console.WriteLine("2. Salir");
-                        Console.Write("Ingrese su opción: ");
-                    }
-                    else if (intentos == false)
-                    {
-                        Console.WriteLine("Credenciales inválidas.");
-                        Console.WriteLine();
-                        Console.WriteLine("1. Volver a intentarlo");
-                        Console.WriteLine("2. Salir");
-                        Console.Write("Ingrese su opción: ");
-
-
-                    }
-
-
-                    var opcion = Console.ReadLine();
-                    Console.WriteLine();
-
-                    if (opcion == "2")
-                    {
-                        Environment.Exit(0);
-                    }
-                    else if(intentos== true && opcion == "1") // aca vuelve a intentar registrandose nuevamente
-                    {
-                        Iniciar();
-                    }
+                    Console.WriteLine(ex.Message); 
+                    continue; 
                 }
             }
         }
+
 
         private void MostrarMenu(PerfilUsuario perfil)
         {

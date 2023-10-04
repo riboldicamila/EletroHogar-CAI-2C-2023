@@ -27,7 +27,7 @@ namespace Modelo
                 this.password = GenerarPasswordTemporal();
                 this.ultimoCambioPass = DateTime.Now;
                 this.intentosCambioPass = 0;
-                this.estado = EstadoUsuario.INACTIVO;
+                this.estado = EstadoUsuario.ACTIVO;
                 this.perfil = perfil;
 
             }
