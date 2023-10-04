@@ -3,7 +3,7 @@
 namespace Modelo
 {
 
-        public class Usuario
+        public abstract class Usuario
         {
             // Atributos privados
             private string nombre;
@@ -13,13 +13,13 @@ namespace Modelo
             private DateTime ultimoCambioPass;
             private int intentosCambioPass;
             private EstadoUsuario estado;
-            private PerfilUsuario perfil;
+            //private PerfilUsuario perfil;
             private string nuevoPass;
             
 
 
             // Constructor
-            public Usuario(string nombre, string apellido, string username, PerfilUsuario perfil)
+            public Usuario(string nombre, string apellido, string username)
             {
                 this.nombre = nombre;
                 this.apellido = apellido;
@@ -27,7 +27,7 @@ namespace Modelo
                 this.password = GenerarPasswordTemporal();
                 this.ultimoCambioPass = DateTime.Now;
                 this.intentosCambioPass = 0;
-                this.perfil = perfil;
+                //this.perfil = perfil;
                 this.estado = EstadoUsuario.INACTIVO;
 
             }
@@ -87,11 +87,11 @@ namespace Modelo
                     set { estado = value; }
                 }
 
-                public PerfilUsuario Perfil
-                {
-                    get { return perfil; }
-                    set { perfil = value; }
-                }
+                //public PerfilUsuario Perfil
+                //{
+                //    get { return perfil; }
+                //    set { perfil = value; }
+                //}
 
                 public int IntentosCambioPass
                 {
@@ -136,17 +136,55 @@ namespace Modelo
             ACTIVO
         }
 
-        public enum PerfilUsuario
+    //public enum PerfilUsuario
+    //{
+    //    ADMINISTRADOR,
+    //    SUPERVISOR,
+    //    VENDEDOR
+    //}
+
+    public class Administrador : Usuario
+    {
+        public Administrador(string nombre, string apellido, string username) : base(nombre, apellido, username)
         {
-            ADMINISTRADOR,
-            SUPERVISOR,
-            VENDEDOR
+            
         }
+
+    }
+
+    public class Supervisor : Usuario
+    {
+        public Supervisor(string nombre, string apellido, string username) : base(nombre, apellido, username)
+        {
+       
+        }
+
+    
+    }
+
+    public class Vendedor : Usuario
+    {
+        public Vendedor(string nombre, string apellido, string username) : base(nombre, apellido, username)
+        {
+            
+        }
+
+
     }
 
 
 
-  
 
-  
+
+
+
+}
+
+
+
+
+
+
+
+
 

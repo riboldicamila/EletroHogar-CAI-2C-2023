@@ -12,19 +12,21 @@ namespace Negocio
         {
             // Inicialización de la lista y generación de usuarios de ejemplo al instanciar el gestor. 
             // Usamos esta lista para harcodear usuarios y probar
+
             usuarios = new List<Usuario>
             {
-                new Usuario("Juan", "Pérez", "juanp1234", PerfilUsuario.VENDEDOR),
-                new Usuario("Ana", "Gómez", "anag1234", PerfilUsuario.SUPERVISOR),
-                new Usuario("Luis", "Martínez", "luism1234", PerfilUsuario.ADMINISTRADOR)
+                new Vendedor("Juan", "Pérez", "juanp1234"),
+                new Supervisor("Ana", "Gómez", "anag1234"),
+                new Administrador("Luis", "Martínez", "luism1234")
             };
 
             usuarios[0].SetPassword("Pass1234");
             usuarios[1].SetPassword("Pass5678");
             usuarios[2].SetPassword("Pass9012");
+
         }
 
-        public (PerfilUsuario? perfil, bool necesitaCambiarContrasena, Usuario usuarioActual) Login(string username, string password)
+        public (string perfil, bool necesitaCambiarContrasena, Usuario usuarioActual) Login(string username, string password)
         {
             var usuario = usuarios.Find(u => u.Username == username);
             bool requiereNuevaContrasena = false;
@@ -46,12 +48,22 @@ namespace Negocio
                 // Validar si la contraseña esta vencida o es la temporal
                 requiereNuevaContrasena = (DateTime.Now - usuario.UltimoCambioPass).TotalDays > 30 || usuario.Password == "Temp1234";
 
-                return (perfil: usuario.Perfil, necesitaCambiarContrasena: requiereNuevaContrasena, usuarioActual: usuario);
+                string perfil = GetPerfilType(usuario);
+
+                return (perfil: perfil, necesitaCambiarContrasena: requiereNuevaContrasena, usuarioActual: usuario);
             }
 
             return (perfil: null, necesitaCambiarContrasena: false, usuarioActual: null);
         }
 
+
+        private string GetPerfilType(Usuario usuario)
+        {
+            if (usuario is Administrador) return "Administrador";
+            if (usuario is Supervisor) return "Supervisor";
+            if (usuario is Vendedor) return "Vendedor";
+            return null;
+        }
 
 
         //METODO0S VALIDACIONES
@@ -132,18 +144,18 @@ namespace Negocio
 
 
 
-        public bool AgregarUsuario(string nombre, string apellido, string username, PerfilUsuario perfil)
+        public bool AgregarUsuario(Usuario nuevoUsuario)
         {
-            var nuevoUsuario = new Usuario(nombre, apellido, username, perfil);
             usuarios.Add(nuevoUsuario);
             return true;
         }
 
 
-        public IEnumerable<Usuario> ListarVendedores()
-        {
-            return usuarios.Where(u => u.Perfil == PerfilUsuario.VENDEDOR);
-        }
+
+        //public IEnumerable<Usuario> ListarVendedores()
+        //{
+        //    return usuarios.Where(u => u.Perfil == PerfilUsuario.VENDEDOR);
+        //}
 
         public bool BajaUsuario(string nombre, string apellido, string username) 
         {
