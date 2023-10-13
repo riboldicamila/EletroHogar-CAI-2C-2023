@@ -428,7 +428,7 @@ namespace MyApp
       
 
         //EXTRACCIÓN DE METODOS PARA MANTENER ORDEN 
-        public void SolicitarCambioDeContraseña(Usuario usuarioActual)
+        private void SolicitarCambioDeContraseña(Usuario usuarioActual)
         {
             Console.WriteLine("Debe cambiar su contraseña.");
             string nuevaContrasena;
@@ -450,7 +450,7 @@ namespace MyApp
             }
         }
 
-        public void DevolverListaConTodosUsuarios()
+        private void DevolverListaConTodosUsuarios()
         {
             var todosLosUsuarios = gestorUsuarios.ObtenerTodosLosUsuarios();
             foreach (var usuario in todosLosUsuarios)
@@ -459,7 +459,7 @@ namespace MyApp
             }
         }
 
-        public void ListaUsuariosActivos()
+        private void ListaUsuariosActivos()
         {
             var usuariosActivos = gestorUsuarios.ObtenerUsuariosActivos();
             foreach (var usuario in usuariosActivos)
@@ -468,7 +468,7 @@ namespace MyApp
             }
         }
 
-        public void ModificarProducto()
+        private void ModificarProducto()
         {
             Console.WriteLine("MODIFICACIÓN DE PRODUCTO");
 
@@ -481,7 +481,7 @@ namespace MyApp
             Console.WriteLine();
         }
 
-        public void AltaProducto()
+        private void AltaProducto()
         {
             Console.WriteLine("ALTA DE PRODUCTO");
 
@@ -504,7 +504,7 @@ namespace MyApp
             Console.WriteLine();
         }
 
-        public void BajaProducto()
+        private void BajaProducto()
         {
             //IMPLEMENTAR
         }
