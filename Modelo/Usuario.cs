@@ -129,7 +129,6 @@ namespace Modelo
             ACTIVO
         }
 
-
     public class Administrador : Usuario
     {
         public Administrador(string nombre, string apellido, string username) : base(nombre, apellido, username)
@@ -159,6 +158,39 @@ namespace Modelo
 
     }
 
+
+    //SPRINT 3
+
+
+    public class Producto
+    {
+        public string Nombre { get; set; }
+        public decimal Precio { get; set; }
+        public int Stock { get; set; }
+        public string Categoria { get; set; }
+
+        public Producto(string nombre, decimal precio, int stock, string categoria)
+        {
+            Nombre = nombre;
+            Precio = precio;
+            Stock = stock;
+            Categoria = categoria;
+        }
+    }
+
+    public class Categoria
+    {
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public List<Proveedor> Proveedores { get; set; } = new List<Proveedor>();
+    }
+
+    public class Proveedor
+    {
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public List<Categoria> Categorias { get; set; } = new List<Categoria>();
+    }
 
 
 
