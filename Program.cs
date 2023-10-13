@@ -20,7 +20,7 @@ namespace MyApp
         private GestorDeProductos gestorDeProductos = new GestorDeProductos();
         private GestorDeProveedores gestorDeProveedores = new GestorDeProveedores();
 
-
+       
         public void Iniciar()
         {
             Console.WriteLine("Bienvenido al sistema");
