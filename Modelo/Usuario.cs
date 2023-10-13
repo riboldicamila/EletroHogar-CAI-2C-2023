@@ -188,6 +188,7 @@ namespace Modelo
 
         public void AgregarCategoria(Categoria categoria)
         {
+            //verifica que la categoria ya no este en la lista guardado. Evitar duplicados
             if (!Categorias.Contains(categoria))
             {
                 Categorias.Add(categoria);
@@ -203,6 +204,7 @@ namespace Modelo
 
         public void AgregarProveedor(Proveedor proveedor)
         {
+            //verifica que el proveedor ya no este en la lista guardado. Evitar duplicados
             if (!Proveedores.Contains(proveedor))
             {
                 Proveedores.Add(proveedor);

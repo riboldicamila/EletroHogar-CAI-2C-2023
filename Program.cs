@@ -236,7 +236,6 @@ namespace MyApp
                     Thread.Sleep(4000);
                 }
 
-
                 //ALTA Vendedores
                 if ( opcionSeleccionada == "4")
                 {
@@ -311,7 +310,6 @@ namespace MyApp
 
                 }
 
-
                 //Baja Vendedores
                 if (opcionSeleccionada == "6")
                 {
@@ -382,24 +380,30 @@ namespace MyApp
                     AltaProveedores();
                 }
 
-                //Alta de productos
+                if (opcionSeleccionada == "8")
+                {
+                    ModificacionProveedores();
+                }
+
+                if (opcionSeleccionada == "9")
+                {
+                    BajaProveedores();
+                }
+
                 if(opcionSeleccionada == "10")
                 {
                     AltaProducto();
                 }
 
-                //Modificar producto 
                 if (opcionSeleccionada == "11")
                 {
                     ModificarProducto();
                 }
 
-                //Baja Productos
                 if(opcionSeleccionada=="12")
                 {
                     BajaProducto();
                 }
-            
             }
 
 
@@ -531,6 +535,18 @@ namespace MyApp
             }
 
             Console.Clear();
+        }
+
+        private void ModificacionProveedores()
+        {
+            //IMPLEMENTAR
+
+        }
+
+        private void BajaProveedores()
+        {
+            //IMPLEMENTAR
+
         }
     }
 
