@@ -18,7 +18,7 @@ namespace MyApp
     {
         private GestorDeUsuarios gestorUsuarios = new GestorDeUsuarios();
         private GestorDeProductos gestorDeProductos = new GestorDeProductos();
-
+        private GestorDeProveedores gestorDeProveedores = new GestorDeProveedores();
 
 
         public void Iniciar()
@@ -377,6 +377,10 @@ namespace MyApp
                     Thread.Sleep(4000);
                 }
 
+                if (opcionSeleccionada== "7")
+                {
+                    AltaProveedores();
+                }
 
                 //Alta de productos
                 if(opcionSeleccionada == "10")
@@ -507,6 +511,26 @@ namespace MyApp
         private void BajaProducto()
         {
             //IMPLEMENTAR
+        }
+
+        private void AltaProveedores()
+        {
+            Console.Clear();
+
+            Console.WriteLine("ALTA PROVEEDORES");
+            Console.WriteLine("Ingrese el nombre del nuevo proveedor:");
+            var nombreProveedor = Console.ReadLine();
+
+            if (gestorDeProveedores.AgregarProveedor(nombreProveedor))
+            {
+                Console.WriteLine($"Proveedor {nombreProveedor} agregado con éxito.");
+            }
+            else
+            {
+                Console.WriteLine("Error al agregar el proveedor. Por favor, inténtelo de nuevo.");
+            }
+
+            Console.Clear();
         }
     }
 

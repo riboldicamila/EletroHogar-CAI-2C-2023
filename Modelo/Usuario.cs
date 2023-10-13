@@ -180,18 +180,34 @@ namespace Modelo
         }
     }
 
-    public class Categoria
-    {
-        public int Id { get; set; }
-        public string Nombre { get; set; }
-        public List<Proveedor> Proveedores { get; set; } = new List<Proveedor>();
-    }
-
     public class Proveedor
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
         public List<Categoria> Categorias { get; set; } = new List<Categoria>();
+
+        public void AgregarCategoria(Categoria categoria)
+        {
+            if (!Categorias.Contains(categoria))
+            {
+                Categorias.Add(categoria);
+            }
+        }
+    }
+
+    public class Categoria
+    {
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public List<Proveedor> Proveedores { get; set; } = new List<Proveedor>();
+
+        public void AgregarProveedor(Proveedor proveedor)
+        {
+            if (!Proveedores.Contains(proveedor))
+            {
+                Proveedores.Add(proveedor);
+            }
+        }
     }
 
 

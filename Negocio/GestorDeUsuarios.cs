@@ -217,7 +217,6 @@ namespace Negocio
 
     }
 
-
     public class GestorDeProductos
     {
         private List<Producto> productos = new List<Producto>();
@@ -233,4 +232,39 @@ namespace Negocio
         }
 
     }
+
+    public class GestorDeProveedores
+    {
+        private List<Proveedor> proveedores = new List<Proveedor>();
+
+        public bool AgregarProveedor(string nombre)
+        {
+            if (!string.IsNullOrEmpty(nombre))
+            {
+                Proveedor nuevoProveedor = new Proveedor { Nombre = nombre };
+                proveedores.Add(nuevoProveedor);
+                return true;
+            }
+            return false;
+        }
+
+        public bool AsignarCategoriaAProveedor(int proveedorId, Categoria categoria)
+        {
+            var proveedor = proveedores.FirstOrDefault(p => p.Id == proveedorId);
+            if (proveedor != null && categoria != null)
+            {
+                proveedor.AgregarCategoria(categoria);
+                categoria.AgregarProveedor(proveedor);
+                return true;
+            }
+            return false;
+        }
+
+        public List<Proveedor> ObtenerTodosLosProveedores()
+        {
+            return proveedores;
+        }
+    }
+
+
 }
