@@ -174,8 +174,6 @@ namespace Negocio
         }
 
 
-    
-
         //HAY QUE REVISAR ESTE METODO, LOS CONSOLE.WRITE SOBRE CAPA PRESENTACIÓN
         public bool Intentosfallidos(ref string username, ref string password)
         {

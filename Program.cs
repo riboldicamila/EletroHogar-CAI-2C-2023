@@ -131,7 +131,7 @@ namespace MyApp
             {    
                 //Alta Usuarios Supervisores
                 if (opcionSeleccionada == "1")
-            {
+                {
                 Console.WriteLine("GENERAR ALTA/NUEVO USUARIO SUPERVISOR");
 
                 string nombre = "";
@@ -384,11 +384,16 @@ namespace MyApp
                     AltaProducto();
                 }
 
-
                 //Modificar producto 
                 if (opcionSeleccionada == "11")
                 {
                     ModificarProducto();
+                }
+
+                //Baja Productos
+                if(opcionSeleccionada=="12")
+                {
+                    BajaProducto();
                 }
             
             }
@@ -399,6 +404,16 @@ namespace MyApp
                 if(opcionSeleccionada == "1")
                 {
                     AltaProducto();
+                }
+
+                if (opcionSeleccionada == "2")
+                {
+                    ModificarProducto();
+                }
+
+                if (opcionSeleccionada == "3")
+                {
+                    BajaProducto();
                 }
             }
 
@@ -453,7 +468,6 @@ namespace MyApp
             }
         }
 
-
         public void ModificarProducto()
         {
             Console.WriteLine("MODIFICACIÓN DE PRODUCTO");
@@ -490,7 +504,10 @@ namespace MyApp
             Console.WriteLine();
         }
 
-
+        public void BajaProducto()
+        {
+            //IMPLEMENTAR
+        }
     }
 
 }

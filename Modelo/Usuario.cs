@@ -169,6 +169,8 @@ namespace Modelo
         public int Stock { get; set; }
         public string Categoria { get; set; }
 
+
+        //CONSTRUCTOR
         public Producto(string nombre, decimal precio, int stock, string categoria)
         {
             Nombre = nombre;
