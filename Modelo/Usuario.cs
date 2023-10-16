@@ -196,9 +196,11 @@ namespace Modelo
         public string Email { get; set; }
         public string Apellido { get; set; }
 
-        public Guid IdUsuarioAlta { get; set; } // Id del usuario, existee? hay que implementar
+        public Guid IdUsuarioAlta { get; set; } 
         public List<Categoria> Categorias { get; set; } = new List<Categoria>(); //categorias de cada proveedor
 
+
+        //falta implementar
         public void AgregarCategoria(Categoria categoria)
         {
             if (!Categorias.Contains(categoria))
