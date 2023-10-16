@@ -237,24 +237,32 @@ namespace Negocio
     {
         private List<Proveedor> proveedores = new List<Proveedor>();
 
-        public bool AgregarProveedor(string nombre)
+        public bool AgregarProveedor(string nombre, long cuit, string email, string apellido)
+
+            // Guid idUsuario
         {
-            if (!string.IsNullOrEmpty(nombre))
+            if (!string.IsNullOrEmpty(nombre) && cuit != 0 && !string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(apellido))
             {
-                Proveedor nuevoProveedor = new Proveedor { Nombre = nombre };
+                Proveedor nuevoProveedor = new Proveedor
+                {
+                    Nombre = nombre,
+                    CUIT = cuit,
+                    Email = email,
+                    Apellido = apellido,
+                    //IdUsuario = idUsuario,
+                    FechaAlta = DateTime.Now
+                };
                 proveedores.Add(nuevoProveedor);
                 return true;
             }
             return false;
         }
-
-        public bool AsignarCategoriaAProveedor(int proveedorId, Categoria categoria)
+        public bool AsignarCategoriaAProveedor(Guid proveedorId, Categoria categoria)
         {
             var proveedor = proveedores.FirstOrDefault(p => p.Id == proveedorId);
             if (proveedor != null && categoria != null)
             {
                 proveedor.AgregarCategoria(categoria);
-                categoria.AgregarProveedor(proveedor);
                 return true;
             }
             return false;
@@ -265,6 +273,4 @@ namespace Negocio
             return proveedores;
         }
     }
-
-
 }

@@ -377,7 +377,7 @@ namespace MyApp
 
                 if (opcionSeleccionada== "7")
                 {
-                    AltaProveedores();
+                    AltaProveedores(usuarioActual);
                 }
 
                 if (opcionSeleccionada == "8")
@@ -517,25 +517,40 @@ namespace MyApp
             //IMPLEMENTAR
         }
 
-        private void AltaProveedores()
+        private void AltaProveedores(Usuario usuarioActual)
         {
             Console.Clear();
-
             Console.WriteLine("ALTA PROVEEDORES");
-            Console.WriteLine("Ingrese el nombre del nuevo proveedor:");
-            var nombreProveedor = Console.ReadLine();
 
-            if (gestorDeProveedores.AgregarProveedor(nombreProveedor))
+            Console.WriteLine("Ingrese el nombre del nuevo proveedor:");
+            var nombre = Console.ReadLine();
+
+            Console.WriteLine("Ingrese el CUIT:");
+            long cuit = long.Parse(Console.ReadLine()); 
+
+            Console.WriteLine("Ingrese el Email:");
+            var email = Console.ReadLine();
+
+            Console.WriteLine("Ingrese el apellido:");
+            var apellido = Console.ReadLine();
+
+         
+            //Guid idUsuario = usuarioActual.Id;
+
+           // Guid idProducto = Guid.Parse("TRIAL");
+
+            if (gestorDeProveedores.AgregarProveedor(nombre, cuit, email, apellido))
             {
-                Console.WriteLine($"Proveedor {nombreProveedor} agregado con éxito.");
+                Console.WriteLine($"Proveedor {nombre} agregado con éxito.");
+                Thread.Sleep(2000);
             }
             else
             {
                 Console.WriteLine("Error al agregar el proveedor. Por favor, inténtelo de nuevo.");
             }
-
             Console.Clear();
         }
+
 
         private void ModificacionProveedores()
         {
