@@ -7,9 +7,16 @@ namespace Modelo
         {
         // Atributos privados
             public Guid Id { get; set; } = Guid.NewGuid();
+            public int NumeroRegistro { get; set; } 
             private string nombre;
             private string apellido;
+            public string Direccion { get; set; }
+            public string Telefono { get; set; }
+            public string Email { get; set; }
+            public DateTime? FechaNacimiento { get; set; }  // ? permite null
+            public DateTime? FechaBaja { get; set; }  // ? permite null
             private string username;
+            public int DNI { get; set; }
             private string password;
             private DateTime ultimoCambioPass;
             private int intentosCambioPass;
@@ -19,7 +26,7 @@ namespace Modelo
 
 
         // Constructor
-            public Usuario(string nombre, string apellido, string username)
+        public Usuario(string nombre, string apellido, string username)
             {
                 this.nombre = nombre;
                 this.apellido = apellido;
