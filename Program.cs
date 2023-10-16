@@ -522,17 +522,18 @@ namespace MyApp
             Console.Clear();
             Console.WriteLine("ALTA PROVEEDORES");
 
-            Console.WriteLine("Ingrese el nombre del nuevo proveedor:");
-            var nombre = Console.ReadLine();
+
+            string nombre = "";
+            ValidacionesProveedores("Ingrese el nombre del nuevo proveedor:", nombre, Validaciones.ValidarNombre);
+
+            string apellido= "";
+            ValidacionesProveedores("Ingrese el apellido del nuevo proveedor:", apellido, Validaciones.ValidarApellido);
 
             Console.WriteLine("Ingrese el CUIT:");
             long cuit = long.Parse(Console.ReadLine()); 
 
             Console.WriteLine("Ingrese el Email:");
             var email = Console.ReadLine();
-
-            Console.WriteLine("Ingrese el apellido:");
-            var apellido = Console.ReadLine();
 
          
             //Guid idUsuario = usuarioActual.Id;
@@ -542,15 +543,16 @@ namespace MyApp
             if (gestorDeProveedores.AgregarProveedor(nombre, cuit, email, apellido))
             {
                 Console.WriteLine($"Proveedor {nombre} agregado con éxito.");
-                Thread.Sleep(2000);
+                DevolverListaConTodosProveedores();
+                Thread.Sleep(3000);
             }
             else
             {
                 Console.WriteLine("Error al agregar el proveedor. Por favor, inténtelo de nuevo.");
+                Thread.Sleep(3000);
             }
             Console.Clear();
         }
-
 
         private void ModificacionProveedores()
         {
@@ -562,6 +564,37 @@ namespace MyApp
         {
             //IMPLEMENTAR
 
+        }
+
+        private void DevolverListaConTodosProveedores()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Listado de proveedores:");
+            var proveedores = gestorDeProveedores.ObtenerTodosLosProveedores();
+            foreach (var proveedor in proveedores)
+            {
+                Console.WriteLine($"Proveedor {proveedor.Nombre}, {proveedor.Apellido}. ID: {proveedor.Id}");
+            }
+
+        }
+
+        //IDEA ES PODER REUTILIZARLO PARA TODO DESPUES
+        private void ValidacionesProveedores(string mensaje, string var, Action<string> validacion)
+        {
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine(mensaje);
+                    var = Console.ReadLine();
+                    validacion(var);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
         }
     }
 

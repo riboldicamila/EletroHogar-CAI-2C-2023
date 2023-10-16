@@ -159,9 +159,6 @@ namespace Modelo
     }
 
 
-    //SPRINT 3
-
-
     public class Producto
     {
         public string Nombre { get; set; }
@@ -190,7 +187,8 @@ namespace Modelo
         public long CUIT { get; set; } 
         public string Email { get; set; }
         public string Apellido { get; set; }
-        //public Guid IdUsuario { get; set; } // Id del usuario, existee?
+
+        //public Guid IdUsuario { get; set; } // Id del usuario, existee? hay que implementar
         public List<Categoria> Categorias { get; set; } = new List<Categoria>(); //categorias de cada proveedor
 
         public void AgregarCategoria(Categoria categoria)
