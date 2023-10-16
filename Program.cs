@@ -522,7 +522,6 @@ namespace MyApp
             Console.Clear();
             Console.WriteLine("ALTA PROVEEDORES");
 
-
             string nombre = "";
             ValidacionesProveedores("Ingrese el nombre del nuevo proveedor:", nombre, Validaciones.ValidarNombre);
 
@@ -536,11 +535,11 @@ namespace MyApp
             var email = Console.ReadLine();
 
          
-            //Guid idUsuario = usuarioActual.Id;
+            Guid idUsuario = usuarioActual.Id;
 
            // Guid idProducto = Guid.Parse("TRIAL");
 
-            if (gestorDeProveedores.AgregarProveedor(nombre, cuit, email, apellido))
+            if (gestorDeProveedores.AgregarProveedor(nombre, cuit, email, apellido, idUsuario))
             {
                 Console.WriteLine($"Proveedor {nombre} agregado con éxito.");
                 DevolverListaConTodosProveedores();

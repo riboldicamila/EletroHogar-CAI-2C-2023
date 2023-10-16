@@ -237,7 +237,7 @@ namespace Negocio
     {
         private List<Proveedor> proveedores = new List<Proveedor>();
 
-        public bool AgregarProveedor(string nombre, long cuit, string email, string apellido)
+        public bool AgregarProveedor(string nombre, long cuit, string email, string apellido, Guid idUsuario)
 
             // Guid idUsuario
         {
@@ -249,7 +249,7 @@ namespace Negocio
                     CUIT = cuit,
                     Email = email,
                     Apellido = apellido,
-                    //IdUsuario = idUsuario,
+                    IdUsuarioAlta = idUsuario,
                     FechaAlta = DateTime.Now
                 };
                 proveedores.Add(nuevoProveedor);
@@ -275,7 +275,8 @@ namespace Negocio
     }
 
 
-    //CONUSLTAR A PROFESORES
+    //CONUSLTAR A PROFESORES, IDEA ES HACER TODAS LAS VALIDACIONES ACA
+    // USAR METODOS DESDE PROGRAM 
 
     public static class Validaciones
     {

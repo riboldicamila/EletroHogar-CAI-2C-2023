@@ -5,7 +5,8 @@ namespace Modelo
 
         public abstract class Usuario
         {
-            // Atributos privados
+        // Atributos privados
+            public Guid Id { get; } = Guid.NewGuid();
             private string nombre;
             private string apellido;
             private string username;
@@ -14,10 +15,10 @@ namespace Modelo
             private int intentosCambioPass;
             private EstadoUsuario estado;
             private string nuevoPass;
-            
 
 
-            // Constructor
+
+        // Constructor
             public Usuario(string nombre, string apellido, string username)
             {
                 this.nombre = nombre;
@@ -188,7 +189,7 @@ namespace Modelo
         public string Email { get; set; }
         public string Apellido { get; set; }
 
-        //public Guid IdUsuario { get; set; } // Id del usuario, existee? hay que implementar
+        public Guid IdUsuarioAlta { get; set; } // Id del usuario, existee? hay que implementar
         public List<Categoria> Categorias { get; set; } = new List<Categoria>(); //categorias de cada proveedor
 
         public void AgregarCategoria(Categoria categoria)
