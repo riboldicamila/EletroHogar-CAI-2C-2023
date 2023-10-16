@@ -257,16 +257,16 @@ namespace Negocio
             }
             return false;
         }
-        public bool AsignarCategoriaAProveedor(Guid proveedorId, Categoria categoria)
-        {
-            var proveedor = proveedores.FirstOrDefault(p => p.Id == proveedorId);
-            if (proveedor != null && categoria != null)
-            {
-                proveedor.AgregarCategoria(categoria);
-                return true;
-            }
-            return false;
-        }
+        //public bool asignarcategoriaaproveedor(guid proveedorid, categoria categoria)
+        //{
+        //    var proveedor = proveedores.firstordefault(p => p.id == proveedorid);
+        //    if (proveedor != null && categoria != null)
+        //    {
+        //        proveedor.agregarcategoria(categoria);
+        //        return true;
+        //    }
+        //    return false;
+        //}
 
         public List<Proveedor> ObtenerTodosLosProveedores()
         {

@@ -522,11 +522,9 @@ namespace MyApp
             Console.Clear();
             Console.WriteLine("ALTA PROVEEDORES");
 
-            string nombre = "";
-            ValidacionesProveedores("Ingrese el nombre del nuevo proveedor:", nombre, Validaciones.ValidarNombre);
+            string nombre = ValidacionesProveedores("Ingrese el nombre del nuevo proveedor:", Validaciones.ValidarNombre);
 
-            string apellido= "";
-            ValidacionesProveedores("Ingrese el apellido del nuevo proveedor:", apellido, Validaciones.ValidarApellido);
+            string apellido= ValidacionesProveedores("Ingrese el apellido del nuevo proveedor:", Validaciones.ValidarApellido);
 
             Console.WriteLine("Ingrese el CUIT:");
             long cuit = long.Parse(Console.ReadLine()); 
@@ -578,16 +576,16 @@ namespace MyApp
         }
 
         //IDEA ES PODER REUTILIZARLO PARA TODO DESPUES
-        private void ValidacionesProveedores(string mensaje, string var, Action<string> validacion)
+        private string ValidacionesProveedores(string mensaje, Action<string> validacion)
         {
             while (true)
             {
                 try
                 {
                     Console.WriteLine(mensaje);
-                    var = Console.ReadLine();
-                    validacion(var);
-                    break;
+                    string value = Console.ReadLine();
+                    validacion(value);
+                    return value;
                 }
                 catch (ArgumentException ex)
                 {
