@@ -567,8 +567,19 @@ namespace MyApp
 
             string apellido = ValidacionesProveedores("Ingrese el apellido del proveedor:", Validaciones.ValidarApellido);
 
-            gestorDeProveedores.BajaProveedor(nombre, apellido);
-            Console.WriteLine("El proveedor " + nombre + " " + apellido + " se encuentra Inactivo.");
+            if (gestorDeProveedores.BajaProveedor(nombre, apellido))
+            {
+                Console.WriteLine("El proveedor " + nombre + " " + apellido + " se encuentra Inactivo.");
+                Thread.Sleep(3000);
+            }
+            else
+            {
+                Console.WriteLine("Error al deshabilitar el proveedor. Por favor, inténtelo de nuevo.");
+                Thread.Sleep(3000);
+            }
+            Console.Clear();
+            
+            
         }
 
         private void DevolverListaConTodosProveedores()
