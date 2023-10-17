@@ -257,6 +257,20 @@ namespace Negocio
             }
             return false;
         }
+
+        public bool BajaProveedor(string nombre, string apellido)
+        {
+            foreach (Proveedor p in proveedores) 
+            { 
+                if (p.Nombre == nombre &&  p.Apellido == apellido)
+                {
+                    p.DeshabilitarProveedor();
+                    break;
+                }
+            }
+            return true;
+
+        }
         //public bool asignarcategoriaaproveedor(guid proveedorid, categoria categoria)
         //{
         //    var proveedor = proveedores.firstordefault(p => p.id == proveedorid);

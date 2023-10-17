@@ -198,6 +198,25 @@ namespace Modelo
 
         public Guid IdUsuarioAlta { get; set; } 
         public List<Categoria> Categorias { get; set; } = new List<Categoria>(); //categorias de cada proveedor
+        
+        public EstadoProveedor estadoProveedor;
+
+        public enum EstadoProveedor
+        {
+            INACTIVO,
+            ACTIVO
+        }
+
+        public void DeshabilitarProveedor()
+        {
+            this.estadoProveedor = EstadoProveedor.INACTIVO;
+        }
+
+        public void HabilitarProveedor()
+        {
+            this.estadoProveedor = EstadoProveedor.ACTIVO;
+        }
+
 
 
         //falta implementar

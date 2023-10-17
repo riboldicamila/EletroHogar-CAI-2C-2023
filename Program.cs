@@ -559,8 +559,16 @@ namespace MyApp
 
         private void BajaProveedores()
         {
-            //IMPLEMENTAR
+            
+            Console.Clear();
+            Console.WriteLine("BAJA PROVEEDORES");
 
+            string nombre = ValidacionesProveedores("Ingrese el nombre del proveedor:", Validaciones.ValidarNombre);
+
+            string apellido = ValidacionesProveedores("Ingrese el apellido del proveedor:", Validaciones.ValidarApellido);
+
+            gestorDeProveedores.BajaProveedor(nombre, apellido);
+            Console.WriteLine("El proveedor " + nombre + " " + apellido + " se encuentra Inactivo.");
         }
 
         private void DevolverListaConTodosProveedores()
