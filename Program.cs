@@ -532,7 +532,28 @@ namespace MyApp
             Console.WriteLine("Ingrese el Email:");
             var email = Console.ReadLine();
 
-         
+            Console.WriteLine("Ingrese la categoría del producto:");
+            string categoria = Console.ReadLine();
+
+
+            //try
+            //{
+            //    if ()
+            //    {
+            //        Console.WriteLine("Esa categoria ya esta registrada");
+            //    }
+            //    else
+            //    {
+                    
+            //    }
+            //}
+            //catch (ArgumentException ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
+
+
+
             Guid idUsuario = usuarioActual.Id;
 
            // Guid idProducto = Guid.Parse("TRIAL");
@@ -553,7 +574,9 @@ namespace MyApp
 
         private void ModificacionProveedores()
         {
-            //IMPLEMENTAR
+           //******///
+
+            
 
         }
 

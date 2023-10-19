@@ -258,6 +258,24 @@ namespace Negocio
             return false;
         }
 
+        //public bool buscarcategoria(string categoria)
+        //{
+
+
+
+
+        //}
+
+
+
+
+
+
+
+
+
+
+
         public bool BajaProveedor(string nombre, string apellido)
         {
             foreach (Proveedor p in proveedores) 
