@@ -236,10 +236,27 @@ namespace Negocio
     public class GestorDeProveedores
     {
         private List<Proveedor> proveedores = new List<Proveedor>();
+        /*
+        private List<Categoria> categoriasPermitidas = new List<Categoria>
+         {
+        new Categoria { IdProducto = Guid.NewGuid(), Descripcion = "Audio" },
+        new Categoria { IdProducto = Guid.NewGuid(), Descripcion = "Celulares" },
+        new Categoria { IdProducto = Guid.NewGuid(), Descripcion = "Electro Hogar" },
+        new Categoria { IdProducto = Guid.NewGuid(), Descripcion = "Informatica" },
+        new Categoria { IdProducto = Guid.NewGuid(), Descripcion = "Smart Tv" }
+         };
+        */
+        /*
+        private bool EsCategoriaValida(Guid categoriaId)
+        {
+            // Verificar si el ID de la categoría está en la lista de categorías permitidas
+            return categoriasPermitidas.Any(c => c.IdProducto == categoriaId);
+        }
+        */
 
-        public bool AgregarProveedor(string nombre, long cuit, string email, string apellido, Guid idUsuario)
+        public bool AgregarProveedor(string nombre, long cuit, string email, string apellido, Guid idUsuario, List<Categoria> categorias)
 
-            // Guid idUsuario
+        // Guid idUsuario
         {
             if (!string.IsNullOrEmpty(nombre) && cuit != 0 && !string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(apellido))
             {
@@ -250,7 +267,8 @@ namespace Negocio
                     Email = email,
                     Apellido = apellido,
                     IdUsuarioAlta = idUsuario,
-                    FechaAlta = DateTime.Now
+                    FechaAlta = DateTime.Now,
+                    Categorias = new List<Categoria>()
                 };
                 proveedores.Add(nuevoProveedor);
                 return true;

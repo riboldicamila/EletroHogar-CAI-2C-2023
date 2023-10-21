@@ -524,41 +524,45 @@ namespace MyApp
 
             string nombre = ValidacionesProveedores("Ingrese el nombre del nuevo proveedor:", Validaciones.ValidarNombre);
 
-            string apellido= ValidacionesProveedores("Ingrese el apellido del nuevo proveedor:", Validaciones.ValidarApellido);
+            string apellido = ValidacionesProveedores("Ingrese el apellido del nuevo proveedor:", Validaciones.ValidarApellido);
 
             Console.WriteLine("Ingrese el CUIT:");
-            long cuit = long.Parse(Console.ReadLine()); 
+            long cuit = long.Parse(Console.ReadLine());
 
             Console.WriteLine("Ingrese el Email:");
             var email = Console.ReadLine();
 
-            Console.WriteLine("Ingrese la categoría del producto:");
-            string categoria = Console.ReadLine();
+            List<Categoria> categorias = new List<Categoria>();
+            HashSet<int> categoriasIngresadas = new HashSet<int>();
+            int i = 0;
 
+            while (true) // Seguir pidiendo categorias hasta que aprete enter
+            {
+                Console.WriteLine("Ingrese el código de la categoría del producto (deje en blanco y presione enter para terminar):");
+                string input = Console.ReadLine();
 
-            //try
-            //{
-            //    if ()
-            //    {
-            //        Console.WriteLine("Esa categoria ya esta registrada");
-            //    }
-            //    else
-            //    {
-                    
-            //    }
-            //}
-            //catch (ArgumentException ex)
-            //{
-            //    Console.WriteLine(ex.Message);
-            //}
+                if (string.IsNullOrEmpty(input))
+                {
+                    if (i == 0) Console.WriteLine("Debe ingresar al menos un código de categoría.");
+                    else break;
+                    continue;
+                }
 
-
+                if (int.TryParse(input, out int codigo) && codigo >= 1 && codigo <= 5)
+                {
+                    if (categoriasIngresadas.Add(codigo))
+                    {
+                        categorias.Add(new Categoria(Guid.NewGuid()));
+                        i++;
+                    }
+                    else Console.WriteLine("Esa categoría ya fue ingresada.");
+                }
+                else Console.WriteLine("El código debe ser un número entre 1 y 5.");
+            }
 
             Guid idUsuario = usuarioActual.Id;
 
-           // Guid idProducto = Guid.Parse("TRIAL");
-
-            if (gestorDeProveedores.AgregarProveedor(nombre, cuit, email, apellido, idUsuario))
+            if (gestorDeProveedores.AgregarProveedor(nombre, cuit, email, apellido, idUsuario, categorias))
             {
                 Console.WriteLine($"Proveedor {nombre} agregado con éxito.");
                 DevolverListaConTodosProveedores();
@@ -569,10 +573,9 @@ namespace MyApp
                 Console.WriteLine("Error al agregar el proveedor. Por favor, inténtelo de nuevo.");
                 Thread.Sleep(3000);
             }
-            Console.Clear();
-        }
 
-        private void ModificacionProveedores()
+        }
+            private void ModificacionProveedores()
         {
            //******///
 

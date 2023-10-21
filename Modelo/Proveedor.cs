@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Modelo
 {
+
+
     public class Proveedor
     {
         public Guid Id { get; set; } = Guid.NewGuid();
@@ -19,6 +21,8 @@ namespace Modelo
 
         public Guid IdUsuarioAlta { get; set; }
         public List<Categoria> Categorias { get; set; } = new List<Categoria>(); //categorias de cada proveedor
+
+
 
         public EstadoProveedor estadoProveedor;
 
@@ -55,6 +59,12 @@ namespace Modelo
         public Guid IdProducto { get; set; } = Guid.NewGuid();
         public string Descripcion { get; set; }
         public List<Proveedor> Proveedores { get; set; } = new List<Proveedor>();
+
+        public Categoria(Guid id)
+        {
+            IdProducto = id;
+        }
+
 
         public void AgregarProveedor(Proveedor proveedor)
         {
