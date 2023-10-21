@@ -1,0 +1,58 @@
+[
+    {
+        "Id": "01",
+        "Nombre": "Luis",
+        "Apellido": "Martínez",
+        "Direccion": "Av San Martin 444",
+        "Telefono": "1556545856",
+        "Email": "luis.martinez@gmail.com",
+        "FechaNacimiento": "1990-01-01",
+        "FechaBaja": null,
+        "Username": "luism1234",
+        "DNI": 35265478,
+        "Password": "Pass9012",
+        "UltimoCambioPass": "2023-10-21",
+        "IntentosCambioPass": 0,
+        "Estado": "ACTIVO",
+        "NuevoPass": "newTempPassword",
+        "Tipo": "Administrador"
+    },
+    {
+        "Id": "02",
+        "Nombre": "Juan",
+        "Apellido": "Pérez",
+        "Direccion": "Av del Libertador 100",
+        "Telefono": "1554254587",
+        "Email": "juan.perez@gmail.com",
+        "FechaNacimiento": "1985-05-15",
+        "FechaBaja": null,
+        "Username": "juanp1234",
+        "DNI": 32545856,
+        "Password": "Pass1234",
+        "UltimoCambioPass": "2023-10-21",
+        "IntentosCambioPass": 0,
+        "Estado": "ACTIVO",
+        "NuevoPass": "newTempPasswordForVendedor",
+        "Tipo": "Vendedor"
+    },
+    {
+        "Id": "03",
+        "Nombre": "Ana",
+        "Apellido": "Gómez",
+        "Direccion": "Matienzo 526",
+        "Telefono": "15565253654",
+        "Email": "ana.gomez@gmail.com",
+        "FechaNacimiento": "1975-12-30",
+        "FechaBaja": null,
+        "Username": "anag1234",
+        "DNI": 40256987,
+        "Password": "Pass5678",
+        "UltimoCambioPass": "2023-10-21",
+        "IntentosCambioPass": 0,
+        "Estado": "ACTIVO",
+        "NuevoPass": "newTempPasswordForSupervisor",
+        "Tipo": "Supervisor"
+    }
+    
+]
+

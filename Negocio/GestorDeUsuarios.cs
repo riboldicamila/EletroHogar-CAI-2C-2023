@@ -1,30 +1,36 @@
 ﻿using Modelo;
+using AccesoDatos;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+
 
 namespace Negocio
 {
+
     public class GestorDeUsuarios
     {
-        // Lista para guardar los usuarios de ejemplo
+        // Lista para guardar los usuarios
         private List<Usuario> usuarios;
 
+        // Constructor sin parámetros
         public GestorDeUsuarios()
         {
-            // Inicialización de la lista y generación de usuarios de ejemplo al instanciar el gestor. 
-            // Usamos esta lista para harcodear usuarios y probar
+            usuarios = new List<Usuario>();
 
-            usuarios = new List<Usuario>
+            // Deserializar usuarios desde el archivo JSON
+            string usuariosJson = File.ReadAllText("AccesoDatos/usuarios.json");
+            usuarios = JsonConvert.DeserializeObject<List<Usuario>>(usuariosJson);
+
+            // Establecer contraseñas para los usuarios
+            foreach (var usuario in usuarios)
             {
-                new Vendedor("Juan", "Pérez", "juanp1234"),
-                new Supervisor("Ana", "Gómez", "anag1234"),
-                new Administrador("Luis", "Martínez", "luism1234")
-            };
-
-            usuarios[0].SetPassword("Pass1234");
-            usuarios[1].SetPassword("Pass5678");
-            usuarios[2].SetPassword("Pass9012");
+                usuario.SetPassword(usuario.Password);
+            }
 
         }
+
 
         public (string perfil, bool necesitaCambiarContrasena, Usuario usuarioActual) Login(string username, string password)
         {
@@ -39,8 +45,9 @@ namespace Negocio
                     return (perfil: null, necesitaCambiarContrasena: false, usuarioActual: null);
                 }
 
-                // Verificar si el usuario esta inactivo //LO HABIAN SACADO 
+                // Verificar si el usuario esta inactivo 
                 if (usuario.Estado == EstadoUsuario.INACTIVO && usuario.Password != "Temp1234")
+                //MEJORAR: la contraseña debería ser autogenerada, no siempre la misma
                 {
                     throw new InvalidOperationException("El usuario está inactivo.");
                 }
@@ -215,24 +222,6 @@ namespace Negocio
             return true;
         }
 
-    }
-
-    public class GestorDeProductos
-    {
-        private List<Producto> productos = new List<Producto>();
-
-        public void AgregarProducto(Producto producto)
-        {
-            productos.Add(producto);
-        }
-
-        public List<Producto> ObtenerTodosLosProductos()
-        {
-            return productos;
-        }
-
-    }
-
-    
+    }   
 
 }

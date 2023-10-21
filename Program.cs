@@ -467,6 +467,7 @@ namespace MyApp
             }
         }
 
+
         private void ListaUsuariosActivos()
         {
             var usuariosActivos = gestorUsuarios.ObtenerUsuariosActivos();
