@@ -7,6 +7,7 @@ namespace Modelo
         {
         // Atributos privados
             public Guid Id { get; set; } = Guid.NewGuid();
+            public int NumeroRegistro { get; set; } 
             private string nombre;
             private string apellido;
             public string Direccion { get; set; }
