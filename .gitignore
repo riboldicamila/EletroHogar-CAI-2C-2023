@@ -363,3 +363,6 @@ MigrationBackup/
 FodyWeavers.xsd
 .vscode/launch.json
 .DS_Store
+EletroHogar.csproj
+Negocio/Negocio.csproj
+EletroHogar.sln
