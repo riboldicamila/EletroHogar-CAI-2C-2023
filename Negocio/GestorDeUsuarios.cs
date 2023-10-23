@@ -1,5 +1,8 @@
 ﻿using Modelo;
 using System.Linq;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.IO;
 
 namespace Negocio
 {
@@ -13,7 +16,43 @@ namespace Negocio
             // Inicialización de la lista y generación de usuarios de ejemplo al instanciar el gestor. 
             // Usamos esta lista para harcodear usuarios y probar
 
-            usuarios = new List<Usuario>
+            usuarios = new List<Usuario>();
+
+            // Deserializa usuarios.json a un JArray
+            JArray usuariosJson = JArray.Parse(File.ReadAllText("AccesoDatos/usuarios.json"));
+
+            // Recorrer cada objeto en el JArray y crear una instancia de la clase correspondiente en base al atributo "tipo"
+
+            foreach (JObject usuarioJson in usuariosJson)
+            {
+
+//                Console.WriteLine(usuariosJson[1]["Tipo"].Value<string>());
+
+                string tipo = usuarioJson["Tipo"]?.Value<string>() ?? throw new ArgumentException("Tipo de usuario no encontrado");
+
+                switch (tipo)
+                {
+                    case "Vendedor":
+                        usuarios.Add(usuarioJson.ToObject<Vendedor>());
+                        break;
+                    case "Supervisor":
+                        usuarios.Add(usuarioJson.ToObject<Supervisor>());
+                        break;
+                    case "Administrador":
+                        usuarios.Add(usuarioJson.ToObject<Administrador>());
+                        break;
+                    default:
+                        throw new ArgumentException($"Tipo de usuario desconocido: {tipo}");
+                }
+            }
+        }
+
+
+
+        
+        /*
+        
+        
             {
                 new Vendedor("Juan", "Pérez", "juanp1234"),
                 new Supervisor("Ana", "Gómez", "anag1234"),
@@ -25,6 +64,8 @@ namespace Negocio
             usuarios[2].SetPassword("Pass9012");
 
         }
+
+        */
 
         public (string perfil, bool necesitaCambiarContrasena, Usuario usuarioActual) Login(string username, string password)
         {
@@ -217,22 +258,5 @@ namespace Negocio
 
     }
 
-    public class GestorDeProductos
-    {
-        private List<Producto> productos = new List<Producto>();
-
-        public void AgregarProducto(Producto producto)
-        {
-            productos.Add(producto);
-        }
-
-        public List<Producto> ObtenerTodosLosProductos()
-        {
-            return productos;
-        }
-
-    }
-
-    
 
 }
