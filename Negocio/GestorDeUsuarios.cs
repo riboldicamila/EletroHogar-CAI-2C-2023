@@ -19,7 +19,7 @@ namespace Negocio
             usuarios = new List<Usuario>();
 
             // Deserializa usuarios.json a un JArray
-            JArray usuariosJson = JArray.Parse(File.ReadAllText("AccesoDatos/usuarios.json"));
+            JArray usuariosJson = JArray.Parse(File.ReadAllText("../../../AccesoDatos/usuarios.json"));
 
             // Recorrer cada objeto en el JArray y crear una instancia de la clase correspondiente en base al atributo "tipo"
 

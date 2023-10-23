@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 namespace Modelo
 {
-
-
     public class Proveedor
     {
         public Guid Id { get; set; } = Guid.NewGuid();
