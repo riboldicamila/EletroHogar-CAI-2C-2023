@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Negocio", "Negocio\Negocio.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccesoDatos", "AccesoDatos\AccesoDatos.csproj", "{28170BD2-5548-4E93-902B-4C505F1CDA93}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectroHogarEj.InterfazForm", "..\ElectroHogarEj.InterfazForm\ElectroHogarEj.InterfazForm.csproj", "{D08C8E3B-C5D7-4A65-9B59-96B05E9C0E6A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{28170BD2-5548-4E93-902B-4C505F1CDA93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28170BD2-5548-4E93-902B-4C505F1CDA93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28170BD2-5548-4E93-902B-4C505F1CDA93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D08C8E3B-C5D7-4A65-9B59-96B05E9C0E6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D08C8E3B-C5D7-4A65-9B59-96B05E9C0E6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D08C8E3B-C5D7-4A65-9B59-96B05E9C0E6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D08C8E3B-C5D7-4A65-9B59-96B05E9C0E6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

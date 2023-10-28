@@ -575,7 +575,7 @@ namespace MyApp
             }
 
         }
-            private void ModificacionProveedores()
+        private void ModificacionProveedores()
         {
            //******///
 
