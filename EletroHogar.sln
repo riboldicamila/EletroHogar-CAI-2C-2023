@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Negocio", "Negocio\Negocio.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccesoDatos", "AccesoDatos\AccesoDatos.csproj", "{28170BD2-5548-4E93-902B-4C505F1CDA93}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "..\WindowsFormsApp1\WindowsFormsApp1.csproj", "{5BA1B482-E840-4988-8A92-9983BD355223}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{28170BD2-5548-4E93-902B-4C505F1CDA93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28170BD2-5548-4E93-902B-4C505F1CDA93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28170BD2-5548-4E93-902B-4C505F1CDA93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BA1B482-E840-4988-8A92-9983BD355223}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BA1B482-E840-4988-8A92-9983BD355223}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BA1B482-E840-4988-8A92-9983BD355223}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BA1B482-E840-4988-8A92-9983BD355223}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
