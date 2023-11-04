@@ -3,69 +3,34 @@ using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.IO;
+using AccesoDatos;
 
 namespace Negocio
 {
     public class GestorDeUsuarios
     {
         // Lista para guardar los usuarios de ejemplo
-        private List<Usuario> usuarios;
+        private List<Usuario> usuarios = new List<Usuario>();
 
         public GestorDeUsuarios()
         {
-            // Inicialización de la lista y generación de usuarios de ejemplo al instanciar el gestor. 
-            // Usamos esta lista para harcodear usuarios y probar
-
-            usuarios = new List<Usuario>();
-
-            // Deserializa usuarios.json a un JArray
-            JArray usuariosJson = JArray.Parse(File.ReadAllText("../../../AccesoDatos/usuarios.json"));
-
-            // Recorrer cada objeto en el JArray y crear una instancia de la clase correspondiente en base al atributo "tipo"
-
-            foreach (JObject usuarioJson in usuariosJson)
+            List<UsuarioWS> listadoUsarios = UsuarioDatos.ListarUsuarios();
+            foreach(UsuarioWS usr in listadoUsarios)
             {
-
-//                Console.WriteLine(usuariosJson[1]["Tipo"].Value<string>());
-
-                string tipo = usuarioJson["Tipo"]?.Value<string>() ?? throw new ArgumentException("Tipo de usuario no encontrado");
-
-                switch (tipo)
+                if(usr.host.Equals("1"))
                 {
-                    case "Vendedor":
-                        usuarios.Add(usuarioJson.ToObject<Vendedor>());
-                        break;
-                    case "Supervisor":
-                        usuarios.Add(usuarioJson.ToObject<Supervisor>());
-                        break;
-                    case "Administrador":
-                        usuarios.Add(usuarioJson.ToObject<Administrador>());
-                        break;
-                    default:
-                        throw new ArgumentException($"Tipo de usuario desconocido: {tipo}");
+                    this.usuarios.Add(new Vendedor(usr));
+                }
+                else if (usr.host.Equals("2"))
+                {
+                    this.usuarios.Add(new Supervisor(usr));
+                }
+                else
+                {
+                    this.usuarios.Add(new Administrador(usr));
                 }
             }
         }
-
-
-
-        
-        /*
-        
-        
-            {
-                new Vendedor("Juan", "Pérez", "juanp1234"),
-                new Supervisor("Ana", "Gómez", "anag1234"),
-                new Administrador("Luis", "Martínez", "luism1234")
-            };
-
-            usuarios[0].SetPassword("Pass1234");
-            usuarios[1].SetPassword("Pass5678");
-            usuarios[2].SetPassword("Pass9012");
-
-        }
-
-        */
 
         public (string perfil, bool necesitaCambiarContrasena, Usuario usuarioActual) Login(string username, string password)
         {
