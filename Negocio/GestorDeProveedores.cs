@@ -6,41 +6,46 @@ namespace Negocio
 {
     public class GestorDeProveedores
     {
-        private List<Proveedor> proveedores = new List<Proveedor>();
+      
 
         public List<ProveedoresWS> ListarProveedores()
         {
             return ProveedoresDatos.ListarProveedores();
         }
 
-
-        public bool AgregarProveedor(string nombre, string cuit, string email, string apellido, Guid idUsuario)
+        public bool AltaProveedor(string nombre, string apellido, string cuit, string email, Guid idUsuario)
         {
-            if (!string.IsNullOrEmpty(nombre) && !string.IsNullOrEmpty(cuit) && !string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(apellido))
+            ProveedoresWS nuevoProveedor = CrearProveedoresWS(nombre, apellido, cuit, email, idUsuario.ToString());
+
+            try
             {
-                // Crear una nueva instancia de ProveedoresWS con los datos del nuevo proveedor
-                ProveedoresWS nuevoProveedor = new ProveedoresWS
-                {
-                    Nombre = nombre,
-                    Cuit = cuit,
-                    Email = email,
-                    Apellido = apellido,
-                };
-
-                try
-                {
-                    // Llamar al método AltaProveedor para agregar el nuevo proveedor
-                    ProveedoresDatos.AltaProveedor(nuevoProveedor);
-                    return true; // El proveedor se agregó correctamente
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Error al agregar el proveedor: " + ex.Message);
-                }
+                ProveedoresDatos.AltaProveedor(nuevoProveedor);
+                return true;
             }
-
-            return false; // No se pudo agregar el proveedor
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al agregar el proveedor: " + ex.Message);
+                return false;
+            }
         }
+
+
+        private ProveedoresWS CrearProveedoresWS(string nombre, string apellido, string cuit, string email, string idUsuario)
+        {
+            return new ProveedoresWS
+            {
+                idUsuario = idUsuario,
+                nombre = nombre,
+                apellido = apellido,
+                cuit = cuit,
+                email = email
+            };
+        }
+
+
+
+
+        private List<Proveedor> proveedores = new List<Proveedor>();
 
 
 

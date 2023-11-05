@@ -525,49 +525,18 @@ namespace MyApp
             Console.WriteLine("ALTA PROVEEDORES");
 
             string nombre = ValidacionesProveedores("Ingrese el nombre del nuevo proveedor:", Validaciones.ValidarNombre);
-
             string apellido = ValidacionesProveedores("Ingrese el apellido del nuevo proveedor:", Validaciones.ValidarApellido);
 
             Console.WriteLine("Ingrese el CUIT:");
-            long cuit = long.Parse(Console.ReadLine());
+            string cuit = Console.ReadLine();
 
             Console.WriteLine("Ingrese el Email:");
-            var email = Console.ReadLine();
+            string email = Console.ReadLine();
 
-            List<Categoria> categorias = new List<Categoria>();
-            HashSet<int> categoriasIngresadas = new HashSet<int>();
-            int i = 0;
-
-            while (true) // Seguir pidiendo categorias hasta que aprete enter
-            {
-                Console.WriteLine("Ingrese el código de la categoría del producto (deje en blanco y presione enter para terminar):");
-                string input = Console.ReadLine();
-
-                if (string.IsNullOrEmpty(input))
-                {
-                    if (i == 0) Console.WriteLine("Debe ingresar al menos un código de categoría.");
-                    else break;
-                    continue;
-                }
-
-                if (int.TryParse(input, out int codigo) && codigo >= 1 && codigo <= 5)
-                {
-                    if (categoriasIngresadas.Add(codigo))
-                    {
-                        categorias.Add(new Categoria(Guid.NewGuid()));
-                        i++;
-                    }
-                    else Console.WriteLine("Esa categoría ya fue ingresada.");
-                }
-                else Console.WriteLine("El código debe ser un número entre 1 y 5.");
-            }
-
-            Guid idUsuario = usuarioActual.Id;
-
-            if (gestorDeProveedores.AgregarProveedor(nombre, cuit, email, apellido, idUsuario, categorias))
+            if (gestorDeProveedores.AltaProveedor(nombre, apellido, cuit, email, usuarioActual.Id))
             {
                 Console.WriteLine($"Proveedor {nombre} agregado con éxito.");
-                DevolverListaConTodosProveedores();
+                ListarProveedores();
                 Thread.Sleep(3000);
             }
             else
@@ -575,8 +544,10 @@ namespace MyApp
                 Console.WriteLine("Error al agregar el proveedor. Por favor, inténtelo de nuevo.");
                 Thread.Sleep(3000);
             }
-
         }
+
+
+
         private void ModificacionProveedores()
         {
            //******///
