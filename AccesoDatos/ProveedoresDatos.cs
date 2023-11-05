@@ -39,16 +39,32 @@ namespace AccesoDatos
             }
         }
 
-        public static void BajaProveedor(ProveedoresWS proveedor)
-        {
-            var jsonRequest = JsonConvert.SerializeObject(proveedor);
-            HttpResponseMessage response = WebHelper.Patch("/Proveedor/BajaProveedor", jsonRequest);
 
-            if (!response.IsSuccessStatusCode)
+        public static void BajaProveedor(object requestData)
+        {
+            try
+            {
+                string jsonRequest = JsonConvert.SerializeObject(requestData);
+                HttpResponseMessage response = WebHelper.DeleteConBody("/Proveedor/BajaProveedor", jsonRequest);
+
+            }
+            catch (Exception ex)
             {
                 throw new Exception("Verifique los datos ingresados");
             }
         }
+
+
+        //public static void BajaProveedor(ProveedoresWS proveedor)
+        //{
+        //    var jsonRequest = JsonConvert.SerializeObject(proveedor);
+        //    HttpResponseMessage response = WebHelper.DeleteConBody("/Proveedor/BajaProveedor", jsonRequest);
+
+        //    if (!response.IsSuccessStatusCode)
+        //    {
+        //        throw new Exception("Verifique los datos ingresados");
+        //    }
+        //}
 
         public static void ModificacionProveedor(ProveedoresWS proveedor)
         {

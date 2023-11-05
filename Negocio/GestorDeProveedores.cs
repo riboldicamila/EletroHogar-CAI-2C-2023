@@ -1,6 +1,7 @@
 ﻿using System;
 using AccesoDatos;
 using Modelo;
+using Newtonsoft.Json;
 
 namespace Negocio
 {
@@ -42,7 +43,26 @@ namespace Negocio
         }
 
 
+        public bool BajaProveedor(string idProveedor, Guid idUsuario)
+        {
+            try
+            {
+                var requestData = new
+                {
+                    id = idProveedor,
+                    idUsuario = idUsuario.ToString()
+                };
 
+                ProveedoresDatos.BajaProveedor(requestData);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        //VIEJO
 
         private List<Proveedor> proveedores = new List<Proveedor>();
 

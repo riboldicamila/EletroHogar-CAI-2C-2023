@@ -388,8 +388,7 @@ namespace MyApp
                 if (opcionSeleccionada == "9")
                 {
                  
-                    ListarProveedores();
-                    BajaProveedores();
+                    BajaProveedores(usuarioActual);
                 }
 
                 if(opcionSeleccionada == "10")
@@ -556,41 +555,28 @@ namespace MyApp
 
         }
 
-        private void BajaProveedores()
+        private void BajaProveedores(Usuario usuarioActual)
         {
-            
             Console.Clear();
+            ListarProveedores();
             Console.WriteLine("BAJA PROVEEDORES");
 
-            string nombre = ValidacionesProveedores("Ingrese el nombre del proveedor:", Validaciones.ValidarNombre);
+            Console.Write("Ingrese el id del proveedor que quiere dar de baja: ");
+            string idProveedor = Console.ReadLine();
 
-            string apellido = ValidacionesProveedores("Ingrese el apellido del proveedor:", Validaciones.ValidarApellido);
+            bool bajaExitosa = gestorDeProveedores.BajaProveedor(idProveedor, usuarioActual.Id);
 
-            if (gestorDeProveedores.BajaProveedor(nombre, apellido))
+            if (bajaExitosa)
             {
-                Console.WriteLine("El proveedor " + nombre + " " + apellido + " se encuentra Inactivo.");
-                Thread.Sleep(3000);
+                Console.WriteLine($"El proveedor con ID {idProveedor} se encuentra Inactivo.");
             }
             else
             {
                 Console.WriteLine("Error al deshabilitar el proveedor. Por favor, inténtelo de nuevo.");
-                Thread.Sleep(3000);
             }
+
+            Thread.Sleep(3000);
             Console.Clear();
-            
-            
-        }
-
-        private void DevolverListaConTodosProveedores()
-        {
-            Console.WriteLine();
-            Console.WriteLine("Listado de proveedores:");
-            var proveedores = gestorDeProveedores.ObtenerTodosLosProveedores();
-            foreach (var proveedor in proveedores)
-            {
-                Console.WriteLine($"Proveedor {proveedor.Nombre}, {proveedor.Apellido}. ID: {proveedor.Id}");
-            }
-
         }
 
         private void ListarProveedores()
