@@ -1,4 +1,5 @@
 ﻿using System;
+using AccesoDatos;
 using Modelo;
 
 namespace Negocio
@@ -6,53 +7,40 @@ namespace Negocio
     public class GestorDeProveedores
     {
         private List<Proveedor> proveedores = new List<Proveedor>();
-        /*
-        private List<Categoria> categoriasPermitidas = new List<Categoria>
-         {
-        new Categoria { IdProducto = Guid.NewGuid(), Descripcion = "Audio" },
-        new Categoria { IdProducto = Guid.NewGuid(), Descripcion = "Celulares" },
-        new Categoria { IdProducto = Guid.NewGuid(), Descripcion = "Electro Hogar" },
-        new Categoria { IdProducto = Guid.NewGuid(), Descripcion = "Informatica" },
-        new Categoria { IdProducto = Guid.NewGuid(), Descripcion = "Smart Tv" }
-         };
-        */
-        /*
-        private bool EsCategoriaValida(Guid categoriaId)
+
+        public List<ProveedoresWS> ListarProveedores()
         {
-            // Verificar si el ID de la categoría está en la lista de categorías permitidas
-            return categoriasPermitidas.Any(c => c.IdProducto == categoriaId);
+            return ProveedoresDatos.ListarProveedores();
         }
-        */
 
-        public bool AgregarProveedor(string nombre, long cuit, string email, string apellido, Guid idUsuario, List<Categoria> categorias)
 
-        // Guid idUsuario
+        public bool AgregarProveedor(string nombre, string cuit, string email, string apellido, Guid idUsuario)
         {
-            if (!string.IsNullOrEmpty(nombre) && cuit != 0 && !string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(apellido))
+            if (!string.IsNullOrEmpty(nombre) && !string.IsNullOrEmpty(cuit) && !string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(apellido))
             {
-                Proveedor nuevoProveedor = new Proveedor
+                // Crear una nueva instancia de ProveedoresWS con los datos del nuevo proveedor
+                ProveedoresWS nuevoProveedor = new ProveedoresWS
                 {
                     Nombre = nombre,
-                    CUIT = cuit,
+                    Cuit = cuit,
                     Email = email,
                     Apellido = apellido,
-                    IdUsuarioAlta = idUsuario,
-                    FechaAlta = DateTime.Now,
-                    Categorias = new List<Categoria>()
                 };
-                proveedores.Add(nuevoProveedor);
-                return true;
+
+                try
+                {
+                    // Llamar al método AltaProveedor para agregar el nuevo proveedor
+                    ProveedoresDatos.AltaProveedor(nuevoProveedor);
+                    return true; // El proveedor se agregó correctamente
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error al agregar el proveedor: " + ex.Message);
+                }
             }
-            return false;
+
+            return false; // No se pudo agregar el proveedor
         }
-
-        //public bool buscarcategoria(string categoria)
-        //{
-
-
-
-
-        //}
 
 
 
@@ -84,12 +72,13 @@ namespace Negocio
         {
             return proveedores;
         }
+
     }
 
 
-    //CONUSLTAR A PROFESORES, IDEA ES HACER TODAS LAS VALIDACIONES ACA
-    // USAR METODOS DESDE PROGRAM 
 
+
+    // FUERA DE LA CLASE: VALIDACIONES
     public static class Validaciones
     {
         public static void ValidarNombre(string nombre)
@@ -108,5 +97,25 @@ namespace Negocio
             }
         }
     }
+
+
+
+    /*
+private List<Categoria> categoriasPermitidas = new List<Categoria>
+ {
+new Categoria { IdProducto = Guid.NewGuid(), Descripcion = "Audio" },
+new Categoria { IdProducto = Guid.NewGuid(), Descripcion = "Celulares" },
+new Categoria { IdProducto = Guid.NewGuid(), Descripcion = "Electro Hogar" },
+new Categoria { IdProducto = Guid.NewGuid(), Descripcion = "Informatica" },
+new Categoria { IdProducto = Guid.NewGuid(), Descripcion = "Smart Tv" }
+ };
+*/
+    /*
+    private bool EsCategoriaValida(Guid categoriaId)
+    {
+        // Verificar si el ID de la categoría está en la lista de categorías permitidas
+        return categoriasPermitidas.Any(c => c.IdProducto == categoriaId);
+    }
+    */
 }
 

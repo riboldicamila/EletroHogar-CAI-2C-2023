@@ -387,6 +387,8 @@ namespace MyApp
 
                 if (opcionSeleccionada == "9")
                 {
+                 
+                    ListarProveedores();
                     BajaProveedores();
                 }
 
@@ -617,6 +619,18 @@ namespace MyApp
             {
                 Console.WriteLine($"Proveedor {proveedor.Nombre}, {proveedor.Apellido}. ID: {proveedor.Id}");
             }
+
+        }
+
+        private void ListarProveedores()
+        {
+            Console.WriteLine("Listado de Proveedores:");
+            List<ProveedoresWS> proveedores = gestorDeProveedores.ListarProveedores();
+            foreach (ProveedoresWS p in proveedores)
+            {
+                Console.WriteLine(p.ToString());
+            }
+            Thread.Sleep(5000);
 
         }
 
