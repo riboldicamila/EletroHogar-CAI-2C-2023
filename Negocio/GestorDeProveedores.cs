@@ -24,7 +24,6 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al agregar el proveedor: " + ex.Message);
                 return false;
             }
         }
