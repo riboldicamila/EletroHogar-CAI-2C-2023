@@ -8,23 +8,34 @@ namespace Modelo
 {
     public class UsuarioWS
     {
+        private Guid _idUsuario;
+        private string _nombre;
+        private string _apellido;
+        private string _username;
+        private int _host;
+        private int _dni;
 
-        public string idUsuario { get; set; }
-        public int host { get; set; }
-        public string nombre { get; set; }
-        public string apellido { get; set; }
-        public int dni { get; set; }
-        public string direccion { get; set; }
-        public string telefono { get; set; }
-        public DateTime fechaNacimiento { get; set; }
-        public string nombreUsuario { get; set; }
-        public string contraseña { get; set; }
+        public Guid idUsuario { get => _idUsuario; set => _idUsuario = value; }
+        public int host { get => _host; set => _host = value; }
+        public string nombre { get => _nombre; set => _nombre = value; }
+        public string apellido { get => _apellido; set => _apellido = value; }
+        public int dni { get => _dni; set => _dni = value; }
+        public string username { get => _username; set => _username = value; }
+        //public string direccion { get; set; }
+        // public string telefono { get; set; }
+        //public DateTime fechaNacimiento { get; set; }
 
+        //public string contraseña { get; set; }
+
+        public UsuarioWS()
+        {
+
+        }
 
 
         public override string ToString()
         {
-            return nombre + " " + apellido + "" + idUsuario;
+            return nombre + " " + apellido + "" + username;
         }
     }
 }

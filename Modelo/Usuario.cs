@@ -25,15 +25,18 @@ namespace Modelo
 
 
         // Constructor
-        public Usuario(string nombre, string apellido, string username)
+        public Usuario(UsuarioWS usuarioWS)
             {
-                this.nombre = nombre;
-                this.apellido = apellido;
-                this.Username = username;
-                this.password = GenerarPasswordTemporal();
-                this.ultimoCambioPass = DateTime.Now;
-                this.intentosCambioPass = 0;
-                this.estado = EstadoUsuario.INACTIVO;
+                this.nombre = usuarioWS.nombre;
+                this.apellido = usuarioWS.apellido;
+                this.Username = usuarioWS.username;
+                this.Id = usuarioWS.idUsuario;
+
+
+                //this.password = GenerarPasswordTemporal();
+                //this.ultimoCambioPass = DateTime.Now;
+                //this.intentosCambioPass = 0;
+                //this.estado = EstadoUsuario.INACTIVO;
 
             }
 
@@ -138,28 +141,41 @@ namespace Modelo
 
     public class Administrador : Usuario
     {
-        public Administrador(string nombre, string apellido, string username) : base(nombre, apellido, username)
-        {
-            //el base llama al constructor de la abstracta
-        }
+        //public Administrador(string nombre, string apellido, string username) : base(nombre, apellido, username)
+        //{
+        //el base llama al constructor de la abstracta
+        //}
 
+        public Administrador(UsuarioWS usuarioWS) : base(usuarioWS)
+        {
+
+        }
     }
 
     public class Supervisor : Usuario
     {
-        public Supervisor(string nombre, string apellido, string username) : base(nombre, apellido, username)
+        //public Supervisor(string nombre, string apellido, string username) : base(nombre, apellido, username)
+        //{
+
+        //}
+        public Supervisor(UsuarioWS usuarioWS) : base(usuarioWS)
         {
-       
+
         }
 
-    
+
     }
 
     public class Vendedor : Usuario
     {
-        public Vendedor(string nombre, string apellido, string username) : base(nombre, apellido, username)
-        {
+       // public Vendedor(string nombre, string apellido, string username) : base(nombre, apellido, username)
+        //{
             
+       // }
+
+        public Vendedor(UsuarioWS usuarioWS) : base(usuarioWS)
+        {
+
         }
 
 
