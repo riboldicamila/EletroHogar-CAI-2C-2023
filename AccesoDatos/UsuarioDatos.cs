@@ -31,16 +31,16 @@ namespace AccesoDatos
 
         //POST para agregar usuario
 
-        //public static void AgregarUsuario(UsuarioWS usuario)
-        //{
-        //    var jsonRequest = JsonConvert.SerializeObject(usuario);
-        //    HttpResponseMessage response = WebHelper.Post("Usuario/AgregarUsuario", jsonRequest);
+        public static void AgregarUsuario(UsuarioWS usuario)
+        {
+            var jsonRequest = JsonConvert.SerializeObject(usuario);
+            HttpResponseMessage response = WebHelper.Post("Usuario/AgregarUsuario", jsonRequest);
 
-        //    if (!response.IsSuccessStatusCode)
-        //    {
-        //        throw new Exception("Verifique los datos ingresados. Error al agregar usuario.");
-        //    }
-        //}
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Verifique los datos ingresados. Error al agregar usuario.");
+            }
+        }
 
 
         //PATCH cambiar contraseña

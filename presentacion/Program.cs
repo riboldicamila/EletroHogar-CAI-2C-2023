@@ -506,8 +506,8 @@ namespace MyApp
             Console.WriteLine("Ingrese la categoría del producto:");
             string categoria = Console.ReadLine();
 
-            Producto nuevoProducto = new Producto(nombre, precio, stock, categoria);
-            gestorDeProductos.AgregarProducto(nuevoProducto);
+            //Producto nuevoProducto = new Producto(nombre, precio, stock, categoria);
+            //gestorDeProductos.AgregarProducto(nuevoProducto);
 
             Console.WriteLine($"Producto {nombre} agregado exitosamente.");
             Console.WriteLine();
