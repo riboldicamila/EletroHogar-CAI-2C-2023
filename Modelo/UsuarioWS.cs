@@ -11,7 +11,7 @@ namespace Modelo
     public class UsuarioWS
     {
         private Guid _id;
-        private string _nombre, _apellido,_usuario;
+        private string _nombre, _apellido, _usuario;
 
         private int _host, _dni;
         public Guid id { get => _id; set => _id = value; }

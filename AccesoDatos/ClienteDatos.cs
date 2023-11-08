@@ -6,7 +6,19 @@ using System.Threading.Tasks;
 
 namespace AccesoDatos
 {
-    internal class ClienteDatos
+    public static class ClienteDatos
     {
+
+        //post agregar
+
+        //get cliente
+
+        //patch
+
+        //delete con baja
+
+        //patch con reactivar
+
+
     }
 }

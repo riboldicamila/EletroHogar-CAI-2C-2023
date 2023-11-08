@@ -15,9 +15,9 @@ namespace Negocio
         public GestorDeUsuarios()
         {
             List<UsuarioWS> listadoUsarios = UsuarioDatos.ListarUsuarios();
-            foreach(UsuarioWS usr in listadoUsarios)
+            foreach (UsuarioWS usr in listadoUsarios)
             {
-                if(usr.host.Equals("1"))
+                if (usr.host.Equals("1"))
                 {
                     this.usuarios.Add(new Vendedor(usr));
                 }
@@ -139,7 +139,7 @@ namespace Negocio
         {
             //lista los nombres de usuario ACTIVOS E INACTIVOS
             return usuarios;
-           
+
         }
 
         public List<Usuario> ObtenerUsuariosActivos()
@@ -163,7 +163,7 @@ namespace Negocio
         //    return usuarios.Where(u => u.Perfil == PerfilUsuario.VENDEDOR);
         //}
 
-        public bool BajaUsuario(string nombre, string apellido, string username) 
+        public bool BajaUsuario(string nombre, string apellido, string username)
         {
 
             foreach (Usuario u in usuarios)
@@ -192,7 +192,7 @@ namespace Negocio
                     return true;
 
                 }
-                else if (u.Username == username && u.Password !=password)
+                else if (u.Username == username && u.Password != password)
                 {
                     string passinactivo;
                     count = 0;
@@ -214,7 +214,7 @@ namespace Negocio
                     Console.WriteLine("Su Usuario quedo Inactivo");
                     u.DeshabilitarUsuario();
                     break;
-                    
+
                 }
             }
 

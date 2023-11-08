@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace AccesoDatos
 {
-    internal class VentasDatos
+    public static class VentasDatos
     {
+        //POST agregar venta
+
+        //GET para traer ventas
+
+
+        //GET para ventas por clientes
+
+
+        //PATCH para devolver ventas
+
     }
 }

@@ -10,6 +10,8 @@ namespace AccesoDatos
 {
     public static class ProveedoresDatos
     {
+
+        //GET para traer proveedores
         public static List<ProveedoresWS> ListarProveedores()
         {
             HttpResponseMessage response = WebHelper.Get("Proveedor/TraerProveedores");
@@ -28,6 +30,7 @@ namespace AccesoDatos
             }
         }
 
+        //POST agregar
         public static void AltaProveedor (ProveedoresWS proveedor)
         {
             var jsonRequest = JsonConvert.SerializeObject(proveedor);
@@ -40,6 +43,7 @@ namespace AccesoDatos
         }
 
 
+        //DELETE para baja
         public static void BajaProveedor(object requestData)
         {
             try
@@ -66,6 +70,7 @@ namespace AccesoDatos
         //    }
         //}
 
+        //PATCH modificar
         public static void ModificacionProveedor(ProveedoresWS proveedor)
         {
             var jsonRequest = JsonConvert.SerializeObject(proveedor);

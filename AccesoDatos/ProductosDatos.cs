@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace AccesoDatos
 {
-    internal class ProductosDatos
+    public static class ProductosDatos
     {
+        //post con agregar
+        //get con traer
+        //get con traer por categoria
+        //patch con modificar
+        //delete con baja
+        //producto reactivat con patch
+
+
     }
 }
