@@ -10,6 +10,7 @@ namespace AccesoDatos
     {
         //POST agregar venta
 
+
         //GET para traer ventas
 
 
