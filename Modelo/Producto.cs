@@ -8,6 +8,8 @@ namespace Modelo
 {
     public class Producto
     {
+        //FALTAN ATRIBUTOS
+
         public string Nombre { get; set; }
         public decimal Precio { get; set; }
         public int Stock { get; set; }

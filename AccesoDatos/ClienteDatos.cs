@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AccesoDatos.Utilidades;
+using Modelo;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,14 +14,66 @@ namespace AccesoDatos
 
         //post agregar
 
-        //get cliente
+        public static void AgregarCliente(ClienteWS cliente)
+        {
+            var jsonRequest = JsonConvert.SerializeObject(cliente);
+            HttpResponseMessage response = WebHelper.Post("Cliente/AgregarCliente", jsonRequest);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Verifique los datos ingresados. Error al agregar proveedor.");
+            }
+        }
+
+
+        //get cliente //DEVOLVER SOLO 1 CLIENTE CREO
+
+        public static List<ClienteWS> DevolverCliente()
+        {
+            HttpResponseMessage response = WebHelper.Get("Cliente/GetCliente");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Verifique los datos ingresados");
+            }
+            else
+            {
+
+                var contentStream = response.Content.ReadAsStringAsync().Result;
+                List<ClienteWS> listadoCliente = JsonConvert.DeserializeObject<List<ClienteWS>>(contentStream);
+
+                return listadoCliente;
+            }
+        }
 
         //patch
 
+        public static void ModificacionCliente(ClienteWS cliente)
+        {
+            var jsonRequest = JsonConvert.SerializeObject(cliente);
+            HttpResponseMessage response = WebHelper.Patch("Cliente/PatchCliente", jsonRequest);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Verifique los datos ingresados");
+            }
+        }
+
         //delete con baja
+
+
 
         //patch con reactivar
 
+        public static void ReactivarCliente(ClienteWS cliente)
+        {
+            var jsonRequest = JsonConvert.SerializeObject(cliente);
+            HttpResponseMessage response = WebHelper.Patch("Cliente/ReactivarCliente", jsonRequest);
 
-    }
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Verifique los datos ingresados");
+            }
+
+        }
 }
