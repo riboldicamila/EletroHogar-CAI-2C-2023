@@ -11,7 +11,7 @@ namespace AccesoDatos
 {
     public static class ProductosDatos
     {
-        //post con agregar
+        //POST con agregar
 
         public static void AgregarProducto(ProductosWS producto)
         {
@@ -24,7 +24,7 @@ namespace AccesoDatos
             }
         }
 
-        //get con traer
+        //GET con traer
 
         public static List<ProductosWS> TraerProductos()
         {
