@@ -12,8 +12,25 @@ namespace Negocio
         // Lista para guardar los usuarios de ejemplo
         private List<Usuario> usuarios = new List<Usuario>();
 
+
+
         public GestorDeUsuarios()
         {
+            // Inicialización de la lista y generación de usuarios de ejemplo al instanciar el gestor. 
+            // Usamos esta lista para harcodear usuarios y probar
+
+            usuarios = new List<Usuario>
+            {
+                new Vendedor("Juan", "Pérez", "juanp1234"),
+                new Supervisor("Ana", "Gómez", "anag1234"),
+                new Administrador("Luis", "Martínez", "luism1234")
+            };
+
+            usuarios[0].SetPassword("Pass1234");
+            usuarios[1].SetPassword("Pass5678");
+            usuarios[2].SetPassword("Pass9012");
+
+
             List<UsuarioWS> listadoUsarios = UsuarioDatos.ListarUsuarios();
             foreach (UsuarioWS usr in listadoUsarios)
             {
