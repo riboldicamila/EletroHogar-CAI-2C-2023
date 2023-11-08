@@ -16,6 +16,11 @@ namespace Modelo
         public string email { get; set; }
         public string cuit { get; set; }
 
+        public ProveedoresWS()
+        {
+
+        }
+
 
 
         public override string ToString()

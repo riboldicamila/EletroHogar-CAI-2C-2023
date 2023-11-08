@@ -13,13 +13,35 @@ namespace Modelo
         public string Nombre { get; set; }
         public DateTime FechaAlta { get; set; } = DateTime.Now;
         public DateTime? FechaBaja { get; set; } // es null esta activo
-        public long CUIT { get; set; }
+        public string CUIT { get; set; }
         public string Email { get; set; }
         public string Apellido { get; set; }
 
-        public Guid IdUsuarioAlta { get; set; }
+        public string IdUsuarioAlta { get; set; }
         public List<Categoria> Categorias { get; set; } = new List<Categoria>(); //categorias de cada proveedor
 
+        //Constructor
+
+        public Proveedor (ProveedoresWS proveedorWS)
+        {
+            this.IdUsuarioAlta = proveedorWS.idUsuario;
+            this.Nombre = proveedorWS.nombre;
+            this.Apellido = proveedorWS.apellido;
+            this.Email = proveedorWS.email;
+            this.CUIT = proveedorWS.cuit;
+        }
+
+        //public Proveedor (string nombre, string apellido, string username)
+        //{
+        //    this.nombre = nombre;
+        //    this.apellido = apellido;
+        //    this.Username = username;
+        //    this.password = GenerarPasswordTemporal();
+        //    this.ultimoCambioPass = DateTime.Now;
+        //    this.intentosCambioPass = 0;
+        //    this.estado = EstadoUsuario.INACTIVO;
+
+        //}
 
 
         public EstadoProveedor estadoProveedor;
@@ -52,24 +74,5 @@ namespace Modelo
             }
         }
     }
-    public class Categoria
-    {
-        public Guid IdProducto { get; set; } = Guid.NewGuid();
-        public string Descripcion { get; set; }
-        public List<Proveedor> Proveedores { get; set; } = new List<Proveedor>();
-
-        public Categoria(Guid id)
-        {
-            IdProducto = id;
-        }
-
-
-        public void AgregarProveedor(Proveedor proveedor)
-        {
-            if (!Proveedores.Contains(proveedor))
-            {
-                Proveedores.Add(proveedor);
-            }
-        }
-    }
+   
 }
