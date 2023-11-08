@@ -7,7 +7,7 @@ namespace Negocio
 {
     public class GestorDeProveedores
     {
-      
+
 
         public List<ProveedoresWS> ListarProveedores()
         {
@@ -142,4 +142,3 @@ new Categoria { IdProducto = Guid.NewGuid(), Descripcion = "Smart Tv" }
     }
     */
 }
-
