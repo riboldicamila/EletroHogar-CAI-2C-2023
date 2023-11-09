@@ -581,7 +581,7 @@ namespace MyApp
             Console.Clear();
             Console.WriteLine("MODIFICACIÓN PROVEEDORES");
 
-            Console.WriteLine("Estos son los proveedores cargados en el sistema:");
+            Console.WriteLine("LISTA PROVEEDORES EN SISTEMA:");
             ListarProveedores();
 
             Console.WriteLine();

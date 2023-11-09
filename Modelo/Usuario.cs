@@ -6,7 +6,7 @@ namespace Modelo
     public abstract class Usuario
     {
         // Atributos privados
-        public Guid Id { get; set; } = Guid.NewGuid();
+        //public Guid Id { get; set; } = Guid.NewGuid(); genera solo
         private string nombre;
         private string apellido;
         public string Direccion { get; set; }
@@ -28,7 +28,6 @@ namespace Modelo
         {
             this.nombre = usuarioWS.nombre;
             this.apellido = usuarioWS.apellido;
-            this.Id = usuarioWS.id;
             this.username = usuarioWS.usuario;
         }
 
