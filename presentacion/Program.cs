@@ -545,6 +545,7 @@ namespace MyApp
         private void BajaProducto()
         {
             //IMPLEMENTAR
+
         }
 
         private void AltaProveedores(Usuario usuarioActual)
@@ -578,9 +579,18 @@ namespace MyApp
 
         private void ModificacionProveedores()
         {
-            //******///
+            Console.Clear();
+            Console.WriteLine("MODIFICACIÓN PROVEEDORES");
 
+            Console.WriteLine("Estos son los proveedores cargados en el sistema:");
+            ListarProveedores();
 
+            Console.WriteLine();
+
+            Console.WriteLine("Ingrese el cuit del que desea modificar: ");
+            string cuit = Console.ReadLine();
+
+            gestorDeProveedores.ModificarProveedor();
 
         }
 

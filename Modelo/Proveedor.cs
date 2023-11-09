@@ -31,7 +31,7 @@ namespace Modelo
             this.CUIT = proveedorWS.cuit;
         }
 
-        //public Proveedor (string nombre, string apellido, string username)
+        //public Proveedor(string nombre, string apellido, string username)
         //{
         //    this.nombre = nombre;
         //    this.apellido = apellido;
