@@ -21,7 +21,6 @@ namespace Modelo
 
         }
 
-
         public override string ToString()
         {
             return cuit + " " + nombre + " " + apellido;

@@ -8,7 +8,6 @@ namespace Negocio
     public class GestorDeProveedores
     {
 
-
         public List<ProveedoresWS> ListarProveedores()
         {
             return ProveedoresDatos.ListarProveedores();
@@ -16,12 +15,23 @@ namespace Negocio
 
         public bool AltaProveedor(string nombre, string apellido, string cuit, string email, Guid idUsuario)
         {
+            // Crear un objeto Proveedor
+            var nuevoProveedor = new Proveedor(Guid.NewGuid(), Guid.NewGuid(), nombre, apellido, email, cuit, idUsuario.ToString());
 
-            ProveedoresWS nuevoProveedor = CrearProveedoresWS(nombre, apellido, cuit, email, idUsuario.ToString());
+            // Crear un objeto ProveedoresWS
+            var nuevoProveedorWS = new ProveedoresWS
+            {
+                idUsuario = "70b37dc1-8fde-4840-be47-9ababd0ee7e5",
+                nombre = nombre,
+                apellido = apellido,
+                email = email,
+                cuit = cuit
+            };
 
             try
             {
-                ProveedoresDatos.AltaProveedor(nuevoProveedor);
+                ProveedoresDatos.AltaProveedor(nuevoProveedorWS);
+
                 return true;
             }
             catch (Exception ex)
@@ -30,24 +40,10 @@ namespace Negocio
             }
         }
 
-
-        private ProveedoresWS CrearProveedoresWS(string nombre, string apellido, string cuit, string email, string idUsuario)
-        {
-            return new ProveedoresWS
-            {
-                //id usuarios ponemos por ahora el master, se debe cambiar, consultar.
-                idUsuario = "70b37dc1-8fde-4840-be47-9ababd0ee7e5",
-                nombre = nombre,
-                apellido = apellido,
-                cuit = cuit,
-                email = email
-            };
-        }
-
-
         public void ModificarProveedor()
         {
 
+            //ProveedoresDatos.ModificacionProveedor(proveedorWS);
           
         }
 
