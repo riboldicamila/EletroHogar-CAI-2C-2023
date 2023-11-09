@@ -1,4 +1,5 @@
 using System;
+using AccesoDatos;
 using Modelo;
 
 namespace Negocio
@@ -18,6 +19,10 @@ namespace Negocio
             return productos;
         }
 
+        public List<ProductosWS> TraerProductos()
+        {
+            return ProductosDatos.TraerProductos();
+        }
     }
 
 }
