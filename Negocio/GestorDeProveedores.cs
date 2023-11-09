@@ -34,7 +34,8 @@ namespace Negocio
         {
             return new ProveedoresWS
             {
-                idUsuario = idUsuario,
+                //id usuarios ponemos por ahora el master, se debe cambiar, consultar.
+                idUsuario = "70b37dc1-8fde-4840-be47-9ababd0ee7e5",
                 nombre = nombre,
                 apellido = apellido,
                 cuit = cuit,
