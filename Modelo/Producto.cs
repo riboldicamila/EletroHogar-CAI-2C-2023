@@ -10,7 +10,7 @@ namespace Modelo
     public class Producto
     {
         public Guid Id { get; set; }
-        public Guid IdCategoria { get; set; }
+        public int IdCategoria { get; set; }
         public string Nombre { get; set; }
         public DateTime FechaAlta { get; set; }
         public DateTime? FechaBaja { get; set; }
@@ -20,7 +20,7 @@ namespace Modelo
         public Guid IdProveedor { get; set; }
 
         //CONSTRUCTOR
-        public Producto(string nombre, double precio, int stock, Guid idCategoria)
+        public Producto(string nombre, double precio, int stock, int idCategoria)
         {
             Id = Guid.NewGuid(); // Generar un nuevo Id
             IdCategoria = idCategoria;

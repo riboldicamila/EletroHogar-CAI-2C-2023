@@ -507,7 +507,9 @@ namespace MyApp
         }
 
         private void ModificarProducto()
+
         {
+            ListarProductos();
             Console.WriteLine("MODIFICACIÓN DE PRODUCTO");
 
             Console.WriteLine("Ingrese el nombre del producto que desea modificar:");
@@ -517,6 +519,8 @@ namespace MyApp
 
             Console.WriteLine($"Producto {nombreProducto} ha sido modificado.");
             Console.WriteLine();
+
+            
         }
 
         private void AltaProducto()
@@ -622,6 +626,18 @@ namespace MyApp
             Console.WriteLine("Listado de Proveedores:");
             List<ProveedoresWS> proveedores = gestorDeProveedores.ListarProveedores();
             foreach (ProveedoresWS p in proveedores)
+            {
+                Console.WriteLine(p.ToString());
+            }
+            Thread.Sleep(5000);
+
+        }
+
+        private void ListarProductos()
+        {
+            Console.WriteLine("Listado de Productos:");
+            List<ProductosWS> productos = gestorDeProductos.TraerProductos();
+            foreach (ProductosWS p in productos)
             {
                 Console.WriteLine(p.ToString());
             }
