@@ -183,6 +183,35 @@ namespace MyApp
                         }
                     }
 
+                    //GENERAR VALIDACION EN CAPA GESTOR DE USUARIO
+
+                    Console.WriteLine("Ingrese la Dirección física del usuario:");
+                    string direccion = Console.ReadLine();
+
+                    Console.WriteLine("Ingrese el Teléfono del usuario:");
+                    string telefono = Console.ReadLine();
+
+                    Console.WriteLine("Ingrese el Correo Electrónico del usuario:");
+                    string email = Console.ReadLine();
+
+                    Console.WriteLine("Ingrese el DNI del usuario:");
+                    int dni = int.Parse(Console.ReadLine());
+
+                    Console.WriteLine("Ingrese el número de registro del usuario:");
+                    int numeroRegistro = int.Parse(Console.ReadLine());
+
+                    Console.WriteLine("Ingrese la Fecha de Nacimiento del usuario (YYYY-MM-DD):");
+                    string fechaNacimientoString = Console.ReadLine();
+                    if (DateTime.TryParse(fechaNacimientoString, out DateTime fechaNacimiento))
+                    {
+                    }
+                    else
+                    {
+                        Console.WriteLine("La fecha de nacimiento ingresada no es válida.");
+                    }
+
+
+
                     //Todo validado, se genera el usuario. 
                     bool response = gestorUsuarios.AgregarUsuario(new Supervisor(nombre, apellido, username));
 
