@@ -18,7 +18,7 @@ namespace Modelo
         public string Apellido { get; set; }
 
         public string IdUsuarioAlta { get; set; }
-        public List<Categoria> Categorias { get; set; } = new List<Categoria>(); //categorias de cada proveedor
+        //public List<Categoria> Categorias { get; set; } = new List<Categoria>(); //categorias de cada proveedor
 
         //Constructor
 
@@ -31,17 +31,17 @@ namespace Modelo
             this.CUIT = proveedorWS.cuit;
         }
 
-        //public Proveedor (string nombre, string apellido, string username)
-        //{
-        //    this.nombre = nombre;
-        //    this.apellido = apellido;
-        //    this.Username = username;
-        //    this.password = GenerarPasswordTemporal();
-        //    this.ultimoCambioPass = DateTime.Now;
-        //    this.intentosCambioPass = 0;
-        //    this.estado = EstadoUsuario.INACTIVO;
-
-        //}
+        public Proveedor(Guid id, Guid idProducto, string nombre, string cuit, string email, string apellido, string idUsuarioAlta)
+        {
+            this.Id = id;
+            this.IdProducto = idProducto;
+            this.Nombre = nombre;
+            this.CUIT = cuit;
+            this.Email = email;
+            this.Apellido = apellido;
+            this.IdUsuarioAlta = idUsuarioAlta;
+            //this.Categorias = categorias;
+        }
 
 
         public EstadoProveedor estadoProveedor;
@@ -64,15 +64,17 @@ namespace Modelo
 
 
 
+
+
         //falta implementar
-        public void AgregarCategoria(Categoria categoria)
-        {
-            if (!Categorias.Contains(categoria))
-            {
-                Categorias.Add(categoria);
-                categoria.AgregarProveedor(this);
-            }
-        }
+        //public void AgregarCategoria(Categoria categoria)
+        //{
+        //    if (!Categorias.Contains(categoria))
+        //    {
+        //        Categorias.Add(categoria);
+        //        categoria.AgregarProveedor(this);
+        //    }
+        //}
     }
    
 }

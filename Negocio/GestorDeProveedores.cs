@@ -8,7 +8,6 @@ namespace Negocio
     public class GestorDeProveedores
     {
 
-
         public List<ProveedoresWS> ListarProveedores()
         {
             return ProveedoresDatos.ListarProveedores();
@@ -16,11 +15,23 @@ namespace Negocio
 
         public bool AltaProveedor(string nombre, string apellido, string cuit, string email, Guid idUsuario)
         {
-            ProveedoresWS nuevoProveedor = CrearProveedoresWS(nombre, apellido, cuit, email, idUsuario.ToString());
+            // Crear un objeto Proveedor
+            var nuevoProveedor = new Proveedor(Guid.NewGuid(), Guid.NewGuid(), nombre, apellido, email, cuit, idUsuario.ToString());
+
+            // Crear un objeto ProveedoresWS
+            var nuevoProveedorWS = new ProveedoresWS
+            {
+                idUsuario = "70b37dc1-8fde-4840-be47-9ababd0ee7e5",
+                nombre = nombre,
+                apellido = apellido,
+                email = email,
+                cuit = cuit
+            };
 
             try
             {
-                ProveedoresDatos.AltaProveedor(nuevoProveedor);
+                ProveedoresDatos.AltaProveedor(nuevoProveedorWS);
+
                 return true;
             }
             catch (Exception ex)
@@ -29,20 +40,12 @@ namespace Negocio
             }
         }
 
-
-        private ProveedoresWS CrearProveedoresWS(string nombre, string apellido, string cuit, string email, string idUsuario)
+        public void ModificarProveedor()
         {
-            return new ProveedoresWS
-            {
-                //id usuarios ponemos por ahora el master, se debe cambiar, consultar.
-                idUsuario = "70b37dc1-8fde-4840-be47-9ababd0ee7e5",
-                nombre = nombre,
-                apellido = apellido,
-                cuit = cuit,
-                email = email
-            };
-        }
 
+            //ProveedoresDatos.ModificacionProveedor(proveedorWS);
+          
+        }
 
         public bool BajaProveedor(string idProveedor, Guid idUsuario)
         {
@@ -62,6 +65,10 @@ namespace Negocio
                 return false;
             }
         }
+
+
+
+
 
         //VIEJO
 
@@ -100,46 +107,4 @@ namespace Negocio
 
     }
 
-
-
-
-    // FUERA DE LA CLASE: VALIDACIONES
-    public static class Validaciones
-    {
-        public static void ValidarNombre(string nombre)
-        {
-            if (string.IsNullOrEmpty(nombre) || nombre.Length <= 2 || nombre.Any(char.IsDigit))
-            {
-                throw new ArgumentException("El nombre no puede estar vacío, debe tener por lo menos 2 caracteres y no puede contener números.");
-            }
-        }
-
-        public static void ValidarApellido(string apellido)
-        {
-            if (string.IsNullOrEmpty(apellido) || apellido.Length < 2 || apellido.Any(char.IsDigit))
-            {
-                throw new ArgumentException("El apellido no puede estar vacío, debe tener por lo menos 2 caracteres y no puede contener números.");
-            }
-        }
-    }
-
-
-
-    /*
-private List<Categoria> categoriasPermitidas = new List<Categoria>
- {
-new Categoria { IdProducto = Guid.NewGuid(), Descripcion = "Audio" },
-new Categoria { IdProducto = Guid.NewGuid(), Descripcion = "Celulares" },
-new Categoria { IdProducto = Guid.NewGuid(), Descripcion = "Electro Hogar" },
-new Categoria { IdProducto = Guid.NewGuid(), Descripcion = "Informatica" },
-new Categoria { IdProducto = Guid.NewGuid(), Descripcion = "Smart Tv" }
- };
-*/
-    /*
-    private bool EsCategoriaValida(Guid categoriaId)
-    {
-        // Verificar si el ID de la categoría está en la lista de categorías permitidas
-        return categoriasPermitidas.Any(c => c.IdProducto == categoriaId);
-    }
-    */
 }

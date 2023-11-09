@@ -170,6 +170,8 @@ namespace Negocio
         {
             try
             {
+                //crear usuario 
+
                 ValidarNombre(nuevoUsuario.Nombre);
                 ValidarApellido(nuevoUsuario.Apellido);
                 ValidarUsername(nuevoUsuario.Nombre, nuevoUsuario.Apellido, nuevoUsuario.Username);
@@ -228,9 +230,6 @@ namespace Negocio
 
             return usuarioWS;
         }
-
-
-
 
 
         public bool BajaUsuario(string nombre, string apellido, string username)
