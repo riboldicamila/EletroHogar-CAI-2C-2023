@@ -166,19 +166,72 @@ namespace Negocio
         }
 
 
-
         public bool AgregarUsuario(Usuario nuevoUsuario)
         {
-            usuarios.Add(nuevoUsuario);
-            return true;
+            try
+            {
+                ValidarNombre(nuevoUsuario.Nombre);
+                ValidarApellido(nuevoUsuario.Apellido);
+                ValidarUsername(nuevoUsuario.Nombre, nuevoUsuario.Apellido, nuevoUsuario.Username);
+
+                UsuarioWS usuarioWS = null;
+                if (nuevoUsuario is Vendedor)
+                {
+                    usuarioWS = ConvertirVendedorAUsuarioWS((Vendedor)nuevoUsuario);
+                }
+                else if (nuevoUsuario is Supervisor)
+                {
+                    usuarioWS = ConvertirSupervisorAUsuarioWS((Supervisor)nuevoUsuario);
+                }
+
+                if (usuarioWS != null)
+                {
+                    UsuarioDatos.AgregarUsuario(usuarioWS);
+                    return true;
+                }
+
+                return false;
+            }
+            catch (ArgumentException ex)
+            {
+                throw ex;  
+            }
+        }
+
+
+        public UsuarioWS ConvertirSupervisorAUsuarioWS(Supervisor supervisor)
+        {
+            UsuarioWS supervisorWS = new UsuarioWS
+            {
+                id = supervisor.Id,
+                nombre = supervisor.Nombre,
+                apellido = supervisor.Apellido,
+                dni = supervisor.DNI,
+                usuario = supervisor.Username,
+                host = 2 //host supervisor 
+            };
+
+            return supervisorWS;
+        }
+
+        public UsuarioWS ConvertirVendedorAUsuarioWS(Vendedor vendedor)
+        {
+            UsuarioWS usuarioWS = new UsuarioWS
+            {
+                id = vendedor.Id,
+                nombre = vendedor.Nombre,
+                apellido = vendedor.Apellido,
+                dni = vendedor.DNI,
+                usuario = vendedor.Username,
+                host = 1 // 1, vendedor
+            };
+
+            return usuarioWS;
         }
 
 
 
-        //public IEnumerable<Usuario> ListarVendedores()
-        //{
-        //    return usuarios.Where(u => u.Perfil == PerfilUsuario.VENDEDOR);
-        //}
+
 
         public bool BajaUsuario(string nombre, string apellido, string username)
         {
