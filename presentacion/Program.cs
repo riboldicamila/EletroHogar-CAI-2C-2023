@@ -596,8 +596,10 @@ namespace MyApp
         private void BajaProveedores(Usuario usuarioActual)
         {
             Console.Clear();
-            ListarProveedores();
             Console.WriteLine("BAJA PROVEEDORES");
+            Console.WriteLine("LISTA DE PROVEEDORES EXISTENTES:");
+            ListarProveedores();
+            Console.WriteLine();
 
             Console.Write("Ingrese el id del proveedor que quiere dar de baja: ");
             string idProveedor = Console.ReadLine();

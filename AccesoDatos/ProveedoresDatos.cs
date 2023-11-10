@@ -44,11 +44,16 @@ namespace AccesoDatos
 
 
         //DELETE para baja
-        public static void BajaProveedor(object requestData)
+        public static void BajaProveedor(string id, string idUsuario)
         {
             try
             {
-                string jsonRequest = JsonConvert.SerializeObject(requestData);
+                Dictionary<String, String> dict = new Dictionary<String, String>();
+                dict.Add("id", id);
+                dict.Add("idUsuario", idUsuario);
+
+                var jsonRequest = JsonConvert.SerializeObject(dict);
+
                 HttpResponseMessage response = WebHelper.DeleteConBody("/Proveedor/BajaProveedor", jsonRequest);
 
             }

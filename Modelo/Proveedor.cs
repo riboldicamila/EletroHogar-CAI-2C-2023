@@ -44,7 +44,7 @@ namespace Modelo
 
         public override string ToString()
         {
-            return CUIT + " " + Nombre + " " + Apellido;
+            return Id + " "+ CUIT + " " + Nombre + " " + Apellido;
         }
 
         public EstadoProveedor estadoProveedor;

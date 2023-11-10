@@ -50,13 +50,9 @@ namespace Negocio
         {
             try
             {
-                var requestData = new
-                {
-                    id = idProveedor,
-                    idUsuario = idUsuario.ToString()
-                };
+                //ProveedoresDatos.BajaProveedor(idProveedor, idUsuario.ToString());
+                ProveedoresDatos.BajaProveedor(idProveedor, "70b37dc1-8fde-4840-be47-9ababd0ee7e5");
 
-                ProveedoresDatos.BajaProveedor(requestData);
                 return true;
             }
             catch (Exception ex)
