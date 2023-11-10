@@ -12,7 +12,7 @@ namespace AccesoDatos
     {
 
         //GET para traer proveedores
-        public static List<ProveedoresWS> ListarProveedores()
+        public static List<Proveedor> ListarProveedores()
         {
             HttpResponseMessage response = WebHelper.Get("Proveedor/TraerProveedores");
 
@@ -24,7 +24,7 @@ namespace AccesoDatos
             {
 
                 var contentStream = response.Content.ReadAsStringAsync().Result;
-                List<ProveedoresWS> listadoProveedores = JsonConvert.DeserializeObject<List<ProveedoresWS>>(contentStream);
+                List<Proveedor> listadoProveedores = JsonConvert.DeserializeObject<List<Proveedor>>(contentStream);
 
                 return listadoProveedores;
             }
@@ -44,11 +44,16 @@ namespace AccesoDatos
 
 
         //DELETE para baja
-        public static void BajaProveedor(object requestData)
+        public static void BajaProveedor(string id, string idUsuario)
         {
             try
             {
-                string jsonRequest = JsonConvert.SerializeObject(requestData);
+                Dictionary<String, String> dict = new Dictionary<String, String>();
+                dict.Add("id", id);
+                dict.Add("idUsuario", idUsuario);
+
+                var jsonRequest = JsonConvert.SerializeObject(dict);
+
                 HttpResponseMessage response = WebHelper.DeleteConBody("/Proveedor/BajaProveedor", jsonRequest);
 
             }

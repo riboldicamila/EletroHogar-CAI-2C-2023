@@ -600,8 +600,10 @@ namespace MyApp
         private void BajaProveedores(Usuario usuarioActual)
         {
             Console.Clear();
-            ListarProveedores();
             Console.WriteLine("BAJA PROVEEDORES");
+            Console.WriteLine("LISTA DE PROVEEDORES EXISTENTES:");
+            ListarProveedores();
+            Console.WriteLine();
 
             Console.Write("Ingrese el id del proveedor que quiere dar de baja: ");
             string idProveedor = Console.ReadLine();
@@ -624,8 +626,8 @@ namespace MyApp
         private void ListarProveedores()
         {
             Console.WriteLine("Listado de Proveedores:");
-            List<ProveedoresWS> proveedores = gestorDeProveedores.ListarProveedores();
-            foreach (ProveedoresWS p in proveedores)
+            List<Proveedor> proveedores = gestorDeProveedores.ListarProveedores();
+            foreach (Proveedor p in proveedores)
             {
                 Console.WriteLine(p.ToString());
             }

@@ -8,41 +8,44 @@ namespace Modelo
 {
     public class Proveedor
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
-        public Guid IdProducto { get; set; }
+        public string Id { get; set; }
         public string Nombre { get; set; }
-        public DateTime FechaAlta { get; set; } = DateTime.Now;
-        public DateTime? FechaBaja { get; set; } // es null esta activo
-        public string CUIT { get; set; }
-        public string Email { get; set; }
         public string Apellido { get; set; }
+        public string Email { get; set; }
+        public string CUIT { get; set; }
+        public DateTime FechaAlta { get; set; }
+        public DateTime? FechaBaja { get; set; }
 
-        public string IdUsuarioAlta { get; set; }
-        //public List<Categoria> Categorias { get; set; } = new List<Categoria>(); //categorias de cada proveedor
 
-        //Constructor
-
-        public Proveedor (ProveedoresWS proveedorWS)
+        public Proveedor()
         {
-            this.IdUsuarioAlta = proveedorWS.idUsuario;
+            // Constructor por defecto requerido para la deserialización
+        }
+
+        public Proveedor(string id, string nombre, string apellido, string email, string cuit, DateTime fechaAlta, DateTime? fechaBaja)
+        {
+            Id = id;
+            Nombre = nombre;
+            Apellido = apellido;
+            Email = email;
+            CUIT = cuit;
+            FechaAlta = fechaAlta;
+            FechaBaja = fechaBaja;
+        }
+
+        public Proveedor(ProveedoresWS proveedorWS)
+        {
+            this.Id = proveedorWS.idUsuario;
             this.Nombre = proveedorWS.nombre;
             this.Apellido = proveedorWS.apellido;
             this.Email = proveedorWS.email;
             this.CUIT = proveedorWS.cuit;
         }
 
-        public Proveedor(Guid id, Guid idProducto, string nombre, string cuit, string email, string apellido, string idUsuarioAlta)
+        public override string ToString()
         {
-            this.Id = id;
-            this.IdProducto = idProducto;
-            this.Nombre = nombre;
-            this.CUIT = cuit;
-            this.Email = email;
-            this.Apellido = apellido;
-            this.IdUsuarioAlta = idUsuarioAlta;
-            //this.Categorias = categorias;
+            return Id + " "+ CUIT + " " + Nombre + " " + Apellido;
         }
-
 
         public EstadoProveedor estadoProveedor;
 

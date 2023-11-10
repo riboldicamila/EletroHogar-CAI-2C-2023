@@ -49,6 +49,13 @@ namespace Negocio
             }
         }
 
+        public String Login(Login login)
+        {
+            String idUsuario = UsuarioDatos.Login(login);
+            return idUsuario;
+        }
+
+
         public (string perfil, bool necesitaCambiarContrasena, Usuario usuarioActual) Login(string username, string password)
         {
             var usuario = usuarios.Find(u => u.Username == username);
