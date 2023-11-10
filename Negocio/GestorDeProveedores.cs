@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlTypes;
 using AccesoDatos;
 using Modelo;
 using Newtonsoft.Json;
@@ -8,20 +9,18 @@ namespace Negocio
     public class GestorDeProveedores
     {
 
-        public List<ProveedoresWS> ListarProveedores()
+        public List<Proveedor> ListarProveedores()
         {
             return ProveedoresDatos.ListarProveedores();
         }
 
         public bool AltaProveedor(string nombre, string apellido, string cuit, string email, Guid idUsuario)
         {
-            // Crear un objeto Proveedor
-            var nuevoProveedor = new Proveedor(Guid.NewGuid(), Guid.NewGuid(), nombre, apellido, email, cuit, idUsuario.ToString());
 
             // Crear un objeto ProveedoresWS
             var nuevoProveedorWS = new ProveedoresWS
             {
-                idUsuario = "70b37dc1-8fde-4840-be47-9ababd0ee7e5",
+                idUsuario ="70b37dc1-8fde-4840-be47-9ababd0ee7e5",
                 nombre = nombre,
                 apellido = apellido,
                 email = email,

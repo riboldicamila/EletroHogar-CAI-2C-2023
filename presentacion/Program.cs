@@ -620,8 +620,8 @@ namespace MyApp
         private void ListarProveedores()
         {
             Console.WriteLine("Listado de Proveedores:");
-            List<ProveedoresWS> proveedores = gestorDeProveedores.ListarProveedores();
-            foreach (ProveedoresWS p in proveedores)
+            List<Proveedor> proveedores = gestorDeProveedores.ListarProveedores();
+            foreach (Proveedor p in proveedores)
             {
                 Console.WriteLine(p.ToString());
             }

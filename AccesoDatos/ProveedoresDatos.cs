@@ -12,7 +12,7 @@ namespace AccesoDatos
     {
 
         //GET para traer proveedores
-        public static List<ProveedoresWS> ListarProveedores()
+        public static List<Proveedor> ListarProveedores()
         {
             HttpResponseMessage response = WebHelper.Get("Proveedor/TraerProveedores");
 
@@ -24,7 +24,7 @@ namespace AccesoDatos
             {
 
                 var contentStream = response.Content.ReadAsStringAsync().Result;
-                List<ProveedoresWS> listadoProveedores = JsonConvert.DeserializeObject<List<ProveedoresWS>>(contentStream);
+                List<Proveedor> listadoProveedores = JsonConvert.DeserializeObject<List<Proveedor>>(contentStream);
 
                 return listadoProveedores;
             }
