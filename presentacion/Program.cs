@@ -575,7 +575,6 @@ namespace MyApp
             }
         }
 
-
         private void ModificacionProveedores()
         {
             Console.Clear();

@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Negocio", "Negocio\Negocio.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccesoDatos", "AccesoDatos\AccesoDatos.csproj", "{28170BD2-5548-4E93-902B-4C505F1CDA93}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "presentacion", "presentacion\presentacion.csproj", "{F2E1488A-629E-4A00-92CE-AA907B82EFB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentacion", "presentacion\Presentacion.csproj", "{F2E1488A-629E-4A00-92CE-AA907B82EFB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Formulario", "Formulario\Formulario.csproj", "{EADB9E0B-3FCB-47B8-AEF2-9D36AB636709}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Formulario", "Formulario\Formulario.csproj", "{EADB9E0B-3FCB-47B8-AEF2-9D36AB636709}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
