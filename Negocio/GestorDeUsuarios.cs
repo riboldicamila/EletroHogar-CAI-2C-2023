@@ -11,6 +11,7 @@ namespace Negocio
     {
         // Lista para guardar los usuarios de ejemplo
         private List<Usuario> usuarios = new List<Usuario>();
+        private List<string> usuariosConIntentosFallidos = new List<string>();
 
 
 
@@ -55,35 +56,29 @@ namespace Negocio
             return idUsuario;
         }
 
-
-        public (string perfil, bool necesitaCambiarContrasena, Usuario usuarioActual) Login(string username, string password)
+        public bool ListaDeControl(string nombreUsuario)
         {
-            var usuario = usuarios.Find(u => u.Username == username);
-            bool requiereNuevaContrasena = false;
+            usuariosConIntentosFallidos.Add(nombreUsuario);
+            int intentosFallidos = usuariosConIntentosFallidos.Count(u => u == nombreUsuario);
 
-            if (usuario != null)
+            if (intentosFallidos < 3)
             {
-                // Validar si la contraseña es correcta
-                if (usuario.Password != password)
-                {
-                    return (perfil: null, necesitaCambiarContrasena: false, usuarioActual: null);
-                }
-
-                // Verificar si el usuario esta inactivo //LO HABIAN SACADO 
-                if (usuario.Estado == EstadoUsuario.INACTIVO && usuario.Password != "Temp1234")
-                {
-                    throw new InvalidOperationException("El usuario está inactivo.");
-                }
-
-                // Validar si la contraseña esta vencida o es la temporal
-                requiereNuevaContrasena = (DateTime.Now - usuario.UltimoCambioPass).TotalDays > 30 || usuario.Password == "Temp1234";
-
-                string perfil = GetPerfilType(usuario);
-
-                return (perfil: perfil, necesitaCambiarContrasena: requiereNuevaContrasena, usuarioActual: usuario);
+                usuariosConIntentosFallidos.Add(nombreUsuario);
+                return true;
             }
 
-            return (perfil: null, necesitaCambiarContrasena: false, usuarioActual: null);
+            return false;
+        }
+
+        public void LimpiarListaDeControl(string nombreUsuario)
+        {
+            usuariosConIntentosFallidos.RemoveAll(u => u == nombreUsuario);
+        }
+
+
+        public Usuario LogicaVieja(string username = "luism1234")
+        {
+            return usuarios.Find(u => u.Username == username);
         }
 
 
