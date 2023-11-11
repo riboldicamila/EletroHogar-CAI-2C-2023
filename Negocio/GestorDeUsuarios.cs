@@ -152,22 +152,6 @@ namespace Negocio
         }
 
 
-
-        // METODOS
-        public List<Usuario> ObtenerTodosLosUsuarios()
-        {
-            //lista los nombres de usuario ACTIVOS E INACTIVOS
-            return usuarios;
-
-        }
-
-        public List<Usuario> ObtenerUsuariosActivos()
-        {
-            // Mostrar solo los nombres de usuarios que están en estado activo
-            return usuarios.Where(u => u.Estado == EstadoUsuario.ACTIVO).ToList();
-        }
-
-
         public bool AgregarUsuario(Usuario nuevoUsuario)
         {
             try
@@ -198,7 +182,7 @@ namespace Negocio
             }
             catch (ArgumentException ex)
             {
-                throw ex;  
+                throw ex;
             }
         }
 
@@ -250,47 +234,6 @@ namespace Negocio
             return true;
         }
 
-
-        //HAY QUE REVISAR ESTE METODO, LOS CONSOLE.WRITE SOBRE CAPA PRESENTACIÓN
-        public bool Intentosfallidos(ref string username, ref string password)
-        {
-            int count;
-
-            foreach (Usuario u in usuarios)
-            {
-                if (u.Username == username && u.Password == password)
-                {
-                    return true;
-
-                }
-                else if (u.Username == username && u.Password != password)
-                {
-                    string passinactivo;
-                    count = 0;
-                    do
-                    {
-                        Console.WriteLine("Vuelva a ingresar la contraseña:");
-                        password = Console.ReadLine();
-                        if (password == u.Password)
-                        {
-                            return true;
-                        }
-
-
-
-                        count = count + 1;
-                    }
-                    while (count < 2);
-                    passinactivo = password;
-                    Console.WriteLine("Su Usuario quedo Inactivo");
-                    u.DeshabilitarUsuario();
-                    break;
-
-                }
-            }
-
-            return true;
-        }
 
     }
 
