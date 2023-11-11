@@ -5,6 +5,8 @@ Trello: https://trello.com/invite/b/D7TIHXtl/ATTI85ba716d67eba456454938e422e91d0
 
 Usuario Admin bs ws:
 0cdbc5a5-69d9-4ab8-8cb3-9932ce33f54a
+ "nombreUsuario": "Grupo02master",
+  "contraseña": "Grupo02master"
 
 Usuarios de prueba: 
 
