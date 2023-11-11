@@ -6,7 +6,7 @@ namespace Modelo
     public abstract class Usuario
     {
         // Atributos privados
-        //public Guid Id { get; set; } = Guid.NewGuid(); genera solo
+        public Guid Id { get; set; } = Guid.NewGuid(); 
         private string nombre;
         private string apellido;
         public string Direccion { get; set; }

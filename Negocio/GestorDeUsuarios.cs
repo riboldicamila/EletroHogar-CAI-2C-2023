@@ -165,11 +165,11 @@ namespace Negocio
                 UsuarioWS usuarioWS = null;
                 if (nuevoUsuario is Vendedor)
                 {
-                    usuarioWS = ConvertirVendedorAUsuarioWS((Vendedor)nuevoUsuario);
+                    //usuarioWS = ConvertirVendedorAUsuarioWS((Vendedor)nuevoUsuario);
                 }
                 else if (nuevoUsuario is Supervisor)
                 {
-                    usuarioWS = ConvertirSupervisorAUsuarioWS((Supervisor)nuevoUsuario);
+                    //usuarioWS = ConvertirSupervisorAUsuarioWS((Supervisor)nuevoUsuario);
                 }
 
                 if (usuarioWS != null)
@@ -187,35 +187,35 @@ namespace Negocio
         }
 
 
-        public UsuarioWS ConvertirSupervisorAUsuarioWS(Supervisor supervisor)
-        {
-            UsuarioWS supervisorWS = new UsuarioWS
-            {
-                id = supervisor.Id,
-                nombre = supervisor.Nombre,
-                apellido = supervisor.Apellido,
-                dni = supervisor.DNI,
-                usuario = supervisor.Username,
-                host = 2 //host supervisor 
-            };
+        //public UsuarioWS ConvertirSupervisorAUsuarioWS(Supervisor supervisor)
+        //{
+        //    UsuarioWS supervisorWS = new UsuarioWS
+        //    {
+        //        id = supervisor.Id,
+        //        nombre = supervisor.Nombre,
+        //        apellido = supervisor.Apellido,
+        //        dni = supervisor.DNI,
+        //        usuario = supervisor.Username,
+        //        host = 2 //host supervisor 
+        //    };
 
-            return supervisorWS;
-        }
+        //    return supervisorWS;
+        //}
 
-        public UsuarioWS ConvertirVendedorAUsuarioWS(Vendedor vendedor)
-        {
-            UsuarioWS usuarioWS = new UsuarioWS
-            {
-                id = vendedor.Id,
-                nombre = vendedor.Nombre,
-                apellido = vendedor.Apellido,
-                dni = vendedor.DNI,
-                usuario = vendedor.Username,
-                host = 1 // 1, vendedor
-            };
+        //public UsuarioWS ConvertirVendedorAUsuarioWS(Vendedor vendedor)
+        //{
+        //    UsuarioWS usuarioWS = new UsuarioWS
+        //    {
+        //        id = vendedor.Id,
+        //        nombre = vendedor.Nombre,
+        //        apellido = vendedor.Apellido,
+        //        dni = vendedor.DNI,
+        //        usuario = vendedor.Username,
+        //        host = 1 // 1, vendedor
+        //    };
 
-            return usuarioWS;
-        }
+        //    return usuarioWS;
+        //}
 
 
         public bool BajaUsuario(string nombre, string apellido, string username)
