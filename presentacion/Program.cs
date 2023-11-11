@@ -502,7 +502,9 @@ namespace MyApp
         }
 
         private void ModificarProducto()
+
         {
+            ListarProductos();
             Console.WriteLine("MODIFICACIÓN DE PRODUCTO");
 
             Console.WriteLine("Ingrese el nombre del producto que desea modificar:");
@@ -512,6 +514,8 @@ namespace MyApp
 
             Console.WriteLine($"Producto {nombreProducto} ha sido modificado.");
             Console.WriteLine();
+
+            
         }
 
         private void AltaProducto()
@@ -575,7 +579,7 @@ namespace MyApp
             Console.Clear();
             Console.WriteLine("MODIFICACIÓN PROVEEDORES");
 
-            Console.WriteLine("Estos son los proveedores cargados en el sistema:");
+            Console.WriteLine("LISTA PROVEEDORES EN SISTEMA:");
             ListarProveedores();
 
             Console.WriteLine();
@@ -659,6 +663,18 @@ namespace MyApp
 
         }
 
+
+        private void ListarProductos()
+        {
+            Console.WriteLine("Listado de Productos:");
+            List<ProductosWS> productos = gestorDeProductos.TraerProductos();
+            foreach (ProductosWS p in productos)
+            {
+                Console.WriteLine(p.ToString());
+            }
+            Thread.Sleep(5000);
+
+        }
 
         //IDEA ES PODER REUTILIZARLO PARA TODO DESPUES
         private string ValidacionesProveedores(string mensaje, Action<string> validacion)

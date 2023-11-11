@@ -28,7 +28,7 @@ namespace AccesoDatos
 
         public static List<ProductosWS> TraerProductos()
         {
-            HttpResponseMessage response = WebHelper.Get("/api/Producto/TraerProductos");
+            HttpResponseMessage response = WebHelper.Get("Producto/TraerProductos");
 
             if (!response.IsSuccessStatusCode)
             {
