@@ -63,19 +63,7 @@ namespace AccesoDatos
             }
         }
 
-
-        //public static void BajaProveedor(ProveedoresWS proveedor)
-        //{
-        //    var jsonRequest = JsonConvert.SerializeObject(proveedor);
-        //    HttpResponseMessage response = WebHelper.DeleteConBody("/Proveedor/BajaProveedor", jsonRequest);
-
-        //    if (!response.IsSuccessStatusCode)
-        //    {
-        //        throw new Exception("Verifique los datos ingresados");
-        //    }
-        //}
-
-        //PATCH modificar
+        //PATCH modificar, NO ES obligatorio
         public static void ModificacionProveedor(ProveedoresWS proveedor)
         {
             var jsonRequest = JsonConvert.SerializeObject(proveedor);
@@ -86,9 +74,6 @@ namespace AccesoDatos
                 throw new Exception("Verifique los datos ingresados");
             }
         }
-
-
-
 
 
     }

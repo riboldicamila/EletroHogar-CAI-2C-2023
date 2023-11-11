@@ -47,37 +47,7 @@ namespace Modelo
             return Id + " "+ CUIT + " " + Nombre + " " + Apellido;
         }
 
-        public EstadoProveedor estadoProveedor;
 
-        public enum EstadoProveedor
-        {
-            INACTIVO,
-            ACTIVO
-        }
-
-        public void DeshabilitarProveedor()
-        {
-            this.estadoProveedor = EstadoProveedor.INACTIVO;
-        }
-
-        public void HabilitarProveedor()
-        {
-            this.estadoProveedor = EstadoProveedor.ACTIVO;
-        }
-
-
-
-
-
-        //falta implementar
-        //public void AgregarCategoria(Categoria categoria)
-        //{
-        //    if (!Categorias.Contains(categoria))
-        //    {
-        //        Categorias.Add(categoria);
-        //        categoria.AgregarProveedor(this);
-        //    }
-        //}
     }
    
 }

@@ -41,7 +41,7 @@ namespace Negocio
 
         public void ModificarProveedor()
         {
-
+            //No es obligatorio
             //ProveedoresDatos.ModificacionProveedor(proveedorWS);
           
         }
@@ -61,44 +61,6 @@ namespace Negocio
             }
         }
 
-
-
-
-
-        //VIEJO
-
-        private List<Proveedor> proveedores = new List<Proveedor>();
-
-
-
-        public bool BajaProveedor(string nombre, string apellido)
-        {
-            foreach (Proveedor p in proveedores)
-            {
-                if (p.Nombre == nombre && p.Apellido == apellido)
-                {
-                    p.DeshabilitarProveedor();
-                    break;
-                }
-            }
-            return true;
-
-        }
-        //public bool asignarcategoriaaproveedor(guid proveedorid, categoria categoria)
-        //{
-        //    var proveedor = proveedores.firstordefault(p => p.id == proveedorid);
-        //    if (proveedor != null && categoria != null)
-        //    {
-        //        proveedor.agregarcategoria(categoria);
-        //        return true;
-        //    }
-        //    return false;
-        //}
-
-        public List<Proveedor> ObtenerTodosLosProveedores()
-        {
-            return proveedores;
-        }
 
     }
 
