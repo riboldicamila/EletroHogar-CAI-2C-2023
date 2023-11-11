@@ -234,8 +234,22 @@ namespace Negocio
             return true;
         }
 
+        public List<Usuario> ObtenerTodosLosUsuarios()
+        {
+            //lista los nombres de usuario ACTIVOS E INACTIVOS
+            return usuarios;
+
+        }
+
+        public List<Usuario> ObtenerUsuariosActivos()
+        {
+            // Mostrar solo los nombres de usuarios que están en estado activo
+            return usuarios.Where(u => u.Estado == EstadoUsuario.ACTIVO).ToList();
+        }
+
 
     }
 
-
 }
+
+
