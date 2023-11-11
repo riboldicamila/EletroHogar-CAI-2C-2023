@@ -25,62 +25,57 @@ namespace MyApp
         {
             Console.WriteLine("Bienvenido al sistema");
 
-            while (true)
+            string idUsuario;
+
+            do
             {
                 Console.WriteLine("Ingrese su nombre de usuario:");
-                var username = Console.ReadLine();
+                var nombreUsuario = Console.ReadLine();
 
                 Console.WriteLine("Ingrese su contraseña:");
                 var password = Console.ReadLine();
 
-                var intentos = gestorUsuarios.Intentosfallidos(ref username, ref password);
+                idUsuario = LoginMenu(gestorUsuarios, nombreUsuario, password);
 
-                try
+                if (idUsuario == "error" || idUsuario == "")
                 {
-                    var (perfil, necesitaCambiarContrasena, usuarioActual) = gestorUsuarios.Login(username, password);
+                    MostrarMenuPrincipal();
+                    var opcion = Console.ReadLine();
 
-                    if (!string.IsNullOrEmpty(perfil))
+                    switch (opcion)
                     {
-                        if (necesitaCambiarContrasena)
-                        {
-                            SolicitarCambioDeContraseña(usuarioActual);
-                        }
-
-                        MostrarMenu(usuarioActual);
-                        return;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Credenciales inválidas.");
-                        Console.WriteLine();
-                        Console.WriteLine("1. Volver a intentarlo");
-                        Console.WriteLine("2. Salir");
-                        Console.Write("Ingrese su opción: ");
-
-                        var opcion = Console.ReadLine();
-                        Console.WriteLine();
-
-                        if (opcion == "2")
-                        {
+                        case "1":
+                            //  el bucle y volver a intentar el login
+                            break;
+                        case "2":
+                            // Salir del programa
                             Environment.Exit(0);
-                        }
-                        else if (intentos == true && opcion == "1")
-                        {
-                            Iniciar();
-                        }
+                            break;
+                        default:
+                            Console.WriteLine("Opción no válida. Intente de nuevo.");
+                            break;
                     }
                 }
-                catch (InvalidOperationException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    continue;
-                }
-            }
+
+            } while (idUsuario == "error" || idUsuario == "");
+
+            MostrarMenu(idUsuario);
+
+        }
+
+        private static void MostrarMenuPrincipal()
+        {
+            Console.WriteLine("1. Volver a intentarlo");
+            Console.WriteLine("2. Salir");
+            Console.Write("Ingrese su opción: ");
         }
 
 
-        private void MostrarMenu(Usuario usuarioActual)
+        private void MostrarMenu(string idUsuario)
         {
+            var usuarioActual= gestorUsuarios.LogicaVieja();
+           
+
 
             Console.Clear();
             Console.WriteLine($"Menu de {usuarioActual.GetType().Name}");
@@ -633,6 +628,41 @@ namespace MyApp
             Thread.Sleep(5000);
 
         }
+
+        private static string LoginMenu(GestorDeUsuarios gestorDeUsuarios, string nombreUsuario, string contraseña)
+        {
+
+            Login login = new Login();
+            login.NombreUsuario = nombreUsuario;
+            login.Contraseña = contraseña;
+
+            try
+            {
+                string idUsuario = gestorDeUsuarios.Login(login);
+                Console.WriteLine("Login exitoso. El idUusario es " + idUsuario);
+                gestorDeUsuarios.LimpiarListaDeControl(nombreUsuario);
+                return idUsuario;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al hacer login.");
+                Console.WriteLine(ex.Message);
+
+                bool quedanIntentos = gestorDeUsuarios.ListaDeControl(nombreUsuario);
+
+                if (!quedanIntentos)
+                {
+                    Console.WriteLine("El usuario está bloqueado. Demasiados intentos fallidos.");
+                    return "error";
+                }
+            }
+
+            return "";
+
+
+        }
+
 
         private void ListarProductos()
         {
