@@ -79,23 +79,28 @@ namespace MyApp
             //ver que host id tiene
             //define el perfil para hacer al menu
             //metodo me devuelva un string con tipo de usuario
-            var usuarioActualTipo= gestorUsuarios.TipoDeUsuarioLogin(idUsuario);
-            Console.WriteLine("ACA en progreso logica nueva"+usuarioActualTipo);
+
+            var usuarioActualTipo = "administrador";
+
+            //var usuarioActualTipo= gestorUsuarios.TipoDeUsuarioLogin(idUsuario);
+            //Console.WriteLine("ACA en progreso logica nueva"+usuarioActualTipo);
+
+            //usuario actual no se usa mas
 
             var usuarioActual= gestorUsuarios.LogicaVieja();
            
 
             Console.Clear();
-            Console.WriteLine($"Menu de {usuarioActual.GetType().Name}");
+            Console.WriteLine($"Menu de "+ usuarioActualTipo);
 
 
-            if (usuarioActual is Vendedor)
+            if (usuarioActualTipo == "vendedor")
             {
                 Console.WriteLine("1. Venta");
                 Console.WriteLine("2. Reporte de ventas por vendedor");
                 Console.WriteLine("3. Salir");
             }
-            else if (usuarioActual is Supervisor)
+            else if (usuarioActualTipo == "supervisor")
             {
                 Console.WriteLine("1. Alta de Productos");
                 Console.WriteLine("2. Modificación de Productos");
@@ -106,7 +111,7 @@ namespace MyApp
                 Console.WriteLine("7. Reporte de productos más vendidos por categoría");
                 Console.WriteLine("8. Salir");
             }
-            else if (usuarioActual is Administrador)
+            else if (usuarioActualTipo == "administrador")
             {
                 Console.WriteLine("1. Alta de usuarios Supervisores");
                 Console.WriteLine("2. Modificación de usuarios Supervisores");
