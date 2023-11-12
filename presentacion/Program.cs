@@ -221,7 +221,8 @@ namespace MyApp
 
 
                     //Todo validado, se genera el usuario. 
-                    bool response = gestorUsuarios.AgregarUsuario(nombre, 2, dni, direccion, telefono, apellido, email, idUsuarioActual, username, fechaNacimiento );
+                    bool response = gestorUsuarios.AgregarUsuario(nombre, 2, dni, direccion, telefono, 
+                        apellido, email, idUsuarioActual, username, fechaNacimiento );
 
                     if (!response)
                     {

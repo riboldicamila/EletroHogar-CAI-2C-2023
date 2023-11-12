@@ -18,9 +18,6 @@ namespace Negocio
 
         public GestorDeUsuarios()
         {
-            // Inicialización de la lista y generación de usuarios de ejemplo al instanciar el gestor. 
-            // Usamos esta lista para harcodear usuarios y probar
-
             List<UsuarioWS> listadoUsarios = UsuarioDatos.ListarUsuarios();
             foreach (UsuarioWS usr in listadoUsarios)
             {
@@ -50,7 +47,7 @@ namespace Negocio
             usuariosConIntentosFallidos.Add(nombreUsuario);
             int intentosFallidos = usuariosConIntentosFallidos.Count(u => u == nombreUsuario);
 
-            if (intentosFallidos < 3)
+            if (intentosFallidos < 4)
             {
                 usuariosConIntentosFallidos.Add(nombreUsuario);
                 return true;
@@ -100,13 +97,13 @@ namespace Negocio
         //}
 
 
-        private string GetPerfilType(Usuario usuario)
-        {
-            if (usuario is Administrador) return "Administrador";
-            if (usuario is Supervisor) return "Supervisor";
-            if (usuario is Vendedor) return "Vendedor";
-            return null;
-        }
+        //private string GetPerfilType(Usuario usuario)
+        //{
+        //    if (usuario is Administrador) return "Administrador";
+        //    if (usuario is Supervisor) return "Supervisor";
+        //    if (usuario is Vendedor) return "Vendedor";
+        //    return null;
+        //}
 
 
         //METODO0S VALIDACIONES
@@ -174,10 +171,10 @@ namespace Negocio
             string email, string idUsuarioActual, string nombreUsuario, DateTime fechaNacimiento)
         {
 
-            // Crear un objeto ProveedoresWS
+            // Crear un objeto usuarioWS
             var nuevoUsuarioWS = new UsuarioWS
             {
-                idUsuario = idUsuarioActual,
+                idUsuario = "70b37dc1-8fde-4840-be47-9ababd0ee7e5",
                 host = host, //pasa segun opcion menu
                 nombre = nombre,
                 apellido = apellido,
@@ -201,72 +198,6 @@ namespace Negocio
                 return false;
             }
         }
-
-
-        //public bool AgregarUsuario(Usuario nuevoUsuario)
-        //{
-        //    try
-        //    {
-        //        //crear usuario 
-
-        //        ValidarNombre(nuevoUsuario.Nombre);
-        //        ValidarApellido(nuevoUsuario.Apellido);
-        //        ValidarUsername(nuevoUsuario.Nombre, nuevoUsuario.Apellido, nuevoUsuario.Username);
-
-        //        UsuarioWS usuarioWS = null;
-        //        if (nuevoUsuario is Vendedor)
-        //        {
-        //            //usuarioWS = ConvertirVendedorAUsuarioWS((Vendedor)nuevoUsuario);
-        //        }
-        //        else if (nuevoUsuario is Supervisor)
-        //        {
-        //            //usuarioWS = ConvertirSupervisorAUsuarioWS((Supervisor)nuevoUsuario);
-        //        }
-
-        //        if (usuarioWS != null)
-        //        {
-        //            UsuarioDatos.AgregarUsuario(usuarioWS);
-        //            return true;
-        //        }
-
-        //        return false;
-        //    }
-        //    catch (ArgumentException ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
-
-
-        //public UsuarioWS ConvertirSupervisorAUsuarioWS(Supervisor supervisor)
-        //{
-        //    UsuarioWS supervisorWS = new UsuarioWS
-        //    {
-        //        id = supervisor.Id,
-        //        nombre = supervisor.Nombre,
-        //        apellido = supervisor.Apellido,
-        //        dni = supervisor.DNI,
-        //        usuario = supervisor.Username,
-        //        host = 2 //host supervisor 
-        //    };
-
-        //    return supervisorWS;
-        //}
-
-        //public UsuarioWS ConvertirVendedorAUsuarioWS(Vendedor vendedor)
-        //{
-        //    UsuarioWS usuarioWS = new UsuarioWS
-        //    {
-        //        id = vendedor.Id,
-        //        nombre = vendedor.Nombre,
-        //        apellido = vendedor.Apellido,
-        //        dni = vendedor.DNI,
-        //        usuario = vendedor.Username,
-        //        host = 1 // 1, vendedor
-        //    };
-
-        //    return usuarioWS;
-        //}
 
 
         public bool BajaUsuario(string nombre, string apellido, string username)
