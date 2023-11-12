@@ -14,13 +14,13 @@ namespace Negocio
             return ProveedoresDatos.ListarProveedores();
         }
 
-        public bool AltaProveedor(string nombre, string apellido, string cuit, string email, Guid idUsuario)
+        public bool AltaProveedor(string nombre, string apellido, string cuit, string email, string idUsuario)
         {
 
             // Crear un objeto ProveedoresWS
             var nuevoProveedorWS = new ProveedoresWS
             {
-                idUsuario = "0cdbc5a5-69d9-4ab8-8cb3-9932ce33f54a",
+                idUsuario = idUsuario,
                 nombre = nombre,
                 apellido = apellido,
                 email = email,
@@ -46,12 +46,11 @@ namespace Negocio
           
         }
 
-        public bool BajaProveedor(string idProveedor, Guid idUsuario)
+        public bool BajaProveedor(string idProveedor, string idUsuario)
         {
             try
             {
-                //ProveedoresDatos.BajaProveedor(idProveedor, idUsuario.ToString());
-                ProveedoresDatos.BajaProveedor(idProveedor, "0cdbc5a5-69d9-4ab8-8cb3-9932ce33f54a");
+                ProveedoresDatos.BajaProveedor(idProveedor, idUsuario);
 
                 return true;
             }

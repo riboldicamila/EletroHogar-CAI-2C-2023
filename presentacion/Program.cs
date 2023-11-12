@@ -71,7 +71,7 @@ namespace MyApp
         }
 
 
-        private void MostrarMenu(string idUsuario)
+        private void MostrarMenu(string idUsuarioActual)
         {
             //con idUsuario
             //get de usuarios con ws
@@ -414,18 +414,19 @@ namespace MyApp
 
                 if (opcionSeleccionada == "7")
                 {
-                    AltaProveedores(usuarioActual);
+                    AltaProveedores(idUsuarioActual);
                 }
 
                 if (opcionSeleccionada == "8")
                 {
+                    //NO ESTA IMPLEMENTADO
                     ModificacionProveedores();
                 }
 
                 if (opcionSeleccionada == "9")
                 {
 
-                    BajaProveedores(usuarioActual);
+                    BajaProveedores(idUsuarioActual);
                 }
 
                 if (opcionSeleccionada == "10")
@@ -560,7 +561,7 @@ namespace MyApp
 
         }
 
-        private void AltaProveedores(Usuario usuarioActual)
+        private void AltaProveedores(string idUsuarioActual)
         {
             Console.Clear();
             Console.WriteLine("ALTA PROVEEDORES");
@@ -574,7 +575,7 @@ namespace MyApp
             Console.WriteLine("Ingrese el Email:");
             string email = Console.ReadLine();
 
-            if (gestorDeProveedores.AltaProveedor(nombre, apellido, cuit, email, usuarioActual.Id))
+            if (gestorDeProveedores.AltaProveedor(nombre, apellido, cuit, email, idUsuarioActual))
             {
                 Console.WriteLine($"Proveedor {nombre} agregado con éxito.");
                 ListarProveedores();
@@ -604,7 +605,7 @@ namespace MyApp
 
         }
 
-        private void BajaProveedores(Usuario usuarioActual)
+        private void BajaProveedores(string idUsuarioActual)
         {
             Console.Clear();
             Console.WriteLine("BAJA PROVEEDORES");
@@ -615,7 +616,7 @@ namespace MyApp
             Console.Write("Ingrese el id del proveedor que quiere dar de baja: ");
             string idProveedor = Console.ReadLine();
 
-            bool bajaExitosa = gestorDeProveedores.BajaProveedor(idProveedor, usuarioActual.Id);
+            bool bajaExitosa = gestorDeProveedores.BajaProveedor(idProveedor, idUsuarioActual);
 
             if (bajaExitosa)
             {
