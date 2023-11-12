@@ -87,7 +87,7 @@ namespace MyApp
 
             //usuario actual no se usa mas
 
-            var usuarioActual= gestorUsuarios.LogicaVieja();
+            //var usuarioActual= gestorUsuarios.LogicaVieja();
            
 
             Console.Clear();
@@ -135,7 +135,7 @@ namespace MyApp
             var opcionSeleccionada = Console.ReadLine();
             Console.Clear();
 
-            if (usuarioActual is Administrador)
+            if (usuarioActualTipo == "administrador")
             {
                 //Alta Usuarios Supervisores
                 if (opcionSeleccionada == "1")
@@ -221,7 +221,7 @@ namespace MyApp
 
 
                     //Todo validado, se genera el usuario. 
-                    bool response = gestorUsuarios.AgregarUsuario(new Supervisor(nombre, apellido, username));
+                    bool response = gestorUsuarios.AgregarUsuario(nombre, 2, dni, direccion, telefono, apellido, email, idUsuarioActual, username, fechaNacimiento );
 
                     if (!response)
                     {
@@ -243,34 +243,34 @@ namespace MyApp
                 //Baja Supervisores
                 if (opcionSeleccionada == "3")
                 {
-                    Console.WriteLine("BAJA USUARIO SUPERVISOR");
-                    Console.WriteLine("Ingrese el nombre de usuario (username) del supervisor que desea dar de baja:");
-                    string username = Console.ReadLine();
+                    //Console.WriteLine("BAJA USUARIO SUPERVISOR");
+                    //Console.WriteLine("Ingrese el nombre de usuario (username) del supervisor que desea dar de baja:");
+                    //string username = Console.ReadLine();
 
-                    Console.WriteLine();
-                    Usuario usuarioAInhabilitar = gestorUsuarios.ObtenerTodosLosUsuarios().FirstOrDefault(u => u.Username == username && u is Supervisor);
+                    //Console.WriteLine();
+                    //Usuario usuarioAInhabilitar = gestorUsuarios.ObtenerTodosLosUsuarios().FirstOrDefault(u => u.Username == username && u is Supervisor);
 
-                    if (usuarioAInhabilitar != null)
-                    {
-                        if (gestorUsuarios.BajaUsuario(usuarioAInhabilitar.Nombre, usuarioAInhabilitar.Apellido, usuarioAInhabilitar.Username))
-                        {
-                            Console.WriteLine("Baja de usuario con éxito.");
-                            Console.WriteLine();
-                            Console.WriteLine("Lista de usuarios existentes, tras la baja del usuario: ");
-                            ListaUsuariosActivos();
-                        }
-                        else
-                        {
-                            Console.WriteLine("Hubo un error al dar de baja el usuario supervisor. Por favor intente nuevamente.");
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("El nombre de usuario ingresado no existe o no es de tipo supervisor.");
+                    //if (usuarioAInhabilitar != null)
+                    //{
+                    //    if (gestorUsuarios.BajaUsuario(usuarioAInhabilitar.Nombre, usuarioAInhabilitar.Apellido, usuarioAInhabilitar.Username))
+                    //    {
+                    //        Console.WriteLine("Baja de usuario con éxito.");
+                    //        Console.WriteLine();
+                    //        Console.WriteLine("Lista de usuarios existentes, tras la baja del usuario: ");
+                    //        //ListaUsuariosActivos();
+                    //    }
+                    //    else
+                    //    {
+                    //        Console.WriteLine("Hubo un error al dar de baja el usuario supervisor. Por favor intente nuevamente.");
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    Console.WriteLine("El nombre de usuario ingresado no existe o no es de tipo supervisor.");
 
-                    }
-                    Console.WriteLine();
-                    Thread.Sleep(4000);
+                    //}
+                    //Console.WriteLine();
+                    //Thread.Sleep(4000);
                 }
 
                 //ALTA Vendedores
@@ -328,7 +328,7 @@ namespace MyApp
                     }
 
                     //Todo validado, se genera el usuario. 
-                    bool response = gestorUsuarios.AgregarUsuario(new Vendedor(nombre, apellido, username));
+                    bool response = false;
 
                     if (!response)
                     {
@@ -350,66 +350,66 @@ namespace MyApp
                 //Baja Vendedores
                 if (opcionSeleccionada == "6")
                 {
-                    Console.WriteLine("BAJA USUARIO Vendedor");
-                    Console.WriteLine("Ingrese el nombre de usuario (username) del vendedor que desea dar de baja:");
-                    string username = Console.ReadLine();
+                    //Console.WriteLine("BAJA USUARIO Vendedor");
+                    //Console.WriteLine("Ingrese el nombre de usuario (username) del vendedor que desea dar de baja:");
+                    //string username = Console.ReadLine();
 
-                    Console.WriteLine();
-                    Usuario usuarioAInhabilitar = gestorUsuarios.ObtenerTodosLosUsuarios().FirstOrDefault(u => u.Username == username && u is Vendedor);
+                    //Console.WriteLine();
+                    //Usuario usuarioAInhabilitar = gestorUsuarios.ObtenerTodosLosUsuarios().FirstOrDefault(u => u.Username == username && u is Vendedor);
 
-                    if (usuarioAInhabilitar != null)
-                    {
-                        if (gestorUsuarios.BajaUsuario(usuarioAInhabilitar.Nombre, usuarioAInhabilitar.Apellido, usuarioAInhabilitar.Username))
-                        {
-                            Console.WriteLine("Baja de usuario con éxito.");
-                            Console.WriteLine();
-                            Console.WriteLine("Lista de usuarios existentes, tras la baja del usuario: ");
-                            ListaUsuariosActivos();
-                        }
-                        else
-                        {
-                            Console.WriteLine("Hubo un error al dar de baja el usuario vendedor. Por favor intente nuevamente.");
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("El nombre de usuario ingresado no existe o no es de tipo vendedor.");
+                    //if (usuarioAInhabilitar != null)
+                    //{
+                    //    if (gestorUsuarios.BajaUsuario(usuarioAInhabilitar.Nombre, usuarioAInhabilitar.Apellido, usuarioAInhabilitar.Username))
+                    //    {
+                    //        Console.WriteLine("Baja de usuario con éxito.");
+                    //        Console.WriteLine();
+                    //        Console.WriteLine("Lista de usuarios existentes, tras la baja del usuario: ");
+                    //        //ListaUsuariosActivos();
+                    //    }
+                    //    else
+                    //    {
+                    //        Console.WriteLine("Hubo un error al dar de baja el usuario vendedor. Por favor intente nuevamente.");
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    Console.WriteLine("El nombre de usuario ingresado no existe o no es de tipo vendedor.");
 
-                    }
-                    Console.WriteLine();
-                    Thread.Sleep(4000);
+                    //}
+                    //Console.WriteLine();
+                    //Thread.Sleep(4000);
                 }
 
                 if (opcionSeleccionada == "6")
                 {
-                    Console.WriteLine("BAJA USUARIO Vendedor");
-                    Console.WriteLine("Ingrese el nombre de usuario (username) del vendedor que desea dar de baja:");
-                    string username = Console.ReadLine();
+                    //Console.WriteLine("BAJA USUARIO Vendedor");
+                    //Console.WriteLine("Ingrese el nombre de usuario (username) del vendedor que desea dar de baja:");
+                    //string username = Console.ReadLine();
 
-                    Console.WriteLine();
-                    Usuario usuarioAInhabilitar = gestorUsuarios.ObtenerTodosLosUsuarios().FirstOrDefault(u => u.Username == username && u is Vendedor);
+                    //Console.WriteLine();
+                    //Usuario usuarioAInhabilitar = gestorUsuarios.ObtenerTodosLosUsuarios().FirstOrDefault(u => u.Username == username && u is Vendedor);
 
-                    if (usuarioAInhabilitar != null)
-                    {
-                        if (gestorUsuarios.BajaUsuario(usuarioAInhabilitar.Nombre, usuarioAInhabilitar.Apellido, usuarioAInhabilitar.Username))
-                        {
-                            Console.WriteLine("Baja de usuario con éxito.");
-                            Console.WriteLine();
-                            Console.WriteLine("Lista de usuarios existentes, tras la baja del usuario: ");
-                            ListaUsuariosActivos();
-                        }
-                        else
-                        {
-                            Console.WriteLine("Hubo un error al dar de baja el usuario vendedor. Por favor intente nuevamente.");
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("El nombre de usuario ingresado no existe o no es de tipo vendedor.");
+                    //if (usuarioAInhabilitar != null)
+                    //{
+                    //    if (gestorUsuarios.BajaUsuario(usuarioAInhabilitar.Nombre, usuarioAInhabilitar.Apellido, usuarioAInhabilitar.Username))
+                    //    {
+                    //        Console.WriteLine("Baja de usuario con éxito.");
+                    //        Console.WriteLine();
+                    //        Console.WriteLine("Lista de usuarios existentes, tras la baja del usuario: ");
+                    //        //ListaUsuariosActivos();
+                    //    }
+                    //    else
+                    //    {
+                    //        Console.WriteLine("Hubo un error al dar de baja el usuario vendedor. Por favor intente nuevamente.");
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    Console.WriteLine("El nombre de usuario ingresado no existe o no es de tipo vendedor.");
 
-                    }
-                    Console.WriteLine();
-                    Thread.Sleep(4000);
+                    //}
+                    //Console.WriteLine();
+                    //Thread.Sleep(4000);
                 }
 
                 if (opcionSeleccionada == "7")
@@ -446,7 +446,7 @@ namespace MyApp
             }
 
 
-            if (usuarioActual is Supervisor)
+            if (usuarioActualTipo == "supervisor")
             {
                 if (opcionSeleccionada == "1")
                 {
@@ -499,20 +499,20 @@ namespace MyApp
 
         private void DevolverListaConTodosUsuarios()
         {
-            var todosLosUsuarios = gestorUsuarios.ObtenerTodosLosUsuarios();
-            foreach (var usuario in todosLosUsuarios)
-            {
-                Console.WriteLine(usuario.Username);
-            }
+            //var todosLosUsuarios = gestorUsuarios.ObtenerTodosLosUsuarios();
+            //foreach (var usuario in todosLosUsuarios)
+            //{
+            //    Console.WriteLine(usuario.Username);
+            //}
         }
 
         private void ListaUsuariosActivos()
         {
-            var usuariosActivos = gestorUsuarios.ObtenerUsuariosActivos();
-            foreach (var usuario in usuariosActivos)
-            {
-                Console.WriteLine(usuario.Username);
-            }
+            //var usuariosActivos = gestorUsuarios.ObtenerUsuariosActivos();
+            //foreach (var usuario in usuariosActivos)
+            //{
+            //    //Console.WriteLine(usuario.Username);
+            //}
         }
 
         private void ModificarProducto()

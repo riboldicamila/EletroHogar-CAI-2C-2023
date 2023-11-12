@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.IO;
 using AccesoDatos;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Negocio
 {
@@ -19,18 +20,6 @@ namespace Negocio
         {
             // Inicialización de la lista y generación de usuarios de ejemplo al instanciar el gestor. 
             // Usamos esta lista para harcodear usuarios y probar
-
-            usuarios = new List<Usuario>
-            {
-                new Vendedor("Juan", "Pérez", "juanp1234"),
-                new Supervisor("Ana", "Gómez", "anag1234"),
-                new Administrador("Luis", "Martínez", "luism1234")
-            };
-
-            usuarios[0].SetPassword("Pass1234");
-            usuarios[1].SetPassword("Pass5678");
-            usuarios[2].SetPassword("Pass9012");
-
 
             List<UsuarioWS> listadoUsarios = UsuarioDatos.ListarUsuarios();
             foreach (UsuarioWS usr in listadoUsarios)
@@ -81,7 +70,7 @@ namespace Negocio
             List<UsuarioWS> listadoUsarios = UsuarioDatos.ListarUsuarios();
             foreach (UsuarioWS usr in listadoUsarios)
             {
-                if (usr.id == idUsuario)
+                if (usr.idUsuario == idUsuario)
                 {
                     if (usr.host == 1)
                     {
@@ -105,10 +94,10 @@ namespace Negocio
         }
 
 
-        public Usuario LogicaVieja(string username = "luism1234")
-        {
-            return usuarios.Find(u => u.Username == username);
-        }
+        //public Usuario LogicaVieja(string username = "luism1234")
+        //{
+        //    return usuarios.Find(u => u == username);
+        //}
 
 
         private string GetPerfilType(Usuario usuario)
@@ -161,59 +150,92 @@ namespace Negocio
                 throw new ArgumentException("La contraseña debe contener al menos una letra mayúscula y un número.");
             }
 
-            if (newPassword == usuario.Password)
-            {
-                throw new InvalidOperationException("La nueva contraseña no puede ser igual a la anterior.");
-            }
+            //if (newPassword == usuario.Password)
+            //{
+            //    throw new InvalidOperationException("La nueva contraseña no puede ser igual a la anterior.");
+            //}
 
-            if (newPassword.Length < 8 || newPassword.Length > 15)
-            {
-                throw new ArgumentException("La contraseña debe tener entre 8 y 15 caracteres.");
-            }
+            //if (newPassword.Length < 8 || newPassword.Length > 15)
+            //{
+            //    throw new ArgumentException("La contraseña debe tener entre 8 y 15 caracteres.");
+            //}
 
-            if (newPassword.ToUpper() == usuario.Username.ToUpper() || newPassword.ToUpper().Contains(usuario.Username.ToUpper()))
-            {
-                throw new ArgumentException("La contraseña no debe contener el nombre de usuario.");
-            }
+            //if (newPassword.ToUpper() == usuario.Username.ToUpper() || newPassword.ToUpper().Contains(usuario.Username.ToUpper()))
+            //{
+            //    throw new ArgumentException("La contraseña no debe contener el nombre de usuario.");
+            //}
 
-            usuario.SetPassword(newPassword);
+            //usuario.SetPassword(newPassword);
             return true;
         }
 
 
-        public bool AgregarUsuario(Usuario nuevoUsuario)
+        public bool AgregarUsuario(string nombre,int host, int dni, string direccion, string telefono, string apellido, 
+            string email, string idUsuarioActual, string nombreUsuario, DateTime fechaNacimiento)
         {
+
+            // Crear un objeto ProveedoresWS
+            var nuevoUsuarioWS = new UsuarioWS
+            {
+                idUsuario = idUsuarioActual,
+                host = host, //pasa segun opcion menu
+                nombre = nombre,
+                apellido = apellido,
+                dni= dni,
+                direccion= direccion,
+                telefono = telefono,
+                email = email,
+                fechaNacimiento= fechaNacimiento,
+                nombreUsuario = nombreUsuario,
+                contraseña= "Temp1234"     
+            };
+
             try
             {
-                //crear usuario 
+                UsuarioDatos.AgregarUsuario(nuevoUsuarioWS);
 
-                ValidarNombre(nuevoUsuario.Nombre);
-                ValidarApellido(nuevoUsuario.Apellido);
-                ValidarUsername(nuevoUsuario.Nombre, nuevoUsuario.Apellido, nuevoUsuario.Username);
-
-                UsuarioWS usuarioWS = null;
-                if (nuevoUsuario is Vendedor)
-                {
-                    //usuarioWS = ConvertirVendedorAUsuarioWS((Vendedor)nuevoUsuario);
-                }
-                else if (nuevoUsuario is Supervisor)
-                {
-                    //usuarioWS = ConvertirSupervisorAUsuarioWS((Supervisor)nuevoUsuario);
-                }
-
-                if (usuarioWS != null)
-                {
-                    UsuarioDatos.AgregarUsuario(usuarioWS);
-                    return true;
-                }
-
+                return true;
+            }
+            catch (Exception ex)
+            {
                 return false;
             }
-            catch (ArgumentException ex)
-            {
-                throw ex;
-            }
         }
+
+
+        //public bool AgregarUsuario(Usuario nuevoUsuario)
+        //{
+        //    try
+        //    {
+        //        //crear usuario 
+
+        //        ValidarNombre(nuevoUsuario.Nombre);
+        //        ValidarApellido(nuevoUsuario.Apellido);
+        //        ValidarUsername(nuevoUsuario.Nombre, nuevoUsuario.Apellido, nuevoUsuario.Username);
+
+        //        UsuarioWS usuarioWS = null;
+        //        if (nuevoUsuario is Vendedor)
+        //        {
+        //            //usuarioWS = ConvertirVendedorAUsuarioWS((Vendedor)nuevoUsuario);
+        //        }
+        //        else if (nuevoUsuario is Supervisor)
+        //        {
+        //            //usuarioWS = ConvertirSupervisorAUsuarioWS((Supervisor)nuevoUsuario);
+        //        }
+
+        //        if (usuarioWS != null)
+        //        {
+        //            UsuarioDatos.AgregarUsuario(usuarioWS);
+        //            return true;
+        //        }
+
+        //        return false;
+        //    }
+        //    catch (ArgumentException ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
 
         //public UsuarioWS ConvertirSupervisorAUsuarioWS(Supervisor supervisor)
@@ -252,12 +274,12 @@ namespace Negocio
 
             foreach (Usuario u in usuarios)
             {
-                if (u.Nombre == nombre && u.Apellido == apellido && u.Username == username)
-                {
+                //if (u.Nombre == nombre && u.Apellido == apellido && u.Username == username)
+                //{
 
-                    u.DeshabilitarUsuario();
-                    break;
-                }
+                //    u.DeshabilitarUsuario();
+                //    break;
+                //}
             }
 
             return true;
@@ -270,11 +292,11 @@ namespace Negocio
 
         }
 
-        public List<Usuario> ObtenerUsuariosActivos()
-        {
-            // Mostrar solo los nombres de usuarios que están en estado activo
-            return usuarios.Where(u => u.Estado == EstadoUsuario.ACTIVO).ToList();
-        }
+        //public List<Usuario> ObtenerUsuariosActivos()
+        //{
+        //    // Mostrar solo los nombres de usuarios que están en estado activo
+        //    return usuarios.Where(u => u.Estado == EstadoUsuario.ACTIVO).ToList();
+        //}
 
 
     }

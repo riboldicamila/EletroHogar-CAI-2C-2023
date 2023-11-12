@@ -6,41 +6,48 @@ namespace Modelo
     public abstract class Usuario
     {
         // Atributos privados
-        public Guid Id { get; set; } = Guid.NewGuid(); 
-        private string nombre;
-        private string apellido;
+        public int host { get; set; }
+        public string idUsuarioActual { get; set; }
+
+        public string nombre { get; set; }
+
+        public string apellido { get; set; }
+
         public string Direccion { get; set; }
         public string Telefono { get; set; }
         public string Email { get; set; }
         public DateTime? FechaNacimiento { get; set; }  // ? permite null
         public DateTime? FechaBaja { get; set; }  // ? permite null
-        private string username;
+        public string NombreUsuario { get; set; }
         public int DNI { get; set; }
-        private string password;
-        private DateTime ultimoCambioPass;
-        private int intentosCambioPass;
-        private EstadoUsuario estado;
+        public string contraseña { get; set; }
         private string nuevoPass;
 
 
         // Constructor
         public Usuario(UsuarioWS usuarioWS)
         {
+            this.idUsuarioActual = usuarioWS.idUsuario;
+            this.host= usuarioWS.host;
             this.nombre = usuarioWS.nombre;
             this.apellido = usuarioWS.apellido;
-            this.username = usuarioWS.usuario;
+            this.DNI = usuarioWS.dni;
+            this.Direccion = usuarioWS.direccion;
+            this.Telefono= usuarioWS.telefono;
+            this.Email = usuarioWS.email;
+            this.FechaNacimiento = usuarioWS.fechaNacimiento;
+            this.NombreUsuario = usuarioWS.nombreUsuario;
+            this.contraseña = usuarioWS.contraseña;
+  
         }
 
         public Usuario(string nombre, string apellido, string username)
         {
             this.nombre = nombre;
             this.apellido = apellido;
-            this.Username = username;
-            this.password = GenerarPasswordTemporal();
-            this.ultimoCambioPass = DateTime.Now;
-            this.intentosCambioPass = 0;
-            this.estado = EstadoUsuario.INACTIVO;
-
+            this.NombreUsuario = username;
+            this.contraseña = GenerarPasswordTemporal();
+     
         }
 
         // Propiedades
@@ -56,23 +63,23 @@ namespace Modelo
             set { apellido = value; }
         }
 
-        public string Username
-        {
-            get { return username; }
-            set
-            {
-                username = value;
-            }
-        }
+        //public string Username
+        //{
+        //    get { return username; }
+        //    set
+        //    {
+        //        username = value;
+        //    }
+        //}
 
-        public string Password
-        {
-            get { return password; }
-            set
-            {
-                password = value;
-            }
-        }
+        //public string Password
+        //{
+        //    get { return password; }
+        //    set
+        //    {
+        //        password = value;
+        //    }
+        //}
 
         public string NuevoPass // nueva variable para la nueva pass
         {
@@ -85,37 +92,16 @@ namespace Modelo
         }
 
 
-
-        public DateTime UltimoCambioPass
-        {
-            get { return ultimoCambioPass; }
-            private set { ultimoCambioPass = value; }  //solo se puede cambiar dentro de la clase Usuario
-        }
-
-        public EstadoUsuario Estado
-        {
-            get { return estado; }
-            set { estado = value; }
-        }
-
-
-        public int IntentosCambioPass
-        {
-            get { return intentosCambioPass; }
-            private set { intentosCambioPass = value; }
-        }
-
-
         // Métodos
-        public void SetPassword(string newPassword)
-        {
-            this.password = newPassword;
-            this.ultimoCambioPass = DateTime.Now;
-            this.intentosCambioPass = 0;
+        //public void SetPassword(string newPassword)
+        //{
+        //    this.password = newPassword;
+        //    this.ultimoCambioPass = DateTime.Now;
+        //    this.intentosCambioPass = 0;
 
-            // Si el usuario pone una nueva contraseña, lo marcamos como ACTIVO
-            this.estado = EstadoUsuario.ACTIVO;
-        }
+        //    // Si el usuario pone una nueva contraseña, lo marcamos como ACTIVO
+        //    this.estado = EstadoUsuario.ACTIVO;
+        //}
 
 
         public string GenerarPasswordTemporal()
@@ -124,16 +110,6 @@ namespace Modelo
 
         }
 
-
-        public void DeshabilitarUsuario()
-        {
-            this.estado = EstadoUsuario.INACTIVO;
-        }
-
-        public void HabilitarUsuario()
-        {
-            this.estado = EstadoUsuario.ACTIVO;
-        }
 
         override
         public String ToString()
