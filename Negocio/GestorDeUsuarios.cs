@@ -75,6 +75,35 @@ namespace Negocio
             usuariosConIntentosFallidos.RemoveAll(u => u == nombreUsuario);
         }
 
+        public string TipoDeUsuarioLogin(string idUsuario)
+        {
+
+            List<UsuarioWS> listadoUsarios = UsuarioDatos.ListarUsuarios();
+            foreach (UsuarioWS usr in listadoUsarios)
+            {
+                if (usr.id == idUsuario)
+                {
+                    if (usr.host == 1)
+                    {
+                        return "vendedor";
+                    }
+                    else if (usr.host == 2)
+                    {
+                        return "supervisor";
+                    }
+                    else if (usr.host == 3)
+                    {
+                        return "administrador";
+
+                    }
+
+                }
+            }
+
+            return "";
+
+        }
+
 
         public Usuario LogicaVieja(string username = "luism1234")
         {
