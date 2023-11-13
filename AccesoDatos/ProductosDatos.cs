@@ -47,7 +47,13 @@ namespace AccesoDatos
 
         //get con traer por categoria //hay que filtrarlo de alguna forma 
 
-        //patch con modificar
+
+        //NO OBLIGATORIO TODO LO DE ABAJO
+        //
+        //
+        //
+
+        //patch con modificar 
 
         public static void ModificarProducto(ProductosWS producto)
         {
@@ -61,7 +67,6 @@ namespace AccesoDatos
         }
 
         //delete con baja
-
 
 
         //producto reactivat con patch

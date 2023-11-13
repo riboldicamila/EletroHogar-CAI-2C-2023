@@ -8,9 +8,9 @@ namespace Modelo
 {
     public class VentasWS
     {
-        public Guid idCliente { get; set; }
-        public Guid idUsuario { get; set; }
-        public Guid idProducto { get; set; }
+        public string idCliente { get; set; }
+        public string idUsuario { get; set; }
+        public string idProducto { get; set; }
         public int cantidad { get; set; }
 
         public VentasWS() { }

@@ -19,6 +19,8 @@ namespace MyApp
         private GestorDeUsuarios gestorUsuarios = new GestorDeUsuarios();
         private GestorDeProductos gestorDeProductos = new GestorDeProductos();
         private GestorDeProveedores gestorDeProveedores = new GestorDeProveedores();
+        private GestorDeVentas gestorDeVentas = new GestorDeVentas();
+
 
 
         public void Iniciar()
@@ -80,7 +82,7 @@ namespace MyApp
             //define el perfil para hacer al menu
             //metodo me devuelva un string con tipo de usuario
 
-            var usuarioActualTipo = "administrador";
+            var usuarioActualTipo = "vendedor";
 
             //var usuarioActualTipo= gestorUsuarios.TipoDeUsuarioLogin(idUsuario);
             //Console.WriteLine("ACA en progreso logica nueva"+usuarioActualTipo);
@@ -466,6 +468,20 @@ namespace MyApp
             }
 
 
+            if (usuarioActualTipo == "vendedor")
+            {
+                if(opcionSeleccionada == "1")
+                {
+                    RegistrarVenta(idUsuarioActual);
+                }
+
+                if (opcionSeleccionada == "2")
+                {
+                    ReporteVentas();
+                }
+              
+            }
+
 
             Console.WriteLine("Cerrando sesión...");
             Thread.Sleep(2000);
@@ -476,6 +492,42 @@ namespace MyApp
 
 
         //EXTRACCIÓN DE METODOS PARA MANTENER ORDEN 
+
+   
+        private static string LoginMenu(GestorDeUsuarios gestorDeUsuarios, string nombreUsuario, string contraseña)
+        {
+
+            Login login = new Login();
+            login.NombreUsuario = nombreUsuario;
+            login.Contraseña = contraseña;
+
+            try
+            {
+                string idUsuario = gestorDeUsuarios.Login(login);
+                Console.WriteLine("Login exitoso. El idUusario es " + idUsuario);
+                gestorDeUsuarios.LimpiarListaDeControl(nombreUsuario);
+                return idUsuario;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al hacer login.");
+                Console.WriteLine(ex.Message);
+
+                bool quedanIntentos = gestorDeUsuarios.ListaDeControl(nombreUsuario);
+
+                if (!quedanIntentos)
+                {
+                    Console.WriteLine("El usuario está bloqueado. Demasiados intentos fallidos.");
+                    return "error";
+                }
+            }
+
+            return "";
+
+
+        }
+
         private void SolicitarCambioDeContraseña(Usuario usuarioActual)
         {
             Console.WriteLine("Debe cambiar su contraseña.");
@@ -654,41 +706,6 @@ namespace MyApp
 
         }
 
-        private static string LoginMenu(GestorDeUsuarios gestorDeUsuarios, string nombreUsuario, string contraseña)
-        {
-
-            Login login = new Login();
-            login.NombreUsuario = nombreUsuario;
-            login.Contraseña = contraseña;
-
-            try
-            {
-                string idUsuario = gestorDeUsuarios.Login(login);
-                Console.WriteLine("Login exitoso. El idUusario es " + idUsuario);
-                gestorDeUsuarios.LimpiarListaDeControl(nombreUsuario);
-                return idUsuario;
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al hacer login.");
-                Console.WriteLine(ex.Message);
-
-                bool quedanIntentos = gestorDeUsuarios.ListaDeControl(nombreUsuario);
-
-                if (!quedanIntentos)
-                {
-                    Console.WriteLine("El usuario está bloqueado. Demasiados intentos fallidos.");
-                    return "error";
-                }
-            }
-
-            return "";
-
-
-        }
-
-
         private void ListarProductos()
         {
             Console.WriteLine("Listado de Productos:");
@@ -701,7 +718,37 @@ namespace MyApp
 
         }
 
-        //IDEA ES PODER REUTILIZARLO PARA TODO DESPUES
+        private void RegistrarVenta(string idUsuarioActual) {
+
+            Console.Clear();
+            Console.WriteLine("AGREGAR VENTA");
+
+            Console.WriteLine("Ingrese el id del cliente:");
+            string idCliente = Console.ReadLine();
+
+            Console.WriteLine("Ingrese el id del producto:");
+            string idProducto = Console.ReadLine();
+
+            Console.WriteLine("Ingrese la cantidad:");
+            int cantidad = int.Parse(Console.ReadLine());
+
+            if (gestorDeVentas.AgregarVenta(idCliente, idUsuarioActual, idProducto, cantidad))
+            {
+                Console.WriteLine($"Venta de {idProducto} agregado con éxito.");
+                Thread.Sleep(3000);
+            }
+            else
+            {
+                Console.WriteLine("Error al agregar el venta. Por favor, inténtelo de nuevo.");
+                Thread.Sleep(3000);
+            }
+
+        }
+
+        private void ReporteVentas() { }
+
+
+
         private string ValidacionesProveedores(string mensaje, Action<string> validacion)
         {
             while (true)
