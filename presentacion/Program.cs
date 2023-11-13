@@ -20,6 +20,7 @@ namespace MyApp
         private GestorDeProductos gestorDeProductos = new GestorDeProductos();
         private GestorDeProveedores gestorDeProveedores = new GestorDeProveedores();
         private GestorDeVentas gestorDeVentas = new GestorDeVentas();
+        private GestorDeClientes gestorDeClientes = new GestorDeClientes();
 
 
 
@@ -82,7 +83,7 @@ namespace MyApp
             //define el perfil para hacer al menu
             //metodo me devuelva un string con tipo de usuario
 
-            var usuarioActualTipo = "vendedor";
+            var usuarioActualTipo = "administrador";
 
             //var usuarioActualTipo= gestorUsuarios.TipoDeUsuarioLogin(idUsuario);
             //Console.WriteLine("ACA en progreso logica nueva"+usuarioActualTipo);
@@ -100,7 +101,8 @@ namespace MyApp
             {
                 Console.WriteLine("1. Venta");
                 Console.WriteLine("2. Reporte de ventas por vendedor");
-                Console.WriteLine("3. Salir");
+                Console.WriteLine("3. Agregar Cliente");
+                Console.WriteLine("4. Salir");
             }
             else if (usuarioActualTipo == "supervisor")
             {
@@ -479,6 +481,11 @@ namespace MyApp
                 {
                     ReporteVentas();
                 }
+
+                if(opcionSeleccionada == "3")
+                {
+                    RegistrarCliente(idUsuarioActual);
+                }
               
             }
 
@@ -747,7 +754,85 @@ namespace MyApp
 
         private void ReporteVentas() { }
 
+        private void RegistrarCliente(string idUsuarioActual)
+        {
+            Console.Clear();
+            Console.WriteLine("AGREGAR CLIENTE");
 
+            string nombre;
+            string apellido;
+
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el NOMBRE del usuario:");
+                    nombre = Console.ReadLine();
+                    gestorUsuarios.ValidarNombre(nombre);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el APELLIDO del usuario:");
+                    apellido = Console.ReadLine();
+                    gestorUsuarios.ValidarApellido(apellido);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+         
+            //GENERAR VALIDACION EN CAPA GESTOR DE USUARIO
+
+            Console.WriteLine("Ingrese la Dirección física del usuario:");
+            string direccion = Console.ReadLine();
+
+            Console.WriteLine("Ingrese el Teléfono del usuario:");
+            string telefono = Console.ReadLine();
+
+            Console.WriteLine("Ingrese el Correo Electrónico del usuario:");
+            string email = Console.ReadLine();
+
+            Console.WriteLine("Ingrese el DNI del usuario:");
+            int dni = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Ingrese el número de registro del usuario:");
+            int numeroRegistro = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Ingrese la Fecha de Nacimiento del usuario (YYYY-MM-DD):");
+            string fechaNacimientoString = Console.ReadLine();
+            if (DateTime.TryParse(fechaNacimientoString, out DateTime fechaNacimiento))
+            {
+            }
+            else
+            {
+                Console.WriteLine("La fecha de nacimiento ingresada no es válida.");
+            }
+
+            //DUDA SI ES 3 POR EL TIPO DE USUARIO
+
+            if (gestorDeClientes.AgregarCliente(nombre, 3, dni, direccion, telefono, apellido, email, idUsuarioActual, fechaNacimiento))
+            {
+                Console.WriteLine($"Cliente {nombre} agregado con éxito.");
+                Thread.Sleep(3000);
+            }
+            else
+            {
+                Console.WriteLine("Error al agregar el cliente. Por favor, inténtelo de nuevo.");
+                Thread.Sleep(3000);
+            }
+        }
 
         private string ValidacionesProveedores(string mensaje, Action<string> validacion)
         {
