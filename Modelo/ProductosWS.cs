@@ -8,17 +8,17 @@ namespace Modelo
 {
     public class ProductosWS
     {
-        public Guid IdUsuario { get; set; }
-        public int IdCategoria { get; set; }
-        public Guid IdProveedor { get; set; }
-        public string Nombre { get; set; }
-        public double Precio { get; set; }
-        public int Stock { get; set; }
+        public int idCategoria { get; set; }
+        public string idUsuario { get; set; }
+        public string idProveedor { get; set; }
+        public string nombre { get; set; }
+        public decimal precio { get; set; }
+        public int stock { get; set; }
 
         public ProductosWS() { }
         public override string ToString()
         {
-            return Nombre + " " + IdCategoria + " " + Stock + "" + Precio;
+            return nombre + " " + idCategoria + " " + stock + "" + precio;
         }
     }
 }

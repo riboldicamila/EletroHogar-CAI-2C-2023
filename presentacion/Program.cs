@@ -432,7 +432,7 @@ namespace MyApp
 
                 if (opcionSeleccionada == "10")
                 {
-                    AltaProducto();
+                    AltaProducto(idUsuarioActual);
                 }
 
                 if (opcionSeleccionada == "11")
@@ -451,7 +451,7 @@ namespace MyApp
             {
                 if (opcionSeleccionada == "1")
                 {
-                    AltaProducto();
+                    AltaProducto(idUsuarioActual);
                 }
 
                 if (opcionSeleccionada == "2")
@@ -533,7 +533,7 @@ namespace MyApp
             
         }
 
-        private void AltaProducto()
+        private void AltaProducto(string idUsuarioActual)
         {
             Console.WriteLine("ALTA DE PRODUCTO");
 
@@ -547,13 +547,23 @@ namespace MyApp
             int stock = int.Parse(Console.ReadLine());
 
             Console.WriteLine("Ingrese la categoría del producto:");
-            string categoria = Console.ReadLine();
+            int categoria = int.Parse(Console.ReadLine());
 
-            //Producto nuevoProducto = new Producto(nombre, precio, stock, categoria);
-            //gestorDeProductos.AgregarProducto(nuevoProducto);
+            Console.WriteLine("Ingrese el id del proveedor con el cuál lo desea relacionar:");
+            string idProveedor= Console.ReadLine();
 
-            Console.WriteLine($"Producto {nombre} agregado exitosamente.");
-            Console.WriteLine();
+
+            if (gestorDeProductos.AgregarProducto(categoria, idUsuarioActual, idProveedor, nombre, precio, stock))
+            {
+                Console.WriteLine($"Producto {nombre} agregado con éxito.");
+                ListarProveedores();
+                Thread.Sleep(3000);
+            }
+            else
+            {
+                Console.WriteLine("Error al agregar el producto. Por favor, inténtelo de nuevo.");
+                Thread.Sleep(3000);
+            }
         }
 
         private void BajaProducto()

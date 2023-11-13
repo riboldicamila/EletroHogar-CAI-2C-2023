@@ -14,6 +14,34 @@ namespace Negocio
             productos.Add(producto);
         }
 
+        public bool AgregarProducto(int idCategoria, string idUsuarioActual, string idProveedor, string nombre, 
+            decimal precio, int stock)
+        {
+
+            // Crear un objeto ProveedoresWS
+            var nuevoProductoWS = new ProductosWS
+            {
+                idCategoria = idCategoria,
+                idUsuario = "0cdbc5a5-69d9-4ab8-8cb3-9932ce33f54a",
+                idProveedor = idProveedor,
+                nombre = nombre,
+                precio = precio,
+                stock = stock
+            };
+
+            try
+            {
+                ProductosDatos.AgregarProducto(nuevoProductoWS);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+
         public List<Producto> ObtenerTodosLosProductos()
         {
             return productos;
