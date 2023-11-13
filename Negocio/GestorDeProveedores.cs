@@ -20,7 +20,7 @@ namespace Negocio
             // Crear un objeto ProveedoresWS
             var nuevoProveedorWS = new ProveedoresWS
             {
-                idUsuario = "70b37dc1-8fde-4840-be47-9ababd0ee7e5",
+                idUsuario = "0cdbc5a5-69d9-4ab8-8cb3-9932ce33f54a",
                 nombre = nombre,
                 apellido = apellido,
                 email = email,
@@ -50,7 +50,7 @@ namespace Negocio
         {
             try
             {
-                ProveedoresDatos.BajaProveedor(idProveedor, idUsuario);
+                ProveedoresDatos.BajaProveedor(idProveedor, "0cdbc5a5-69d9-4ab8-8cb3-9932ce33f54a");
 
                 return true;
             }
