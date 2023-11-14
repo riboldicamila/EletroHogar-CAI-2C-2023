@@ -55,11 +55,7 @@ namespace Negocio
             }
         }
 
-        public List<Producto> ObtenerTodosLosProductos()
-        {
-            return productos;
-        }
-
+    
         public List<ProductosWS> TraerProductos()
         {
             return ProductosDatos.TraerProductos();

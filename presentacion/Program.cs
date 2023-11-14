@@ -468,6 +468,11 @@ namespace MyApp
                 {
                     BajaProducto(idUsuarioActual);
                 }
+
+                if (opcionSeleccionada == "4")
+                {
+                    DevolverVentas(idUsuarioActual);
+                }
             }
 
 
@@ -781,6 +786,32 @@ namespace MyApp
         }
 
         private void ReporteVentas() { }
+
+        private void DevolverVentas(string idUsuarioActual)
+        {
+            Console.Clear();
+            Console.WriteLine("DEVOLVER VENTA");
+            Console.WriteLine("LISTA DE VENTAS EXISTENTES:");
+            //
+            Console.WriteLine();
+
+            Console.Write("Ingrese el id de la venta que quiere dar de baja: ");
+            string idVenta = Console.ReadLine();
+
+            bool bajaExitosa = gestorDeVentas.DevolverVenta(idVenta, idUsuarioActual);
+
+            if (bajaExitosa)
+            {
+                Console.WriteLine($"La venta con ID {idVenta} se encuentra Inactivo.");
+            }
+            else
+            {
+                Console.WriteLine("Error al devolver venta. Por favor, inténtelo de nuevo.");
+            }
+
+            Thread.Sleep(3000);
+            Console.Clear();
+        }
 
         private void RegistrarCliente(string idUsuarioActual)
         {

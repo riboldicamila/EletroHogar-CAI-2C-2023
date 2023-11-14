@@ -24,6 +24,26 @@ namespace AccesoDatos
             }
         }
 
+        //PATCH para devolver ventas
+        public static void DevolverVenta(string id, string idUsuario)
+        {
+            try
+            {
+                Dictionary<String, String> dict = new Dictionary<String, String>();
+                dict.Add("id", id);
+                dict.Add("idUsuario", idUsuario);
+
+                var jsonRequest = JsonConvert.SerializeObject(dict);
+
+                HttpResponseMessage response = WebHelper.DeleteConBody("Venta/DevolverVenta", jsonRequest);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Verifique los datos ingresados");
+            }
+        }
+
 
         //GET para traer ventas
 
@@ -49,18 +69,7 @@ namespace AccesoDatos
         //GET para ventas por clientes
 
 
-        //PATCH para devolver ventas
 
-        public static void DevolverVenta(VentasWS venta)
-        {
-            var jsonRequest = JsonConvert.SerializeObject(venta);
-            HttpResponseMessage response = WebHelper.Patch("Venta/DevolverVenta", jsonRequest);
-
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new Exception("Verifique los datos ingresados");
-            }
-        }
 
 
 

@@ -43,6 +43,12 @@ namespace Modelo
             IdProveedor = productoWS.idProveedor;
         }
 
+        //necesita este para traer y mostrar LISTA
+        public override string ToString()
+        {
+            return Nombre + " " + IdUsuario;
+        }
+
 
 
 
