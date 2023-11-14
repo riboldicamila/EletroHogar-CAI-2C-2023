@@ -44,6 +44,27 @@ namespace AccesoDatos
             }
         }
 
+        //BAJA PRODUCTO, DELETE
+
+        public static void BajaProducto(string id, string idUsuario)
+        {
+            try
+            {
+                Dictionary<String, String> dict = new Dictionary<String, String>();
+                dict.Add("id", id);
+                dict.Add("idUsuario", idUsuario);
+
+                var jsonRequest = JsonConvert.SerializeObject(dict);
+
+                HttpResponseMessage response = WebHelper.DeleteConBody("/Proveedor/BajaProducto", jsonRequest);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Verifique los datos ingresados");
+            }
+        }
+
 
         //get con traer por categoria //hay que filtrarlo de alguna forma 
 

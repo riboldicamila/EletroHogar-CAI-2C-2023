@@ -2,6 +2,7 @@
 using Modelo; //solo para usar PerfilUsuario, no deberiamos llamar nunca  a Usuario directamente acá, siempre sería a través de GestordeUsuarios
 using System.Timers;
 using System.Security.Cryptography.X509Certificates;
+using System;
 
 namespace MyApp
 {
@@ -446,7 +447,7 @@ namespace MyApp
 
                 if (opcionSeleccionada == "12")
                 {
-                    BajaProducto();
+                    BajaProducto(idUsuarioActual);
                 }
             }
 
@@ -465,7 +466,7 @@ namespace MyApp
 
                 if (opcionSeleccionada == "3")
                 {
-                    BajaProducto();
+                    BajaProducto(idUsuarioActual);
                 }
             }
 
@@ -485,6 +486,11 @@ namespace MyApp
                 if(opcionSeleccionada == "3")
                 {
                     RegistrarCliente(idUsuarioActual);
+                }
+
+                if(opcionSeleccionada == "4")
+                {
+                    ModificarCliente(idUsuarioActual);
                 }
               
             }
@@ -625,9 +631,30 @@ namespace MyApp
             }
         }
 
-        private void BajaProducto()
+        private void BajaProducto(string idUsuarioActual)
         {
-            //IMPLEMENTAR
+            Console.Clear();
+            Console.WriteLine("BAJA PRODUCTOS");
+            Console.WriteLine("LISTA DE PRODUCTOS EXISTENTES:");
+            ListarProductos();
+            Console.WriteLine();
+
+            Console.Write("Ingrese el id del producto que quiere dar de baja: ");
+            string idProducto = Console.ReadLine();
+
+            bool bajaExitosa = gestorDeProveedores.BajaProveedor(idProducto, idUsuarioActual);
+
+            if (bajaExitosa)
+            {
+                Console.WriteLine($"El producto con ID {idProducto} se encuentra ha dado de baja.");
+            }
+            else
+            {
+                Console.WriteLine("Error al deshabilitar el producto. Por favor, inténtelo de nuevo.");
+            }
+
+            Thread.Sleep(3000);
+            Console.Clear();
 
         }
 
@@ -715,6 +742,7 @@ namespace MyApp
 
         private void ListarProductos()
         {
+            //REVISAR TEMA CLASE CON DESERILIZACION
             Console.WriteLine("Listado de Productos:");
             List<ProductosWS> productos = gestorDeProductos.TraerProductos();
             foreach (ProductosWS p in productos)
@@ -832,6 +860,19 @@ namespace MyApp
                 Console.WriteLine("Error al agregar el cliente. Por favor, inténtelo de nuevo.");
                 Thread.Sleep(3000);
             }
+        }
+
+        private void ModificarCliente(string idUsuarioActual)
+        {
+            Console.Clear();
+            Console.WriteLine("MODIFICAR CLIENTE");
+
+            //consulta de como hacer el put 
+            //preguntar que campo desea modificar
+            //se mandan parametors a gestor de clientes
+            //metodo modificarCliente crea instancia clienteWS?
+            //o hay que obtener primero el cliente guardado en la base?
+
         }
 
         private string ValidacionesProveedores(string mensaje, Action<string> validacion)

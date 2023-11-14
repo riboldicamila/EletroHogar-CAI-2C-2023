@@ -41,6 +41,19 @@ namespace Negocio
             }
         }
 
+        public bool BajaProductos(string idProducto, string idUsuario)
+        {
+            try
+            {
+                ProductosDatos.BajaProducto(idProducto, "0cdbc5a5-69d9-4ab8-8cb3-9932ce33f54a");
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
 
         public List<Producto> ObtenerTodosLosProductos()
         {
