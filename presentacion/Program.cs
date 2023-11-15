@@ -902,18 +902,69 @@ namespace MyApp
                     Console.WriteLine(ex.Message); 
                 }
             }
-            
-           
-            
 
+            int dni
+            string dni_entrada
 
-            Console.WriteLine("Ingrese el DNI del usuario:");
-            int dni = int.Parse(Console.ReadLine());
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el DNI del usuario:");
+                    dni_entrada = (Console.ReadLine()
+                    gestorUsuarios.ValidarDni(dni_entrada);
+                    dni = int.Parse(dni_entrada);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message)
+                }
+            }
+
+            int registro
+            string registro_entrada
+
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el numero de registro del usuario:");
+                    registro_entrada = Console.ReadLine()
+                    gestorUsuarios.ValidarRegistro(registro_entrada);
+                    registro = int.Parse(registro_entrada);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message)
+                }
+            }
 
             Console.WriteLine("Ingrese el número de registro del usuario:");
             int numeroRegistro = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Ingrese la Fecha de Nacimiento del usuario (YYYY-MM-DD):");
+            string fecha
+            Datetime fechaNacimiento;
+
+            while(true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese la Fecha de Nacimiento del usuario (YYYY-MM-DD):");
+                    fecha = console.ReadLine();
+                    Validaciones.ValidarFecha(fecha);
+                    fechaNacimiento = DateTime.Parse(fecha);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message)
+                }
+            }
+
+
+            
             string fechaNacimientoString = Console.ReadLine();
             if (DateTime.TryParse(fechaNacimientoString, out DateTime fechaNacimiento))
             {

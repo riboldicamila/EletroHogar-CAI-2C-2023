@@ -197,6 +197,11 @@ namespace Negocio
             }
 
         }
+        
+        public void ValidarDni(string DNI)
+        {
+            if (string.IsNullOrEmpty(DNI) || DNI.
+        }
 
         public bool EstablecerContraseña(Usuario usuario, string newPassword)
         {

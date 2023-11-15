@@ -23,6 +23,19 @@ namespace Negocio
                 throw new ArgumentException("El apellido no puede estar vacío, debe tener por lo menos 2 caracteres y no puede contener números.");
             }
         }
+
+        public static void ValidarFecha(string fecha)
+        {
+            if (string.IsNullOrEmpty(fecha) || !DateTime.TryParse(fecha, out DateTime fechaSalida))
+            {
+                DateTime fechaDateTime = DateTime.Parse(fecha);
+                if (fechaDateTime < new DateTime(1900, 1, 1))
+                {
+                    throw new ArgumentException("La fecha no es válida");
+                }
+            }
+        }
+
     }
 
 }
