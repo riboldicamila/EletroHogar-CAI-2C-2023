@@ -5,6 +5,7 @@ using Newtonsoft.Json.Linq;
 using System.IO;
 using AccesoDatos;
 using System.Diagnostics.CodeAnalysis;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Negocio
 {
@@ -200,7 +201,25 @@ namespace Negocio
         
         public void ValidarDni(string DNI)
         {
-            if (string.IsNullOrEmpty(DNI) || DNI.
+            int salida;
+            if (string.IsNullOrEmpty(DNI) || !int.TryParse(DNI, out salida) || DNI.Length != 8 || int.Parse(DNI)<0)
+            {
+                throw new ArgumentException("El dni debe ser un numero positivo de 8 digitos, no puede estar vacío");
+            }
+        }
+
+        public void ValidarRegistro(string Registro)
+        {
+            int salida;
+            if (string.IsNullOrEmpty(Registro) || !int.TryParse(Registro, out salida) || Registro.Length != 8)
+            {
+                throw new ArgumentException("El Registro debe ser un numero de 8 digitos, no puede estar vacío");
+            }
+        }
+
+        public void ValidarFechaNacimiento(string Fecha)
+        {
+            Validaciones.ValidarFecha(Fecha);
         }
 
         public bool EstablecerContraseña(Usuario usuario, string newPassword)

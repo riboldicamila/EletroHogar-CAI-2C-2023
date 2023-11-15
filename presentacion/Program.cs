@@ -963,17 +963,6 @@ namespace MyApp
                 }
             }
 
-
-            
-            string fechaNacimientoString = Console.ReadLine();
-            if (DateTime.TryParse(fechaNacimientoString, out DateTime fechaNacimiento))
-            {
-            }
-            else
-            {
-                Console.WriteLine("La fecha de nacimiento ingresada no es válida.");
-            }
-
             //DUDA SI ES 3 POR EL TIPO DE USUARIO
 
             if (gestorDeClientes.AgregarCliente(nombre, 3, dni, direccion, telefono, apellido, email, idUsuarioActual, fechaNacimiento))
