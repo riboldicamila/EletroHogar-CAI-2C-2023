@@ -827,7 +827,7 @@ namespace MyApp
                 {
                     Console.WriteLine("Ingrese el NOMBRE del usuario:");
                     nombre = Console.ReadLine();
-                    gestorUsuarios.ValidarNombre(nombre);
+                    Validaciones.ValidarNombre(nombre);
                     break;
                 }
                 catch (ArgumentException ex)
@@ -842,7 +842,7 @@ namespace MyApp
                 {
                     Console.WriteLine("Ingrese el APELLIDO del usuario:");
                     apellido = Console.ReadLine();
-                    gestorUsuarios.ValidarApellido(apellido);
+                    Validaciones.ValidarApellido(apellido);
                     break;
                 }
                 catch (ArgumentException ex)
@@ -860,7 +860,7 @@ namespace MyApp
                 {
                     Console.WriteLine("Ingrese la Dirección física del usuario:");
                     direccion = Console.ReadLine();
-                    gestorUsuarios.ValidarDireccion(direccion);
+                    Validaciones.ValidarDireccion(direccion);
                     break;
                 }
                 catch (ArgumentException ex)
@@ -877,7 +877,7 @@ namespace MyApp
                 {
                     Console.WriteLine("Ingrese el Teléfono del usuario:");
                     telefono = Console.ReadLine();
-                    gestorUsuarios.ValidarTelefono(telefono);
+                    Validaciones.ValidarTelefono(telefono);
                     break;
                 }
                 catch (ArgumentExeption ex)
@@ -894,7 +894,7 @@ namespace MyApp
                 {
                     Console.WriteLine("Ingrese el Correo Electrónico del usuario:");
                     email = Console.ReadLine();
-                    gestorUsuarios.ValidarEmail(email);
+                    Validaciones.ValidarEmail(email);
                     break;
                 }
                 catch (ArgumentException ex)
@@ -912,7 +912,7 @@ namespace MyApp
                 {
                     Console.WriteLine("Ingrese el DNI del usuario:");
                     dni_entrada = (Console.ReadLine()
-                    gestorUsuarios.ValidarDni(dni_entrada);
+                    Validaciones.ValidarDni(dni_entrada);
                     dni = int.Parse(dni_entrada);
                     break;
                 }
@@ -922,27 +922,6 @@ namespace MyApp
                 }
             }
 
-            int registro
-            string registro_entrada
-
-            while (true)
-            {
-                try
-                {
-                    Console.WriteLine("Ingrese el numero de registro del usuario:");
-                    registro_entrada = Console.ReadLine()
-                    gestorUsuarios.ValidarRegistro(registro_entrada);
-                    registro = int.Parse(registro_entrada);
-                    break;
-                }
-                catch (ArgumentException ex)
-                {
-                    Console.WriteLine(ex.Message)
-                }
-            }
-
-            Console.WriteLine("Ingrese el número de registro del usuario:");
-            int numeroRegistro = int.Parse(Console.ReadLine());
 
             string fecha
             Datetime fechaNacimiento;
