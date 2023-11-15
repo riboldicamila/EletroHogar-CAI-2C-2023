@@ -851,17 +851,61 @@ namespace MyApp
                 }
             }
 
-         
             //GENERAR VALIDACION EN CAPA GESTOR DE USUARIO
+            string direccion;
 
-            Console.WriteLine("Ingrese la Dirección física del usuario:");
-            string direccion = Console.ReadLine();
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese la Dirección física del usuario:");
+                    direccion = Console.ReadLine();
+                    gestorUsuarios.ValidarDireccion(direccion);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
 
-            Console.WriteLine("Ingrese el Teléfono del usuario:");
-            string telefono = Console.ReadLine();
+            string telefono;
 
-            Console.WriteLine("Ingrese el Correo Electrónico del usuario:");
-            string email = Console.ReadLine();
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el Teléfono del usuario:");
+                    telefono = Console.ReadLine();
+                    gestorUsuarios.ValidarTelefono(telefono);
+                    break;
+                }
+                catch (ArgumentExeption ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            string email
+
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el Correo Electrónico del usuario:");
+                    email = Console.ReadLine();
+                    gestorUsuarios.ValidarEmail(email);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message); 
+                }
+            }
+            
+           
+            
+
 
             Console.WriteLine("Ingrese el DNI del usuario:");
             int dni = int.Parse(Console.ReadLine());

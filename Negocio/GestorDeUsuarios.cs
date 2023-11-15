@@ -172,6 +172,32 @@ namespace Negocio
             }
         }
 
+        public void ValidarDireccion(string direccion)
+        {
+            if (string.IsNullOrEmpty(direccion) || !(direccion.Any(char.IsDigit)))
+            {
+                throw new ArgumentException("La direccion no puede estar vacía, debe tener por lo menos 2 caracteres y debe contener el numero de la calle.");
+            }
+        }
+
+        public void ValidarTelefono(string telefono)
+        {
+            if (string.IsNullOrEmpty(telefono) || (telefono.All(char.IsDigit)) || (telefono.Length > 10))
+            {
+                throw new ArgumentException("El numero de telefono no puede estar vacío, debe contener máximo 10 numeros y solo puede contener dígitos del 0 al 9.");
+            }
+
+        }
+
+        public void ValidarEmail(string email)
+        {
+            if (string.IsNullOrEmpty(email) || !(email.Contains("@")) || !(email.Contains(".com")))
+            {
+                throw new ArgumentException("Ingrese una dirección decorreo electrónco válida.");
+            }
+
+        }
+
         public bool EstablecerContraseña(Usuario usuario, string newPassword)
         {
             if (!newPassword.Any(char.IsUpper) || !newPassword.Any(char.IsDigit))
