@@ -88,7 +88,7 @@ namespace MyApp
             Console.WriteLine(usuarioActualTipo);
 
             Console.Clear();
-            Console.WriteLine($"Menu de "+ usuarioActualTipo);
+            Console.WriteLine($"Menu de " + usuarioActualTipo);
 
 
             if (usuarioActualTipo == "vendedor")
@@ -140,103 +140,15 @@ namespace MyApp
                 {
                     Console.WriteLine("GENERAR ALTA/NUEVO USUARIO SUPERVISOR");
 
-                    string nombre = "";
-                    string apellido = "";
-                    string username = "";
+                    RegistrarUsuarioSupervisor(idUsuarioActual);
 
-                    while (true)
-                    {
-                        try
-                        {
-                            Console.WriteLine("Ingrese el NOMBRE del usuario:");
-                            nombre = Console.ReadLine();
-                            gestorUsuarios.ValidarNombre(nombre);
-                            break;
-                        }
-                        catch (ArgumentException ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                        }
-                    }
+                }
 
-                    while (true)
-                    {
-                        try
-                        {
-                            Console.WriteLine("Ingrese el APELLIDO del usuario:");
-                            apellido = Console.ReadLine();
-                            gestorUsuarios.ValidarApellido(apellido);
-                            break;
-                        }
-                        catch (ArgumentException ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                        }
-                    }
+                //Modificacion de Usuarios Supervisores
+                //IMPLEMENTAR
+                if(opcionSeleccionada == "2")
+                {
 
-                    while (true)
-                    {
-                        try
-                        {
-                            Console.WriteLine("Ingrese el NOMBRE DE USUARIO/USERNAME del usuario:");
-                            username = Console.ReadLine();
-                            gestorUsuarios.ValidarUsername(nombre, apellido, username);
-                            break;
-                        }
-                        catch (ArgumentException ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                        }
-                    }
-
-                    //GENERAR VALIDACION EN CAPA GESTOR DE USUARIO
-
-                    Console.WriteLine("Ingrese la Dirección física del usuario:");
-                    string direccion = Console.ReadLine();
-
-                    Console.WriteLine("Ingrese el Teléfono del usuario:");
-                    string telefono = Console.ReadLine();
-
-                    Console.WriteLine("Ingrese el Correo Electrónico del usuario:");
-                    string email = Console.ReadLine();
-
-                    Console.WriteLine("Ingrese el DNI del usuario:");
-                    int dni = int.Parse(Console.ReadLine());
-
-                    Console.WriteLine("Ingrese el número de registro del usuario:");
-                    int numeroRegistro = int.Parse(Console.ReadLine());
-
-                    Console.WriteLine("Ingrese la Fecha de Nacimiento del usuario (YYYY-MM-DD):");
-                    string fechaNacimientoString = Console.ReadLine();
-                    if (DateTime.TryParse(fechaNacimientoString, out DateTime fechaNacimiento))
-                    {
-                    }
-                    else
-                    {
-                        Console.WriteLine("La fecha de nacimiento ingresada no es válida.");
-                    }
-
-
-
-                    //Todo validado, se genera el usuario. 
-                    bool response = gestorUsuarios.AgregarUsuario(nombre, 2, dni, direccion, telefono, 
-                        apellido, email, idUsuarioActual, username, fechaNacimiento );
-
-                    if (!response)
-                    {
-                        Console.WriteLine("Hubo un error al agregar el usuario supervisor. Por favor intente nuevamente.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Usuario supervisor agregado con éxito.");
-                    }
-
-                    Console.WriteLine();
-                    Console.WriteLine("Lista de usuarios existentes: ");
-                    DevolverListaConTodosUsuarios();
-
-                    Console.WriteLine();
-                    Console.WriteLine();
                 }
 
                 //Baja Supervisores
@@ -278,72 +190,7 @@ namespace MyApp
                 {
 
                     Console.WriteLine("GENERAR ALTA/NUEVO USUARIO VENDEDORES");
-                    string nombre = "";
-                    string apellido = "";
-                    string username = "";
-
-                    while (true)
-                    {
-                        try
-                        {
-                            Console.WriteLine("Ingrese el NOMBRE del usuario:");
-                            nombre = Console.ReadLine();
-                            gestorUsuarios.ValidarNombre(nombre);
-                            break;
-                        }
-                        catch (ArgumentException ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                        }
-                    }
-
-                    while (true)
-                    {
-                        try
-                        {
-                            Console.WriteLine("Ingrese el APELLIDO del usuario:");
-                            apellido = Console.ReadLine();
-                            gestorUsuarios.ValidarApellido(apellido);
-                            break;
-                        }
-                        catch (ArgumentException ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                        }
-                    }
-
-                    while (true)
-                    {
-                        try
-                        {
-                            Console.WriteLine("Ingrese el NOMBRE DE USUARIO/USERNAME del usuario:");
-                            username = Console.ReadLine();
-                            gestorUsuarios.ValidarUsername(nombre, apellido, username);
-                            break;
-                        }
-                        catch (ArgumentException ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                        }
-                    }
-
-                    //Todo validado, se genera el usuario. 
-                    bool response = false;
-
-                    if (!response)
-                    {
-                        Console.WriteLine("Hubo un error al agregar el usuario supervisor. Por favor intente nuevamente.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Usuario supervisor agregado con éxito.");
-                    }
-
-                    Console.WriteLine();
-                    Console.WriteLine("Lista de usuarios existentes: ");
-                    gestorUsuarios.ObtenerTodosLosUsuarios();
-                    Console.WriteLine();
-                    Console.WriteLine();
+                    RegistrarUsuarioVendedor(idUsuarioActual);
 
                 }
 
@@ -476,7 +323,7 @@ namespace MyApp
 
             if (usuarioActualTipo == "vendedor")
             {
-                if(opcionSeleccionada == "1")
+                if (opcionSeleccionada == "1")
                 {
                     RegistrarVenta(idUsuarioActual);
                 }
@@ -486,16 +333,16 @@ namespace MyApp
                     ReporteVentas();
                 }
 
-                if(opcionSeleccionada == "3")
+                if (opcionSeleccionada == "3")
                 {
                     RegistrarCliente(idUsuarioActual);
                 }
 
-                if(opcionSeleccionada == "4")
+                if (opcionSeleccionada == "4")
                 {
                     ModificarCliente(idUsuarioActual);
                 }
-              
+
             }
 
 
@@ -509,7 +356,7 @@ namespace MyApp
 
         //EXTRACCIÓN DE METODOS PARA MANTENER ORDEN 
 
-   
+
         private static string LoginMenu(GestorDeUsuarios gestorDeUsuarios, string nombreUsuario, string contraseña)
         {
 
@@ -598,7 +445,7 @@ namespace MyApp
             Console.WriteLine($"Producto {nombreProducto} ha sido modificado.");
             Console.WriteLine();
 
-            
+
         }
 
         private void AltaProducto(string idUsuarioActual)
@@ -618,7 +465,7 @@ namespace MyApp
             int categoria = int.Parse(Console.ReadLine());
 
             Console.WriteLine("Ingrese el id del proveedor con el cuál lo desea relacionar:");
-            string idProveedor= Console.ReadLine();
+            string idProveedor = Console.ReadLine();
 
 
             if (gestorDeProductos.AgregarProducto(categoria, idUsuarioActual, idProveedor, nombre, precio, stock))
@@ -668,12 +515,37 @@ namespace MyApp
 
             string nombre = ValidacionesProveedores("Ingrese el nombre del nuevo proveedor:", Validaciones.ValidarNombre);
             string apellido = ValidacionesProveedores("Ingrese el apellido del nuevo proveedor:", Validaciones.ValidarApellido);
+            string cuit;
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el CUIT del proveedor, SIN espacios ni guiones:");
+                    cuit = Console.ReadLine();
+                    Validaciones.ValidarCuit(cuit);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            string email;
 
-            Console.WriteLine("Ingrese el CUIT:");
-            string cuit = Console.ReadLine();
-
-            Console.WriteLine("Ingrese el Email:");
-            string email = Console.ReadLine();
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el email del proveedor");
+                    email = Console.ReadLine();
+                    Validaciones.ValidarEmail(email);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
 
             if (gestorDeProveedores.AltaProveedor(nombre, apellido, cuit, email, idUsuarioActual))
             {
@@ -700,6 +572,7 @@ namespace MyApp
 
             Console.WriteLine("Ingrese el cuit del que desea modificar: ");
             string cuit = Console.ReadLine();
+            Validaciones.ValidarCuit(cuit);
 
             gestorDeProveedores.ModificarProveedor();
 
@@ -756,7 +629,8 @@ namespace MyApp
 
         }
 
-        private void RegistrarVenta(string idUsuarioActual) {
+        private void RegistrarVenta(string idUsuarioActual)
+        {
 
             Console.Clear();
             Console.WriteLine("AGREGAR VENTA");
@@ -825,7 +699,7 @@ namespace MyApp
                 {
                     Console.WriteLine("Ingrese el NOMBRE del usuario:");
                     nombre = Console.ReadLine();
-                    gestorUsuarios.ValidarNombre(nombre);
+                    Validaciones.ValidarNombre(nombre);
                     break;
                 }
                 catch (ArgumentException ex)
@@ -840,7 +714,7 @@ namespace MyApp
                 {
                     Console.WriteLine("Ingrese el APELLIDO del usuario:");
                     apellido = Console.ReadLine();
-                    gestorUsuarios.ValidarApellido(apellido);
+                    Validaciones.ValidarApellido(apellido);
                     break;
                 }
                 catch (ArgumentException ex)
@@ -849,32 +723,94 @@ namespace MyApp
                 }
             }
 
-         
-            //GENERAR VALIDACION EN CAPA GESTOR DE USUARIO
+            string direccion;
 
-            Console.WriteLine("Ingrese la Dirección física del usuario:");
-            string direccion = Console.ReadLine();
-
-            Console.WriteLine("Ingrese el Teléfono del usuario:");
-            string telefono = Console.ReadLine();
-
-            Console.WriteLine("Ingrese el Correo Electrónico del usuario:");
-            string email = Console.ReadLine();
-
-            Console.WriteLine("Ingrese el DNI del usuario:");
-            int dni = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Ingrese el número de registro del usuario:");
-            int numeroRegistro = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Ingrese la Fecha de Nacimiento del usuario (YYYY-MM-DD):");
-            string fechaNacimientoString = Console.ReadLine();
-            if (DateTime.TryParse(fechaNacimientoString, out DateTime fechaNacimiento))
+            while (true)
             {
+                try
+                {
+                    Console.WriteLine("Ingrese la Dirección física del usuario:");
+                    direccion = Console.ReadLine();
+                    Validaciones.ValidarDireccion(direccion);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
-            else
+
+            string telefono;
+
+            while (true)
             {
-                Console.WriteLine("La fecha de nacimiento ingresada no es válida.");
+                try
+                {
+                    Console.WriteLine("Ingrese el Teléfono del usuario:");
+                    telefono = Console.ReadLine();
+                    Validaciones.ValidarTelefono(telefono);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            string email;
+
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el Correo Electrónico del usuario:");
+                    email = Console.ReadLine();
+                    Validaciones.ValidarEmail(email);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            int dni;
+            string dni_entrada;
+
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el DNI del usuario:");
+                    dni_entrada = Console.ReadLine();
+                    Validaciones.ValidarDni(dni_entrada);
+                    dni = int.Parse(dni_entrada);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+
+            string fecha;
+            DateTime fechaNacimiento;
+
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese la Fecha de Nacimiento del usuario (YYYY-MM-DD):");
+                    fecha = Console.ReadLine();
+                    Validaciones.ValidarFecha(fecha);
+                    fechaNacimiento = DateTime.Parse(fecha);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
 
             //DUDA SI ES 3 POR EL TIPO DE USUARIO
@@ -948,7 +884,331 @@ namespace MyApp
             }
         }
 
+        private void RegistrarUsuarioSupervisor(string idUsuarioActual)
+        {
+            Console.Clear();
 
+            string nombre;
+            string apellido;
+
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el NOMBRE del usuario:");
+                    nombre = Console.ReadLine();
+                    Validaciones.ValidarNombre(nombre);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el APELLIDO del usuario:");
+                    apellido = Console.ReadLine();
+                    Validaciones.ValidarApellido(apellido);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            string username;
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el Nombre de Usuario (username)");
+                    username = Console.ReadLine();
+                    Validaciones.ValidarUsername(nombre, apellido, username);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            string direccion;
+
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese la Dirección física del usuario:");
+                    direccion = Console.ReadLine();
+                    Validaciones.ValidarDireccion(direccion);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            string telefono;
+
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el Teléfono del usuario:");
+                    telefono = Console.ReadLine();
+                    Validaciones.ValidarTelefono(telefono);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            string email;
+
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el Correo Electrónico del usuario:");
+                    email = Console.ReadLine();
+                    Validaciones.ValidarEmail(email);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            int dni;
+            string dni_entrada;
+
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el DNI del usuario:");
+                    dni_entrada = Console.ReadLine();
+                    Validaciones.ValidarDni(dni_entrada);
+                    dni = int.Parse(dni_entrada);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+
+            string fecha;
+            DateTime fechaNacimiento;
+
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese la Fecha de Nacimiento del usuario (YYYY-MM-DD):");
+                    fecha = Console.ReadLine();
+                    Validaciones.ValidarFecha(fecha);
+                    fechaNacimiento = DateTime.Parse(fecha);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            bool response = gestorUsuarios.AgregarUsuario(nombre, 2, dni, direccion, telefono,
+                       apellido, email, idUsuarioActual, username, fechaNacimiento);
+
+            if (!response)
+            {
+                Console.WriteLine("Hubo un error al agregar el usuario supervisor. Por favor intente nuevamente.");
+            }
+            else
+            {
+                Console.WriteLine("Usuario supervisor agregado con éxito.");
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Lista de usuarios existentes: ");
+            DevolverListaConTodosUsuarios();
+            Console.WriteLine();
+            Console.WriteLine();
+
+        }
+        private void RegistrarUsuarioVendedor(string idUsuarioActual)
+        {
+            Console.Clear();
+
+            string nombre;
+            string apellido;
+
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el NOMBRE del usuario:");
+                    nombre = Console.ReadLine();
+                    Validaciones.ValidarNombre(nombre);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el APELLIDO del usuario:");
+                    apellido = Console.ReadLine();
+                    Validaciones.ValidarApellido(apellido);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            string username;
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el Nombre de Usuario (username)");
+                    username = Console.ReadLine();
+                    Validaciones.ValidarUsername(nombre, apellido, username);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            string direccion;
+
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese la Dirección física del usuario:");
+                    direccion = Console.ReadLine();
+                    Validaciones.ValidarDireccion(direccion);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            string telefono;
+
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el Teléfono del usuario:");
+                    telefono = Console.ReadLine();
+                    Validaciones.ValidarTelefono(telefono);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            string email;
+
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el Correo Electrónico del usuario:");
+                    email = Console.ReadLine();
+                    Validaciones.ValidarEmail(email);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            int dni;
+            string dni_entrada;
+
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el DNI del usuario:");
+                    dni_entrada = Console.ReadLine();
+                    Validaciones.ValidarDni(dni_entrada);
+                    dni = int.Parse(dni_entrada);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+
+            string fecha;
+            DateTime fechaNacimiento;
+
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese la Fecha de Nacimiento del usuario (YYYY-MM-DD):");
+                    fecha = Console.ReadLine();
+                    Validaciones.ValidarFecha(fecha);
+                    fechaNacimiento = DateTime.Parse(fecha);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+            bool response = gestorUsuarios.AgregarUsuario(nombre, 1, dni, direccion, telefono,
+                       apellido, email, idUsuarioActual, username, fechaNacimiento);
+
+            if (!response)
+            {
+                Console.WriteLine("Hubo un error al agregar el usuario vendedor. Por favor intente nuevamente.");
+            }
+            else
+            {
+                Console.WriteLine("Usuario vendedor agregado con éxito.");
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Lista de usuarios existentes: ");
+            DevolverListaConTodosUsuarios();
+
+            Console.WriteLine();
+            Console.WriteLine();
+
+        }
+
+    
     }
 
 }

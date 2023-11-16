@@ -5,6 +5,7 @@ using Newtonsoft.Json.Linq;
 using System.IO;
 using AccesoDatos;
 using System.Diagnostics.CodeAnalysis;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Negocio
 {
@@ -156,40 +157,21 @@ namespace Negocio
         //}
 
 
-        //METODO0S VALIDACIONES
-        public void ValidarNombre(string nombre)
-        {
-            if (string.IsNullOrEmpty(nombre) || nombre.Length <= 2 || nombre.Any(char.IsDigit))
-            {
-                throw new ArgumentException("El nombre no puede estar vacío, debe tener por lo menos 2 caracteres y no puede contener números.");
-            }
-        }
 
-        public void ValidarApellido(string apellido)
-        {
-            if (string.IsNullOrEmpty(apellido) || apellido.Length < 2 || apellido.Any(char.IsDigit))
-            {
-                throw new ArgumentException("El apellido no puede estar vacío, debe tener por lo menos 2 caracteres y no puede contener números.");
-            }
-        }
 
-        public void ValidarUsername(string nombre, string apellido, string username)
-        {
-            if (username.Length < 8)
-            {
-                throw new ArgumentException("El nombre de usuario debe tener mínimo 8 caracteres.");
-            }
-            else if (username.Length > 15)
-            {
-                throw new ArgumentException("El nombre de usuario debe tener un máximo de 15 caracteres.");
-            }
-            else if (username.IndexOf(nombre, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                     username.IndexOf(apellido, StringComparison.OrdinalIgnoreCase) >= 0)
-            {
-                throw new ArgumentException("El nombre de usuario no debe contener el nombre o el apellido.");
-            }
-        }
 
+        //METODO0S VALIDACIONES movidos a VALIDACIONES
+        
+
+       
+
+        
+
+       
+        
+        
+       
+        
         public bool EstablecerContraseña(Usuario usuario, string newPassword)
         {
             if (!newPassword.Any(char.IsUpper) || !newPassword.Any(char.IsDigit))
