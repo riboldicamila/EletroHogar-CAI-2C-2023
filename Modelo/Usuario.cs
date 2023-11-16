@@ -3,45 +3,55 @@
 namespace Modelo
 {
 
-    public abstract class Usuario
+    public class Usuario
     {
         // Atributos privados
-        public Guid Id { get; set; } = Guid.NewGuid();
-        private string nombre;
-        private string apellido;
-        public string Direccion { get; set; }
-        public string Telefono { get; set; }
-        public string Email { get; set; }
-        public DateTime? FechaNacimiento { get; set; }  // ? permite null
+        public Guid Id { get; set; }
+        public string idUsuario { get; set; }
+        public int host { get; set; }
+        public string nombre;
+        public string apellido;
+        public string direccion { get; set; }
+        public string telefono { get; set; }
+        public string email { get; set; }
+        public DateTime? fechaNacimiento { get; set; }  // ? permite null
         public DateTime? FechaBaja { get; set; }  // ? permite null
-        private string username;
-        public int DNI { get; set; }
-        private string password;
-        private DateTime ultimoCambioPass;
-        private int intentosCambioPass;
-        private EstadoUsuario estado;
+        public string nombreUsuario;
+        public int dni { get; set; }
+        public string contraseña;
         private string nuevoPass;
 
 
 
         // Constructor
+        public Usuario()
+        {
+        }
+
+
         public Usuario(UsuarioWS usuarioWS)
         {
             this.nombre = usuarioWS.nombre;
             this.apellido = usuarioWS.apellido;
             this.Id = usuarioWS.id;
-            this.username = usuarioWS.usuario;
+            this.nombreUsuario = usuarioWS.usuario;
         }
-        public Usuario(string nombre, string apellido, string username)
+
+        public Usuario(string idUsuarioActual, string nombre, string apellido, string username, int dni, string direccion,
+            string telefono, string email, DateTime fechaNacimiento, string nombreUsuario, string contraseña="Temp1234")
         {
+            this.idUsuario= idUsuarioActual;
+            this.host = host;
             this.nombre = nombre;
             this.apellido = apellido;
-            this.username = username;
-            this.password = GenerarPasswordTemporal();
-            this.ultimoCambioPass = DateTime.Now;
-            this.intentosCambioPass = 0;
-            this.estado = EstadoUsuario.INACTIVO;
-
+            this.dni = dni;
+            this.direccion = direccion;
+            this.telefono = telefono;
+            this.email = email;
+            this.fechaNacimiento = fechaNacimiento;
+            this.nombreUsuario = nombreUsuario;
+            this.contraseña = contraseña;
+          
         }
 
         // Propiedades

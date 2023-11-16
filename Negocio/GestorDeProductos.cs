@@ -22,7 +22,7 @@ namespace Negocio
             var nuevoProductoWS = new ProductosWS
             {
                 idCategoria = idCategoria,
-                idUsuario = "0cdbc5a5-69d9-4ab8-8cb3-9932ce33f54a",
+                idUsuario = idUsuarioActual,
                 idProveedor = idProveedor,
                 nombre = nombre,
                 precio = precio,
@@ -45,7 +45,7 @@ namespace Negocio
         {
             try
             {
-                ProductosDatos.BajaProducto(idProducto, "0cdbc5a5-69d9-4ab8-8cb3-9932ce33f54a");
+                ProductosDatos.BajaProducto(idProducto, idUsuario);
 
                 return true;
             }

@@ -6,10 +6,10 @@
         {
         }
 
-        public Supervisor(string nombre, string apellido, string username) : base(nombre, apellido, username)
-        {
+        //public Supervisor(string nombre, string apellido, string username) : base(nombre, apellido, username)
+        //{
        
-        }
+        //}
 
     
     }

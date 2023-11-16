@@ -17,7 +17,7 @@ namespace Negocio
             // Crear un objeto usuarioWS
             var nuevoClienteWS = new ClienteWS
             {
-                idUsuario = "0cdbc5a5-69d9-4ab8-8cb3-9932ce33f54a",
+                idUsuario = idUsuarioActual,
                 nombre = nombre,
                 apellido = apellido,
                 dni = dni,

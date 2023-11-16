@@ -98,31 +98,31 @@ namespace Negocio
         {
 
             //// Crear un objeto usuarioWS
-            //var nuevoUsuarioWS = new UsuarioWS
-            //{
-            //    idUsuario = "0cdbc5a5-69d9-4ab8-8cb3-9932ce33f54a",
-            //    host = host, //pasa segun opcion menu
-            //    nombre = nombre,
-            //    apellido = apellido,
-            //    dni = dni,
-            //    direccion = direccion,
-            //    telefono = telefono,
-            //    email = email,
-            //    fechaNacimiento = fechaNacimiento,
-            //    nombreUsuario = nombreUsuario,
-            //    contraseña = "Temp1234"
-            //};
+            var nuevoUsuarioWS = new Usuario
+            {
+                idUsuario = idUsuarioActual,
+                host = host, //pasa segun opcion menu
+                nombre = nombre,
+                apellido = apellido,
+                dni = dni,
+                direccion = direccion,
+                telefono = telefono,
+                email = email,
+                fechaNacimiento = fechaNacimiento,
+                nombreUsuario = nombreUsuario,
+                contraseña = "Temp1234"
+            };
 
-            //try
-            //{
-            //    UsuarioDatos.AgregarUsuario(nuevoUsuarioWS);
+            try
+            {
+                UsuarioDatos.AgregarUsuario(nuevoUsuarioWS);
 
-            //    return true;
-            //}
-            //catch (Exception ex)
-            //{
-            //    return false;
-            //}
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
             return false;
         }
 
@@ -130,7 +130,7 @@ namespace Negocio
         {
             try
             {
-                UsuarioDatos.BorrarUsuario(idUsuarioBaja, "0cdbc5a5-69d9-4ab8-8cb3-9932ce33f54a");
+                UsuarioDatos.BorrarUsuario(idUsuarioBaja, idUsuario);
 
                 return true;
             }

@@ -18,7 +18,7 @@ namespace Negocio
             var nuevaVenta = new VentasWS
             {
                 idCliente = "6d12f32b-44b7-48ed-9993-0f63b56c206c",
-                idUsuario= "99cf271d-aaee-4392-af0b-123343c52ea7",
+                idUsuario= idUsuarioActual,
                 idProducto=idProducto,
                 cantidad=cantidad
               
@@ -40,7 +40,7 @@ namespace Negocio
         {
             try
             {
-                VentasDatos.DevolverVenta(idVenta, "0cdbc5a5-69d9-4ab8-8cb3-9932ce33f54a");
+                VentasDatos.DevolverVenta(idVenta, idUsuario);
 
                 return true;
             }

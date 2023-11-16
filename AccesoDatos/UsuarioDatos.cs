@@ -33,7 +33,7 @@ namespace AccesoDatos
 
         //POST para agregar usuario
 
-        public static void AgregarUsuario(UsuarioWS usuario)
+        public static void AgregarUsuario(Usuario usuario)
         {
             var jsonRequest = JsonConvert.SerializeObject(usuario);
             HttpResponseMessage response = WebHelper.Post("Usuario/AgregarUsuario", jsonRequest);

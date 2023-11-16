@@ -6,10 +6,10 @@
         {
         }
 
-        public Vendedor(string nombre, string apellido, string username) : base(nombre, apellido, username)
-        {
+        //public Vendedor(string nombre, string apellido, string username) : base(nombre, apellido, username)
+        //{
             
-        }
+        //}
 
 
     }

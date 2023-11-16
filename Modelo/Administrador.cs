@@ -6,10 +6,10 @@
         {
         }
 
-        public Administrador(string nombre, string apellido, string username) : base(nombre, apellido, username)
-        {
-            //el base llama al constructor de la abstracta
-        }
+        //public Administrador(string nombre, string apellido, string username) : base(nombre, apellido, username)
+        //{
+        //    //el base llama al constructor de la abstracta
+        //}
 
     }
 
