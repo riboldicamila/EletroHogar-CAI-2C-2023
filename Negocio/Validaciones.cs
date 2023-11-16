@@ -50,7 +50,9 @@ namespace Negocio
 
         public static void ValidarTelefono(string telefono)
         {
-            if (string.IsNullOrEmpty(telefono) || (telefono.All(char.IsDigit)) || (telefono.Length > 10))
+            if (string.IsNullOrEmpty(telefono)
+                //|| (telefono.All(char.IsDigit)) || (telefono.Length > 10)
+                )
             {
                 throw new ArgumentException("El numero de telefono no puede estar vacío, debe contener máximo 10 numeros y solo puede contener dígitos del 0 al 9.");
             }
@@ -61,7 +63,7 @@ namespace Negocio
         {
             if (string.IsNullOrEmpty(email) || !(email.Contains("@")) || !(email.Contains(".com")))
             {
-                throw new ArgumentException("Ingrese una dirección decorreo electrónco válida.");
+                throw new ArgumentException("Ingrese una dirección de correo electrónco válida.");
             }
 
         }
