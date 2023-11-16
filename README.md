@@ -8,6 +8,11 @@ Usuario Admin bs ws:
  "nombreUsuario": "Grupo02master",
   "contraseña": "Grupo02master"
 
+Usuario Supervisor WS:
+grupo02super
+Temp1234
+
+
 Usuarios de prueba: 
 
 Juan Pérez juanp1234 VENDEDOR Pass1234 </br>
