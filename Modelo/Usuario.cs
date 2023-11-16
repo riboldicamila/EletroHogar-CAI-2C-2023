@@ -6,48 +6,42 @@ namespace Modelo
     public abstract class Usuario
     {
         // Atributos privados
-        public int host { get; set; }
-        public string idUsuarioActual { get; set; }
-
-        public string nombre { get; set; }
-
-        public string apellido { get; set; }
-
+        public Guid Id { get; set; } = Guid.NewGuid();
+        private string nombre;
+        private string apellido;
         public string Direccion { get; set; }
         public string Telefono { get; set; }
         public string Email { get; set; }
         public DateTime? FechaNacimiento { get; set; }  // ? permite null
         public DateTime? FechaBaja { get; set; }  // ? permite null
-        public string NombreUsuario { get; set; }
+        private string username;
         public int DNI { get; set; }
-        public string contraseña { get; set; }
+        private string password;
+        private DateTime ultimoCambioPass;
+        private int intentosCambioPass;
+        private EstadoUsuario estado;
         private string nuevoPass;
+
 
 
         // Constructor
         public Usuario(UsuarioWS usuarioWS)
         {
-            this.idUsuarioActual = usuarioWS.idUsuario;
-            this.host= usuarioWS.host;
             this.nombre = usuarioWS.nombre;
             this.apellido = usuarioWS.apellido;
-            this.DNI = usuarioWS.dni;
-            this.Direccion = usuarioWS.direccion;
-            this.Telefono= usuarioWS.telefono;
-            this.Email = usuarioWS.email;
-            this.FechaNacimiento = usuarioWS.fechaNacimiento;
-            this.NombreUsuario = usuarioWS.nombreUsuario;
-            this.contraseña = usuarioWS.contraseña;
-  
+            this.Id = usuarioWS.id;
+            this.username = usuarioWS.usuario;
         }
-
         public Usuario(string nombre, string apellido, string username)
         {
             this.nombre = nombre;
             this.apellido = apellido;
-            this.NombreUsuario = username;
-            this.contraseña = GenerarPasswordTemporal();
-     
+            this.username = username;
+            this.password = GenerarPasswordTemporal();
+            this.ultimoCambioPass = DateTime.Now;
+            this.intentosCambioPass = 0;
+            this.estado = EstadoUsuario.INACTIVO;
+
         }
 
         // Propiedades

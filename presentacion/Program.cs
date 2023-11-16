@@ -77,22 +77,14 @@ namespace MyApp
 
         private void MostrarMenu(string idUsuarioActual)
         {
-            //con idUsuario
-            //get de usuarios con ws
-            //buscar usuario en la lista
-            //ver que host id tiene
+            //con idUsuario, get de usuarios con ws
+            //buscar usuario en la lista, ver que host id tiene
             //define el perfil para hacer al menu
             //metodo me devuelva un string con tipo de usuario
 
-            var usuarioActualTipo = "administrador";
+            string usuarioActualTipo = gestorUsuarios.TipoDeUsuarioLogin("0cdbc5a5-69d9-4ab8-8cb3-9932ce33f54a");
 
-            //var usuarioActualTipo= gestorUsuarios.TipoDeUsuarioLogin(idUsuario);
-            //Console.WriteLine("ACA en progreso logica nueva"+usuarioActualTipo);
-
-            //usuario actual no se usa mas
-
-            //var usuarioActual= gestorUsuarios.LogicaVieja();
-           
+            Console.WriteLine(usuarioActualTipo);
 
             Console.Clear();
             Console.WriteLine($"Menu de "+ usuarioActualTipo);
@@ -954,6 +946,8 @@ namespace MyApp
                 }
             }
         }
+
+
     }
 
 }

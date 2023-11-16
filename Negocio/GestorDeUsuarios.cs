@@ -63,30 +63,33 @@ namespace Negocio
 
         public string TipoDeUsuarioLogin(string idUsuario)
         {
+            //Guid.Parse(idUsuario);
 
             List<UsuarioWS> listadoUsarios = UsuarioDatos.ListarUsuarios();
             foreach (UsuarioWS usr in listadoUsarios)
             {
-                if (usr.idUsuario == idUsuario)
+                if (idUsuario == usr.id.ToString("D"))
                 {
-                    if (usr.host == 1)
-                    {
-                        return "vendedor";
-                    }
-                    else if (usr.host == 2)
-                    {
-                        return "supervisor";
-                    }
-                    else if (usr.host == 3)
-                    {
-                        return "administrador";
+                   
+                        if (usr.host == 1)
+                        {
+                            return "vendedor";
+                        }
+                        else if (usr.host == 2)
+                        {
+                            return "supervisor";
+                        }
+                        else if (usr.host == 3)
+                        {
+                            return "administrador";
 
-                    }
+                        }
 
+                    
                 }
             }
 
-            return "";
+            return "error";
 
         }
 
@@ -94,32 +97,33 @@ namespace Negocio
         string email, string idUsuarioActual, string nombreUsuario, DateTime fechaNacimiento)
         {
 
-            // Crear un objeto usuarioWS
-            var nuevoUsuarioWS = new UsuarioWS
-            {
-                idUsuario = "0cdbc5a5-69d9-4ab8-8cb3-9932ce33f54a",
-                host = host, //pasa segun opcion menu
-                nombre = nombre,
-                apellido = apellido,
-                dni = dni,
-                direccion = direccion,
-                telefono = telefono,
-                email = email,
-                fechaNacimiento = fechaNacimiento,
-                nombreUsuario = nombreUsuario,
-                contraseña = "Temp1234"
-            };
+            //// Crear un objeto usuarioWS
+            //var nuevoUsuarioWS = new UsuarioWS
+            //{
+            //    idUsuario = "0cdbc5a5-69d9-4ab8-8cb3-9932ce33f54a",
+            //    host = host, //pasa segun opcion menu
+            //    nombre = nombre,
+            //    apellido = apellido,
+            //    dni = dni,
+            //    direccion = direccion,
+            //    telefono = telefono,
+            //    email = email,
+            //    fechaNacimiento = fechaNacimiento,
+            //    nombreUsuario = nombreUsuario,
+            //    contraseña = "Temp1234"
+            //};
 
-            try
-            {
-                UsuarioDatos.AgregarUsuario(nuevoUsuarioWS);
+            //try
+            //{
+            //    UsuarioDatos.AgregarUsuario(nuevoUsuarioWS);
 
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
+            //    return true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    return false;
+            //}
+            return false;
         }
 
         public bool BajaUsuarios(string idUsuarioBaja, string idUsuario)
