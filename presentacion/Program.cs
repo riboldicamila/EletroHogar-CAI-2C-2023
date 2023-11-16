@@ -249,6 +249,7 @@ namespace MyApp
                 //Baja Supervisores
                 if (opcionSeleccionada == "3")
                 {
+                    BajaUsuarios(idUsuarioActual);
                     //Console.WriteLine("BAJA USUARIO SUPERVISOR");
                     //Console.WriteLine("Ingrese el nombre de usuario (username) del supervisor que desea dar de baja:");
                     //string username = Console.ReadLine();
@@ -354,8 +355,10 @@ namespace MyApp
                 }
 
                 //Baja Vendedores
-                if (opcionSeleccionada == "6")
+                if (opcionSeleccionada == "5")
                 {
+                    BajaUsuarios(idUsuarioActual);
+
                     //Console.WriteLine("BAJA USUARIO Vendedor");
                     //Console.WriteLine("Ingrese el nombre de usuario (username) del vendedor que desea dar de baja:");
                     //string username = Console.ReadLine();
@@ -388,6 +391,8 @@ namespace MyApp
 
                 if (opcionSeleccionada == "6")
                 {
+                    BajaUsuarios(idUsuarioActual);
+
                     //Console.WriteLine("BAJA USUARIO Vendedor");
                     //Console.WriteLine("Ingrese el nombre de usuario (username) del vendedor que desea dar de baja:");
                     //string username = Console.ReadLine();
@@ -903,6 +908,32 @@ namespace MyApp
             //se mandan parametors a gestor de clientes
             //metodo modificarCliente crea instancia clienteWS?
             //o hay que obtener primero el cliente guardado en la base?
+
+        }
+
+        private void BajaUsuarios(string idUsuarioActual)
+        {
+            Console.Clear();
+            Console.WriteLine("BAJA USUARIOS");
+
+            Console.Write("Ingrese el id del usuario que quiere dar de baja: ");
+            string idUsuarioBaja = Console.ReadLine();
+
+            bool bajaExitosa = gestorUsuarios.BajaUsuarios(idUsuarioBaja, idUsuarioActual);
+
+            if (bajaExitosa)
+            {
+                Console.WriteLine($"El usuario con ID {idUsuarioBaja} se encuentra Inactivo.");
+            }
+            else
+            {
+                Console.WriteLine("Error al deshabilitar el proveedor. Por favor, inténtelo de nuevo.");
+            }
+
+            Thread.Sleep(3000);
+            Console.Clear();
+
+
 
         }
 

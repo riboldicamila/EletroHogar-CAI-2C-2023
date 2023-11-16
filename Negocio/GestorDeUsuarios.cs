@@ -122,6 +122,20 @@ namespace Negocio
             }
         }
 
+        public bool BajaUsuarios(string idUsuarioBaja, string idUsuario)
+        {
+            try
+            {
+                UsuarioDatos.BorrarUsuario(idUsuarioBaja, "0cdbc5a5-69d9-4ab8-8cb3-9932ce33f54a");
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
 
         //public Usuario LogicaVieja(string username = "luism1234")
         //{
