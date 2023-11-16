@@ -157,7 +157,7 @@ namespace MyApp
                         {
                             Console.WriteLine("Ingrese el NOMBRE del usuario:");
                             nombre = Console.ReadLine();
-                            gestorUsuarios.ValidarNombre(nombre);
+                            Validaciones.ValidarNombre(nombre);
                             break;
                         }
                         catch (ArgumentException ex)
@@ -172,7 +172,7 @@ namespace MyApp
                         {
                             Console.WriteLine("Ingrese el APELLIDO del usuario:");
                             apellido = Console.ReadLine();
-                            gestorUsuarios.ValidarApellido(apellido);
+                            Validaciones.ValidarApellido(apellido);
                             break;
                         }
                         catch (ArgumentException ex)
@@ -187,7 +187,7 @@ namespace MyApp
                         {
                             Console.WriteLine("Ingrese el NOMBRE DE USUARIO/USERNAME del usuario:");
                             username = Console.ReadLine();
-                            gestorUsuarios.ValidarUsername(nombre, apellido, username);
+                            Validaciones.ValidarUsername(nombre, apellido, username);
                             break;
                         }
                         catch (ArgumentException ex)
@@ -294,7 +294,7 @@ namespace MyApp
                         {
                             Console.WriteLine("Ingrese el NOMBRE del usuario:");
                             nombre = Console.ReadLine();
-                            gestorUsuarios.ValidarNombre(nombre);
+                            Validaciones.ValidarNombre(nombre);
                             break;
                         }
                         catch (ArgumentException ex)
@@ -309,7 +309,7 @@ namespace MyApp
                         {
                             Console.WriteLine("Ingrese el APELLIDO del usuario:");
                             apellido = Console.ReadLine();
-                            gestorUsuarios.ValidarApellido(apellido);
+                            Validaciones.ValidarApellido(apellido);
                             break;
                         }
                         catch (ArgumentException ex)
@@ -324,7 +324,7 @@ namespace MyApp
                         {
                             Console.WriteLine("Ingrese el NOMBRE DE USUARIO/USERNAME del usuario:");
                             username = Console.ReadLine();
-                            gestorUsuarios.ValidarUsername(nombre, apellido, username);
+                            Validaciones.ValidarUsername(nombre, apellido, username);
                             break;
                         }
                         catch (ArgumentException ex)
@@ -880,13 +880,13 @@ namespace MyApp
                     Validaciones.ValidarTelefono(telefono);
                     break;
                 }
-                catch (ArgumentExeption ex)
+                catch (ArgumentException ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
             }
 
-            string email
+            string email;
 
             while (true)
             {
@@ -903,42 +903,42 @@ namespace MyApp
                 }
             }
 
-            int dni
-            string dni_entrada
+            int dni;
+            string dni_entrada;
 
             while (true)
             {
                 try
                 {
                     Console.WriteLine("Ingrese el DNI del usuario:");
-                    dni_entrada = (Console.ReadLine()
+                    dni_entrada = Console.ReadLine();
                     Validaciones.ValidarDni(dni_entrada);
                     dni = int.Parse(dni_entrada);
                     break;
                 }
                 catch (ArgumentException ex)
                 {
-                    Console.WriteLine(ex.Message)
+                    Console.WriteLine(ex.Message);
                 }
             }
 
 
-            string fecha
-            Datetime fechaNacimiento;
+            string fecha;
+            DateTime fechaNacimiento;
 
             while(true)
             {
                 try
                 {
                     Console.WriteLine("Ingrese la Fecha de Nacimiento del usuario (YYYY-MM-DD):");
-                    fecha = console.ReadLine();
+                    fecha = Console.ReadLine();
                     Validaciones.ValidarFecha(fecha);
                     fechaNacimiento = DateTime.Parse(fecha);
                     break;
                 }
                 catch (ArgumentException ex)
                 {
-                    Console.WriteLine(ex.Message)
+                    Console.WriteLine(ex.Message);
                 }
             }
 
