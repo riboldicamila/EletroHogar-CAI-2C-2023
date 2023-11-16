@@ -82,7 +82,8 @@ namespace MyApp
             //define el perfil para hacer al menu
             //metodo me devuelva un string con tipo de usuario
 
-            string usuarioActualTipo = gestorUsuarios.TipoDeUsuarioLogin("0cdbc5a5-69d9-4ab8-8cb3-9932ce33f54a");
+            idUsuarioActual = idUsuarioActual.Trim('"');
+            string usuarioActualTipo = gestorUsuarios.TipoDeUsuarioLogin(idUsuarioActual);
 
             Console.WriteLine(usuarioActualTipo);
 
