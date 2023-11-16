@@ -142,12 +142,6 @@ namespace Negocio
         }
 
 
-        //public Usuario LogicaVieja(string username = "luism1234")
-        //{
-        //    return usuarios.Find(u => u == username);
-        //}
-
-
         //private string GetPerfilType(Usuario usuario)
         //{
         //    if (usuario is Administrador) return "Administrador";
@@ -156,21 +150,6 @@ namespace Negocio
         //    return null;
         //}
 
-
-
-
-
-        //METODO0S VALIDACIONES movidos a VALIDACIONES
-        
-
-       
-
-        
-
-       
-        
-        
-       
         
         public bool EstablecerContraseña(Usuario usuario, string newPassword)
         {
@@ -198,21 +177,6 @@ namespace Negocio
             return true;
         }
 
-        public bool BajaUsuario(string nombre, string apellido, string username)
-        {
-
-            foreach (Usuario u in usuarios)
-            {
-                //if (u.Nombre == nombre && u.Apellido == apellido && u.Username == username)
-                //{
-
-                //    u.DeshabilitarUsuario();
-                //    break;
-                //}
-            }
-
-            return true;
-        }
 
         public List<Usuario> ObtenerTodosLosUsuarios()
         {

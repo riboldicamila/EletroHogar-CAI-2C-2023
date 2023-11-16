@@ -139,7 +139,6 @@ namespace MyApp
                 if (opcionSeleccionada == "1")
                 {
                     Console.WriteLine("GENERAR ALTA/NUEVO USUARIO SUPERVISOR");
-
                     RegistrarUsuarioSupervisor(idUsuarioActual);
 
                 }
@@ -148,41 +147,14 @@ namespace MyApp
                 //IMPLEMENTAR
                 if(opcionSeleccionada == "2")
                 {
+                    //HAY QUE IMPLEMENTAR LA MODIFICACION
 
                 }
 
                 //Baja Supervisores
                 if (opcionSeleccionada == "3")
                 {
-                    BajaUsuarios(idUsuarioActual);
-                    //Console.WriteLine("BAJA USUARIO SUPERVISOR");
-                    //Console.WriteLine("Ingrese el nombre de usuario (username) del supervisor que desea dar de baja:");
-                    //string username = Console.ReadLine();
-
-                    //Console.WriteLine();
-                    //Usuario usuarioAInhabilitar = gestorUsuarios.ObtenerTodosLosUsuarios().FirstOrDefault(u => u.Username == username && u is Supervisor);
-
-                    //if (usuarioAInhabilitar != null)
-                    //{
-                    //    if (gestorUsuarios.BajaUsuario(usuarioAInhabilitar.Nombre, usuarioAInhabilitar.Apellido, usuarioAInhabilitar.Username))
-                    //    {
-                    //        Console.WriteLine("Baja de usuario con éxito.");
-                    //        Console.WriteLine();
-                    //        Console.WriteLine("Lista de usuarios existentes, tras la baja del usuario: ");
-                    //        //ListaUsuariosActivos();
-                    //    }
-                    //    else
-                    //    {
-                    //        Console.WriteLine("Hubo un error al dar de baja el usuario supervisor. Por favor intente nuevamente.");
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    Console.WriteLine("El nombre de usuario ingresado no existe o no es de tipo supervisor.");
-
-                    //}
-                    //Console.WriteLine();
-                    //Thread.Sleep(4000);
+                    BajaUsuarios(idUsuarioActual, "SUPERVISOR");
                 }
 
                 //ALTA Vendedores
@@ -197,70 +169,13 @@ namespace MyApp
                 //Baja Vendedores
                 if (opcionSeleccionada == "5")
                 {
-                    BajaUsuarios(idUsuarioActual);
+                    BajaUsuarios(idUsuarioActual, "VENDEDOR");
 
-                    //Console.WriteLine("BAJA USUARIO Vendedor");
-                    //Console.WriteLine("Ingrese el nombre de usuario (username) del vendedor que desea dar de baja:");
-                    //string username = Console.ReadLine();
-
-                    //Console.WriteLine();
-                    //Usuario usuarioAInhabilitar = gestorUsuarios.ObtenerTodosLosUsuarios().FirstOrDefault(u => u.Username == username && u is Vendedor);
-
-                    //if (usuarioAInhabilitar != null)
-                    //{
-                    //    if (gestorUsuarios.BajaUsuario(usuarioAInhabilitar.Nombre, usuarioAInhabilitar.Apellido, usuarioAInhabilitar.Username))
-                    //    {
-                    //        Console.WriteLine("Baja de usuario con éxito.");
-                    //        Console.WriteLine();
-                    //        Console.WriteLine("Lista de usuarios existentes, tras la baja del usuario: ");
-                    //        //ListaUsuariosActivos();
-                    //    }
-                    //    else
-                    //    {
-                    //        Console.WriteLine("Hubo un error al dar de baja el usuario vendedor. Por favor intente nuevamente.");
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    Console.WriteLine("El nombre de usuario ingresado no existe o no es de tipo vendedor.");
-
-                    //}
-                    //Console.WriteLine();
-                    //Thread.Sleep(4000);
                 }
 
                 if (opcionSeleccionada == "6")
                 {
-                    BajaUsuarios(idUsuarioActual);
-
-                    //Console.WriteLine("BAJA USUARIO Vendedor");
-                    //Console.WriteLine("Ingrese el nombre de usuario (username) del vendedor que desea dar de baja:");
-                    //string username = Console.ReadLine();
-
-                    //Console.WriteLine();
-                    //Usuario usuarioAInhabilitar = gestorUsuarios.ObtenerTodosLosUsuarios().FirstOrDefault(u => u.Username == username && u is Vendedor);
-
-                    //if (usuarioAInhabilitar != null)
-                    //{
-                    //    if (gestorUsuarios.BajaUsuario(usuarioAInhabilitar.Nombre, usuarioAInhabilitar.Apellido, usuarioAInhabilitar.Username))
-                    //    {
-                    //        Console.WriteLine("Baja de usuario con éxito.");
-                    //        Console.WriteLine();
-                    //        Console.WriteLine("Lista de usuarios existentes, tras la baja del usuario: ");
-                    //        //ListaUsuariosActivos();
-                    //    }
-                    //    else
-                    //    {
-                    //        Console.WriteLine("Hubo un error al dar de baja el usuario vendedor. Por favor intente nuevamente.");
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    Console.WriteLine("El nombre de usuario ingresado no existe o no es de tipo vendedor.");
-
-                    //}
-                    //Console.WriteLine();
-                    //Thread.Sleep(4000);
+                    //NO SE QUE OPCION IBA
                 }
 
                 if (opcionSeleccionada == "7")
@@ -347,7 +262,7 @@ namespace MyApp
 
 
             Console.WriteLine("Cerrando sesión...");
-            Thread.Sleep(2000);
+            Thread.Sleep(8000);
             Console.Clear();
             Iniciar();
 
@@ -472,12 +387,12 @@ namespace MyApp
             {
                 Console.WriteLine($"Producto {nombre} agregado con éxito.");
                 ListarProveedores();
-                Thread.Sleep(3000);
+                Thread.Sleep(8000);
             }
             else
             {
                 Console.WriteLine("Error al agregar el producto. Por favor, inténtelo de nuevo.");
-                Thread.Sleep(3000);
+                Thread.Sleep(8000);
             }
         }
 
@@ -503,7 +418,7 @@ namespace MyApp
                 Console.WriteLine("Error al deshabilitar el producto. Por favor, inténtelo de nuevo.");
             }
 
-            Thread.Sleep(3000);
+            Thread.Sleep(8000);
             Console.Clear();
 
         }
@@ -551,12 +466,12 @@ namespace MyApp
             {
                 Console.WriteLine($"Proveedor {nombre} agregado con éxito.");
                 ListarProveedores();
-                Thread.Sleep(3000);
+                Thread.Sleep(8000);
             }
             else
             {
                 Console.WriteLine("Error al agregar el proveedor. Por favor, inténtelo de nuevo.");
-                Thread.Sleep(3000);
+                Thread.Sleep(8000);
             }
         }
 
@@ -600,7 +515,7 @@ namespace MyApp
                 Console.WriteLine("Error al deshabilitar el proveedor. Por favor, inténtelo de nuevo.");
             }
 
-            Thread.Sleep(3000);
+            Thread.Sleep(8000);
             Console.Clear();
         }
 
@@ -647,12 +562,12 @@ namespace MyApp
             if (gestorDeVentas.AgregarVenta(idCliente, idUsuarioActual, idProducto, cantidad))
             {
                 Console.WriteLine($"Venta de {idProducto} agregado con éxito.");
-                Thread.Sleep(3000);
+                Thread.Sleep(8000);
             }
             else
             {
                 Console.WriteLine("Error al agregar el venta. Por favor, inténtelo de nuevo.");
-                Thread.Sleep(3000);
+                Thread.Sleep(8000);
             }
 
         }
@@ -840,13 +755,15 @@ namespace MyApp
 
         }
 
-        private void BajaUsuarios(string idUsuarioActual)
+        private void BajaUsuarios(string idUsuarioActual, string tipoUsuario)
         {
             Console.Clear();
-            Console.WriteLine("BAJA USUARIOS");
+            Console.WriteLine("BAJA USUARIOS " + tipoUsuario);
 
             Console.Write("Ingrese el id del usuario que quiere dar de baja: ");
             string idUsuarioBaja = Console.ReadLine();
+
+            //HABRIA QUE LISTAR A USUARIOS
 
             bool bajaExitosa = gestorUsuarios.BajaUsuarios(idUsuarioBaja, idUsuarioActual);
 
@@ -859,7 +776,7 @@ namespace MyApp
                 Console.WriteLine("Error al deshabilitar el proveedor. Por favor, inténtelo de nuevo.");
             }
 
-            Thread.Sleep(3000);
+            Thread.Sleep(8000);
             Console.Clear();
 
 
