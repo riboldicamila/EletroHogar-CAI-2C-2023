@@ -90,7 +90,7 @@ namespace Negocio
                 }
             }
 
-            return "error";
+            return "";
 
         }
 
@@ -185,11 +185,13 @@ namespace Negocio
 
         }
 
-        //public List<Usuario> ObtenerUsuariosActivos()
-        //{
-        //    // Mostrar solo los nombres de usuarios que están en estado activo
-        //    return usuarios.Where(u => u.Estado == EstadoUsuario.ACTIVO).ToList();
-        //}
+        public List<UsuarioWS> ObtenerListadoDeUsuarios()
+        {
+            //  la lista de usuarios desde el webservice
+            List<UsuarioWS> listadoUsuarios = UsuarioDatos.ListarUsuarios();
+
+            return listadoUsuarios;
+        }
 
 
     }

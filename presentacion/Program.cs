@@ -3,6 +3,7 @@ using Modelo; //solo para usar PerfilUsuario, no deberiamos llamar nunca  a Usua
 using System.Timers;
 using System.Security.Cryptography.X509Certificates;
 using System;
+using System.Runtime.CompilerServices;
 
 namespace MyApp
 {
@@ -88,6 +89,7 @@ namespace MyApp
             Console.WriteLine(usuarioActualTipo);
 
             Console.Clear();
+            
             Console.WriteLine($"Menu de " + usuarioActualTipo);
 
 
@@ -760,6 +762,9 @@ namespace MyApp
             Console.Clear();
             Console.WriteLine("BAJA USUARIOS " + tipoUsuario);
 
+            //Listar usuarios, habria que filtrar por tipo de usuario
+            Console.WriteLine("Lista de usuario activos:");
+            MostrarListaDeUsuarios();
             Console.Write("Ingrese el id del usuario que quiere dar de baja: ");
             string idUsuarioBaja = Console.ReadLine();
 
@@ -799,6 +804,19 @@ namespace MyApp
                     Console.WriteLine(ex.Message);
                 }
             }
+        }
+
+        private List<UsuarioWS> MostrarListaDeUsuarios()
+        {
+            List<UsuarioWS> listadoUsuarios = gestorUsuarios.ObtenerListadoDeUsuarios();
+
+            // Mostrar el listado de usuarios utilizando ToString()
+            foreach (UsuarioWS usuario in listadoUsuarios)
+            {
+                Console.WriteLine(usuario.ToString());
+            }
+            return listadoUsuarios;
+
         }
 
         private void RegistrarUsuarioSupervisor(string idUsuarioActual)

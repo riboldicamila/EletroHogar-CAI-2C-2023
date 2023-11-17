@@ -10,6 +10,9 @@ namespace Modelo
 {
     public class UsuarioWS
     {
+        //WS se usa para deserilizar
+        //tiene todos los atributos de la response body del GET 
+
         private Guid _id;
         private string _nombre, _apellido, _usuario;
 
@@ -28,7 +31,7 @@ namespace Modelo
 
         public override string ToString()
         {
-            return string.Format("{nombre} - {apellido}.");
+            return  id + " " + nombre + " " + apellido;
         }
     }
 }
