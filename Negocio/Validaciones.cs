@@ -100,7 +100,9 @@ namespace Negocio
         public static void ValidarCuit(string cuit)
         {
             int salida;
-            if (string.IsNullOrEmpty(cuit) || !int.TryParse(cuit, out salida) || cuit.Length != 11 || int.Parse(cuit) < 0)
+            if (string.IsNullOrEmpty(cuit) 
+                //|| !int.TryParse(cuit, out salida) || cuit.Length != 11 || int.Parse(cuit) < 0
+                )
             {
                 throw new ArgumentException("El cuit debe ser un numero positivo de 11 digitos, sin espacios ni guiones. No puede estar vacío");
             }

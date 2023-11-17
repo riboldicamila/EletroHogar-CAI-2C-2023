@@ -381,6 +381,8 @@ namespace MyApp
             Console.WriteLine("Ingrese la categoría del producto:");
             int categoria = int.Parse(Console.ReadLine());
 
+            //OFRECER LISTA DE PROVEEDORES, en form
+
             Console.WriteLine("Ingrese el id del proveedor con el cuál lo desea relacionar:");
             string idProveedor = Console.ReadLine();
 
@@ -388,7 +390,8 @@ namespace MyApp
             if (gestorDeProductos.AgregarProducto(categoria, idUsuarioActual, idProveedor, nombre, precio, stock))
             {
                 Console.WriteLine($"Producto {nombre} agregado con éxito.");
-                ListarProveedores();
+                Console.WriteLine("LISTA DE PRODUCTOS EXISTENTES:");
+                ListarProductos();
                 Thread.Sleep(8000);
             }
             else
@@ -409,7 +412,7 @@ namespace MyApp
             Console.Write("Ingrese el id del producto que quiere dar de baja: ");
             string idProducto = Console.ReadLine();
 
-            bool bajaExitosa = gestorDeProveedores.BajaProveedor(idProducto, idUsuarioActual);
+            bool bajaExitosa = gestorDeProductos.BajaProductos(idProducto, idUsuarioActual);
 
             if (bajaExitosa)
             {

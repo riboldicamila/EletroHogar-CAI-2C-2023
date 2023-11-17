@@ -18,7 +18,7 @@ namespace Negocio
             decimal precio, int stock)
         {
 
-            // Crear un objeto ProveedoresWS
+            // Crear un objeto Productos WS (esta alreves que usuarios Ws)
             var nuevoProductoWS = new ProductosWS
             {
                 idCategoria = idCategoria,
