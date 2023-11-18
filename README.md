@@ -10,7 +10,7 @@ Usuario Admin bs ws:
 
 Usuario Supervisor WS:
 grupo02super
-Temp1234
+Nuevacontra1
 
 
 Usuarios de prueba: 
