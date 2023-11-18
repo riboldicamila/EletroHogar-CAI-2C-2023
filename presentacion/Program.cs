@@ -551,22 +551,31 @@ namespace MyApp
             Console.WriteLine("Ingrese el id del cliente:");
             string idCliente = Console.ReadLine();
 
-            Console.WriteLine("Ingrese el id del producto:");
-            string idProducto = Console.ReadLine();
-
-            Console.WriteLine("Ingrese la cantidad:");
-            int cantidad = int.Parse(Console.ReadLine());
-
-            if (gestorDeVentas.AgregarVenta(idCliente, idUsuarioActual, idProducto, cantidad))
+            while (true)
             {
-                Console.WriteLine($"Venta de {idProducto} agregado con éxito.");
-                Thread.Sleep(8000);
+
+                Console.WriteLine("Ingrese el id del producto:");
+                string idProducto = Console.ReadLine();
+
+                Console.WriteLine("Ingrese la cantidad:");
+                int cantidad = int.Parse(Console.ReadLine());
+
+                List<Ventas> lista= gestorDeVentas.AgregarAListaVenta(idUsuarioActual,idCliente, idProducto, cantidad);
+
+                Console.WriteLine("¿Desea agregar otro producto? S/N");
+                string respuesta= Console.ReadLine();
+
+                if(respuesta != "S")
+                {
+                    break;
+                }
+
+                gestorDeVentas.LlamarWSporProducto(lista);
             }
-            else
-            {
-                Console.WriteLine("Error al agregar el venta. Por favor, inténtelo de nuevo.");
-                Thread.Sleep(8000);
-            }
+
+
+
+
 
         }
 

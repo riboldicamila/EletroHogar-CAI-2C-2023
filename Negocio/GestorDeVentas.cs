@@ -10,23 +10,35 @@ namespace Negocio
 {
     public class GestorDeVentas
     {
-        public bool AgregarVenta(string idCliente, string idUsuarioActual, string idProducto, int cantidad)
+   
+
+        public List<Ventas> AgregarAListaVenta(string id, string idCliente, string idProducto, int cantidad)
+        {
+            List<Ventas> listaVentas = new List<Ventas>();
+            Ventas nuevaVenta = new Ventas(id, idCliente, idProducto, cantidad);
+            listaVentas.Add(nuevaVenta);
+            return listaVentas;
+
+        }
+
+        public void LlamarWSporProducto(List<Ventas> listaVentas)
+        {
+            foreach (Ventas venta in listaVentas)
+            {
+                AgregarProductoAVenta(venta);
+            }
+        }
+
+
+        public bool AgregarProductoAVenta(Ventas venta)
         {
             //ID USUARIO ES DE VENDEDOR, SE VALIDA SOLO SI SE ARREGLA EL LOGIN 
             // Crear un objeto VentasWS
             //Id cliente hardcodeado, mostrar lista de clientes o similar, mismo con producto
-            var nuevaVenta = new VentasWS
-            {
-                idCliente = "6d12f32b-44b7-48ed-9993-0f63b56c206c",
-                idUsuario= idUsuarioActual,
-                idProducto=idProducto,
-                cantidad=cantidad
-              
-            };
-
+     
             try
             {
-                VentasDatos.AgregarVenta(nuevaVenta);
+                VentasDatos.AgregarVenta(venta);
 
                 return true;
             }

@@ -10,19 +10,31 @@ namespace Modelo
 
     public class Ventas
     {
-        public string IdCliente { get; set; }
-        public string IdProducto { get; set; }
-        public int Cantidad { get; set; }
-        public DateTime FechaAlta { get; set; } = DateTime.Now;
-        public int Estado { get; set; }
-        public string IdUsuario { get; set; }
+        public string idCliente { get; set; }
+        public string idUsuario { get; set; }
+        public string idProducto { get; set; }
+        public int cantidad { get; set; }
 
+        public Ventas()
+        {
+
+        }
+
+        public Ventas(string idCliente, string idUsuario, string idProducto, int cantidad)
+        {
+            this.idCliente = idCliente;
+            this.idUsuario= idUsuario;
+            this.idProducto = idProducto;
+            this.cantidad = cantidad;
+
+        }
+   
         public Ventas(VentasWS ventasWS)
         {
-            this.IdCliente = ventasWS.idCliente;
-            this.IdUsuario = ventasWS.idUsuario;
-            this.IdProducto = ventasWS.idProducto;
-            this.Cantidad = ventasWS.cantidad;
+            this.idCliente = ventasWS.IdCliente;
+            this.idUsuario = ventasWS.IdUsuario;
+            this.idProducto = ventasWS.IdProducto;
+            this.cantidad = ventasWS.Cantidad;
 
         }
     }

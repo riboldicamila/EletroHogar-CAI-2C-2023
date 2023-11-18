@@ -8,10 +8,12 @@ namespace Modelo
 {
     public class VentasWS
     {
-        public string idCliente { get; set; }
-        public string idUsuario { get; set; }
-        public string idProducto { get; set; }
-        public int cantidad { get; set; }
+        public string IdCliente { get; set; }
+        public string IdProducto { get; set; }
+        public int Cantidad { get; set; }
+        public DateTime FechaAlta { get; set; } = DateTime.Now;
+        public int Estado { get; set; }
+        public string IdUsuario { get; set; }
 
         public VentasWS() { }
 

@@ -13,7 +13,7 @@ namespace AccesoDatos
     {
         //POST agregar venta
 
-        public static void AgregarVenta(VentasWS venta)
+        public static void AgregarVenta(Ventas venta)
         {
             var jsonRequest = JsonConvert.SerializeObject(venta);
             HttpResponseMessage response = WebHelper.Post("Venta/AgregarVenta", jsonRequest);
