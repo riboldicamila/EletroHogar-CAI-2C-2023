@@ -31,14 +31,16 @@ namespace MyApp
             Console.WriteLine("Bienvenido al sistema");
 
             string idUsuario;
+            string nombreUsuario;
+            string password;
 
             do
             {
                 Console.WriteLine("Ingrese su nombre de usuario:");
-                var nombreUsuario = Console.ReadLine();
+                nombreUsuario = Console.ReadLine();
 
                 Console.WriteLine("Ingrese su contraseña:");
-                var password = Console.ReadLine();
+                password = Console.ReadLine();
 
                 idUsuario = LoginMenu(gestorUsuarios, nombreUsuario, password);
 
@@ -64,7 +66,7 @@ namespace MyApp
 
             } while (idUsuario == "error" || idUsuario == "");
 
-            MostrarMenu(idUsuario);
+            MostrarMenu(idUsuario, nombreUsuario, password);
 
         }
 
@@ -76,7 +78,7 @@ namespace MyApp
         }
 
 
-        private void MostrarMenu(string idUsuarioActual)
+        private void MostrarMenu(string idUsuarioActual, string nombreUsuario, string password)
         {
             //con idUsuario, get de usuarios con ws
             //buscar usuario en la lista, ver que host id tiene
@@ -84,6 +86,16 @@ namespace MyApp
             //metodo me devuelva un string con tipo de usuario
 
             idUsuarioActual = idUsuarioActual.Trim('"');
+
+            if (password == "Temp1234")
+            {
+                Console.WriteLine("Debe cambiar su contraseña:");
+
+                SolicitarCambioDeContraseña(nombreUsuario, password);
+
+            }
+
+
             string usuarioActualTipo = gestorUsuarios.TipoDeUsuarioLogin(idUsuarioActual);
 
             Console.WriteLine(usuarioActualTipo);
@@ -308,20 +320,20 @@ namespace MyApp
 
         }
 
-        private void SolicitarCambioDeContraseña(Usuario usuarioActual)
+        private void SolicitarCambioDeContraseña(string nombreUsuario, string contraseña)
         {
             Console.WriteLine("Debe cambiar su contraseña.");
-            string nuevaContrasena;
             bool cambioExitoso = false;
+            string nuevaContraseña;
 
             while (!cambioExitoso)
             {
                 Console.WriteLine("Ingrese la nueva contraseña:");
-                nuevaContrasena = Console.ReadLine();
+                nuevaContraseña = Console.ReadLine();
 
                 try
                 {
-                    cambioExitoso = gestorUsuarios.EstablecerContraseña(usuarioActual, nuevaContrasena);
+                    cambioExitoso = gestorUsuarios.EstablecerContraseña(nombreUsuario, contraseña, nuevaContraseña);
                 }
                 catch (Exception ex)
                 {

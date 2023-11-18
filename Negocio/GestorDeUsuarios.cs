@@ -151,30 +151,39 @@ namespace Negocio
         //}
 
         
-        public bool EstablecerContraseña(Usuario usuario, string newPassword)
+        public bool EstablecerContraseña(string nombreDeUsuario, string contraseña, string newPassword)
         {
             if (!newPassword.Any(char.IsUpper) || !newPassword.Any(char.IsDigit))
             {
                 throw new ArgumentException("La contraseña debe contener al menos una letra mayúscula y un número.");
             }
 
-            //if (newPassword == usuario.Password)
-            //{
-            //    throw new InvalidOperationException("La nueva contraseña no puede ser igual a la anterior.");
-            //}
+            if (newPassword == contraseña)
+            {
+                throw new InvalidOperationException("La nueva contraseña no puede ser igual a la anterior.");
+            }
 
-            //if (newPassword.Length < 8 || newPassword.Length > 15)
-            //{
-            //    throw new ArgumentException("La contraseña debe tener entre 8 y 15 caracteres.");
-            //}
+            if (newPassword.Length < 8 || newPassword.Length > 15)
+            {
+                throw new ArgumentException("La contraseña debe tener entre 8 y 15 caracteres.");
+            }
 
-            //if (newPassword.ToUpper() == usuario.Username.ToUpper() || newPassword.ToUpper().Contains(usuario.Username.ToUpper()))
-            //{
-            //    throw new ArgumentException("La contraseña no debe contener el nombre de usuario.");
-            //}
+            if (newPassword.ToUpper() == nombreDeUsuario.ToUpper() || newPassword.ToUpper().Contains(nombreDeUsuario.ToUpper()))
+            {
+                throw new ArgumentException("La contraseña no debe contener el nombre de usuario.");
+            }
 
-            //usuario.SetPassword(newPassword);
-            return true;
+            try
+            {
+                UsuarioDatos.CambiarContraseña(nombreDeUsuario, contraseña, newPassword);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            
         }
 
 
@@ -192,6 +201,8 @@ namespace Negocio
 
             return listadoUsuarios;
         }
+
+       
 
 
     }
