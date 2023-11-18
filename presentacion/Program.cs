@@ -523,6 +523,7 @@ namespace MyApp
             {
                 Console.WriteLine(p.ToString());
             }
+            Console.WriteLine();
             Thread.Sleep(5000);
 
         }
@@ -536,8 +537,9 @@ namespace MyApp
             {
                 Console.WriteLine(p.ToString());
             }
-            Thread.Sleep(5000);
+            Console.WriteLine();
 
+            Thread.Sleep(5000);
         }
 
         private void RegistrarVenta(string idUsuarioActual)
