@@ -202,7 +202,20 @@ namespace Negocio
             return listadoUsuarios;
         }
 
-       
+        public List<UsuarioWS> ObtenerListadoDeUsuariosVendedores()
+        {
+            //  la lista de usuarios desde el webservice
+            List<UsuarioWS> listadoUsuarios = UsuarioDatos.ListarUsuarios();
+
+            // Filtrar la lista  solo los usuarios con usr.host == 1
+            List<UsuarioWS> usuariosVendedores = listadoUsuarios
+                .Where(usr => usr.host == 1)
+                .ToList();
+
+            return usuariosVendedores;
+        }
+
+
 
 
     }

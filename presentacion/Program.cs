@@ -89,8 +89,6 @@ namespace MyApp
 
             if (password == "Temp1234")
             {
-                Console.WriteLine("Debe cambiar su contraseña:");
-
                 SolicitarCambioDeContraseña(nombreUsuario, password);
 
             }
@@ -285,7 +283,6 @@ namespace MyApp
 
         //EXTRACCIÓN DE METODOS PARA MANTENER ORDEN 
 
-
         private static string LoginMenu(GestorDeUsuarios gestorDeUsuarios, string nombreUsuario, string contraseña)
         {
 
@@ -340,24 +337,6 @@ namespace MyApp
                     Console.WriteLine(ex.Message);
                 }
             }
-        }
-
-        private void DevolverListaConTodosUsuarios()
-        {
-            //var todosLosUsuarios = gestorUsuarios.ObtenerTodosLosUsuarios();
-            //foreach (var usuario in todosLosUsuarios)
-            //{
-            //    Console.WriteLine(usuario.Username);
-            //}
-        }
-
-        private void ListaUsuariosActivos()
-        {
-            //var usuariosActivos = gestorUsuarios.ObtenerUsuariosActivos();
-            //foreach (var usuario in usuariosActivos)
-            //{
-            //    //Console.WriteLine(usuario.Username);
-            //}
         }
 
         private void ModificarProducto()
@@ -779,7 +758,7 @@ namespace MyApp
 
             //Listar usuarios, habria que filtrar por tipo de usuario
             Console.WriteLine("Lista de usuario activos:");
-            MostrarListaDeUsuarios();
+            ListarTodosLosUsuarios();
             Console.Write("Ingrese el id del usuario que quiere dar de baja: ");
             string idUsuarioBaja = Console.ReadLine();
 
@@ -821,7 +800,7 @@ namespace MyApp
             }
         }
 
-        private List<UsuarioWS> MostrarListaDeUsuarios()
+        private void ListarTodosLosUsuarios()
         {
             List<UsuarioWS> listadoUsuarios = gestorUsuarios.ObtenerListadoDeUsuarios();
 
@@ -830,8 +809,18 @@ namespace MyApp
             {
                 Console.WriteLine(usuario.ToString());
             }
-            return listadoUsuarios;
+            Console.WriteLine();
+        }
 
+        private void ListarUsuariosVendedores()
+        {
+            List<UsuarioWS> listadoUsuarios = gestorUsuarios.ObtenerListadoDeUsuariosVendedores();
+
+            foreach (UsuarioWS usuario in listadoUsuarios)
+            {
+                Console.WriteLine(usuario.ToString());
+            }
+            Console.WriteLine();
         }
 
         private void RegistrarUsuarioSupervisor(string idUsuarioActual)
@@ -990,7 +979,7 @@ namespace MyApp
 
             Console.WriteLine();
             Console.WriteLine("Lista de usuarios existentes: ");
-            DevolverListaConTodosUsuarios();
+            ListarTodosLosUsuarios();
             Console.WriteLine();
             Console.WriteLine();
 
@@ -1151,7 +1140,7 @@ namespace MyApp
 
             Console.WriteLine();
             Console.WriteLine("Lista de usuarios existentes: ");
-            DevolverListaConTodosUsuarios();
+            ListarTodosLosUsuarios();
 
             Console.WriteLine();
             Console.WriteLine();
