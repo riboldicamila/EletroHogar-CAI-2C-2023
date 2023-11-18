@@ -124,10 +124,10 @@ namespace MyApp
             else if (usuarioActualTipo == "administrador")
             {
                 Console.WriteLine("1. Alta de usuarios Supervisores");
-                Console.WriteLine("2. Modificación de usuarios Supervisores");
+                Console.WriteLine("2. Reactivar usuarios Supervisores");
                 Console.WriteLine("3. Baja de usuarios Supervisores");
                 Console.WriteLine("4. Alta de usuarios Vendedores");
-                Console.WriteLine("5. Modificación de usuarios Vendedores");
+                Console.WriteLine("5. Reactivar usuarios Vendedores");
                 Console.WriteLine("6. Baja de usuarios Vendedores");
                 Console.WriteLine("7. Alta de Proveedores");
                 Console.WriteLine("8. Modificación de Proveedores");
@@ -156,10 +156,9 @@ namespace MyApp
                 }
 
                 //Modificacion de Usuarios Supervisores
-                //IMPLEMENTAR
                 if(opcionSeleccionada == "2")
                 {
-                    //HAY QUE IMPLEMENTAR LA MODIFICACION
+                    ReactivarUsuario(idUsuarioActual);
 
                 }
 
@@ -178,16 +177,17 @@ namespace MyApp
 
                 }
 
-                //Baja Vendedores
                 if (opcionSeleccionada == "5")
                 {
-                    BajaUsuarios(idUsuarioActual, "VENDEDOR");
+                    ReactivarUsuario(idUsuarioActual);
 
                 }
 
                 if (opcionSeleccionada == "6")
                 {
-                    //NO SE QUE OPCION IBA
+                    //VENDEDOR
+                    BajaUsuarios(idUsuarioActual, "VENDEDOR");
+                 
                 }
 
                 if (opcionSeleccionada == "7")
@@ -823,6 +823,27 @@ namespace MyApp
                 Console.WriteLine(usuario.ToString());
             }
             Console.WriteLine();
+        }
+
+        private void ReactivarUsuario(string idUsuarioActual)
+        {
+            Console.WriteLine("Ingrese el id del usuario que desea reactivar:");
+            string idReactivar = Console.ReadLine();
+
+            bool reactivadoExitoso = gestorUsuarios.BajaUsuarios(idReactivar, idUsuarioActual);
+
+            if (reactivadoExitoso)
+            {
+                Console.WriteLine($"El usuario con ID {idReactivar} se encuentra Activo.");
+            }
+            else
+            {
+                Console.WriteLine("Error al rehabilitar usuario. Por favor, inténtelo de nuevo.");
+            }
+
+            Thread.Sleep(8000);
+            Console.Clear();
+
         }
 
         private void RegistrarUsuarioSupervisor(string idUsuarioActual)

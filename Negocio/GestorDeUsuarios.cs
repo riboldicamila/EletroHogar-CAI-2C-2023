@@ -141,6 +141,20 @@ namespace Negocio
             }
         }
 
+        public bool ReactivarUsuario (string idUsuarioReactivar, string idUsuarioActual)
+        {
+            try
+            {
+                UsuarioDatos.ReactivarUsuario(idUsuarioReactivar, idUsuarioActual);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
 
         //private string GetPerfilType(Usuario usuario)
         //{
@@ -150,7 +164,7 @@ namespace Negocio
         //    return null;
         //}
 
-        
+
         public bool EstablecerContraseña(string nombreDeUsuario, string contraseña, string newPassword)
         {
             if (!newPassword.Any(char.IsUpper) || !newPassword.Any(char.IsDigit))
