@@ -66,6 +66,9 @@
             lblDNI = new Label();
             lblFechaNac = new Label();
             lblDireccion = new Label();
+            btnRegistrar = new Button();
+            grpRegistrar = new GroupBox();
+            grpRegistrar.SuspendLayout();
             SuspendLayout();
             // 
             // rdoAltaSup
@@ -288,7 +291,7 @@
             // lblNombre
             // 
             lblNombre.AutoSize = true;
-            lblNombre.Location = new Point(358, 24);
+            lblNombre.Location = new Point(14, 4);
             lblNombre.Name = "lblNombre";
             lblNombre.Size = new Size(51, 15);
             lblNombre.TabIndex = 13;
@@ -297,7 +300,7 @@
             // lblApellido
             // 
             lblApellido.AutoSize = true;
-            lblApellido.Location = new Point(492, 24);
+            lblApellido.Location = new Point(148, 4);
             lblApellido.Name = "lblApellido";
             lblApellido.Size = new Size(51, 15);
             lblApellido.TabIndex = 14;
@@ -305,14 +308,14 @@
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(358, 42);
+            txtNombre.Location = new Point(14, 22);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(100, 23);
             txtNombre.TabIndex = 15;
             // 
             // txtApellido
             // 
-            txtApellido.Location = new Point(492, 42);
+            txtApellido.Location = new Point(148, 22);
             txtApellido.Name = "txtApellido";
             txtApellido.Size = new Size(100, 23);
             txtApellido.TabIndex = 16;
@@ -320,7 +323,7 @@
             // lblUsername
             // 
             lblUsername.AutoSize = true;
-            lblUsername.Location = new Point(618, 24);
+            lblUsername.Location = new Point(274, 4);
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(59, 15);
             lblUsername.TabIndex = 17;
@@ -328,42 +331,42 @@
             // 
             // txtUsername
             // 
-            txtUsername.Location = new Point(618, 42);
+            txtUsername.Location = new Point(274, 22);
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(100, 23);
             txtUsername.TabIndex = 18;
             // 
             // txtDireccion
             // 
-            txtDireccion.Location = new Point(358, 109);
+            txtDireccion.Location = new Point(14, 89);
             txtDireccion.Name = "txtDireccion";
             txtDireccion.Size = new Size(100, 23);
             txtDireccion.TabIndex = 19;
             // 
             // txtTelefono
             // 
-            txtTelefono.Location = new Point(492, 109);
+            txtTelefono.Location = new Point(148, 89);
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(100, 23);
             txtTelefono.TabIndex = 20;
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(618, 109);
+            txtEmail.Location = new Point(274, 89);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(100, 23);
             txtEmail.TabIndex = 21;
             // 
             // txtDni
             // 
-            txtDni.Location = new Point(358, 163);
+            txtDni.Location = new Point(14, 143);
             txtDni.Name = "txtDni";
             txtDni.Size = new Size(100, 23);
             txtDni.TabIndex = 22;
             // 
             // txtFechaNac
             // 
-            txtFechaNac.Location = new Point(492, 163);
+            txtFechaNac.Location = new Point(148, 143);
             txtFechaNac.Name = "txtFechaNac";
             txtFechaNac.Size = new Size(100, 23);
             txtFechaNac.TabIndex = 23;
@@ -371,7 +374,7 @@
             // lblTelefono
             // 
             lblTelefono.AutoSize = true;
-            lblTelefono.Location = new Point(492, 90);
+            lblTelefono.Location = new Point(148, 70);
             lblTelefono.Name = "lblTelefono";
             lblTelefono.Size = new Size(52, 15);
             lblTelefono.TabIndex = 24;
@@ -380,7 +383,7 @@
             // lblEmail
             // 
             lblEmail.AutoSize = true;
-            lblEmail.Location = new Point(618, 90);
+            lblEmail.Location = new Point(274, 70);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(36, 15);
             lblEmail.TabIndex = 25;
@@ -389,7 +392,7 @@
             // lblDNI
             // 
             lblDNI.AutoSize = true;
-            lblDNI.Location = new Point(358, 145);
+            lblDNI.Location = new Point(14, 125);
             lblDNI.Name = "lblDNI";
             lblDNI.Size = new Size(27, 15);
             lblDNI.TabIndex = 26;
@@ -398,7 +401,7 @@
             // lblFechaNac
             // 
             lblFechaNac.AutoSize = true;
-            lblFechaNac.Location = new Point(492, 145);
+            lblFechaNac.Location = new Point(148, 125);
             lblFechaNac.Name = "lblFechaNac";
             lblFechaNac.Size = new Size(119, 15);
             lblFechaNac.TabIndex = 27;
@@ -407,33 +410,53 @@
             // lblDireccion
             // 
             lblDireccion.AutoSize = true;
-            lblDireccion.Location = new Point(358, 90);
+            lblDireccion.Location = new Point(14, 70);
             lblDireccion.Name = "lblDireccion";
             lblDireccion.Size = new Size(57, 15);
             lblDireccion.TabIndex = 28;
             lblDireccion.Text = "Direccion";
+            // 
+            // btnRegistrar
+            // 
+            btnRegistrar.Location = new Point(299, 143);
+            btnRegistrar.Name = "btnRegistrar";
+            btnRegistrar.Size = new Size(75, 23);
+            btnRegistrar.TabIndex = 29;
+            btnRegistrar.Text = "Registrar";
+            btnRegistrar.UseVisualStyleBackColor = true;
+            btnRegistrar.Click += btnRegistrar_Click;
+            // 
+            // grpRegistrar
+            // 
+            grpRegistrar.Controls.Add(btnRegistrar);
+            grpRegistrar.Controls.Add(lblDireccion);
+            grpRegistrar.Controls.Add(lblFechaNac);
+            grpRegistrar.Controls.Add(lblDNI);
+            grpRegistrar.Controls.Add(lblEmail);
+            grpRegistrar.Controls.Add(lblTelefono);
+            grpRegistrar.Controls.Add(txtFechaNac);
+            grpRegistrar.Controls.Add(txtDni);
+            grpRegistrar.Controls.Add(txtEmail);
+            grpRegistrar.Controls.Add(txtTelefono);
+            grpRegistrar.Controls.Add(txtDireccion);
+            grpRegistrar.Controls.Add(txtUsername);
+            grpRegistrar.Controls.Add(lblUsername);
+            grpRegistrar.Controls.Add(txtApellido);
+            grpRegistrar.Controls.Add(txtNombre);
+            grpRegistrar.Controls.Add(lblApellido);
+            grpRegistrar.Controls.Add(lblNombre);
+            grpRegistrar.Location = new Point(356, 25);
+            grpRegistrar.Name = "grpRegistrar";
+            grpRegistrar.Size = new Size(400, 182);
+            grpRegistrar.TabIndex = 30;
+            grpRegistrar.TabStop = false;
             // 
             // MenuAdministrador
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 581);
-            Controls.Add(lblDireccion);
-            Controls.Add(lblFechaNac);
-            Controls.Add(lblDNI);
-            Controls.Add(lblEmail);
-            Controls.Add(lblTelefono);
-            Controls.Add(txtFechaNac);
-            Controls.Add(txtDni);
-            Controls.Add(txtEmail);
-            Controls.Add(txtTelefono);
-            Controls.Add(txtDireccion);
-            Controls.Add(txtUsername);
-            Controls.Add(lblUsername);
-            Controls.Add(txtApellido);
-            Controls.Add(txtNombre);
-            Controls.Add(lblApellido);
-            Controls.Add(lblNombre);
+            Controls.Add(grpRegistrar);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -458,6 +481,8 @@
             Controls.Add(rdoAltaSup);
             Name = "MenuAdministrador";
             Text = "MenuAdministrador";
+            grpRegistrar.ResumeLayout(false);
+            grpRegistrar.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -505,5 +530,7 @@
         private Label lblDNI;
         private Label lblFechaNac;
         private Label lblDireccion;
+        private Button btnRegistrar;
+        private GroupBox grpRegistrar;
     }
 }

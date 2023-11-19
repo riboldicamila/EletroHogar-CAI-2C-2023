@@ -17,8 +17,9 @@ namespace Formulario
         public MenuAdministrador()
         {
             InitializeComponent();
-
+            OcultarCampos();
         }
+        int host;
         private GestorDeUsuarios gestorUsuarios = new GestorDeUsuarios();
         //private void btnSeleccion_Click(object sender, EventArgs e)
         //{
@@ -28,7 +29,9 @@ namespace Formulario
         {
             if (rdoAltaSup.Checked)
             {
-                RegistrarUsuarioSupervisor(FormLogin.id);
+                MostrarCampos();
+                host = 2;
+
             }
             else if (rdoBajaSup.Checked)
             {
@@ -40,7 +43,8 @@ namespace Formulario
             }
             else if (rdoAltaVend.Checked)
             {
-                //Alta Vendedores
+                MostrarCampos();
+                host = 1;
             }
             else if (rdoBajaVend.Checked)
             {
@@ -89,7 +93,7 @@ namespace Formulario
             else MessageBox.Show("Seleccione una opcion");
         }
 
-        private void RegistrarUsuarioSupervisor(string idUsuario)
+        private void RegistrarUsuario(string idUsuario)
         {
 
             string nombre;
@@ -230,7 +234,7 @@ namespace Formulario
                     MessageBox.Show(ex.Message);
                 }
             }
-            bool response = gestorUsuarios.AgregarUsuario(nombre, 2, dni, direccion, telefono,
+            bool response = gestorUsuarios.AgregarUsuario(nombre, host, dni, direccion, telefono,
                        apellido, email, FormLogin.id, username, fechaNacimiento);
 
             if (!response)
@@ -242,51 +246,38 @@ namespace Formulario
                 MessageBox.Show("Usuario supervisor agregado con éxito.");
             }
 
-            
-            Console.WriteLine("Lista de usuarios existentes: ");
-            ListarTodosLosUsuarios();
-            Console.WriteLine();
-            Console.WriteLine();
+
+
 
         }
 
         public void MostrarCampos()
         {
-            lblNombre.Show();
-            lblApellido.Show();
-            lblUsername.Show();
-            lblDireccion.Show();
-            lblDNI.Show();
-            lblEmail.Show();
-            lblFechaNac.Show();
-            lblTelefono.Show();
-            txtApellido.Show();
-            txtNombre.Show();
-            txtUsername.Show();
-            txtDireccion.Show();
-            txtDni.Show();
-            txtEmail.Show();
-            txtFechaNac.Show();
-            txtTelefono.Show();
+            grpRegistrar.Show();
+           
         }
         public void OcultarCampos()
         {
-            lblNombre.Hide();
-            lblApellido.Hide();
-            lblUsername.Hide();
-            lblDireccion.Hide();
-            lblDNI.Hide();
-            lblEmail.Hide();
-            lblFechaNac.Hide();
-            lblTelefono.Hide();
-            txtApellido.Hide();
-            txtNombre.Hide();
-            txtUsername.Hide();
-            txtDireccion.Hide();
-            txtDni.Hide();
-            txtEmail.Hide();
-            txtFechaNac.Hide();
-            txtTelefono.Hide();
+            grpRegistrar.Hide();
+            
+        }
+
+        //Adaptar a formulario
+        private void ListarTodosLosUsuarios()
+        {
+            List<UsuarioWS> listadoUsuarios = gestorUsuarios.ObtenerListadoDeUsuarios();
+
+            // Mostrar el listado de usuarios utilizando ToString()
+            foreach (UsuarioWS usuario in listadoUsuarios)
+            {
+                Console.WriteLine(usuario.ToString());
+            }
+            Console.WriteLine();
+        }
+
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            RegistrarUsuario(FormLogin.id);
         }
     }
 }
