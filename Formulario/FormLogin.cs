@@ -239,7 +239,7 @@ namespace Formulario
             Console.WriteLine("Cerrando sesión...");
             Thread.Sleep(8000);
             Console.Clear();
-            Iniciar();
+            //Iniciar();
 
         }
         

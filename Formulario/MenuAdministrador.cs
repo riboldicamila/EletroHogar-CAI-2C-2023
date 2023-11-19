@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Formulario
 {
-    public partial class Form2 : Form
+    public partial class MenuAdministrador : Form
     {
-        public Form2()
+        public MenuAdministrador()
         {
             InitializeComponent();
         }
