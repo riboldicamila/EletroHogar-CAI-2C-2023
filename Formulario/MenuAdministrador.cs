@@ -69,7 +69,19 @@ namespace Formulario
             {
                 //Baja Producto
             }
-
+            else if (rdoReporteVentas.Checked)
+            {
+                //Reporte de Ventas por Vendedor
+            }
+            else if (rdoReporteStock.Checked)
+            {
+                //reporte stock critico
+            }
+            else if (rdoReporteProductos.Checked)
+            {
+                //reporte productos mas vendidos por categoria
+            }
+            else MessageBox.Show("Seleccione una opcion");
 
 
         }
