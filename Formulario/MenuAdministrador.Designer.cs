@@ -50,6 +50,22 @@
             label3 = new Label();
             label4 = new Label();
             label5 = new Label();
+            lblNombre = new Label();
+            lblApellido = new Label();
+            txtNombre = new TextBox();
+            txtApellido = new TextBox();
+            lblUsername = new Label();
+            txtUsername = new TextBox();
+            txtDireccion = new TextBox();
+            txtTelefono = new TextBox();
+            txtEmail = new TextBox();
+            txtDni = new TextBox();
+            txtFechaNac = new TextBox();
+            lblTelefono = new Label();
+            lblEmail = new Label();
+            lblDNI = new Label();
+            lblFechaNac = new Label();
+            lblDireccion = new Label();
             SuspendLayout();
             // 
             // rdoAltaSup
@@ -241,7 +257,6 @@
             label2.Size = new Size(68, 15);
             label2.TabIndex = 8;
             label2.Text = "Vendedores";
-            label2.Click += label2_Click;
             // 
             // label3
             // 
@@ -270,11 +285,155 @@
             label5.TabIndex = 11;
             label5.Text = "Reportes";
             // 
+            // lblNombre
+            // 
+            lblNombre.AutoSize = true;
+            lblNombre.Location = new Point(358, 24);
+            lblNombre.Name = "lblNombre";
+            lblNombre.Size = new Size(51, 15);
+            lblNombre.TabIndex = 13;
+            lblNombre.Text = "Nombre";
+            // 
+            // lblApellido
+            // 
+            lblApellido.AutoSize = true;
+            lblApellido.Location = new Point(492, 24);
+            lblApellido.Name = "lblApellido";
+            lblApellido.Size = new Size(51, 15);
+            lblApellido.TabIndex = 14;
+            lblApellido.Text = "Apellido";
+            // 
+            // txtNombre
+            // 
+            txtNombre.Location = new Point(358, 42);
+            txtNombre.Name = "txtNombre";
+            txtNombre.Size = new Size(100, 23);
+            txtNombre.TabIndex = 15;
+            // 
+            // txtApellido
+            // 
+            txtApellido.Location = new Point(492, 42);
+            txtApellido.Name = "txtApellido";
+            txtApellido.Size = new Size(100, 23);
+            txtApellido.TabIndex = 16;
+            // 
+            // lblUsername
+            // 
+            lblUsername.AutoSize = true;
+            lblUsername.Location = new Point(618, 24);
+            lblUsername.Name = "lblUsername";
+            lblUsername.Size = new Size(59, 15);
+            lblUsername.TabIndex = 17;
+            lblUsername.Text = "username";
+            // 
+            // txtUsername
+            // 
+            txtUsername.Location = new Point(618, 42);
+            txtUsername.Name = "txtUsername";
+            txtUsername.Size = new Size(100, 23);
+            txtUsername.TabIndex = 18;
+            // 
+            // txtDireccion
+            // 
+            txtDireccion.Location = new Point(358, 109);
+            txtDireccion.Name = "txtDireccion";
+            txtDireccion.Size = new Size(100, 23);
+            txtDireccion.TabIndex = 19;
+            // 
+            // txtTelefono
+            // 
+            txtTelefono.Location = new Point(492, 109);
+            txtTelefono.Name = "txtTelefono";
+            txtTelefono.Size = new Size(100, 23);
+            txtTelefono.TabIndex = 20;
+            // 
+            // txtEmail
+            // 
+            txtEmail.Location = new Point(618, 109);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(100, 23);
+            txtEmail.TabIndex = 21;
+            // 
+            // txtDni
+            // 
+            txtDni.Location = new Point(358, 163);
+            txtDni.Name = "txtDni";
+            txtDni.Size = new Size(100, 23);
+            txtDni.TabIndex = 22;
+            // 
+            // txtFechaNac
+            // 
+            txtFechaNac.Location = new Point(492, 163);
+            txtFechaNac.Name = "txtFechaNac";
+            txtFechaNac.Size = new Size(100, 23);
+            txtFechaNac.TabIndex = 23;
+            // 
+            // lblTelefono
+            // 
+            lblTelefono.AutoSize = true;
+            lblTelefono.Location = new Point(492, 90);
+            lblTelefono.Name = "lblTelefono";
+            lblTelefono.Size = new Size(52, 15);
+            lblTelefono.TabIndex = 24;
+            lblTelefono.Text = "Telefono";
+            // 
+            // lblEmail
+            // 
+            lblEmail.AutoSize = true;
+            lblEmail.Location = new Point(618, 90);
+            lblEmail.Name = "lblEmail";
+            lblEmail.Size = new Size(36, 15);
+            lblEmail.TabIndex = 25;
+            lblEmail.Text = "Email";
+            // 
+            // lblDNI
+            // 
+            lblDNI.AutoSize = true;
+            lblDNI.Location = new Point(358, 145);
+            lblDNI.Name = "lblDNI";
+            lblDNI.Size = new Size(27, 15);
+            lblDNI.TabIndex = 26;
+            lblDNI.Text = "DNI";
+            // 
+            // lblFechaNac
+            // 
+            lblFechaNac.AutoSize = true;
+            lblFechaNac.Location = new Point(492, 145);
+            lblFechaNac.Name = "lblFechaNac";
+            lblFechaNac.Size = new Size(119, 15);
+            lblFechaNac.TabIndex = 27;
+            lblFechaNac.Text = "Fecha de Nacimiento";
+            // 
+            // lblDireccion
+            // 
+            lblDireccion.AutoSize = true;
+            lblDireccion.Location = new Point(358, 90);
+            lblDireccion.Name = "lblDireccion";
+            lblDireccion.Size = new Size(57, 15);
+            lblDireccion.TabIndex = 28;
+            lblDireccion.Text = "Direccion";
+            // 
             // MenuAdministrador
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 581);
+            Controls.Add(lblDireccion);
+            Controls.Add(lblFechaNac);
+            Controls.Add(lblDNI);
+            Controls.Add(lblEmail);
+            Controls.Add(lblTelefono);
+            Controls.Add(txtFechaNac);
+            Controls.Add(txtDni);
+            Controls.Add(txtEmail);
+            Controls.Add(txtTelefono);
+            Controls.Add(txtDireccion);
+            Controls.Add(txtUsername);
+            Controls.Add(lblUsername);
+            Controls.Add(txtApellido);
+            Controls.Add(txtNombre);
+            Controls.Add(lblApellido);
+            Controls.Add(lblNombre);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -330,5 +489,21 @@
         private Label label3;
         private Label label4;
         private Label label5;
+        private Label lblNombre;
+        private Label lblApellido;
+        private TextBox txtNombre;
+        private TextBox txtApellido;
+        private Label lblUsername;
+        private TextBox txtUsername;
+        private TextBox txtDireccion;
+        private TextBox txtTelefono;
+        private TextBox txtEmail;
+        private TextBox txtDni;
+        private TextBox txtFechaNac;
+        private Label lblTelefono;
+        private Label lblEmail;
+        private Label lblDNI;
+        private Label lblFechaNac;
+        private Label lblDireccion;
     }
 }

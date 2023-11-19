@@ -14,6 +14,7 @@ namespace Formulario
 {
     public partial class FormLogin : Form
     {
+        public static string id = "";
         public FormLogin()
         {
             InitializeComponent();
@@ -52,6 +53,7 @@ namespace Formulario
             {
                 string idUsuario = gestorDeUsuarios.Login(login);
                 MessageBox.Show("Login exitoso. El idUusario es " + idUsuario);
+                id = idUsuario;
                 gestorDeUsuarios.LimpiarListaDeControl(nombreUsuario);
                 return idUsuario;
 
