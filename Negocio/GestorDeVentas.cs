@@ -10,23 +10,26 @@ namespace Negocio
 {
     public class GestorDeVentas
     {
-   
 
-        public List<Ventas> AgregarAListaVenta(string id, string idCliente, string idProducto, int cantidad)
+
+        public void AgregarAListaVenta(List<Ventas> listaVentas, string id, string idCliente, string idProducto, int cantidad)
         {
-            List<Ventas> listaVentas = new List<Ventas>();
             Ventas nuevaVenta = new Ventas(id, idCliente, idProducto, cantidad);
             listaVentas.Add(nuevaVenta);
-            return listaVentas;
 
         }
 
-        public void LlamarWSporProducto(List<Ventas> listaVentas)
+        public bool LlamarWSporProducto(List<Ventas> listaVentas)
         {
             foreach (Ventas venta in listaVentas)
             {
-                AgregarProductoAVenta(venta);
+                bool response = AgregarProductoAVenta(venta);
+                if (!response)
+                {
+                    return false;
+                }
             }
+            return true;
         }
 
 

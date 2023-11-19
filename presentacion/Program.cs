@@ -105,7 +105,7 @@ namespace MyApp
 
             if (usuarioActualTipo == "vendedor")
             {
-                Console.WriteLine("1. Venta");
+                Console.WriteLine("1. Agregar una Venta");
                 Console.WriteLine("2. Reporte de ventas por vendedor");
                 Console.WriteLine("3. Agregar Cliente");
                 Console.WriteLine("4. Salir");
@@ -544,39 +544,56 @@ namespace MyApp
 
         private void RegistrarVenta(string idUsuarioActual)
         {
-
             Console.Clear();
-            Console.WriteLine("AGREGAR VENTA");
+            Console.WriteLine("AGREGAR UNA VENTA");
 
             Console.WriteLine("Ingrese el id del cliente:");
+            Console.WriteLine();
+            Console.WriteLine("LISTA DE CLIENTES:");
+
             string idCliente = Console.ReadLine();
+            List<Ventas> lista = new List<Ventas>();
 
             while (true)
             {
-
                 Console.WriteLine("Ingrese el id del producto:");
+                Console.WriteLine();
+                Console.WriteLine("LISTA DE PRODUCTOS:");
                 string idProducto = Console.ReadLine();
 
                 Console.WriteLine("Ingrese la cantidad:");
-                int cantidad = int.Parse(Console.ReadLine());
+                int cantidad;
 
-                List<Ventas> lista= gestorDeVentas.AgregarAListaVenta(idUsuarioActual,idCliente, idProducto, cantidad);
+                while (!int.TryParse(Console.ReadLine(), out cantidad))
+                {
+                    Console.WriteLine("Por favor, ingrese un valor numérico válido para la cantidad:");
+                }
+
+                gestorDeVentas.AgregarAListaVenta(lista, idUsuarioActual, idCliente, idProducto, cantidad);
 
                 Console.WriteLine("¿Desea agregar otro producto? S/N");
-                string respuesta= Console.ReadLine();
+                string respuesta = Console.ReadLine();
 
-                if(respuesta != "S")
+                if (respuesta != "S" || respuesta != "s")
                 {
                     break;
                 }
-
-                gestorDeVentas.LlamarWSporProducto(lista);
             }
 
+            bool response;
+            response = gestorDeVentas.LlamarWSporProducto(lista);
 
+            if (!response)
+            {
+                Console.WriteLine("Error al agregar venta.");
+            }
+            else
+            {
+                Console.WriteLine("Resumen de la venta:");
+                //con datos de la lista local
+                //mostrar el descuento aca tambien
 
-
-
+            }
         }
 
         private void ReporteVentas() { }
