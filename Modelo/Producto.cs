@@ -9,36 +9,40 @@ namespace Modelo
 {
     public class Producto
     {
-        public Guid Id { get; set; }
-        public int IdCategoria { get; set; }
-        public string Nombre { get; set; }
-        public DateTime FechaAlta { get; set; }
-        public DateTime? FechaBaja { get; set; }
-        public decimal Precio { get; set; }
-        public int Stock { get; set; }
+        public string id { get; set; }
+        public int idCategoria { get; set; }
+        public string nombre { get; set; }
+        public DateTime fechaAlta { get; set; }
+        public DateTime? fechaBaja { get; set; }
+        public decimal precio { get; set; }
+        public int stock { get; set; }
         public string IdUsuario { get; set; }
         public string IdProveedor { get; set; }
 
-        //CONSTRUCTOR
-        public Producto(string nombre, decimal precio, int stock, int idCategoria)
+        public Producto()
         {
-            Id = Guid.NewGuid(); // Generar un nuevo Id
-            IdCategoria = idCategoria;
-            Nombre = nombre;
-            FechaAlta = DateTime.Now; // Establecer la fecha de alta de hoy
-            Precio = precio;
-            Stock = stock;
-            // La propiedad FechaBaja se inicializa como null 
-            //IdUsuario = id
-            //IdProveedor = 
+        }
+
+        //CONSTRUCTOR, NO ME LO TOMA EL JSON. hice todos con constructor vacio por default
+        //[JsonConstructor]
+        public Producto(string id, int idCategoria, string nombre, DateTime fechaAlta, DateTime fechaBaja, decimal precio, int stock)
+        {
+            this.id = id;
+            this.idCategoria = idCategoria;
+            this.nombre= nombre;
+            this.fechaAlta = fechaAlta;
+            this.fechaBaja = fechaBaja;
+            this.precio = precio;
+            this.stock=stock;
+          
         }
 
         public Producto(ProductosWS productoWS)
         {
-            IdCategoria = productoWS.idCategoria;
-            Nombre = productoWS.nombre;
-            Precio = productoWS.precio;
-            Stock = productoWS.stock;
+            idCategoria = productoWS.idCategoria;
+            nombre = productoWS.nombre;
+            precio = productoWS.precio;
+            stock = productoWS.stock;
             IdUsuario = productoWS.idUsuario;
             IdProveedor = productoWS.idProveedor;
         }
@@ -46,7 +50,7 @@ namespace Modelo
         //necesita este para traer y mostrar LISTA
         public override string ToString()
         {
-            return Nombre + " " + IdUsuario;
+            return id + " " + nombre;
         }
 
 

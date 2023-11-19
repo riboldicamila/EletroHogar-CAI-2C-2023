@@ -341,8 +341,8 @@ namespace MyApp
         private void ModificarProducto()
 
         {
-            ListarProductos();
             Console.WriteLine("MODIFICACIÓN DE PRODUCTO");
+            ListarProductos();
 
             Console.WriteLine("Ingrese el nombre del producto que desea modificar:");
             string nombreProducto = Console.ReadLine();
@@ -372,8 +372,9 @@ namespace MyApp
             int categoria = int.Parse(Console.ReadLine());
 
             //OFRECER LISTA DE PROVEEDORES, en form
-
             Console.WriteLine("Ingrese el id del proveedor con el cuál lo desea relacionar:");
+            ListarProveedores();
+
             string idProveedor = Console.ReadLine();
 
 
@@ -382,7 +383,7 @@ namespace MyApp
                 Console.WriteLine($"Producto {nombre} agregado con éxito.");
                 Console.WriteLine("LISTA DE PRODUCTOS EXISTENTES:");
                 ListarProductos();
-                Thread.Sleep(8000);
+                Thread.Sleep(5000);
             }
             else
             {
@@ -407,6 +408,8 @@ namespace MyApp
             if (bajaExitosa)
             {
                 Console.WriteLine($"El producto con ID {idProducto} se encuentra ha dado de baja.");
+                ListarProductos();
+
             }
             else
             {
@@ -504,6 +507,7 @@ namespace MyApp
             if (bajaExitosa)
             {
                 Console.WriteLine($"El proveedor con ID {idProveedor} se encuentra Inactivo.");
+                ListarProveedores();
             }
             else
             {
@@ -516,6 +520,7 @@ namespace MyApp
 
         private void ListarProveedores()
         {
+            Console.WriteLine();
             Console.WriteLine("Listado de Proveedores:");
             List<Proveedor> proveedores = gestorDeProveedores.ListarProveedores();
             foreach (Proveedor p in proveedores)
@@ -523,26 +528,27 @@ namespace MyApp
                 Console.WriteLine(p.ToString());
             }
             Console.WriteLine();
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
 
         }
 
         private void ListarProductos()
         {
-            //REVISAR TEMA CLASE CON DESERILIZACION
+            Console.WriteLine();
             Console.WriteLine("Listado de Productos:");
-            List<ProductosWS> productos = gestorDeProductos.TraerProductos();
-            foreach (ProductosWS p in productos)
+            List<Producto> productos = gestorDeProductos.TraerProductos();
+            foreach (Producto p in productos)
             {
                 Console.WriteLine(p.ToString());
             }
             Console.WriteLine();
 
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
         }
 
         private void ListarClientes()
         {
+            Console.WriteLine();
             Console.WriteLine("Listado de Clientes:");
             List<Cliente> cliente = gestorDeClientes.ListarClientes();
             foreach (Cliente c in cliente)

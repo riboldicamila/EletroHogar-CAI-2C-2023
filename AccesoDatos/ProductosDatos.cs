@@ -26,7 +26,7 @@ namespace AccesoDatos
 
         //GET con traer
 
-        public static List<ProductosWS> TraerProductos()
+        public static List<Producto> TraerProductos()
         {
             HttpResponseMessage response = WebHelper.Get("Producto/TraerProductos");
 
@@ -38,7 +38,7 @@ namespace AccesoDatos
             {
 
                 var contentStream = response.Content.ReadAsStringAsync().Result;
-                List<ProductosWS> listadoProductos = JsonConvert.DeserializeObject<List<ProductosWS>>(contentStream);
+                List<Producto> listadoProductos = JsonConvert.DeserializeObject<List<Producto>>(contentStream);
 
                 return listadoProductos;
             }

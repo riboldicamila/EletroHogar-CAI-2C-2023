@@ -56,7 +56,7 @@ namespace Negocio
         }
 
     
-        public List<ProductosWS> TraerProductos()
+        public List<Producto> TraerProductos()
         {
             return ProductosDatos.TraerProductos();
         }

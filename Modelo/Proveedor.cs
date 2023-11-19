@@ -22,6 +22,8 @@ namespace Modelo
             // Constructor por defecto requerido para la deserialización
         }
 
+        //CONSTRUCTOR, NO ME LO TOMA EL JSON. hice todos con constructor vacio por default
+        //[JsonConstructor]
         public Proveedor(string id, string nombre, string apellido, string email, string cuit, DateTime fechaAlta, DateTime? fechaBaja)
         {
             Id = id;

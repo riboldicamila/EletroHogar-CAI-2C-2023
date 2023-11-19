@@ -40,6 +40,8 @@ namespace Modelo
             // Constructor para la deserialización
         }
 
+        //CONSTRUCTOR, NO ME LO TOMA EL JSON. hice todos con constructor vacio por default
+        //[JsonConstructor]
         public Cliente(string id, string nombre, string apellido, int dni, string direccion, string telefono, string email, DateTime fechaNacimiento, 
             DateTime fechaAlta, DateTime fechaBaja, string host)
         {
