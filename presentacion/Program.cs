@@ -850,7 +850,6 @@ namespace MyApp
             if (modificacionExitosa)
             {
                 Console.WriteLine($"El cliente con ID {idCliente} se ha modificado.");
-                ListarProveedores();
             }
             else
             {
