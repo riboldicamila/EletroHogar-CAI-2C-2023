@@ -12,6 +12,10 @@ Usuario Supervisor WS:
 grupo02super
 Nuevacontra1
 
+Usuario Vendedor WS:
+Vendedorgdos
+Nuevacontra1
+
 
 Usuarios de prueba: 
 
