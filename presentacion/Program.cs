@@ -107,7 +107,9 @@ namespace MyApp
                 Console.WriteLine("1. Agregar una Venta");
                 Console.WriteLine("2. Reporte de ventas por vendedor");
                 Console.WriteLine("3. Agregar/Registrar Cliente");
-                Console.WriteLine("4. Salir");
+                Console.WriteLine("4. Modificar Cliente");
+                Console.WriteLine("5. Salir");
+
             }
             else if (usuarioActualTipo == "supervisor")
             {
@@ -244,6 +246,7 @@ namespace MyApp
                 {
                     DevolverVentas(idUsuarioActual);
                 }
+
             }
 
 
@@ -271,11 +274,9 @@ namespace MyApp
 
             }
 
+            Thread.Sleep(1000);
+            MostrarMenu(idUsuarioActual, nombreUsuario, password);
 
-            Console.WriteLine("Cerrando sesión...");
-            Thread.Sleep(8000);
-            Console.Clear();
-            Iniciar();
 
         }
 
