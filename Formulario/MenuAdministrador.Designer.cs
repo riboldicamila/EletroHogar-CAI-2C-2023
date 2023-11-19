@@ -45,13 +45,14 @@
             rdoReactivarProv = new RadioButton();
             rdoAltaProv = new RadioButton();
             grpProductos = new GroupBox();
-            radioButton10 = new RadioButton();
+            rdoBajaProd = new RadioButton();
             rdoModificarProd = new RadioButton();
             rdoAltaProd = new RadioButton();
             grpReportes = new GroupBox();
-            radioButton13 = new RadioButton();
-            radioButton14 = new RadioButton();
-            radioButton15 = new RadioButton();
+            rdoReporteVentas = new RadioButton();
+            rdoReporteStock = new RadioButton();
+            rdoReporteProductos = new RadioButton();
+            rdoBajaProd = new RadioButton();
             grpSupervisores.SuspendLayout();
             grpVendedores.SuspendLayout();
             grpProveedores.SuspendLayout();
@@ -196,26 +197,16 @@
             // 
             // grpProductos
             // 
-            grpProductos.Controls.Add(radioButton10);
+            grpProductos.Controls.Add(rdoBajaProd);
             grpProductos.Controls.Add(rdoModificarProd);
             grpProductos.Controls.Add(rdoAltaProd);
+            grpProductos.Controls.Add(rdoBajaProd);
             grpProductos.Location = new Point(31, 342);
             grpProductos.Name = "grpProductos";
             grpProductos.Size = new Size(200, 101);
             grpProductos.TabIndex = 3;
             grpProductos.TabStop = false;
             grpProductos.Text = "Productos";
-            // 
-            // radioButton10
-            // 
-            radioButton10.AutoSize = true;
-            radioButton10.Location = new Point(6, 72);
-            radioButton10.Name = "radioButton10";
-            radioButton10.Size = new Size(47, 19);
-            radioButton10.TabIndex = 2;
-            radioButton10.TabStop = true;
-            radioButton10.Text = "Baja";
-            radioButton10.UseVisualStyleBackColor = true;
             // 
             // rdoModificarProd
             // 
@@ -241,49 +232,15 @@
             // 
             // grpReportes
             // 
-            grpReportes.Controls.Add(radioButton13);
-            grpReportes.Controls.Add(radioButton14);
-            grpReportes.Controls.Add(radioButton15);
+            grpReportes.Controls.Add(rdoReporteVentas);
+            grpReportes.Controls.Add(rdoReporteStock);
+            grpReportes.Controls.Add(rdoReporteProductos);
             grpReportes.Location = new Point(31, 449);
             grpReportes.Name = "grpReportes";
             grpReportes.Size = new Size(200, 101);
             grpReportes.TabIndex = 4;
             grpReportes.TabStop = false;
             grpReportes.Text = "Reportes";
-            // 
-            // radioButton13
-            // 
-            radioButton13.AutoSize = true;
-            radioButton13.Location = new Point(6, 72);
-            radioButton13.Name = "radioButton13";
-            radioButton13.Size = new Size(100, 19);
-            radioButton13.TabIndex = 2;
-            radioButton13.TabStop = true;
-            radioButton13.Text = "radioButton13";
-            radioButton13.UseVisualStyleBackColor = true;
-            // 
-            // radioButton14
-            // 
-            radioButton14.AutoSize = true;
-            radioButton14.Location = new Point(6, 47);
-            radioButton14.Name = "radioButton14";
-            radioButton14.Size = new Size(100, 19);
-            radioButton14.TabIndex = 1;
-            radioButton14.TabStop = true;
-            radioButton14.Text = "radioButton14";
-            radioButton14.UseVisualStyleBackColor = true;
-            // 
-            // radioButton15
-            // 
-            radioButton15.AutoSize = true;
-            radioButton15.Location = new Point(6, 22);
-            radioButton15.Name = "radioButton15";
-            radioButton15.Size = new Size(100, 19);
-            radioButton15.TabIndex = 0;
-            radioButton15.TabStop = true;
-            radioButton15.Text = "radioButton15";
-            radioButton15.UseVisualStyleBackColor = true;
-            // 
             // MenuAdministrador
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -327,12 +284,13 @@
         private RadioButton rdoReactivarProv;
         private RadioButton rdoAltaProv;
         private GroupBox grpProductos;
-        private RadioButton radioButton10;
+        private RadioButton rdoBajaProd;
         private RadioButton rdoModificarProd;
         private RadioButton rdoAltaProd;
         private GroupBox grpReportes;
-        private RadioButton radioButton13;
-        private RadioButton radioButton14;
-        private RadioButton radioButton15;
+        private RadioButton rdoReporteVentas;
+        private RadioButton rdoReporteStock;
+        private RadioButton rdoReporteProductos;
+
     }
 }
