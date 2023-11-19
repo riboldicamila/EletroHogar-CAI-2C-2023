@@ -25,11 +25,16 @@ namespace Formulario
         private GestorDeProveedores gestorDeProveedores = new GestorDeProveedores();
         private GestorDeVentas gestorDeVentas = new GestorDeVentas();
         private GestorDeClientes gestorDeClientes = new GestorDeClientes();
+        private MenuSupervisor menuSupervisor = new MenuSupervisor();
+        private MenuAdministrador menuAdministrador = new MenuAdministrador();
+        private MenuVendedor menuVendedor = new MenuVendedor();
 
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
             idUsuario = LoginMenu(gestorUsuarios, txtUsername.Text, txtPassword.Text);
+
+            MostrarMenu(idUsuario, txtUsername.Text, txtPassword.Text);
             
 
 
@@ -90,155 +95,36 @@ namespace Formulario
 
             string usuarioActualTipo = gestorUsuarios.TipoDeUsuarioLogin(idUsuarioActual);
 
-            MessageBox.Show(usuarioActualTipo);
+            //MessageBox.Show(usuarioActualTipo);
 
-            Console.Clear();
 
-            
+
+
             if (usuarioActualTipo == "vendedor")
             {
-                new MenuVendedor();
+                menuVendedor = new MenuVendedor();
+                menuVendedor.Show();
             }
             else if (usuarioActualTipo == "supervisor")
             {
-                new MenuSupervisor();
+                menuSupervisor= new MenuSupervisor();
+                menuSupervisor.Show();
             }
-            else new MenuAdministrador();
+            else
+            {
+                menuAdministrador = new MenuAdministrador();
+                menuAdministrador.Show();
+            }
+
 
 
             //Modificar segun acciones de botón
             // Se haria en el codigo de cada formulario específico
-            if (usuarioActualTipo == "administrador")
-            {
-                //Alta Usuarios Supervisores
-                if (opcionSeleccionada == "1")
-                {
-                    Console.WriteLine("GENERAR ALTA/NUEVO USUARIO SUPERVISOR");
-                    RegistrarUsuarioSupervisor(idUsuarioActual);
+           
 
-                }
-
-                //Modificacion de Usuarios Supervisores
-                if (opcionSeleccionada == "2")
-                {
-                    ReactivarUsuario(idUsuarioActual);
-
-                }
-
-                //Baja Supervisores
-                if (opcionSeleccionada == "3")
-                {
-                    BajaUsuarios(idUsuarioActual, "SUPERVISOR");
-                }
-
-                //ALTA Vendedores
-                if (opcionSeleccionada == "4")
-                {
-
-                    Console.WriteLine("GENERAR ALTA/NUEVO USUARIO VENDEDORES");
-                    RegistrarUsuarioVendedor(idUsuarioActual);
-
-                }
-
-                if (opcionSeleccionada == "5")
-                {
-                    ReactivarUsuario(idUsuarioActual);
-
-                }
-
-                if (opcionSeleccionada == "6")
-                {
-                    //VENDEDOR
-                    BajaUsuarios(idUsuarioActual, "VENDEDOR");
-
-                }
-
-                if (opcionSeleccionada == "7")
-                {
-                    AltaProveedores(idUsuarioActual);
-                }
-
-                if (opcionSeleccionada == "8")
-                {
-                    //NO ESTA IMPLEMENTADO
-                    ModificacionProveedores();
-                }
-
-                if (opcionSeleccionada == "9")
-                {
-
-                    BajaProveedores(idUsuarioActual);
-                }
-
-                if (opcionSeleccionada == "10")
-                {
-                    AltaProducto(idUsuarioActual);
-                }
-
-                if (opcionSeleccionada == "11")
-                {
-                    ModificarProducto();
-                }
-
-                if (opcionSeleccionada == "12")
-                {
-                    BajaProducto(idUsuarioActual);
-                }
-            }
-
-
-            if (usuarioActualTipo == "supervisor")
-            {
-                if (opcionSeleccionada == "1")
-                {
-                    AltaProducto(idUsuarioActual);
-                }
-
-                if (opcionSeleccionada == "2")
-                {
-                    ModificarProducto();
-                }
-
-                if (opcionSeleccionada == "3")
-                {
-                    BajaProducto(idUsuarioActual);
-                }
-
-                if (opcionSeleccionada == "4")
-                {
-                    DevolverVentas(idUsuarioActual);
-                }
-            }
-
-
-            if (usuarioActualTipo == "vendedor")
-            {
-                if (opcionSeleccionada == "1")
-                {
-                    RegistrarVenta(idUsuarioActual);
-                }
-
-                if (opcionSeleccionada == "2")
-                {
-                    ReporteVentas();
-                }
-
-                if (opcionSeleccionada == "3")
-                {
-                    RegistrarCliente(idUsuarioActual);
-                }
-
-                if (opcionSeleccionada == "4")
-                {
-                    ModificarCliente(idUsuarioActual);
-                }
-
-            }
-
-
-            Console.WriteLine("Cerrando sesión...");
-            Thread.Sleep(8000);
-            Console.Clear();
+            //Console.WriteLine("Cerrando sesión...");
+            //Thread.Sleep(8000);
+            //Console.Clear();
             //Iniciar();
 
         }

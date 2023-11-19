@@ -16,5 +16,41 @@ namespace Formulario
         {
             InitializeComponent();
         }
+
+        
+
+        private void btnSeleccion_Click(object sender, EventArgs e)
+        {
+            
+            if (rdoAltaProductos.Checked)
+            {
+                //Alta Productos
+            }
+            else if (rdoBajaProd.Checked)
+            {
+                //bAJA Productos
+            }
+            else if (rdoModificarProd.Checked)
+            {
+                //Modificar Producto
+            }
+            else if (rdoDevolucion.Checked)
+            {
+                //Devoluciones
+            }
+            else if (rdoReporteStock.Checked)
+            {
+                //reporte stock
+            }
+            else if (rdoReporteVentas.Checked)
+            {
+                //reporte ventas
+            }
+            else if (rdoReporteProductos.Checked)
+            {
+                //reporte productos
+            }
+            else MessageBox.Show("Seleccione una opcion");
+        }
     }
 }
