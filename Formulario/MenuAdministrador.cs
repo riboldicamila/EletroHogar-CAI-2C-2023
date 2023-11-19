@@ -19,7 +19,14 @@ namespace Formulario
             InitializeComponent();
         }
 
-        private void btnSeleccion_Click(object sender, EventArgs e)
+        //private void btnSeleccion_Click(object sender, EventArgs e)
+        //{
+
+
+
+        //}
+
+        private void btnSeleccion_Click_1(object sender, EventArgs e)
         {
             if (rdoAltaSup.Checked)
             {
@@ -82,7 +89,10 @@ namespace Formulario
                 //reporte productos mas vendidos por categoria
             }
             else MessageBox.Show("Seleccione una opcion");
+        }
 
+        private void label2_Click(object sender, EventArgs e)
+        {
 
         }
     }
