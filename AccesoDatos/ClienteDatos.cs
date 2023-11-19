@@ -48,14 +48,25 @@ namespace AccesoDatos
 
         //patch
 
-        public static void ModificacionCliente(ClienteWS cliente)
+        public static void ModificacionCliente (string id, string direccion, string telefono, string email)
         {
-            var jsonRequest = JsonConvert.SerializeObject(cliente);
-            HttpResponseMessage response = WebHelper.Patch("Cliente/PatchCliente", jsonRequest);
-
-            if (!response.IsSuccessStatusCode)
+            try
             {
-                throw new Exception("Verifique los datos ingresados");
+                Dictionary<String, String> dict = new Dictionary<String, String>();
+                dict.Add("id", id);
+                dict.Add("direccion", direccion);
+                dict.Add("telefono", telefono);
+                dict.Add("email", email);
+
+
+                var jsonRequest = JsonConvert.SerializeObject(dict);
+
+                HttpResponseMessage response = WebHelper.Patch("/Cliente/PatchCliente", jsonRequest);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Verifique los datos ingresados, error al modificar.");
             }
         }
 
