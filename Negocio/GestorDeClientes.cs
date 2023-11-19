@@ -10,7 +10,7 @@ namespace Negocio
 {
     public class GestorDeClientes
     {
-        public bool AgregarCliente(string nombre, int host, int dni, string direccion, string telefono, string apellido,
+        public bool AgregarCliente(string nombre, string host, int dni, string direccion, string telefono, string apellido,
         string email, string idUsuarioActual, DateTime fechaNacimiento)
         {
 
@@ -25,7 +25,7 @@ namespace Negocio
                 telefono = telefono,
                 email = email,
                 fechaNacimiento = fechaNacimiento,
-                host = host.ToString(), //pasa segun opcion menu
+                host = host, //pasa segun opcion menu
             };
 
             try
@@ -44,6 +44,21 @@ namespace Negocio
         {
             return ClienteDatos.DevolverClientes();
         }
+
+        public bool ModificacionCliente(string id, string direccion, string telefono, string email)
+        {
+            try
+            {
+                ClienteDatos.ModificacionCliente(id, direccion, telefono, email);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
 
     }
 

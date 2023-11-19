@@ -106,7 +106,7 @@ namespace MyApp
             {
                 Console.WriteLine("1. Agregar una Venta");
                 Console.WriteLine("2. Reporte de ventas por vendedor");
-                Console.WriteLine("3. Agregar Cliente");
+                Console.WriteLine("3. Agregar/Registrar Cliente");
                 Console.WriteLine("4. Salir");
             }
             else if (usuarioActualTipo == "supervisor")
@@ -266,7 +266,7 @@ namespace MyApp
 
                 if (opcionSeleccionada == "4")
                 {
-                    ModificarCliente(idUsuarioActual);
+                    ModificarCliente();
                 }
 
             }
@@ -568,6 +568,7 @@ namespace MyApp
             Console.WriteLine("LISTA DE CLIENTES:");
             ListarClientes();
 
+            Console.WriteLine("Ingrese el id del cliente:");
             string idCliente = Console.ReadLine();
             List<Ventas> lista = new List<Ventas>();
 
@@ -773,7 +774,7 @@ namespace MyApp
 
             //DUDA SI ES 3 POR EL TIPO DE USUARIO
 
-            if (gestorDeClientes.AgregarCliente(nombre, 3, dni, direccion, telefono, apellido, email, idUsuarioActual, fechaNacimiento))
+            if (gestorDeClientes.AgregarCliente(nombre, "Grupo2", dni, direccion, telefono, apellido, email, idUsuarioActual, fechaNacimiento))
             {
                 Console.WriteLine($"Cliente {nombre} agregado con éxito.");
                 Thread.Sleep(3000);
@@ -785,16 +786,80 @@ namespace MyApp
             }
         }
 
-        private void ModificarCliente(string idUsuarioActual)
+        private void ModificarCliente()
         {
+            //se puede mejorar, obliga modificar todos los campos
             Console.Clear();
             Console.WriteLine("MODIFICAR CLIENTE");
+            ListarClientes();
+            Console.WriteLine("Ingrese el Id del cliente a modificar:");
+            string idCliente = Console.ReadLine();
 
-            //consulta de como hacer el put 
-            //preguntar que campo desea modificar
-            //se mandan parametors a gestor de clientes
-            //metodo modificarCliente crea instancia clienteWS?
-            //o hay que obtener primero el cliente guardado en la base?
+            string direccion;
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese la Dirección física del usuario:");
+                    direccion = Console.ReadLine();
+                    Validaciones.ValidarDireccion(direccion);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            string telefono;
+
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el Teléfono del usuario:");
+                    telefono = Console.ReadLine();
+                    Validaciones.ValidarTelefono(telefono);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            string email;
+
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el Correo Electrónico del usuario:");
+                    email = Console.ReadLine();
+                    Validaciones.ValidarEmail(email);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            bool modificacionExitosa = gestorDeClientes.ModificacionCliente(idCliente,direccion,telefono,email);
+
+            if (modificacionExitosa)
+            {
+                Console.WriteLine($"El cliente con ID {idCliente} se ha modificado.");
+            }
+            else
+            {
+                Console.WriteLine("Error al deshabilitar el proveedor. Por favor, inténtelo de nuevo.");
+            }
+
+            Thread.Sleep(8000);
+            Console.Clear();
+
+
 
         }
 
