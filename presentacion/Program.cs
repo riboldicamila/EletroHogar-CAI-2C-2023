@@ -575,10 +575,10 @@ namespace MyApp
 
             while (true)
             {
-                Console.WriteLine("Ingrese el id del producto:");
                 Console.WriteLine();
                 Console.WriteLine("LISTA DE PRODUCTOS:");
                 ListarProductos();
+                Console.WriteLine("Ingrese el id del producto:");
                 string idProducto = Console.ReadLine();
 
                 Console.WriteLine("Ingrese la cantidad:");
@@ -622,7 +622,7 @@ namespace MyApp
         private void DevolverVentas(string idUsuarioActual)
         {
             Console.Clear();
-            Console.WriteLine("DEVOLVER VENTA");
+            Console.WriteLine("DEVOLVER VENTA (producto de una venta)");
             Console.WriteLine("LISTA DE VENTAS EXISTENTES:");
             //
             Console.WriteLine();

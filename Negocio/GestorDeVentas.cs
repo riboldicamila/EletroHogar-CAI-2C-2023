@@ -14,7 +14,7 @@ namespace Negocio
 
         public void AgregarAListaVenta(List<Ventas> listaVentas, string id, string idCliente, string idProducto, int cantidad)
         {
-            Ventas nuevaVenta = new Ventas(id, idCliente, idProducto, cantidad);
+            Ventas nuevaVenta = new Ventas(idCliente, id, idProducto, cantidad);
             listaVentas.Add(nuevaVenta);
 
         }
