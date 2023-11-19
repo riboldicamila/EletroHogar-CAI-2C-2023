@@ -25,7 +25,7 @@ namespace Negocio
                 telefono = telefono,
                 email = email,
                 fechaNacimiento = fechaNacimiento,
-                host = host, //pasa segun opcion menu
+                host = host.ToString(), //pasa segun opcion menu
             };
 
             try
@@ -40,6 +40,10 @@ namespace Negocio
             }
         }
 
+        public List<Cliente> ListarClientes()
+        {
+            return ClienteDatos.DevolverClientes();
+        }
 
     }
 

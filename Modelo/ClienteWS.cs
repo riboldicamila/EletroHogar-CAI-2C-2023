@@ -16,7 +16,7 @@ namespace Modelo
         public string telefono { get; set; }
         public string email { get; set; }
         public DateTime fechaNacimiento { get; set; }
-        public int host { get; set; }
+        public string host { get; set; }
 
         public ClienteWS() { }
     }

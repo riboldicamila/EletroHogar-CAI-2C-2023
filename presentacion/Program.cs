@@ -93,7 +93,6 @@ namespace MyApp
 
             }
 
-
             string usuarioActualTipo = gestorUsuarios.TipoDeUsuarioLogin(idUsuarioActual);
 
             Console.WriteLine(usuarioActualTipo);
@@ -542,6 +541,17 @@ namespace MyApp
             Thread.Sleep(5000);
         }
 
+        private void ListarClientes()
+        {
+            Console.WriteLine("Listado de Clientes:");
+            List<Cliente> cliente = gestorDeClientes.ListarClientes();
+            foreach (Cliente c in cliente)
+            {
+                Console.WriteLine(c.ToString());
+            }
+            Console.WriteLine();
+        }
+
         private void RegistrarVenta(string idUsuarioActual)
         {
             Console.Clear();
@@ -550,6 +560,7 @@ namespace MyApp
             Console.WriteLine("Ingrese el id del cliente:");
             Console.WriteLine();
             Console.WriteLine("LISTA DE CLIENTES:");
+            ListarClientes();
 
             string idCliente = Console.ReadLine();
             List<Ventas> lista = new List<Ventas>();
@@ -559,6 +570,7 @@ namespace MyApp
                 Console.WriteLine("Ingrese el id del producto:");
                 Console.WriteLine();
                 Console.WriteLine("LISTA DE PRODUCTOS:");
+                ListarProductos();
                 string idProducto = Console.ReadLine();
 
                 Console.WriteLine("Ingrese la cantidad:");
@@ -592,6 +604,7 @@ namespace MyApp
                 Console.WriteLine("Resumen de la venta:");
                 //con datos de la lista local
                 //mostrar el descuento aca tambien
+                //sistema de descuentos 
 
             }
         }

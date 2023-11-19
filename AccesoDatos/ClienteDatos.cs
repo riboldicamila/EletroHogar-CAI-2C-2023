@@ -21,16 +21,16 @@ namespace AccesoDatos
 
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception("Verifique los datos ingresados. Error al agregar proveedor.");
+                throw new Exception("Verifique los datos ingresados. Error al agregar cliente.");
             }
         }
 
 
         //get cliente //DEVOLVER SOLO 1 CLIENTE CREO
 
-        public static List<ClienteWS> DevolverCliente()
+        public static List<Cliente> DevolverClientes()
         {
-            HttpResponseMessage response = WebHelper.Get("Cliente/GetCliente");
+            HttpResponseMessage response = WebHelper.Get("Cliente/GetClientes");
 
             if (!response.IsSuccessStatusCode)
             {
@@ -40,7 +40,7 @@ namespace AccesoDatos
             {
 
                 var contentStream = response.Content.ReadAsStringAsync().Result;
-                List<ClienteWS> listadoCliente = JsonConvert.DeserializeObject<List<ClienteWS>>(contentStream);
+                List <Cliente> listadoCliente = JsonConvert.DeserializeObject<List<Cliente>>(contentStream);
 
                 return listadoCliente;
             }
