@@ -801,7 +801,7 @@
             grpBajaProd.Controls.Add(lblNombreProd);
             grpBajaProd.Controls.Add(btnBajaProd);
             grpBajaProd.Controls.Add(cmbBajaProd);
-            grpBajaProd.Location = new Point(749, 528);
+            grpBajaProd.Location = new Point(736, 600);
             grpBajaProd.Name = "grpBajaProd";
             grpBajaProd.Size = new Size(200, 100);
             grpBajaProd.TabIndex = 35;

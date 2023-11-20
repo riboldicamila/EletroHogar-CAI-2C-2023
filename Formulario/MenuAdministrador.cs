@@ -21,7 +21,7 @@ namespace Formulario
         }
         int host;
         string tipoUsuario;
-        List<UsuarioWS> listadoInactivos = new List<UsuarioWS>();
+        List<Usuario> listadoInactivos = new List<Usuario>();
         List<Proveedor> listadoProvInactivos = new List<Proveedor>();
         private GestorDeUsuarios gestorUsuarios = new GestorDeUsuarios();
         private GestorDeProductos gestorDeProductos = new GestorDeProductos();
@@ -133,7 +133,7 @@ namespace Formulario
                 OcultarCampos();
                 ListarProductos();
                 grpBajaProd.Show();
-                //ModificarProducto
+
             }
             else if (rdoBajaProd.Checked)
             {
@@ -336,9 +336,9 @@ namespace Formulario
 
         private void ListarTodosLosUsuarios()
         {
-            List<UsuarioWS> listadoUsuarios = gestorUsuarios.ObtenerListadoDeUsuarios();
+            List<Usuario> listadoUsuarios = gestorUsuarios.ObtenerListadoDeUsuarios();
 
-            foreach (UsuarioWS usuario in listadoUsuarios)
+            foreach (Usuario usuario in listadoUsuarios)
             {
                 if (usuario.host == host)
                 {
@@ -375,14 +375,14 @@ namespace Formulario
         private void BajaUsuarios(string idUsuarioActual, string tipoUsuario)
         {
 
-            List<UsuarioWS> listadoUsuarios = gestorUsuarios.ObtenerListadoDeUsuarios();
+            List<Usuario> listadoUsuarios = gestorUsuarios.ObtenerListadoDeUsuarios();
 
 
-            foreach (UsuarioWS usuario in listadoUsuarios)
+            foreach (Usuario usuario in listadoUsuarios)
             {
                 if (cmbUsuarios.Text == (usuario.nombre + " " + usuario.apellido))
                 {
-                    string idUsuarioBaja = usuario.id.ToString();
+                    string idUsuarioBaja = usuario.Id.ToString();
                     bool bajaExitosa = gestorUsuarios.BajaUsuarios(idUsuarioBaja, idUsuarioActual);
                     if (bajaExitosa)
                     {
@@ -397,9 +397,9 @@ namespace Formulario
             }
         }
 
-        private void ListarInactivos(List<UsuarioWS> lista)
+        private void ListarInactivos(List<Usuario> lista)
         {
-            foreach (UsuarioWS usuario in lista)
+            foreach (Usuario usuario in lista)
             {
                 if (usuario.host == host)
                 {
@@ -512,6 +512,21 @@ namespace Formulario
 
             }
         }
+        
+
+        private void btnAltaProducto_Click(object sender, EventArgs e)
+        {
+            AltaProducto(FormLogin.id);
+        }
+
+        private void CategoriaProducto()
+        {
+            cmbcategoria.Items.Add("1");
+            cmbcategoria.Items.Add("2");
+            cmbcategoria.Items.Add("3");
+            cmbcategoria.Items.Add("4");
+            cmbcategoria.Items.Add("5");
+        }
         private void AltaProducto(string idUsuarioActual)
         {
 
@@ -541,20 +556,6 @@ namespace Formulario
             {
                 MessageBox.Show("Error al agregar el producto. Por favor, inténtelo de nuevo.");
             }
-        }
-
-        private void btnAltaProducto_Click(object sender, EventArgs e)
-        {
-            AltaProducto(FormLogin.id);
-        }
-
-        private void CategoriaProducto()
-        {
-            cmbcategoria.Items.Add("1");
-            cmbcategoria.Items.Add("2");
-            cmbcategoria.Items.Add("3");
-            cmbcategoria.Items.Add("4");
-            cmbcategoria.Items.Add("5");
         }
         private void BajaProducto(string idUsuarioActual)
         {
