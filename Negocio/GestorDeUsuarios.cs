@@ -17,25 +17,25 @@ namespace Negocio
 
 
 
-        public GestorDeUsuarios()
-        {
-            List<UsuarioWS> listadoUsarios = UsuarioDatos.ListarUsuarios();
-            foreach (UsuarioWS usr in listadoUsarios)
-            {
-                if (usr.host.Equals("1"))
-                {
-                    this.usuarios.Add(new Vendedor(usr));
-                }
-                else if (usr.host.Equals("2"))
-                {
-                    this.usuarios.Add(new Supervisor(usr));
-                }
-                else
-                {
-                    this.usuarios.Add(new Administrador(usr));
-                }
-            }
-        }
+        //public GestorDeUsuarios()
+        //{
+        //    List<UsuarioWS> listadoUsarios = UsuarioDatos.ListarUsuarios();
+        //    foreach (UsuarioWS usr in listadoUsarios)
+        //    {
+        //        if (usr.host.Equals("1"))
+        //        {
+        //            this.usuarios.Add(new Vendedor(usr));
+        //        }
+        //        else if (usr.host.Equals("2"))
+        //        {
+        //            this.usuarios.Add(new Supervisor(usr));
+        //        }
+        //        else
+        //        {
+        //            this.usuarios.Add(new Administrador(usr));
+        //        }
+        //    }
+        //}
 
         public String Login(Login login)
         {
@@ -66,10 +66,10 @@ namespace Negocio
         {
             //Guid.Parse(idUsuario);
 
-            List<UsuarioWS> listadoUsarios = UsuarioDatos.ListarUsuarios();
-            foreach (UsuarioWS usr in listadoUsarios)
+            List<Usuario> listadoUsarios = UsuarioDatos.ListarUsuarios();
+            foreach (Usuario usr in listadoUsarios)
             {
-                if (idUsuario == usr.id.ToString("D"))
+                if (idUsuario == usr.Id.ToString("D"))
                 {
                    
                         if (usr.host == 1)
@@ -99,7 +99,7 @@ namespace Negocio
         {
 
             //// Crear un objeto usuarioWS
-            var nuevoUsuarioWS = new Usuario
+            var nuevoUsuarioWS = new UsuarioWS
             {
                 idUsuario = idUsuarioActual,
                 host = host, //pasa segun opcion menu
@@ -201,34 +201,40 @@ namespace Negocio
         }
 
 
-        public List<Usuario> ObtenerTodosLosUsuarios()
-        {
-            //lista los nombres de usuario ACTIVOS E INACTIVOS
-            return usuarios;
-
-        }
-
-        public List<UsuarioWS> ObtenerListadoDeUsuarios()
+        public List<Usuario> ObtenerListadoDeUsuarios()
         {
             //  la lista de usuarios desde el webservice
-            List<UsuarioWS> listadoUsuarios = UsuarioDatos.ListarUsuarios();
+            List<Usuario> listadoUsuarios = UsuarioDatos.ListarUsuarios();
 
             return listadoUsuarios;
         }
 
-        public List<UsuarioWS> ObtenerListadoDeUsuariosVendedores()
+        public List<Usuario> ObtenerListadoDeUsuariosVendedores()
         {
             //  la lista de usuarios desde el webservice
-            List<UsuarioWS> listadoUsuarios = UsuarioDatos.ListarUsuarios();
+            List<Usuario> listadoUsuarios = UsuarioDatos.ListarUsuarios();
 
             // Filtrar la lista  solo los usuarios con usr.host == 1
-            List<UsuarioWS> usuariosVendedores = listadoUsuarios
+            List<Usuario> usuariosVendedores = listadoUsuarios
                 .Where(usr => usr.host == 1)
                 .ToList();
 
             return usuariosVendedores;
         }
 
+
+        public List<Usuario> ObtenerListadoDeUsuariosInactivos()
+        {
+            //  la lista de usuarios desde el webservice
+            List<Usuario> listadoUsuarios = UsuarioDatos.ListarUsuarios();
+
+            // Filtrar la lista  solo usuarios inactivos
+            List<Usuario> usuariosVendedores = listadoUsuarios
+                .Where(usr => usr.FechaBaja != null)
+                .ToList();
+
+            return usuariosVendedores;
+        }
 
     }
 

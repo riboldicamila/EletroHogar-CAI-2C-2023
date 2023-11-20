@@ -33,7 +33,7 @@ namespace AccesoDatos
 
         //POST para agregar usuario
 
-        public static void AgregarUsuario(Usuario usuario)
+        public static void AgregarUsuario(UsuarioWS usuario)
         {
             var jsonRequest = JsonConvert.SerializeObject(usuario);
             HttpResponseMessage response = WebHelper.Post("Usuario/AgregarUsuario", jsonRequest);
@@ -46,7 +46,7 @@ namespace AccesoDatos
 
 
         //GET para traer usuarios
-        public static List<UsuarioWS> ListarUsuarios()
+        public static List<Usuario> ListarUsuarios()
         {
 
             HttpResponseMessage response = WebHelper.Get("Usuario/TraerUsuariosActivos?id=" + usuarioAdmin);
@@ -58,7 +58,7 @@ namespace AccesoDatos
             else
             {
                 var contentstream = response.Content.ReadAsStringAsync().Result;
-                List<UsuarioWS> listadousuarios = JsonConvert.DeserializeObject<List<UsuarioWS>>(contentstream);
+                List<Usuario> listadousuarios = JsonConvert.DeserializeObject<List<Usuario>>(contentstream);
                 return listadousuarios;
 
             }

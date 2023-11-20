@@ -19,9 +19,6 @@ namespace Modelo
         public string nombreUsuario;
         public int dni { get; set; }
         public string contraseña;
-        private string nuevoPass;
-
-
 
         // Constructor
         public Usuario()
@@ -31,10 +28,17 @@ namespace Modelo
 
         public Usuario(UsuarioWS usuarioWS)
         {
+            this.idUsuario = usuarioWS.Id;
+            this.host = usuarioWS.host;
             this.nombre = usuarioWS.nombre;
             this.apellido = usuarioWS.apellido;
-            this.Id = usuarioWS.id;
-            this.nombreUsuario = usuarioWS.usuario;
+            this.dni = usuarioWS.dni;
+            this.direccion = usuarioWS.direccion;
+            this.telefono = usuarioWS.telefono;
+            this.email = usuarioWS.email;
+            this.fechaNacimiento = usuarioWS.fechaNacimiento;
+            this.nombreUsuario = usuarioWS.nombreUsuario;
+            this.contraseña = usuarioWS.contraseña;
         }
 
         public Usuario(string idUsuarioActual, string nombre, string apellido, string username, int dni, string direccion,
@@ -61,64 +65,10 @@ namespace Modelo
             set { nombre = value; }
         }
 
-        public string Apellido
+
+        override public String ToString()
         {
-            get { return apellido; }
-            set { apellido = value; }
-        }
-
-        //public string Username
-        //{
-        //    get { return username; }
-        //    set
-        //    {
-        //        username = value;
-        //    }
-        //}
-
-        //public string Password
-        //{
-        //    get { return password; }
-        //    set
-        //    {
-        //        password = value;
-        //    }
-        //}
-
-        public string NuevoPass // nueva variable para la nueva pass
-        {
-
-            get { return nuevoPass; }
-            set
-            {
-                nuevoPass = value;
-            }
-        }
-
-
-        // Métodos
-        //public void SetPassword(string newPassword)
-        //{
-        //    this.password = newPassword;
-        //    this.ultimoCambioPass = DateTime.Now;
-        //    this.intentosCambioPass = 0;
-
-        //    // Si el usuario pone una nueva contraseña, lo marcamos como ACTIVO
-        //    this.estado = EstadoUsuario.ACTIVO;
-        //}
-
-
-        public string GenerarPasswordTemporal()
-        {
-            return "Temp1234";
-
-        }
-
-
-        override
-        public String ToString()
-        {
-            return this.nombre + " - " + this.apellido;
+            return this.Id+ ""+ this.nombre + " - " + this.apellido;
         }
     }
 

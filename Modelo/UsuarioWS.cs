@@ -13,16 +13,19 @@ namespace Modelo
         //WS se usa para deserilizar
         //tiene todos los atributos de la response body del GET 
 
-        private Guid _id;
-        private string _nombre, _apellido, _usuario;
-
-        private int _host, _dni;
-        public Guid id { get => _id; set => _id = value; }
-        public string nombre { get => _nombre; set => _nombre = value; }
-        public string apellido { get => _apellido; set => _apellido = value; }
-        public int dni { get => _dni; set => _dni = value; }
-        public string usuario { get => _usuario; set => _usuario = value; }
-        public int host { get => _host; set => _host = value; }
+        public string Id { get; set; }
+        public string idUsuario { get; set; }
+        public int host { get; set; }
+        public string nombre;
+        public string apellido;
+        public string direccion { get; set; }
+        public string telefono { get; set; }
+        public string email { get; set; }
+        public DateTime? fechaNacimiento { get; set; }  // ? permite null
+        public DateTime? FechaBaja { get; set; }  // ? permite null
+        public string nombreUsuario;
+        public int dni { get; set; }
+        public string contraseña;
 
         public UsuarioWS()
         {
@@ -31,7 +34,7 @@ namespace Modelo
 
         public override string ToString()
         {
-            return  id + " " + nombre + " " + apellido;
+            return  Id + " " + nombre + " " + apellido;
         }
     }
 }
