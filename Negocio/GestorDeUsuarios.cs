@@ -201,13 +201,6 @@ namespace Negocio
         }
 
 
-        public List<Usuario> ObtenerTodosLosUsuarios()
-        {
-            //lista los nombres de usuario ACTIVOS E INACTIVOS
-            return usuarios;
-
-        }
-
         public List<Usuario> ObtenerListadoDeUsuarios()
         {
             //  la lista de usuarios desde el webservice

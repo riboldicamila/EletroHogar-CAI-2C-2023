@@ -13,7 +13,7 @@ namespace Formulario
         private void button1_Click(object sender, EventArgs e)
         {
             GestorDeUsuarios gestorDeUsuarios = new GestorDeUsuarios();
-            listBox1.DataSource = gestorDeUsuarios.ObtenerTodosLosUsuarios();
+           // listBox1.DataSource = gestorDeUsuarios.ObtenerTodosLosUsuarios();
         }
 
         private void button2_Click(object sender, EventArgs e)
