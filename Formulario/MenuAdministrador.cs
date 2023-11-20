@@ -20,6 +20,8 @@ namespace Formulario
             OcultarCampos();
         }
         int host;
+        string tipoUsuario;
+        List<UsuarioWS> listadoInactivos = new List<UsuarioWS>();
         private GestorDeUsuarios gestorUsuarios = new GestorDeUsuarios();
         //private void btnSeleccion_Click(object sender, EventArgs e)
         //{
@@ -29,30 +31,54 @@ namespace Formulario
         {
             if (rdoAltaSup.Checked)
             {
-                MostrarCampos();
                 host = 2;
-
+                tipoUsuario = "supervisor";
+                grpRegistrar.Show();
             }
             else if (rdoBajaSup.Checked)
             {
-                //Baja Supervisores
+                host = 2;
+                tipoUsuario = "supervisor";
+                ListarTodosLosUsuarios();
+                cmbUsuarios.Location = cmbInactivos.Location;
+                btnReactivar.Text = "Baja";
+                cmbInactivos.Hide();
+                grpBajaYReactivar.Show();
             }
             else if (rdoReactivarSup.Checked)
             {
-                //Reactivar Supervisores
+                host = 2;
+                tipoUsuario = "supervisor";
+                ListarInactivos(listadoInactivos);
+                btnReactivar.Text = "Reactivar";
+                cmbUsuarios.Hide();
+                grpBajaYReactivar.Show();
+
             }
             else if (rdoAltaVend.Checked)
             {
-                MostrarCampos();
                 host = 1;
+                tipoUsuario = "vendedor";
+                grpRegistrar.Show();
             }
             else if (rdoBajaVend.Checked)
             {
-                //Baja Vendedores
+                host = 1;
+                tipoUsuario = "vendedor";
+                ListarTodosLosUsuarios();
+                cmbUsuarios.Location = cmbInactivos.Location;
+                btnReactivar.Text = "Baja";
+                cmbInactivos.Hide();
+                grpBajaYReactivar.Show();
             }
             else if (rdoReactivarVend.Checked)
             {
-                //Reactivar Vendedores
+                host = 1;
+                tipoUsuario = "vendedor";
+                ListarInactivos(listadoInactivos);
+                btnReactivar.Text = "Reactivar";
+                cmbUsuarios.Hide();
+                grpBajaYReactivar.Show();
             }
             else if (rdoAltaProv.Checked)
             {
@@ -251,33 +277,81 @@ namespace Formulario
 
         }
 
-        public void MostrarCampos()
-        {
-            grpRegistrar.Show();
-           
-        }
+
         public void OcultarCampos()
         {
             grpRegistrar.Hide();
-            
+            grpBajaYReactivar.Hide();
+
         }
 
-        //Adaptar a formulario
         private void ListarTodosLosUsuarios()
         {
             List<UsuarioWS> listadoUsuarios = gestorUsuarios.ObtenerListadoDeUsuarios();
 
-            // Mostrar el listado de usuarios utilizando ToString()
             foreach (UsuarioWS usuario in listadoUsuarios)
             {
-                Console.WriteLine(usuario.ToString());
+                if (usuario.host == host)
+                {
+                    cmbUsuarios.Items.Add(usuario.nombre + " " + usuario.apellido);
+                }
             }
-            Console.WriteLine();
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
             RegistrarUsuario(FormLogin.id);
+        }
+
+
+        private void btnReactivar_Click(object sender, EventArgs e)
+        {
+            if (btnReactivar.Text == "Reactivar")
+            {
+                //implementar
+                MessageBox.Show("Usuario Reactivado con éxito");
+            }
+            else if (btnReactivar.Text == "Baja")
+            {
+                BajaUsuarios(FormLogin.id, tipoUsuario);
+
+            }
+        }
+
+        private void BajaUsuarios(string idUsuarioActual, string tipoUsuario)
+        {
+            
+            List<UsuarioWS> listadoUsuarios = gestorUsuarios.ObtenerListadoDeUsuarios();
+            
+
+            foreach (UsuarioWS usuario in listadoUsuarios)
+            {
+                if (cmbUsuarios.Text == (usuario.nombre + " " + usuario.apellido))
+                {
+                    string idUsuarioBaja = usuario.id.ToString();
+                    bool bajaExitosa = gestorUsuarios.BajaUsuarios(idUsuarioBaja, idUsuarioActual);
+                    if (bajaExitosa)
+                    {
+                        listadoInactivos.Add(usuario);
+                        MessageBox.Show($"El usuario con ID {idUsuarioBaja} se encuentra Inactivo.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al deshabilitar el usuario. Por favor, inténtelo de nuevo.");
+                    }
+                }
+            }
+        }
+
+        private void ListarInactivos(List<UsuarioWS> lista)
+        {
+            foreach (UsuarioWS usuario in lista)
+            {
+                if (usuario.host == host)
+                {
+                    cmbInactivos.Items.Add(usuario.nombre + " " + usuario.apellido);
+                }
+            }
         }
     }
 }

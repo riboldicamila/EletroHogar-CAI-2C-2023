@@ -68,7 +68,12 @@
             lblDireccion = new Label();
             btnRegistrar = new Button();
             grpRegistrar = new GroupBox();
+            grpBajaYReactivar = new GroupBox();
+            btnReactivar = new Button();
+            cmbInactivos = new ComboBox();
+            cmbUsuarios = new ComboBox();
             grpRegistrar.SuspendLayout();
+            grpBajaYReactivar.SuspendLayout();
             SuspendLayout();
             // 
             // rdoAltaSup
@@ -226,7 +231,7 @@
             // 
             // btnSeleccion
             // 
-            btnSeleccion.Location = new Point(412, 523);
+            btnSeleccion.Location = new Point(200, 546);
             btnSeleccion.Name = "btnSeleccion";
             btnSeleccion.Size = new Size(75, 23);
             btnSeleccion.TabIndex = 5;
@@ -236,7 +241,7 @@
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(546, 523);
+            btnSalir.Location = new Point(50, 546);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(75, 23);
             btnSalir.TabIndex = 6;
@@ -451,11 +456,48 @@
             grpRegistrar.TabIndex = 30;
             grpRegistrar.TabStop = false;
             // 
+            // grpBajaYReactivar
+            // 
+            grpBajaYReactivar.Controls.Add(cmbUsuarios);
+            grpBajaYReactivar.Controls.Add(btnReactivar);
+            grpBajaYReactivar.Controls.Add(cmbInactivos);
+            grpBajaYReactivar.Location = new Point(355, 220);
+            grpBajaYReactivar.Name = "grpBajaYReactivar";
+            grpBajaYReactivar.Size = new Size(405, 141);
+            grpBajaYReactivar.TabIndex = 31;
+            grpBajaYReactivar.TabStop = false;
+            // 
+            // btnReactivar
+            // 
+            btnReactivar.Location = new Point(17, 62);
+            btnReactivar.Name = "btnReactivar";
+            btnReactivar.Size = new Size(75, 23);
+            btnReactivar.TabIndex = 1;
+            btnReactivar.UseVisualStyleBackColor = true;
+            btnReactivar.Click += btnReactivar_Click;
+            // 
+            // cmbInactivos
+            // 
+            cmbInactivos.FormattingEnabled = true;
+            cmbInactivos.Location = new Point(14, 14);
+            cmbInactivos.Name = "cmbInactivos";
+            cmbInactivos.Size = new Size(121, 23);
+            cmbInactivos.TabIndex = 0;
+            // 
+            // cmbUsuarios
+            // 
+            cmbUsuarios.FormattingEnabled = true;
+            cmbUsuarios.Location = new Point(169, 19);
+            cmbUsuarios.Name = "cmbUsuarios";
+            cmbUsuarios.Size = new Size(121, 23);
+            cmbUsuarios.TabIndex = 2;
+            // 
             // MenuAdministrador
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 581);
+            ClientSize = new Size(800, 664);
+            Controls.Add(grpBajaYReactivar);
             Controls.Add(grpRegistrar);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -483,6 +525,7 @@
             Text = "MenuAdministrador";
             grpRegistrar.ResumeLayout(false);
             grpRegistrar.PerformLayout();
+            grpBajaYReactivar.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -532,5 +575,9 @@
         private Label lblDireccion;
         private Button btnRegistrar;
         private GroupBox grpRegistrar;
+        private GroupBox grpBajaYReactivar;
+        private Button btnReactivar;
+        private ComboBox cmbInactivos;
+        private ComboBox cmbUsuarios;
     }
 }

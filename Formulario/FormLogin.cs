@@ -52,7 +52,7 @@ namespace Formulario
             try
             {
                 string idUsuario = gestorDeUsuarios.Login(login);
-                MessageBox.Show("Login exitoso. El idUusario es " + idUsuario);
+                MessageBox.Show("Login exitoso. El idUsuario es " + idUsuario);
                 id = idUsuario;
                 gestorDeUsuarios.LimpiarListaDeControl(nombreUsuario);
                 return idUsuario;
