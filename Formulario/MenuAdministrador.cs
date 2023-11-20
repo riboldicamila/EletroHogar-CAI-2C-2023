@@ -105,6 +105,7 @@ namespace Formulario
                 OcultarCampos();
                 btnmodprov.Text = "Baja";
                 cmbProv.Location = cmbProvInactivos.Location;
+                ListarProveedores();
                 cmbProvInactivos.Hide();
                 cmbProv.Show();
                 grpBajaYReactivarProv.Show();
@@ -114,6 +115,7 @@ namespace Formulario
             {
                 OcultarCampos();
                 btnmodprov.Text = "Reactivar";
+                ListarProvInactivos(listadoProvInactivos);
                 cmbProvInactivos.Show();
                 cmbProv.Hide();
                 grpBajaYReactivarProv.Show();
@@ -122,7 +124,9 @@ namespace Formulario
             else if (rdoAltaProd.Checked)
             {
                 OcultarCampos();
-                //Alta producto
+                ListarProveedores();
+                CategoriaProducto();
+                grpAltaProd.Show();
             }
             else if (rdoModificarProd.Checked)
             {
@@ -317,9 +321,11 @@ namespace Formulario
             grpBajaYReactivar.Hide();
             grpAltaProv.Hide();
             grpBajaYReactivarProv.Hide();
+            grpAltaProd.Hide();
             grpBajaYReactivar.Location = grpRegistrar.Location;
             grpAltaProv.Location = grpRegistrar.Location;
             grpBajaYReactivarProv.Location = grpRegistrar.Location;
+            grpAltaProd.Location = grpRegistrar.Location;
         }
 
         private void ListarTodosLosUsuarios()
@@ -395,6 +401,13 @@ namespace Formulario
                 }
             }
         }
+        private void ListarProvInactivos(List<Proveedor> lista)
+        {
+            foreach (Proveedor p in lista)
+            {
+                cmbProvInactivos.Items.Add(p.Nombre + " " + p.Apellido);
+            }
+        }
 
         private void AltaProveedores(string idUsuarioActual)
         {
@@ -445,6 +458,7 @@ namespace Formulario
                     {
                         listadoProvInactivos.Add(p);
                         MessageBox.Show($"El proveedor con ID {idProvBaja} se encuentra Inactivo.");
+                        listadoProveedores.Remove(p);
                     }
                     else
                     {
@@ -490,6 +504,50 @@ namespace Formulario
                 BajaProveedores(FormLogin.id);
 
             }
+        }
+        private void AltaProducto(string idUsuarioActual)
+        {
+
+            string nombre = txtNombreprod.Text;
+
+            decimal precio = decimal.Parse(txtPrecio.Text);
+
+            int stock = int.Parse(txtStock.Text);
+            
+            int categoria = int.Parse(cmbcategoria.Text);
+            string idProveedor = "";
+            cmbprovprod = cmbProv;
+            List<Proveedor> proveedores = gestorDeProveedores.ListarProveedores();
+            foreach (Proveedor p in proveedores)
+            {
+                if (cmbprovprod.Text == p.Nombre + p.Apellido)
+                {
+                    idProveedor = p.Id.ToString();
+                }
+            }
+
+            if (gestorDeProductos.AgregarProducto(categoria, idUsuarioActual, idProveedor, nombre, precio, stock))
+            {
+                MessageBox.Show($"Producto {nombre} agregado con éxito.");
+            }
+            else
+            {
+                MessageBox.Show("Error al agregar el producto. Por favor, inténtelo de nuevo.");
+            }
+        }
+
+        private void btnAltaProducto_Click(object sender, EventArgs e)
+        {
+            AltaProducto(FormLogin.id);
+        }
+
+        private void CategoriaProducto()
+        {
+            cmbcategoria.Items.Add("1");
+            cmbcategoria.Items.Add("2");
+            cmbcategoria.Items.Add("3");
+            cmbcategoria.Items.Add("4");
+            cmbcategoria.Items.Add("5");
         }
     }
 }
