@@ -11,6 +11,8 @@
         //    //el base llama al constructor de la abstracta
         //}
 
+        //Quedo en sin uso. Se había implementado herencia en un momento pero antes del ws. 
+
     }
 
 
