@@ -31,10 +31,17 @@ namespace Modelo
 
         public Usuario(UsuarioWS usuarioWS)
         {
+            this.idUsuario = usuarioWS.Id;
+            this.host = usuarioWS.host;
             this.nombre = usuarioWS.nombre;
             this.apellido = usuarioWS.apellido;
-            this.Id = usuarioWS.id;
-            this.nombreUsuario = usuarioWS.usuario;
+            this.dni = usuarioWS.dni;
+            this.direccion = usuarioWS.direccion;
+            this.telefono = usuarioWS.telefono;
+            this.email = usuarioWS.email;
+            this.fechaNacimiento = usuarioWS.fechaNacimiento;
+            this.nombreUsuario = usuarioWS.nombreUsuario;
+            this.contraseña = usuarioWS.contraseña;
         }
 
         public Usuario(string idUsuarioActual, string nombre, string apellido, string username, int dni, string direccion,
@@ -118,7 +125,7 @@ namespace Modelo
         override
         public String ToString()
         {
-            return this.nombre + " - " + this.apellido;
+            return this.Id+ ""+ this.nombre + " - " + this.apellido;
         }
     }
 

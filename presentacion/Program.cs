@@ -95,7 +95,6 @@ namespace MyApp
 
             string usuarioActualTipo = gestorUsuarios.TipoDeUsuarioLogin(idUsuarioActual);
 
-            Console.WriteLine(usuarioActualTipo);
 
             Console.Clear();
             
@@ -915,10 +914,10 @@ namespace MyApp
 
         private void ListarTodosLosUsuarios()
         {
-            List<UsuarioWS> listadoUsuarios = gestorUsuarios.ObtenerListadoDeUsuarios();
+            List<Usuario> listadoUsuarios = gestorUsuarios.ObtenerListadoDeUsuarios();
 
             // Mostrar el listado de usuarios utilizando ToString()
-            foreach (UsuarioWS usuario in listadoUsuarios)
+            foreach (Usuario usuario in listadoUsuarios)
             {
                 Console.WriteLine(usuario.ToString());
             }
@@ -927,9 +926,9 @@ namespace MyApp
 
         private void ListarUsuariosVendedores()
         {
-            List<UsuarioWS> listadoUsuarios = gestorUsuarios.ObtenerListadoDeUsuariosVendedores();
+            List<Usuario> listadoUsuarios = gestorUsuarios.ObtenerListadoDeUsuariosVendedores();
 
-            foreach (UsuarioWS usuario in listadoUsuarios)
+            foreach (Usuario usuario in listadoUsuarios)
             {
                 Console.WriteLine(usuario.ToString());
             }
