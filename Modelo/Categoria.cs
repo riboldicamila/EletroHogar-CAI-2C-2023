@@ -8,6 +8,9 @@ namespace Modelo
 {
     public class Categoria
     {
+
+        //creo que no se usa, ni se va a usar. A borrar 
+
         public Guid IdProducto { get; set; } = Guid.NewGuid();
         public string Descripcion { get; set; }
         public List<Proveedor> Proveedores { get; set; } = new List<Proveedor>();
@@ -18,12 +21,6 @@ namespace Modelo
         }
 
 
-        public void AgregarProveedor(Proveedor proveedor)
-        {
-            if (!Proveedores.Contains(proveedor))
-            {
-                Proveedores.Add(proveedor);
-            }
-        }
+      
     }
 }

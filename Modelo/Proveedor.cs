@@ -19,7 +19,7 @@ namespace Modelo
 
         public Proveedor()
         {
-            // Constructor por defecto requerido para la deserialización
+            // Constructor para la deserialización
         }
 
         //CONSTRUCTOR, NO ME LO TOMA EL JSON. hice todos con constructor vacio por default
