@@ -17,10 +17,11 @@ Vendedorgdos
 Nuevacontra1
 
 
-Usuarios de prueba: 
+Diagrama caso de uso:
+https://app.diagrams.net/#G1AEK93r-61uSlVeSC79ns29kdV0_B0bMG
 
-Juan Pérez juanp1234 VENDEDOR Pass1234 </br>
-Ana Gómez anag1234 SUPERVISOR Pass5678 </br>
-Luis Martínez luism1234 ADMINISTRADOR Pass9012 </br>
+Diagrama de secuencia:
+https://app.diagrams.net/#G1HGZDxq_73Z7e7AXJMiIr3TdvCAaFzGm8
 
-Pass temporal: Temp1234
+Diagrama de clase:
+https://app.diagrams.net/?libs=general;uml#G1BbNzdZczQyDW4_bTpK2WdX826-uEnHsz
