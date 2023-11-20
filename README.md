@@ -18,7 +18,10 @@ Nuevacontra1
 
 
 Diagrama caso de uso:
+https://app.diagrams.net/#G1AEK93r-61uSlVeSC79ns29kdV0_B0bMG
 
 Diagrama de secuencia:
+https://app.diagrams.net/#G1HGZDxq_73Z7e7AXJMiIr3TdvCAaFzGm8
 
 Diagrama de clase:
+https://app.diagrams.net/?libs=general;uml#G1BbNzdZczQyDW4_bTpK2WdX826-uEnHsz
