@@ -68,29 +68,6 @@ namespace Modelo
             set { nombre = value; }
         }
 
-        public string Apellido
-        {
-            get { return apellido; }
-            set { apellido = value; }
-        }
-
-        //public string Username
-        //{
-        //    get { return username; }
-        //    set
-        //    {
-        //        username = value;
-        //    }
-        //}
-
-        //public string Password
-        //{
-        //    get { return password; }
-        //    set
-        //    {
-        //        password = value;
-        //    }
-        //}
 
         public string NuevoPass // nueva variable para la nueva pass
         {
@@ -103,27 +80,7 @@ namespace Modelo
         }
 
 
-        // Métodos
-        //public void SetPassword(string newPassword)
-        //{
-        //    this.password = newPassword;
-        //    this.ultimoCambioPass = DateTime.Now;
-        //    this.intentosCambioPass = 0;
-
-        //    // Si el usuario pone una nueva contraseña, lo marcamos como ACTIVO
-        //    this.estado = EstadoUsuario.ACTIVO;
-        //}
-
-
-        public string GenerarPasswordTemporal()
-        {
-            return "Temp1234";
-
-        }
-
-
-        override
-        public String ToString()
+        override public String ToString()
         {
             return this.Id+ ""+ this.nombre + " - " + this.apellido;
         }
