@@ -131,12 +131,16 @@ namespace Formulario
             else if (rdoModificarProd.Checked)
             {
                 OcultarCampos();
+                ListarProductos();
+                grpBajaProd.Show();
                 //ModificarProducto
             }
             else if (rdoBajaProd.Checked)
             {
                 OcultarCampos();
-                //Baja Producto
+                ListarProductos();
+                grpBajaProd.Show();
+
             }
             else if (rdoReporteVentas.Checked)
             {
@@ -322,10 +326,12 @@ namespace Formulario
             grpAltaProv.Hide();
             grpBajaYReactivarProv.Hide();
             grpAltaProd.Hide();
+            grpBajaProd.Hide();
             grpBajaYReactivar.Location = grpRegistrar.Location;
             grpAltaProv.Location = grpRegistrar.Location;
             grpBajaYReactivarProv.Location = grpRegistrar.Location;
             grpAltaProd.Location = grpRegistrar.Location;
+            grpBajaProd.Location = grpRegistrar.Location;
         }
 
         private void ListarTodosLosUsuarios()
@@ -436,6 +442,7 @@ namespace Formulario
             foreach (Proveedor p in proveedores)
             {
                 cmbProv.Items.Add(p.Nombre + p.Apellido);
+                cmbprovprod.Items.Add(p.Nombre + p.Apellido);
             }
         }
 
@@ -513,7 +520,7 @@ namespace Formulario
             decimal precio = decimal.Parse(txtPrecio.Text);
 
             int stock = int.Parse(txtStock.Text);
-            
+
             int categoria = int.Parse(cmbcategoria.Text);
             string idProveedor = "";
             cmbprovprod = cmbProv;
@@ -548,6 +555,49 @@ namespace Formulario
             cmbcategoria.Items.Add("3");
             cmbcategoria.Items.Add("4");
             cmbcategoria.Items.Add("5");
+        }
+        private void BajaProducto(string idUsuarioActual)
+        {
+            string idProducto = "";
+            ListarProductos();
+            List<Producto> productos = gestorDeProductos.TraerProductos();
+            foreach (Producto p in productos)
+            {
+                if (cmbBajaProd.Text == p.nombre)
+                {
+                    idProducto = p.id;
+                    productos.Remove(p);
+                }
+            }
+
+
+
+            bool bajaExitosa = gestorDeProductos.BajaProductos(idProducto, idUsuarioActual);
+
+            if (bajaExitosa)
+            {
+                MessageBox.Show($"El producto con ID {idProducto} se encuentra ha dado de baja.");
+                ListarProductos();
+
+            }
+            else
+            {
+                MessageBox.Show("Error al deshabilitar el producto. Por favor, inténtelo de nuevo.");
+            }
+        }
+        private void ListarProductos()
+        {
+
+            List<Producto> productos = gestorDeProductos.TraerProductos();
+            foreach (Producto p in productos)
+            {
+                cmbBajaProd.Items.Add(p.nombre);
+            }
+        }
+
+        private void btnBajaProd_Click(object sender, EventArgs e)
+        {
+            BajaProducto(FormLogin.id);
         }
     }
 }

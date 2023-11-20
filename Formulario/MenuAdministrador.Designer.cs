@@ -89,6 +89,7 @@
             btnmodprov = new Button();
             cmbProvInactivos = new ComboBox();
             grpAltaProd = new GroupBox();
+            cmbprovprod = new ComboBox();
             btnAltaProducto = new Button();
             cmbcategoria = new ComboBox();
             lblProveedorDummy = new Label();
@@ -100,12 +101,16 @@
             txtStock = new TextBox();
             txtPrecio = new TextBox();
             txtNombreprod = new TextBox();
-            cmbprovprod = new ComboBox();
+            grpBajaProd = new GroupBox();
+            lblNombreProd = new Label();
+            btnBajaProd = new Button();
+            cmbBajaProd = new ComboBox();
             grpRegistrar.SuspendLayout();
             grpBajaYReactivar.SuspendLayout();
             grpAltaProv.SuspendLayout();
             grpBajaYReactivarProv.SuspendLayout();
             grpAltaProd.SuspendLayout();
+            grpBajaProd.SuspendLayout();
             SuspendLayout();
             // 
             // rdoAltaSup
@@ -691,6 +696,14 @@
             grpAltaProd.TabIndex = 34;
             grpAltaProd.TabStop = false;
             // 
+            // cmbprovprod
+            // 
+            cmbprovprod.FormattingEnabled = true;
+            cmbprovprod.Location = new Point(269, 26);
+            cmbprovprod.Name = "cmbprovprod";
+            cmbprovprod.Size = new Size(90, 23);
+            cmbprovprod.TabIndex = 40;
+            // 
             // btnAltaProducto
             // 
             btnAltaProducto.Location = new Point(271, 70);
@@ -783,19 +796,50 @@
             txtNombreprod.Size = new Size(100, 23);
             txtNombreprod.TabIndex = 17;
             // 
-            // cmbprovprod
+            // grpBajaProd
             // 
-            cmbprovprod.FormattingEnabled = true;
-            cmbprovprod.Location = new Point(269, 26);
-            cmbprovprod.Name = "cmbprovprod";
-            cmbprovprod.Size = new Size(90, 23);
-            cmbprovprod.TabIndex = 40;
+            grpBajaProd.Controls.Add(lblNombreProd);
+            grpBajaProd.Controls.Add(btnBajaProd);
+            grpBajaProd.Controls.Add(cmbBajaProd);
+            grpBajaProd.Location = new Point(749, 528);
+            grpBajaProd.Name = "grpBajaProd";
+            grpBajaProd.Size = new Size(200, 100);
+            grpBajaProd.TabIndex = 35;
+            grpBajaProd.TabStop = false;
+            // 
+            // lblNombreProd
+            // 
+            lblNombreProd.AutoSize = true;
+            lblNombreProd.Location = new Point(20, 9);
+            lblNombreProd.Name = "lblNombreProd";
+            lblNombreProd.Size = new Size(61, 15);
+            lblNombreProd.TabIndex = 33;
+            lblNombreProd.Text = "Productos";
+            // 
+            // btnBajaProd
+            // 
+            btnBajaProd.Location = new Point(119, 71);
+            btnBajaProd.Name = "btnBajaProd";
+            btnBajaProd.Size = new Size(75, 23);
+            btnBajaProd.TabIndex = 1;
+            btnBajaProd.Text = "Baja";
+            btnBajaProd.UseVisualStyleBackColor = true;
+            btnBajaProd.Click += btnBajaProd_Click;
+            // 
+            // cmbBajaProd
+            // 
+            cmbBajaProd.FormattingEnabled = true;
+            cmbBajaProd.Location = new Point(20, 33);
+            cmbBajaProd.Name = "cmbBajaProd";
+            cmbBajaProd.Size = new Size(121, 23);
+            cmbBajaProd.TabIndex = 0;
             // 
             // MenuAdministrador
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(961, 712);
+            Controls.Add(grpBajaProd);
             Controls.Add(grpAltaProd);
             Controls.Add(grpBajaYReactivarProv);
             Controls.Add(grpAltaProv);
@@ -835,6 +879,8 @@
             grpBajaYReactivarProv.PerformLayout();
             grpAltaProd.ResumeLayout(false);
             grpAltaProd.PerformLayout();
+            grpBajaProd.ResumeLayout(false);
+            grpBajaProd.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -917,5 +963,9 @@
         private ComboBox cmbcategoria;
         private Button btnAltaProducto;
         private ComboBox cmbprovprod;
+        private GroupBox grpBajaProd;
+        private Label lblNombreProd;
+        private Button btnBajaProd;
+        private ComboBox cmbBajaProd;
     }
 }
