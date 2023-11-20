@@ -19,9 +19,6 @@ namespace Modelo
         public string nombreUsuario;
         public int dni { get; set; }
         public string contraseña;
-        private string nuevoPass;
-
-
 
         // Constructor
         public Usuario()
@@ -66,17 +63,6 @@ namespace Modelo
         {
             get { return nombre; }
             set { nombre = value; }
-        }
-
-
-        public string NuevoPass // nueva variable para la nueva pass
-        {
-
-            get { return nuevoPass; }
-            set
-            {
-                nuevoPass = value;
-            }
         }
 
 
