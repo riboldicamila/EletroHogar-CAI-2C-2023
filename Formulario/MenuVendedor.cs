@@ -18,13 +18,9 @@ namespace Formulario
         {
             InitializeComponent();
         }
-        int host;
-        string tipoUsuario;
-        List<Usuario> listadoInactivos = new List<Usuario>();
-        List<Proveedor> listadoProvInactivos = new List<Proveedor>();
-        private GestorDeUsuarios gestorUsuarios = new GestorDeUsuarios();
+        
+        string msj = "";
         private GestorDeProductos gestorDeProductos = new GestorDeProductos();
-        private GestorDeProveedores gestorDeProveedores = new GestorDeProveedores();
         private GestorDeVentas gestorDeVentas = new GestorDeVentas();
         private GestorDeClientes gestorDeClientes = new GestorDeClientes();
         public void OcultarCampos()
@@ -145,7 +141,8 @@ namespace Formulario
                 }
                 catch (ArgumentException ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    msj += (ex.Message + System.Environment.NewLine);
+                    
                 }
             }
             while (true)
@@ -159,7 +156,7 @@ namespace Formulario
                 }
                 catch (ArgumentException ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    msj += (ex.Message + System.Environment.NewLine);
                 }
             }
             string direccion;
@@ -174,7 +171,7 @@ namespace Formulario
                 }
                 catch (ArgumentException ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    msj += (ex.Message + System.Environment.NewLine);
                 }
             }
             string telefono;
@@ -189,7 +186,7 @@ namespace Formulario
                 }
                 catch (ArgumentException ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    msj += (ex.Message + System.Environment.NewLine);
                 }
             }
 
@@ -206,7 +203,7 @@ namespace Formulario
                 }
                 catch (ArgumentException ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    msj += (ex.Message + System.Environment.NewLine);
                 }
             }
 
@@ -225,7 +222,7 @@ namespace Formulario
                 }
                 catch (ArgumentException ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    msj += (ex.Message + System.Environment.NewLine);
                 }
             }
             string fecha;
@@ -242,9 +239,10 @@ namespace Formulario
                 }
                 catch (ArgumentException ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    msj += (ex.Message + System.Environment.NewLine);
                 }
             }
+
             if (gestorDeClientes.AgregarCliente(nombre, "Grupo2", dni, direccion, telefono, apellido, email, FormLogin.id, fechaNacimiento))
             {
                 MessageBox.Show($"Cliente {nombre} agregado con éxito.");
@@ -253,7 +251,7 @@ namespace Formulario
             else
             {
                 MessageBox.Show("Error al agregar el cliente. Por favor, inténtelo de nuevo.");
-
+                MessageBox.Show(msj);
             }
 
 

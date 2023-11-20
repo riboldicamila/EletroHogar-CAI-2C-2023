@@ -107,6 +107,7 @@ namespace Formulario
 
             string nombre = txtNombreprod.Text;
 
+
             decimal precio = decimal.Parse(txtPrecio.Text);
 
             int stock = int.Parse(txtStock.Text);
@@ -175,7 +176,7 @@ namespace Formulario
             BajaProducto(FormLogin.id);
         }
 
-        
+
         private void DevolverVentas(string idUsuarioActual)
         {
 
@@ -196,6 +197,19 @@ namespace Formulario
         private void btnDevolucion_Click(object sender, EventArgs e)
         {
             DevolverVentas(FormLogin.id);
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Se cerrará la aplicación. CONFIRMAR", "Cerrar", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                MessageBox.Show("The application has been closed successfully.", "Application Closed!", MessageBoxButtons.OK);
+                Application.Exit();
+            }
+            else
+            {
+                this.Activate();
+            }
         }
     }
 }

@@ -21,6 +21,7 @@ namespace Formulario
            
         }
         string idUsuario;
+        
         private GestorDeUsuarios gestorUsuarios = new GestorDeUsuarios();
         private GestorDeProductos gestorDeProductos = new GestorDeProductos();
         private GestorDeProveedores gestorDeProveedores = new GestorDeProveedores();
@@ -41,20 +42,21 @@ namespace Formulario
 
            
         }
-
+        
         private static string LoginMenu(GestorDeUsuarios gestorDeUsuarios, string nombreUsuario, string contraseña)
         {
 
             Login login = new Login();
             login.NombreUsuario = nombreUsuario;
             login.Contraseña = contraseña;
-
+            
             try
             {
                 string idUsuario = gestorDeUsuarios.Login(login);
                 MessageBox.Show("Login exitoso. El idUsuario es " + idUsuario);
                 id = idUsuario;
                 gestorDeUsuarios.LimpiarListaDeControl(nombreUsuario);
+                
                 return idUsuario;
 
             }
@@ -69,8 +71,9 @@ namespace Formulario
                 {
                     MessageBox.Show("El usuario está bloqueado. Demasiados intentos fallidos.");
                     MessageBox.Show("La aplicación se Cerrará");
+                    
                     return "error";
-                    Application.Exit();
+                    
                 }
             }
 
@@ -94,14 +97,8 @@ namespace Formulario
 
             }
 
-
+           
             string usuarioActualTipo = gestorUsuarios.TipoDeUsuarioLogin(idUsuarioActual);
-
-            //MessageBox.Show(usuarioActualTipo);
-
-
-
-
             if (usuarioActualTipo == "vendedor")
             {
                 menuVendedor = new MenuVendedor();
@@ -109,29 +106,16 @@ namespace Formulario
             }
             else if (usuarioActualTipo == "supervisor")
             {
-                menuSupervisor= new MenuSupervisor();
+                menuSupervisor = new MenuSupervisor();
                 menuSupervisor.Show();
             }
-            else
+            else if (usuarioActualTipo == "administrador")
             {
                 menuAdministrador = new MenuAdministrador();
                 menuAdministrador.Show();
             }
 
-
-
-            //Modificar segun acciones de botón
-            // Se haria en el codigo de cada formulario específico
-           
-
-            //Console.WriteLine("Cerrando sesión...");
-            //Thread.Sleep(8000);
-            //Console.Clear();
-            //Iniciar();
-
         }
-        
-        //Adaptar a formulario
         private void SolicitarCambioDeContraseña(string nombreUsuario, string contraseña)
         {
            
@@ -142,7 +126,7 @@ namespace Formulario
             while (!cambioExitoso)
             {
                 MessageBox.Show("Ingrese la nueva contraseña:");
-                nuevaContraseña = Console.ReadLine();
+                nuevaContraseña = txtPassword.Text;
 
                 try
                 {

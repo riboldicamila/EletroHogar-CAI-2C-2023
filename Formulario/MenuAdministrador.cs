@@ -19,6 +19,7 @@ namespace Formulario
             InitializeComponent();
             OcultarCampos();
         }
+        string msj = "";
         int host;
         string tipoUsuario;
         List<Usuario> listadoInactivos = new List<Usuario>();
@@ -177,7 +178,9 @@ namespace Formulario
                 }
                 catch (ArgumentException ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    msj += (ex.Message + System.Environment.NewLine);
+                    
+
                 }
             }
 
@@ -192,7 +195,7 @@ namespace Formulario
                 }
                 catch (ArgumentException ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    msj += (ex.Message + System.Environment.NewLine);
                 }
             }
 
@@ -208,7 +211,7 @@ namespace Formulario
                 }
                 catch (ArgumentException ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    msj += (ex.Message + System.Environment.NewLine);
                 }
             }
 
@@ -225,7 +228,7 @@ namespace Formulario
                 }
                 catch (ArgumentException ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    msj += (ex.Message + System.Environment.NewLine);
                 }
             }
 
@@ -242,7 +245,7 @@ namespace Formulario
                 }
                 catch (ArgumentException ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    msj += (ex.Message + System.Environment.NewLine);
                 }
             }
 
@@ -259,7 +262,7 @@ namespace Formulario
                 }
                 catch (ArgumentException ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    msj += (ex.Message + System.Environment.NewLine);
                 }
             }
 
@@ -278,7 +281,7 @@ namespace Formulario
                 }
                 catch (ArgumentException ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    msj += (ex.Message + System.Environment.NewLine);
                 }
             }
 
@@ -298,11 +301,20 @@ namespace Formulario
                 }
                 catch (ArgumentException ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    msj += (ex.Message + System.Environment.NewLine);
                 }
             }
-            bool response = gestorUsuarios.AgregarUsuario(nombre, host, dni, direccion, telefono,
+            bool response = false;
+            if (msj == "")
+            {
+                response = gestorUsuarios.AgregarUsuario(nombre, host, dni, direccion, telefono,
                        apellido, email, FormLogin.id, username, fechaNacimiento);
+            }
+            else
+            {
+                MessageBox.Show(msj);
+            }
+            
 
             if (!response)
             {
@@ -312,10 +324,6 @@ namespace Formulario
             {
                 MessageBox.Show("Usuario supervisor agregado con éxito.");
             }
-
-
-
-
         }
 
 
@@ -355,6 +363,7 @@ namespace Formulario
 
         private void btnReactivar_Click(object sender, EventArgs e)
         {
+            
             if (btnReactivar.Text == "Reactivar")//implementar
             {
                 if (cmbInactivos.Items.Count > 0 && cmbInactivos.SelectedIndex > 0)

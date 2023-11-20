@@ -56,9 +56,9 @@
             btnBajaProd = new Button();
             cmbBajaProd = new ComboBox();
             grpDevolucion = new GroupBox();
+            txtventa = new TextBox();
             btnDevolucion = new Button();
             label1 = new Label();
-            txtventa = new TextBox();
             grpOpciones.SuspendLayout();
             grpAltaProd.SuspendLayout();
             grpBajaProd.SuspendLayout();
@@ -101,6 +101,7 @@
             btnSalir.TabIndex = 7;
             btnSalir.Text = "Salir";
             btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
             // 
             // rdoReporteProductos
             // 
@@ -346,6 +347,13 @@
             grpDevolucion.TabIndex = 37;
             grpDevolucion.TabStop = false;
             // 
+            // txtventa
+            // 
+            txtventa.Location = new Point(20, 37);
+            txtventa.Name = "txtventa";
+            txtventa.Size = new Size(100, 23);
+            txtventa.TabIndex = 3;
+            // 
             // btnDevolucion
             // 
             btnDevolucion.Location = new Point(119, 71);
@@ -364,13 +372,6 @@
             label1.Size = new Size(41, 15);
             label1.TabIndex = 1;
             label1.Text = "Ventas";
-            // 
-            // txtventa
-            // 
-            txtventa.Location = new Point(20, 37);
-            txtventa.Name = "txtventa";
-            txtventa.Size = new Size(100, 23);
-            txtventa.TabIndex = 3;
             // 
             // MenuSupervisor
             // 
