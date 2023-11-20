@@ -69,11 +69,30 @@
             btnRegistrar = new Button();
             grpRegistrar = new GroupBox();
             grpBajaYReactivar = new GroupBox();
+            lblListadousuarios = new Label();
+            cmbUsuarios = new ComboBox();
             btnReactivar = new Button();
             cmbInactivos = new ComboBox();
-            cmbUsuarios = new ComboBox();
+            grpAltaProv = new GroupBox();
+            lblCUITprov = new Label();
+            lblemailprov = new Label();
+            lblApellidoprov = new Label();
+            lblNombreProv = new Label();
+            btnRegistrarProv = new Button();
+            txtCUITprov = new TextBox();
+            txtemailprov = new TextBox();
+            txtApellidoprov = new TextBox();
+            txtNombreprov = new TextBox();
+            grpBajaYReactivarProv = new GroupBox();
+            lblListadoProv = new Label();
+            cmbProv = new ComboBox();
+            btnmodprov = new Button();
+            cmbProvInactivos = new ComboBox();
+            grpAltaProd = new GroupBox();
             grpRegistrar.SuspendLayout();
             grpBajaYReactivar.SuspendLayout();
+            grpAltaProv.SuspendLayout();
+            grpBajaYReactivarProv.SuspendLayout();
             SuspendLayout();
             // 
             // rdoAltaSup
@@ -458,14 +477,32 @@
             // 
             // grpBajaYReactivar
             // 
+            grpBajaYReactivar.Controls.Add(lblListadousuarios);
             grpBajaYReactivar.Controls.Add(cmbUsuarios);
             grpBajaYReactivar.Controls.Add(btnReactivar);
             grpBajaYReactivar.Controls.Add(cmbInactivos);
             grpBajaYReactivar.Location = new Point(355, 220);
             grpBajaYReactivar.Name = "grpBajaYReactivar";
-            grpBajaYReactivar.Size = new Size(405, 141);
+            grpBajaYReactivar.Size = new Size(311, 101);
             grpBajaYReactivar.TabIndex = 31;
             grpBajaYReactivar.TabStop = false;
+            // 
+            // lblListadousuarios
+            // 
+            lblListadousuarios.AutoSize = true;
+            lblListadousuarios.Location = new Point(17, 15);
+            lblListadousuarios.Name = "lblListadousuarios";
+            lblListadousuarios.Size = new Size(45, 15);
+            lblListadousuarios.TabIndex = 27;
+            lblListadousuarios.Text = "Listado";
+            // 
+            // cmbUsuarios
+            // 
+            cmbUsuarios.FormattingEnabled = true;
+            cmbUsuarios.Location = new Point(169, 19);
+            cmbUsuarios.Name = "cmbUsuarios";
+            cmbUsuarios.Size = new Size(121, 23);
+            cmbUsuarios.TabIndex = 2;
             // 
             // btnReactivar
             // 
@@ -479,24 +516,164 @@
             // cmbInactivos
             // 
             cmbInactivos.FormattingEnabled = true;
-            cmbInactivos.Location = new Point(14, 14);
+            cmbInactivos.Location = new Point(17, 33);
             cmbInactivos.Name = "cmbInactivos";
             cmbInactivos.Size = new Size(121, 23);
             cmbInactivos.TabIndex = 0;
             // 
-            // cmbUsuarios
+            // grpAltaProv
             // 
-            cmbUsuarios.FormattingEnabled = true;
-            cmbUsuarios.Location = new Point(169, 19);
-            cmbUsuarios.Name = "cmbUsuarios";
-            cmbUsuarios.Size = new Size(121, 23);
-            cmbUsuarios.TabIndex = 2;
+            grpAltaProv.Controls.Add(lblCUITprov);
+            grpAltaProv.Controls.Add(lblemailprov);
+            grpAltaProv.Controls.Add(lblApellidoprov);
+            grpAltaProv.Controls.Add(lblNombreProv);
+            grpAltaProv.Controls.Add(btnRegistrarProv);
+            grpAltaProv.Controls.Add(txtCUITprov);
+            grpAltaProv.Controls.Add(txtemailprov);
+            grpAltaProv.Controls.Add(txtApellidoprov);
+            grpAltaProv.Controls.Add(txtNombreprov);
+            grpAltaProv.Location = new Point(356, 327);
+            grpAltaProv.Name = "grpAltaProv";
+            grpAltaProv.Size = new Size(374, 118);
+            grpAltaProv.TabIndex = 32;
+            grpAltaProv.TabStop = false;
+            // 
+            // lblCUITprov
+            // 
+            lblCUITprov.AutoSize = true;
+            lblCUITprov.Location = new Point(148, 57);
+            lblCUITprov.Name = "lblCUITprov";
+            lblCUITprov.Size = new Size(32, 15);
+            lblCUITprov.TabIndex = 32;
+            lblCUITprov.Text = "CUIT";
+            // 
+            // lblemailprov
+            // 
+            lblemailprov.AutoSize = true;
+            lblemailprov.Location = new Point(14, 56);
+            lblemailprov.Name = "lblemailprov";
+            lblemailprov.Size = new Size(36, 15);
+            lblemailprov.TabIndex = 30;
+            lblemailprov.Text = "Email";
+            // 
+            // lblApellidoprov
+            // 
+            lblApellidoprov.AutoSize = true;
+            lblApellidoprov.Location = new Point(148, 9);
+            lblApellidoprov.Name = "lblApellidoprov";
+            lblApellidoprov.Size = new Size(51, 15);
+            lblApellidoprov.TabIndex = 30;
+            lblApellidoprov.Text = "Apellido";
+            // 
+            // lblNombreProv
+            // 
+            lblNombreProv.AutoSize = true;
+            lblNombreProv.Location = new Point(14, 7);
+            lblNombreProv.Name = "lblNombreProv";
+            lblNombreProv.Size = new Size(51, 15);
+            lblNombreProv.TabIndex = 31;
+            lblNombreProv.Text = "Nombre";
+            // 
+            // btnRegistrarProv
+            // 
+            btnRegistrarProv.Location = new Point(274, 74);
+            btnRegistrarProv.Name = "btnRegistrarProv";
+            btnRegistrarProv.Size = new Size(75, 23);
+            btnRegistrarProv.TabIndex = 30;
+            btnRegistrarProv.Text = "Registrar";
+            btnRegistrarProv.UseVisualStyleBackColor = true;
+            btnRegistrarProv.Click += btnRegistrarProv_Click;
+            // 
+            // txtCUITprov
+            // 
+            txtCUITprov.Location = new Point(148, 75);
+            txtCUITprov.Name = "txtCUITprov";
+            txtCUITprov.Size = new Size(100, 23);
+            txtCUITprov.TabIndex = 19;
+            // 
+            // txtemailprov
+            // 
+            txtemailprov.Location = new Point(14, 74);
+            txtemailprov.Name = "txtemailprov";
+            txtemailprov.Size = new Size(100, 23);
+            txtemailprov.TabIndex = 18;
+            // 
+            // txtApellidoprov
+            // 
+            txtApellidoprov.Location = new Point(148, 27);
+            txtApellidoprov.Name = "txtApellidoprov";
+            txtApellidoprov.Size = new Size(100, 23);
+            txtApellidoprov.TabIndex = 17;
+            // 
+            // txtNombreprov
+            // 
+            txtNombreprov.Location = new Point(14, 25);
+            txtNombreprov.Name = "txtNombreprov";
+            txtNombreprov.Size = new Size(100, 23);
+            txtNombreprov.TabIndex = 16;
+            // 
+            // grpBajaYReactivarProv
+            // 
+            grpBajaYReactivarProv.Controls.Add(lblListadoProv);
+            grpBajaYReactivarProv.Controls.Add(cmbProv);
+            grpBajaYReactivarProv.Controls.Add(btnmodprov);
+            grpBajaYReactivarProv.Controls.Add(cmbProvInactivos);
+            grpBajaYReactivarProv.Location = new Point(355, 451);
+            grpBajaYReactivarProv.Name = "grpBajaYReactivarProv";
+            grpBajaYReactivarProv.Size = new Size(311, 101);
+            grpBajaYReactivarProv.TabIndex = 33;
+            grpBajaYReactivarProv.TabStop = false;
+            // 
+            // lblListadoProv
+            // 
+            lblListadoProv.AutoSize = true;
+            lblListadoProv.Location = new Point(17, 15);
+            lblListadoProv.Name = "lblListadoProv";
+            lblListadoProv.Size = new Size(45, 15);
+            lblListadoProv.TabIndex = 27;
+            lblListadoProv.Text = "Listado";
+            // 
+            // cmbProv
+            // 
+            cmbProv.FormattingEnabled = true;
+            cmbProv.Location = new Point(169, 19);
+            cmbProv.Name = "cmbProv";
+            cmbProv.Size = new Size(121, 23);
+            cmbProv.TabIndex = 2;
+            // 
+            // btnmodprov
+            // 
+            btnmodprov.Location = new Point(17, 62);
+            btnmodprov.Name = "btnmodprov";
+            btnmodprov.Size = new Size(75, 23);
+            btnmodprov.TabIndex = 1;
+            btnmodprov.UseVisualStyleBackColor = true;
+            btnmodprov.Click += btnmodprov_Click;
+            // 
+            // cmbProvInactivos
+            // 
+            cmbProvInactivos.FormattingEnabled = true;
+            cmbProvInactivos.Location = new Point(17, 33);
+            cmbProvInactivos.Name = "cmbProvInactivos";
+            cmbProvInactivos.Size = new Size(121, 23);
+            cmbProvInactivos.TabIndex = 0;
+            // 
+            // grpAltaProd
+            // 
+            grpAltaProd.Location = new Point(359, 570);
+            grpAltaProd.Name = "grpAltaProd";
+            grpAltaProd.Size = new Size(200, 100);
+            grpAltaProd.TabIndex = 34;
+            grpAltaProd.TabStop = false;
             // 
             // MenuAdministrador
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 664);
+            ClientSize = new Size(961, 712);
+            Controls.Add(grpAltaProd);
+            Controls.Add(grpBajaYReactivarProv);
+            Controls.Add(grpAltaProv);
             Controls.Add(grpBajaYReactivar);
             Controls.Add(grpRegistrar);
             Controls.Add(label5);
@@ -526,6 +703,11 @@
             grpRegistrar.ResumeLayout(false);
             grpRegistrar.PerformLayout();
             grpBajaYReactivar.ResumeLayout(false);
+            grpBajaYReactivar.PerformLayout();
+            grpAltaProv.ResumeLayout(false);
+            grpAltaProv.PerformLayout();
+            grpBajaYReactivarProv.ResumeLayout(false);
+            grpBajaYReactivarProv.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -579,5 +761,22 @@
         private Button btnReactivar;
         private ComboBox cmbInactivos;
         private ComboBox cmbUsuarios;
+        private GroupBox grpAltaProv;
+        private Label lblCUITprov;
+        private Label lblemailprov;
+        private Label lblApellidoprov;
+        private Label lblNombreProv;
+        private Button btnRegistrarProv;
+        private TextBox txtCUITprov;
+        private TextBox txtemailprov;
+        private TextBox txtApellidoprov;
+        private TextBox txtNombreprov;
+        private Label lblListadousuarios;
+        private GroupBox grpBajaYReactivarProv;
+        private Label lblListadoProv;
+        private ComboBox cmbProv;
+        private Button btnmodprov;
+        private ComboBox cmbProvInactivos;
+        private GroupBox grpAltaProd;
     }
 }

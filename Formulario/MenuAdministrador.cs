@@ -22,7 +22,12 @@ namespace Formulario
         int host;
         string tipoUsuario;
         List<UsuarioWS> listadoInactivos = new List<UsuarioWS>();
+        List<Proveedor> listadoProvInactivos = new List<Proveedor>();
         private GestorDeUsuarios gestorUsuarios = new GestorDeUsuarios();
+        private GestorDeProductos gestorDeProductos = new GestorDeProductos();
+        private GestorDeProveedores gestorDeProveedores = new GestorDeProveedores();
+        private GestorDeVentas gestorDeVentas = new GestorDeVentas();
+        private GestorDeClientes gestorDeClientes = new GestorDeClientes();
         //private void btnSeleccion_Click(object sender, EventArgs e)
         //{
         //}
@@ -93,17 +98,26 @@ namespace Formulario
             else if (rdoAltaProv.Checked)
             {
                 OcultarCampos();
-                //Alta Proveedores
+                grpAltaProv.Show();
             }
             else if (rdoBajaProv.Checked)
             {
                 OcultarCampos();
-                //Baja Proveedores
+                btnmodprov.Text = "Baja";
+                cmbProv.Location = cmbProvInactivos.Location;
+                cmbProvInactivos.Hide();
+                cmbProv.Show();
+                grpBajaYReactivarProv.Show();
+
             }
             else if (rdoReactivarProv.Checked)
             {
                 OcultarCampos();
-                //Reactivar Proveedor
+                btnmodprov.Text = "Reactivar";
+                cmbProvInactivos.Show();
+                cmbProv.Hide();
+                grpBajaYReactivarProv.Show();
+
             }
             else if (rdoAltaProd.Checked)
             {
@@ -301,7 +315,11 @@ namespace Formulario
         {
             grpRegistrar.Hide();
             grpBajaYReactivar.Hide();
+            grpAltaProv.Hide();
+            grpBajaYReactivarProv.Hide();
             grpBajaYReactivar.Location = grpRegistrar.Location;
+            grpAltaProv.Location = grpRegistrar.Location;
+            grpBajaYReactivarProv.Location = grpRegistrar.Location;
         }
 
         private void ListarTodosLosUsuarios()
@@ -325,10 +343,15 @@ namespace Formulario
 
         private void btnReactivar_Click(object sender, EventArgs e)
         {
-            if (btnReactivar.Text == "Reactivar")
+            if (btnReactivar.Text == "Reactivar")//implementar
             {
-                //implementar
-                MessageBox.Show("Usuario Reactivado con éxito");
+                if (cmbInactivos.Items.Count > 0 && cmbInactivos.SelectedIndex > 0)
+                {
+                    MessageBox.Show("Usuario Reactivado con éxito");
+                }
+                else MessageBox.Show("No se encontraron usuarios inactivos o no seleccionó ninguno.");
+
+
             }
             else if (btnReactivar.Text == "Baja")
             {
@@ -339,9 +362,9 @@ namespace Formulario
 
         private void BajaUsuarios(string idUsuarioActual, string tipoUsuario)
         {
-            
+
             List<UsuarioWS> listadoUsuarios = gestorUsuarios.ObtenerListadoDeUsuarios();
-            
+
 
             foreach (UsuarioWS usuario in listadoUsuarios)
             {
@@ -372,5 +395,102 @@ namespace Formulario
                 }
             }
         }
+
+        private void AltaProveedores(string idUsuarioActual)
+        {
+            string nombre = txtNombreprov.Text;
+            Validaciones.ValidarNombre(nombre);
+            string apellido = txtApellidoprov.Text;
+            Validaciones.ValidarApellido(apellido);
+            string cuit = txtCUITprov.Text;
+            Validaciones.ValidarCuit(cuit);
+            string email = txtemailprov.Text;
+            Validaciones.ValidarEmail(email);
+
+            if (gestorDeProveedores.AltaProveedor(nombre, apellido, cuit, email, idUsuarioActual))
+            {
+                MessageBox.Show($"Proveedor {nombre} agregado con éxito.");
+            }
+            else
+            {
+                MessageBox.Show("Error al agregar el proveedor. Por favor, inténtelo de nuevo.");
+            }
+        }
+
+        private void ListarProveedores()
+        {
+            List<Proveedor> proveedores = gestorDeProveedores.ListarProveedores();
+            foreach (Proveedor p in proveedores)
+            {
+                cmbProv.Items.Add(p.Nombre + p.Apellido);
+            }
+        }
+
+        private void btnRegistrarProv_Click(object sender, EventArgs e)
+        {
+            AltaProveedores(FormLogin.id);
+        }
+
+        private void BajaProveedores(string idUsuarioActual)
+        {
+            List<Proveedor> listadoProveedores = gestorDeProveedores.ListarProveedores();
+
+            foreach (Proveedor p in listadoProveedores)
+            {
+                if (cmbProv.Text == (p.Nombre + " " + p.Apellido))
+                {
+                    string idProvBaja = p.Id.ToString();
+                    bool bajaProvExitosa = gestorDeProveedores.BajaProveedor(idProvBaja, FormLogin.id);
+                    if (bajaProvExitosa)
+                    {
+                        listadoProvInactivos.Add(p);
+                        MessageBox.Show($"El proveedor con ID {idProvBaja} se encuentra Inactivo.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al deshabilitar el proveedor. Por favor, inténtelo de nuevo.");
+                    }
+                }
+            }
+
+
+
+            Console.Write("Ingrese el id del proveedor que quiere dar de baja: ");
+            string idProveedor = Console.ReadLine();
+
+            bool bajaExitosa = gestorDeProveedores.BajaProveedor(idProveedor, idUsuarioActual);
+
+            if (bajaExitosa)
+            {
+                Console.WriteLine($"El proveedor con ID {idProveedor} se encuentra Inactivo.");
+                ListarProveedores();
+            }
+            else
+            {
+                MessageBox.Show("Error al deshabilitar el proveedor. Por favor, inténtelo de nuevo.");
+            }
+
+
+        }
+
+        private void btnmodprov_Click(object sender, EventArgs e)
+        {
+            if (btnmodprov.Text == "Reactivar")//implementar
+            {
+                if (cmbProvInactivos.Items.Count > 0 && cmbProvInactivos.SelectedIndex > 0)
+                {
+                    MessageBox.Show("Proveedor Reactivado con éxito");
+                }
+                else MessageBox.Show("No se encontraron proveedores inactivos o no seleccionó ninguno.");
+
+
+            }
+            else if (btnmodprov.Text == "Baja")
+            {
+                BajaProveedores(FormLogin.id);
+
+            }
+        }
     }
 }
+
