@@ -31,12 +31,14 @@ namespace Formulario
         {
             if (rdoAltaSup.Checked)
             {
+                OcultarCampos();
                 host = 2;
                 tipoUsuario = "supervisor";
                 grpRegistrar.Show();
             }
             else if (rdoBajaSup.Checked)
             {
+                OcultarCampos();
                 host = 2;
                 tipoUsuario = "supervisor";
                 ListarTodosLosUsuarios();
@@ -44,25 +46,30 @@ namespace Formulario
                 btnReactivar.Text = "Baja";
                 cmbInactivos.Hide();
                 grpBajaYReactivar.Show();
+                cmbUsuarios.Show();
             }
             else if (rdoReactivarSup.Checked)
             {
+                OcultarCampos();
                 host = 2;
                 tipoUsuario = "supervisor";
                 ListarInactivos(listadoInactivos);
                 btnReactivar.Text = "Reactivar";
                 cmbUsuarios.Hide();
                 grpBajaYReactivar.Show();
+                cmbInactivos.Show();
 
             }
             else if (rdoAltaVend.Checked)
             {
+                OcultarCampos();
                 host = 1;
                 tipoUsuario = "vendedor";
                 grpRegistrar.Show();
             }
             else if (rdoBajaVend.Checked)
             {
+                OcultarCampos();
                 host = 1;
                 tipoUsuario = "vendedor";
                 ListarTodosLosUsuarios();
@@ -70,50 +77,62 @@ namespace Formulario
                 btnReactivar.Text = "Baja";
                 cmbInactivos.Hide();
                 grpBajaYReactivar.Show();
+                cmbUsuarios.Show();
             }
             else if (rdoReactivarVend.Checked)
             {
+                OcultarCampos();
                 host = 1;
                 tipoUsuario = "vendedor";
                 ListarInactivos(listadoInactivos);
                 btnReactivar.Text = "Reactivar";
                 cmbUsuarios.Hide();
                 grpBajaYReactivar.Show();
+                cmbInactivos.Show();
             }
             else if (rdoAltaProv.Checked)
             {
+                OcultarCampos();
                 //Alta Proveedores
             }
             else if (rdoBajaProv.Checked)
             {
+                OcultarCampos();
                 //Baja Proveedores
             }
             else if (rdoReactivarProv.Checked)
             {
+                OcultarCampos();
                 //Reactivar Proveedor
             }
             else if (rdoAltaProd.Checked)
             {
+                OcultarCampos();
                 //Alta producto
             }
             else if (rdoModificarProd.Checked)
             {
+                OcultarCampos();
                 //ModificarProducto
             }
             else if (rdoBajaProd.Checked)
             {
+                OcultarCampos();
                 //Baja Producto
             }
             else if (rdoReporteVentas.Checked)
             {
+                OcultarCampos();
                 //Reporte de Ventas por Vendedor
             }
             else if (rdoReporteStock.Checked)
             {
+                OcultarCampos();
                 //reporte stock critico
             }
             else if (rdoReporteProductos.Checked)
             {
+                OcultarCampos();
                 //reporte productos mas vendidos por categoria
             }
             else MessageBox.Show("Seleccione una opcion");
@@ -282,7 +301,7 @@ namespace Formulario
         {
             grpRegistrar.Hide();
             grpBajaYReactivar.Hide();
-
+            grpBajaYReactivar.Location = grpRegistrar.Location;
         }
 
         private void ListarTodosLosUsuarios()
