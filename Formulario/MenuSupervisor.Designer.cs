@@ -55,9 +55,14 @@
             lblNombreProd = new Label();
             btnBajaProd = new Button();
             cmbBajaProd = new ComboBox();
+            grpDevolucion = new GroupBox();
+            btnDevolucion = new Button();
+            label1 = new Label();
+            txtventa = new TextBox();
             grpOpciones.SuspendLayout();
             grpAltaProd.SuspendLayout();
             grpBajaProd.SuspendLayout();
+            grpDevolucion.SuspendLayout();
             SuspendLayout();
             // 
             // grpOpciones
@@ -330,11 +335,49 @@
             cmbBajaProd.Size = new Size(121, 23);
             cmbBajaProd.TabIndex = 0;
             // 
+            // grpDevolucion
+            // 
+            grpDevolucion.Controls.Add(txtventa);
+            grpDevolucion.Controls.Add(btnDevolucion);
+            grpDevolucion.Controls.Add(label1);
+            grpDevolucion.Location = new Point(404, 232);
+            grpDevolucion.Name = "grpDevolucion";
+            grpDevolucion.Size = new Size(200, 100);
+            grpDevolucion.TabIndex = 37;
+            grpDevolucion.TabStop = false;
+            // 
+            // btnDevolucion
+            // 
+            btnDevolucion.Location = new Point(119, 71);
+            btnDevolucion.Name = "btnDevolucion";
+            btnDevolucion.Size = new Size(75, 23);
+            btnDevolucion.TabIndex = 2;
+            btnDevolucion.Text = "Devolucion";
+            btnDevolucion.UseVisualStyleBackColor = true;
+            btnDevolucion.Click += btnDevolucion_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(20, 19);
+            label1.Name = "label1";
+            label1.Size = new Size(41, 15);
+            label1.TabIndex = 1;
+            label1.Text = "Ventas";
+            // 
+            // txtventa
+            // 
+            txtventa.Location = new Point(20, 37);
+            txtventa.Name = "txtventa";
+            txtventa.Size = new Size(100, 23);
+            txtventa.TabIndex = 3;
+            // 
             // MenuSupervisor
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(grpDevolucion);
             Controls.Add(grpBajaProd);
             Controls.Add(grpAltaProd);
             Controls.Add(grpOpciones);
@@ -346,6 +389,8 @@
             grpAltaProd.PerformLayout();
             grpBajaProd.ResumeLayout(false);
             grpBajaProd.PerformLayout();
+            grpDevolucion.ResumeLayout(false);
+            grpDevolucion.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -378,5 +423,9 @@
         private Label lblNombreProd;
         private Button btnBajaProd;
         private ComboBox cmbBajaProd;
+        private GroupBox grpDevolucion;
+        private Button btnDevolucion;
+        private Label label1;
+        private TextBox txtventa;
     }
 }

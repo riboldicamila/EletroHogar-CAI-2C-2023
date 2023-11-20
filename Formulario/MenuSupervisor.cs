@@ -32,7 +32,9 @@ namespace Formulario
         {
             grpAltaProd.Hide();
             grpBajaProd.Hide();
+            grpDevolucion.Hide();
             grpBajaProd.Location = grpAltaProd.Location;
+            grpDevolucion.Location = grpAltaProd.Location;
         }
 
         private void btnSeleccion_Click(object sender, EventArgs e)
@@ -57,7 +59,9 @@ namespace Formulario
             }
             else if (rdoDevolucion.Checked)
             {
-                //Devoluciones
+                OcultarCampos();
+                grpDevolucion.Show();
+
             }
             else if (rdoReporteStock.Checked)
             {
@@ -170,10 +174,12 @@ namespace Formulario
         {
             BajaProducto(FormLogin.id);
         }
+
+        
         private void DevolverVentas(string idUsuarioActual)
         {
-            
-            string idVenta = Console.ReadLine();
+
+            string idVenta = txtventa.Text;
 
             bool bajaExitosa = gestorDeVentas.DevolverVenta(idVenta, idUsuarioActual);
 
@@ -183,11 +189,13 @@ namespace Formulario
             }
             else
             {
-                Console.WriteLine("Error al devolver venta. Por favor, inténtelo de nuevo.");
+                MessageBox.Show("Error al devolver venta. Por favor, inténtelo de nuevo.");
             }
+        }
 
-            Thread.Sleep(3000);
-            Console.Clear();
+        private void btnDevolucion_Click(object sender, EventArgs e)
+        {
+            DevolverVentas(FormLogin.id);
         }
     }
 }
