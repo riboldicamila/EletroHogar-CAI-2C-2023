@@ -230,6 +230,19 @@ namespace Negocio
         }
 
 
+        public List<Usuario> ObtenerListadoDeUsuariosInactivos()
+        {
+            //  la lista de usuarios desde el webservice
+            List<Usuario> listadoUsuarios = UsuarioDatos.ListarUsuarios();
+
+            // Filtrar la lista  solo usuarios inactivos
+            List<Usuario> usuariosVendedores = listadoUsuarios
+                .Where(usr => usr.FechaBaja != null)
+                .ToList();
+
+            return usuariosVendedores;
+        }
+
     }
 
 }
