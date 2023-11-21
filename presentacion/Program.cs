@@ -978,10 +978,11 @@ namespace MyApp
 
         private void ReactivarUsuario(string idUsuarioActual)
         {
+            ListarTodosLosUsuarios();
             Console.WriteLine("Ingrese el id del usuario que desea reactivar:");
             string idReactivar = Console.ReadLine();
 
-            bool reactivadoExitoso = gestorUsuarios.BajaUsuarios(idReactivar, idUsuarioActual);
+            bool reactivadoExitoso = gestorUsuarios.ReactivarUsuario(idReactivar, idUsuarioActual);
 
             if (reactivadoExitoso)
             {

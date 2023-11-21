@@ -107,6 +107,39 @@ namespace Negocio
                 throw new ArgumentException("El cuit debe ser un numero positivo de 11 digitos, sin espacios ni guiones. No puede estar vacío");
             }
         }
+
+        public static void ValidarPrecio(decimal precio)
+        {
+            if (precio <= 0)
+            {
+                throw new ArgumentException("El precio debe ser un valor decimal positivo.");
+            }
+        }
+
+        public static void ValidarCategoria(int categoria)
+        {
+            if (categoria < 1 || categoria > 5)
+            {
+                throw new ArgumentException("La categoría debe estar en el rango de 1 a 5.");
+            }
+        }
+
+        public static void ValidarStock(int stock)
+        {
+            if (stock < 0)
+            {
+                throw new ArgumentException("El stock no puede ser un número negativo.");
+            }
+        }
+
+        public static void ValidarId(string id)
+        {
+            if (string.IsNullOrEmpty(id) || !Guid.TryParse(id, out _))
+            {
+                throw new ArgumentException("El ID no tiene el formato correcto.");
+            }
+        }
+
     }
 
 }
