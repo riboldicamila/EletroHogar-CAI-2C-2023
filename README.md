@@ -1,27 +1,33 @@
 # EletroHogar-CAI-2C-2023
+◻️**GRUPO 2:**
+▫️Riboldi Camila
+▫️Rimmeli Juan Martín
 
-UML WIP:  https://app.diagrams.net/#G1yOry2OQ5BWdKjcOOe5tt5dqO17SHslxD
-Trello: https://trello.com/invite/b/D7TIHXtl/ATTI85ba716d67eba456454938e422e91d08A40FEBCF/cai-grupo-2
-
-Usuario Admin bs ws:
+◻️**USUARIOS WS**:
+▫️Usuario Administrador WS:
 0cdbc5a5-69d9-4ab8-8cb3-9932ce33f54a
- "nombreUsuario": "Grupo02master",
-  "contraseña": "Grupo02master"
+ "Grupo02master",
+ "Grupo02master"
 
-Usuario Supervisor WS:
+▫️Usuario Supervisor WS:
 grupo02super
 Nuevacontra1
 
-Usuario Vendedor WS:
+▫️Usuario Vendedor WS:
 Vendedorgdos
 Nuevacontra1
 
-
-Diagrama caso de uso:
+◻️**DIAGRAMAS:**
+▫️Diagrama caso de uso:
 https://app.diagrams.net/#G1AEK93r-61uSlVeSC79ns29kdV0_B0bMG
 
-Diagrama de secuencia:
+▫️Diagrama de secuencia:
 https://app.diagrams.net/#G1HGZDxq_73Z7e7AXJMiIr3TdvCAaFzGm8
 
-Diagrama de clase:
+▫️Diagrama de clase:
 https://app.diagrams.net/?libs=general;uml#G1BbNzdZczQyDW4_bTpK2WdX826-uEnHsz
+
+◻️**OTROS LINKS:**
+UML WIP:  https://app.diagrams.net/#G1yOry2OQ5BWdKjcOOe5tt5dqO17SHslxD
+Trello: https://trello.com/invite/b/D7TIHXtl/ATTI85ba716d67eba456454938e422e91d08A40FEBCF/cai-grupo-2
+
