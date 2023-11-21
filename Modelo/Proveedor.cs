@@ -8,13 +8,13 @@ namespace Modelo
 {
     public class Proveedor
     {
-        public string Id { get; set; }
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
-        public string Email { get; set; }
-        public string CUIT { get; set; }
-        public DateTime FechaAlta { get; set; }
-        public DateTime? FechaBaja { get; set; }
+        public string id { get; set; }
+        public string nombre { get; set; }
+        public string apellido { get; set; }
+        public string email { get; set; }
+        public string cuit { get; set; }
+        public DateTime fechaAlta { get; set; }
+        public DateTime? fechaBaja { get; set; }
 
 
         public Proveedor()
@@ -26,27 +26,27 @@ namespace Modelo
         //[JsonConstructor]
         public Proveedor(string id, string nombre, string apellido, string email, string cuit, DateTime fechaAlta, DateTime? fechaBaja)
         {
-            Id = id;
-            Nombre = nombre;
-            Apellido = apellido;
-            Email = email;
-            CUIT = cuit;
-            FechaAlta = fechaAlta;
-            FechaBaja = fechaBaja;
+            id = id;
+            nombre = nombre;
+            apellido = apellido;
+            email = email;
+            cuit = cuit;
+            fechaAlta = fechaAlta;
+            fechaBaja = fechaBaja;
         }
 
         public Proveedor(ProveedoresWS proveedorWS)
         {
-            this.Id = proveedorWS.idUsuario;
-            this.Nombre = proveedorWS.nombre;
-            this.Apellido = proveedorWS.apellido;
-            this.Email = proveedorWS.email;
-            this.CUIT = proveedorWS.cuit;
+            this.id = proveedorWS.idUsuario;
+            this.nombre = proveedorWS.nombre;
+            this.apellido = proveedorWS.apellido;
+            this.email = proveedorWS.email;
+            this.cuit = proveedorWS.cuit;
         }
 
         public override string ToString()
         {
-            return Id + " "+ CUIT + " " + Nombre + " " + Apellido;
+            return cuit.PadRight(20) + " " + nombre.PadRight(25) + " " + apellido.PadRight(25) + "(" + id + ")";
         }
 
 

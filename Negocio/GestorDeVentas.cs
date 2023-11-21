@@ -12,11 +12,18 @@ namespace Negocio
     {
 
 
-        public void AgregarAListaVenta(List<Ventas> listaVentas, string id, string idCliente, string idProducto, int cantidad)
+        public bool AgregarAListaVenta(ProductosVenta productosVenta)
         {
-            Ventas nuevaVenta = new Ventas(idCliente, id, idProducto, cantidad);
-            listaVentas.Add(nuevaVenta);
+            String idCliente = productosVenta.IdCliente;
+            String idUsuario = productosVenta.IdUsuario;
 
+            List<Ventas> listaVentas = new List<Ventas>();
+            foreach (ItemProductosVentas item in productosVenta.ListadoProductosVentas)
+            {
+                listaVentas.Add(new Ventas(idCliente, idUsuario, item.IdProducto, item.Cantidad));
+            }
+
+            return LlamarWSporProducto(listaVentas);
         }
 
         public bool LlamarWSporProducto(List<Ventas> listaVentas)

@@ -23,6 +23,9 @@ namespace MyApp
         private GestorDeProveedores gestorDeProveedores = new GestorDeProveedores();
         private GestorDeVentas gestorDeVentas = new GestorDeVentas();
         private GestorDeClientes gestorDeClientes = new GestorDeClientes();
+        private String IdUsuarioLogueado = "";
+        private String UsuarioLogueado = "";
+        private String PerfilUsuarioLogeado = "";
 
 
 
@@ -66,7 +69,23 @@ namespace MyApp
 
             } while (idUsuario == "error" || idUsuario == "");
 
-            MostrarMenu(idUsuario, nombreUsuario, password);
+            UsuarioLogueado = nombreUsuario;
+            IdUsuarioLogueado = idUsuario;
+
+            //con idUsuario, get de usuarios con ws
+            //buscar usuario en la lista, ver que host id tiene
+            //define el perfil para hacer al menu
+            //metodo me devuelva un string con tipo de usuario
+
+            if (password == "Temp1234")
+            {
+                SolicitarCambioDeContraseña(nombreUsuario, password);
+
+            }
+
+            PerfilUsuarioLogeado = gestorUsuarios.TipoDeUsuarioLogin(IdUsuarioLogueado);
+            PerfilUsuarioLogeado = "vendedor";
+            MostrarMenu();
 
         }
 
@@ -78,30 +97,17 @@ namespace MyApp
         }
 
 
-        private void MostrarMenu(string idUsuarioActual, string nombreUsuario, string password)
+        private void MostrarMenu()
         {
-            //con idUsuario, get de usuarios con ws
-            //buscar usuario en la lista, ver que host id tiene
-            //define el perfil para hacer al menu
-            //metodo me devuelva un string con tipo de usuario
 
-            idUsuarioActual = idUsuarioActual.Trim('"');
-
-            if (password == "Temp1234")
-            {
-                SolicitarCambioDeContraseña(nombreUsuario, password);
-
-            }
-
-            string usuarioActualTipo = gestorUsuarios.TipoDeUsuarioLogin(idUsuarioActual);
 
 
             Console.Clear();
             
-            Console.WriteLine($"Menu de " + usuarioActualTipo);
+            Console.WriteLine($"Menu de " + UsuarioLogueado);
 
 
-            if (usuarioActualTipo == "vendedor")
+            if (PerfilUsuarioLogeado == "vendedor")
             {
                 Console.WriteLine("1. Agregar una Venta");
                 Console.WriteLine("2. Reporte de ventas por vendedor");
@@ -110,7 +116,7 @@ namespace MyApp
                 Console.WriteLine("5. Salir");
 
             }
-            else if (usuarioActualTipo == "supervisor")
+            else if (PerfilUsuarioLogeado == "supervisor")
             {
                 Console.WriteLine("1. Alta de Productos");
                 Console.WriteLine("2. Modificación de Productos");
@@ -121,7 +127,7 @@ namespace MyApp
                 Console.WriteLine("7. Reporte de productos más vendidos por categoría");
                 Console.WriteLine("8. Salir");
             }
-            else if (usuarioActualTipo == "administrador")
+            else if (PerfilUsuarioLogeado == "administrador")
             {
                 Console.WriteLine("1. Alta de usuarios Supervisores");
                 Console.WriteLine("2. Reactivar usuarios Supervisores");
@@ -145,27 +151,27 @@ namespace MyApp
             var opcionSeleccionada = Console.ReadLine();
             Console.Clear();
 
-            if (usuarioActualTipo == "administrador")
+            if (PerfilUsuarioLogeado == "administrador")
             {
                 //Alta Usuarios Supervisores
                 if (opcionSeleccionada == "1")
                 {
                     Console.WriteLine("GENERAR ALTA/NUEVO USUARIO SUPERVISOR");
-                    RegistrarUsuarioSupervisor(idUsuarioActual);
+                    RegistrarUsuarioSupervisor(IdUsuarioLogueado);
 
                 }
 
                 //Modificacion de Usuarios Supervisores
                 if(opcionSeleccionada == "2")
                 {
-                    ReactivarUsuario(idUsuarioActual);
+                    ReactivarUsuario(IdUsuarioLogueado);
 
                 }
 
                 //Baja Supervisores
                 if (opcionSeleccionada == "3")
                 {
-                    BajaUsuarios(idUsuarioActual, "SUPERVISOR");
+                    BajaUsuarios(IdUsuarioLogueado, "SUPERVISOR");
                 }
 
                 //ALTA Vendedores
@@ -173,26 +179,26 @@ namespace MyApp
                 {
 
                     Console.WriteLine("GENERAR ALTA/NUEVO USUARIO VENDEDORES");
-                    RegistrarUsuarioVendedor(idUsuarioActual);
+                    RegistrarUsuarioVendedor(IdUsuarioLogueado);
 
                 }
 
                 if (opcionSeleccionada == "5")
                 {
-                    ReactivarUsuario(idUsuarioActual);
+                    ReactivarUsuario(IdUsuarioLogueado);
 
                 }
 
                 if (opcionSeleccionada == "6")
                 {
                     //VENDEDOR
-                    BajaUsuarios(idUsuarioActual, "VENDEDOR");
+                    BajaUsuarios(IdUsuarioLogueado, "VENDEDOR");
                  
                 }
 
                 if (opcionSeleccionada == "7")
                 {
-                    AltaProveedores(idUsuarioActual);
+                    AltaProveedores(IdUsuarioLogueado);
                 }
 
                 if (opcionSeleccionada == "8")
@@ -204,12 +210,12 @@ namespace MyApp
                 if (opcionSeleccionada == "9")
                 {
 
-                    BajaProveedores(idUsuarioActual);
+                    BajaProveedores(IdUsuarioLogueado);
                 }
 
                 if (opcionSeleccionada == "10")
                 {
-                    AltaProducto(idUsuarioActual);
+                    AltaProducto(IdUsuarioLogueado);
                 }
 
                 if (opcionSeleccionada == "11")
@@ -219,16 +225,16 @@ namespace MyApp
 
                 if (opcionSeleccionada == "12")
                 {
-                    BajaProducto(idUsuarioActual);
+                    BajaProducto(IdUsuarioLogueado);
                 }
             }
 
 
-            if (usuarioActualTipo == "supervisor")
+            if (PerfilUsuarioLogeado == "supervisor")
             {
                 if (opcionSeleccionada == "1")
                 {
-                    AltaProducto(idUsuarioActual);
+                    AltaProducto(IdUsuarioLogueado);
                 }
 
                 if (opcionSeleccionada == "2")
@@ -238,22 +244,22 @@ namespace MyApp
 
                 if (opcionSeleccionada == "3")
                 {
-                    BajaProducto(idUsuarioActual);
+                    BajaProducto(IdUsuarioLogueado);
                 }
 
                 if (opcionSeleccionada == "4")
                 {
-                    DevolverVentas(idUsuarioActual);
+                    DevolverVentas(IdUsuarioLogueado);
                 }
 
             }
 
 
-            if (usuarioActualTipo == "vendedor")
+            if (PerfilUsuarioLogeado == "vendedor")
             {
                 if (opcionSeleccionada == "1")
                 {
-                    RegistrarVenta(idUsuarioActual);
+                    RegistrarVenta();
                 }
 
                 if (opcionSeleccionada == "2")
@@ -263,7 +269,7 @@ namespace MyApp
 
                 if (opcionSeleccionada == "3")
                 {
-                    RegistrarCliente(idUsuarioActual);
+                    RegistrarCliente(IdUsuarioLogueado);
                 }
 
                 if (opcionSeleccionada == "4")
@@ -274,7 +280,7 @@ namespace MyApp
             }
 
             Thread.Sleep(1000);
-            MostrarMenu(idUsuarioActual, nombreUsuario, password);
+            MostrarMenu();
 
 
         }
@@ -294,7 +300,7 @@ namespace MyApp
                 string idUsuario = gestorDeUsuarios.Login(login);
                 Console.WriteLine("Login exitoso. El idUusario es " + idUsuario);
                 gestorDeUsuarios.LimpiarListaDeControl(nombreUsuario);
-                return idUsuario;
+                return idUsuario.Replace("\"", "");
 
             }
             catch (Exception ex)
@@ -546,6 +552,19 @@ namespace MyApp
             Thread.Sleep(2000);
         }
 
+        private void ObtenerPrecioYNombreProductoPorId(ItemProductosVentas producto)
+        {
+            List<Producto> productos = gestorDeProductos.TraerProductos();
+            foreach (Producto p in productos)
+            {
+                if (p.id == producto.IdProducto)
+                {
+                    producto.Nombre = p.nombre;
+                    producto.Precio = p.precio;
+                }
+            }
+        }
+
         private void ListarClientes()
         {
             Console.WriteLine();
@@ -558,8 +577,11 @@ namespace MyApp
             Console.WriteLine();
         }
 
-        private void RegistrarVenta(string idUsuarioActual)
+        private void RegistrarVenta()
         {
+            ProductosVenta productosVenta = new ProductosVenta();
+            productosVenta.IdUsuario = IdUsuarioLogueado;
+
             Console.Clear();
             Console.WriteLine("AGREGAR UNA VENTA");
 
@@ -570,16 +592,21 @@ namespace MyApp
 
             Console.WriteLine("Ingrese el id del cliente:");
             string idCliente = Console.ReadLine();
-            List<Ventas> lista = new List<Ventas>();
+            productosVenta.IdCliente = idCliente;
+
+            productosVenta.ListadoProductosVentas = new List<ItemProductosVentas>();
 
             while (true)
             {
+                ItemProductosVentas producto = new ItemProductosVentas();
+
                 Console.WriteLine();
                 Console.WriteLine("LISTA DE PRODUCTOS:");
                 ListarProductos();
                 Console.WriteLine("Ingrese el id del producto:");
                 string idProducto = Console.ReadLine();
-
+                producto.IdProducto = idProducto;
+                
                 Console.WriteLine("Ingrese la cantidad:");
                 int cantidad;
 
@@ -587,20 +614,23 @@ namespace MyApp
                 {
                     Console.WriteLine("Por favor, ingrese un valor numérico válido para la cantidad:");
                 }
+                producto.Cantidad = cantidad;
+                ObtenerPrecioYNombreProductoPorId(producto);
 
-                gestorDeVentas.AgregarAListaVenta(lista, idUsuarioActual, idCliente, idProducto, cantidad);
+                productosVenta.ListadoProductosVentas.Add(producto);
+                ListarCarroDeCompras(productosVenta);
 
                 Console.WriteLine("¿Desea agregar otro producto? S/N");
-                string respuesta = Console.ReadLine();
+                String respuesta = Console.ReadLine();
 
-                if (respuesta != "S" || respuesta != "s")
+                if (!(respuesta.ToLower().Equals("s")))
                 {
                     break;
                 }
             }
 
             bool response;
-            response = gestorDeVentas.LlamarWSporProducto(lista);
+            response = gestorDeVentas.AgregarAListaVenta(productosVenta);
 
             if (!response)
             {
@@ -614,6 +644,17 @@ namespace MyApp
                 //sistema de descuentos 
 
             }
+        }
+
+        private void ListarCarroDeCompras(ProductosVenta productos)
+        {
+            decimal SubTotal = 0;
+            foreach (ItemProductosVentas item in productos.ListadoProductosVentas)
+            {
+                Console.WriteLine(item.ToString());
+                SubTotal = SubTotal + (item.Precio * item.Cantidad);
+            }
+            Console.WriteLine("Sub Total:" + SubTotal);
         }
 
         private void ReporteVentas() { }

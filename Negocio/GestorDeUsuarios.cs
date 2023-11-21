@@ -6,6 +6,7 @@ using System.IO;
 using AccesoDatos;
 using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Cryptography;
 
 namespace Negocio
 {
@@ -62,7 +63,7 @@ namespace Negocio
             usuariosConIntentosFallidos.RemoveAll(u => u == nombreUsuario);
         }
 
-        public string TipoDeUsuarioLogin(string idUsuario)
+        public string TipoDeUsuarioLogin(String idUsuario)
         {
             //Guid.Parse(idUsuario);
 

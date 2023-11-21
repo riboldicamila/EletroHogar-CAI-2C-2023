@@ -50,7 +50,7 @@ namespace Modelo
         //necesita este para traer y mostrar LISTA
         public override string ToString()
         {
-            return id + " " + nombre;
+            return "(" + id + ")" + nombre.PadRight(25) + precio;
         }
 
 

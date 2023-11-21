@@ -60,7 +60,7 @@ namespace Modelo
 
         public override string ToString()
         {
-            return id + " " + nombre + " " + apellido;
+            return nombre.PadRight(25) + " " + apellido.PadRight(25) + "(" + id + ")";
         }
     }
 }
