@@ -74,7 +74,7 @@ namespace AccesoDatos
 
         public static Cliente BusquedaPorCliente(string idCliente)
         {
-            string urlWithId = "/api/Cliente/GetCliente?id=" + idCliente;
+            string urlWithId = "/Cliente/GetCliente?id=" + idCliente;
             HttpResponseMessage response = WebHelper.Get(urlWithId);
 
             if (!response.IsSuccessStatusCode)

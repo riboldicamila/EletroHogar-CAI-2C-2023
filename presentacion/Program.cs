@@ -99,9 +99,6 @@ namespace MyApp
 
         private void MostrarMenu()
         {
-
-
-
             Console.Clear();
             
             Console.WriteLine($"Menu de " + UsuarioLogueado);
@@ -227,6 +224,11 @@ namespace MyApp
                 {
                     BajaProducto(IdUsuarioLogueado);
                 }
+
+                if (opcionSeleccionada == "16")
+                {
+                    Iniciar();
+                }
             }
 
 
@@ -252,6 +254,11 @@ namespace MyApp
                     DevolverVentas(IdUsuarioLogueado);
                 }
 
+                if (opcionSeleccionada == "8")
+                {
+                    Iniciar();
+                }
+
             }
 
 
@@ -275,6 +282,11 @@ namespace MyApp
                 if (opcionSeleccionada == "4")
                 {
                     ModificarCliente();
+                }
+
+                if (opcionSeleccionada == "5")
+                {
+                    Iniciar();
                 }
 
             }
@@ -641,8 +653,9 @@ namespace MyApp
                 Console.WriteLine("Resumen de la venta:");
                 ListarCarroDeCompras(productosVenta);
                 ListarTotalConDescuentos(productosVenta, idCliente);
-
             }
+            Thread.Sleep(3000);
+
         }
 
         private void ListarCarroDeCompras(ProductosVenta productos)
@@ -672,17 +685,14 @@ namespace MyApp
             if (cliente != null && cliente.TieneFechaAltaHoy())
             {
                 //es un nuevo cliente. Promo cliente NUEVO, acumulable
-                //se aplicara descuento del 5%
 
                 decimal descuento = SubTotal * 0.05m;
                 decimal totalConDescuento = SubTotal - descuento;
 
                 Console.WriteLine("Descuento aplicado del 5%: " + descuento);
-                Console.WriteLine("Total con descuento: " + totalConDescuento);
+                Console.WriteLine("Total con descuento (PROMO CLIENTE NUEVO): " + totalConDescuento);
 
                 //PROMO ELECTRO HOGAR
-                //chequear en la venta la categoria de cada producto
-                //foreach en cada item de ProductosVenta
                 decimal totalElectroHogar = 0;
 
                 foreach (ItemProductosVentas item in productos.ListadoProductosVentas)
@@ -704,21 +714,24 @@ namespace MyApp
                 }
                 decimal descuentoElectroHogar = 0;
                 decimal totalElectroHogarConDescuento = 0;
+
                 if (totalElectroHogar > 100000)
                 {
                     //aplicar otro descuento 
                     descuentoElectroHogar = totalElectroHogar * 0.05m;
                     totalElectroHogarConDescuento = totalElectroHogar * 0.95m;
-                }
+                    totalConDescuento = totalConDescuento - totalElectroHogar + totalElectroHogarConDescuento;
 
-                totalConDescuento = totalConDescuento - totalElectroHogar + totalElectroHogarConDescuento;
+                    Console.WriteLine("Descuento aplicado del 5%: " + descuentoElectroHogar);
+                    Console.WriteLine("Total con descuento (PROMO ELECTRO HOGAR): " + totalConDescuento);
+                }
 
             }
             else
             {
                 //Total normal
 
-                Console.WriteLine("Total:" + SubTotal);
+                Console.WriteLine("Total de la compra: " + SubTotal);
                
             }
 
