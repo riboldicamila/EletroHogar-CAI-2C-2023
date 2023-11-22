@@ -147,7 +147,7 @@ namespace MyApp
                 Console.WriteLine("10. Alta de Productos");
                 Console.WriteLine("11. Modificación de Productos");
                 Console.WriteLine("12. Baja de Productos");
-                Console.WriteLine("13. Reporte de ventas total (por vendedor, no puede lograr relacion)"); Console.WriteLine("15. Reporte de productos más vendidos por categoría");
+                Console.WriteLine("13. Reporte de ventas total (por vendedor, no puede lograr relacion)"); 
                 Console.WriteLine("14. Salir");
             }
 
@@ -208,7 +208,7 @@ namespace MyApp
                 if (opcionSeleccionada == "8")
                 {
                     //NO ESTA IMPLEMENTADO
-                    ModificacionProveedores();
+                    ModificacionProveedores(IdUsuarioLogueado);
                 }
 
                 if (opcionSeleccionada == "9")
@@ -518,7 +518,7 @@ namespace MyApp
             }
         }
 
-        private void ModificacionProveedores()
+        private void ModificacionProveedores(string idUsuarioActual)
         {
             Console.Clear();
             Console.WriteLine("MODIFICACIÓN PROVEEDORES");
@@ -528,13 +528,74 @@ namespace MyApp
 
             Console.WriteLine();
 
-            Console.WriteLine("Ingrese el cuit del que desea modificar: ");
-            string cuit = Console.ReadLine();
-            Validaciones.ValidarCuit(cuit);
+            Console.WriteLine("Ingrese el id del que desea modificar: ");
+            string id = Console.ReadLine();
 
-            gestorDeProveedores.ModificarProveedor();
+            // Devolver objeto proveedor
+            Proveedor proveedor = gestorDeProveedores.BuscarProveedor(id);
 
+            bool response; 
+
+            if (proveedor != null)
+            {
+                Console.WriteLine($"Proveedor encontrado: {proveedor.nombre}, {proveedor.apellido}, {proveedor.email}, {proveedor.cuit}");
+
+                Console.WriteLine("Seleccione el número de la propiedad que desea modificar:");
+                Console.WriteLine("1. Nombre");
+                Console.WriteLine("2. Apellido");
+                Console.WriteLine("3. Email");
+                Console.WriteLine("4. CUIT");
+
+                if (int.TryParse(Console.ReadLine(), out int opcionSeleccionada))
+                {
+                    switch (opcionSeleccionada)
+                    {
+                        case 1:
+                            Console.WriteLine("Ingrese el nuevo nombre:");
+                            string nuevoNombre = Console.ReadLine();
+                            response = gestorDeProveedores.ModificarProveedor(idUsuarioActual, id, nuevoNombre, proveedor.apellido, proveedor.email, proveedor.cuit);
+                            break;
+                        case 2:
+                            Console.WriteLine("Ingrese el nuevo apellido:");
+                            string nuevoApellido = Console.ReadLine();
+                            response = gestorDeProveedores.ModificarProveedor(idUsuarioActual, id, proveedor.nombre, nuevoApellido, proveedor.email, proveedor.cuit);
+                            break;
+                        case 3:
+                            Console.WriteLine("Ingrese el nuevo email:");
+                            string nuevoEmail = Console.ReadLine();
+                            response = gestorDeProveedores.ModificarProveedor(idUsuarioActual, id, proveedor.nombre, proveedor.apellido, nuevoEmail, proveedor.cuit);
+                            break;
+                        case 4:
+                            Console.WriteLine("Ingrese el nuevo CUIT:");
+                            string nuevoCuit = Console.ReadLine();
+                            response = gestorDeProveedores.ModificarProveedor(idUsuarioActual, id, proveedor.nombre, proveedor.apellido, proveedor.email, nuevoCuit);
+                            break;
+                        default:
+                            Console.WriteLine("Opción no válida.");
+                            response = false;
+                            break;
+                    }
+
+                    if (response)
+                    {
+                        Console.WriteLine("Se ha modificado correctamente.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error al modificar.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Ingrese un número válido.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Proveedor no encontrado.");
+            }
         }
+
 
         private void BajaProveedores(string idUsuarioActual)
         {
@@ -602,7 +663,6 @@ namespace MyApp
 
             Thread.Sleep(2000);
         }
-
         private void ObtenerPrecioYNombreProductoPorId(ItemProductosVentas producto)
         {
             List<Producto> productos = gestorDeProductos.TraerProductos();

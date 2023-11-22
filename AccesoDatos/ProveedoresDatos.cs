@@ -65,7 +65,7 @@ namespace AccesoDatos
 
         //PATCH modificar
 
-        public static void ModificarProveedor(string id, string idUsuario, string nombre, string apellido, string email, string cuit)
+        public static void ModificarProveedorWS(string id, string idUsuario, string nombre, string apellido, string email, string cuit)
         {
             try
             {

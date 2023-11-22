@@ -39,12 +39,47 @@ namespace Negocio
             }
         }
 
-        public void ModificarProveedor()
+        public bool ModificarProveedor(string id, string idUsuarioActual, string nombre, string apellido, string email, string cuit)
         {
-            //No es obligatorio
-            //ProveedoresDatos.ModificacionProveedor(proveedorWS);
-          
+            try
+            {
+                ProveedoresDatos.ModificarProveedorWS(id, idUsuarioActual, nombre, apellido, email,cuit);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
         }
+
+
+        public Proveedor BuscarProveedor(string id)
+        {
+            Proveedor proveedor = ObtenerProveedorPorId(id);
+
+            return proveedor;
+
+        }
+
+        public Proveedor ObtenerProveedorPorId(string idProveedor)
+        {
+            List<Proveedor> listaProveedores = ProveedoresDatos.ListarProveedores();
+
+            foreach (Proveedor proveedor in listaProveedores)
+            {
+                if (proveedor.id == idProveedor)
+                {
+                    return proveedor; // Devuelve el proveedor encontrado
+                }
+            }
+
+            return null; 
+        }
+
+
+
 
         public bool BajaProveedor(string idProveedor, string idUsuario)
         {
@@ -60,19 +95,7 @@ namespace Negocio
             }
         }
 
-        public bool ModificarProveedor(string id, string idUsuarioActual, string nombre, string apellido, string email, string cuit)
-        {
-            try
-            {
-                ProveedoresDatos.ModificarProveedor(id,idUsuarioActual,nombre, apellido, email, cuit);
 
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
 
 
     }
