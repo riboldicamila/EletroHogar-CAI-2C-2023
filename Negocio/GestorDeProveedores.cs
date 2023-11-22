@@ -60,6 +60,20 @@ namespace Negocio
             }
         }
 
+        public bool ModificarProveedor(string id, string idUsuarioActual, string nombre, string apellido, string email, string cuit)
+        {
+            try
+            {
+                ProveedoresDatos.ModificarProveedor(id,idUsuarioActual,nombre, apellido, email, cuit);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
 
     }
 

@@ -5,6 +5,14 @@ using System.Security.Cryptography.X509Certificates;
 using System;
 using System.Runtime.CompilerServices;
 
+//REPORTES: por stock y vendor.Genere una lista total por ventas, conectando las listas del ws por id de cliente.
+//pero no encuentro los campos para hacer relación. El ws, no devuelve esos datos. 
+//Mi idea era en base a la lista total de ventas hacer la relación con idVendedor y idProducto.
+//Con idProducto poner saber la cantidad y eso compararlo con el stock cuando se da de alta el producto.
+//El ws de getVentas, no provee esos datos. Lo deje hasta ahí. 
+//IDEA REPORTE nuestro de VENTAS POR FECHA DE ALTA
+
+
 namespace MyApp
 {
     internal class Program
@@ -110,7 +118,9 @@ namespace MyApp
                 Console.WriteLine("2. Reporte de ventas total (por vendedor, no puede lograr relacion)");
                 Console.WriteLine("3. Agregar/Registrar Cliente");
                 Console.WriteLine("4. Modificar Cliente");
-                Console.WriteLine("5. Salir");
+                Console.WriteLine("5. Reporte de ventas por fecha");
+
+                Console.WriteLine("6. Salir");
 
             }
             else if (PerfilUsuarioLogeado == "supervisor")
@@ -296,7 +306,12 @@ namespace MyApp
                     ModificarCliente();
                 }
 
-                if (opcionSeleccionada == "5")
+                if(opcionSeleccionada == "5")
+                {
+                    ReporteVentasPorFechaAlta();
+                }
+
+                if (opcionSeleccionada == "6")
                 {
                     Iniciar();
                 }
@@ -769,6 +784,32 @@ namespace MyApp
 
             ListarTodosLasVentas();
         
+        }
+
+        private void ReporteVentasPorFechaAlta()
+        {
+            //IDEA REPORTE nuestro de VENTAS POR FECHA DE ALTA
+            Console.WriteLine("REPORTE VENTA POR FECHA DE ALTA:");
+            Console.WriteLine("INGRESE LA FECHA QUE DESEA BUSCAR:");
+            string fechaStr = Console.ReadLine();
+            if (DateTime.TryParse(fechaStr, out DateTime fecha))
+            {
+                gestorDeVentas.FiltrarVentasPorFechaDeAlta(fecha);
+            }
+            else
+            {
+                Console.WriteLine("Formato de fecha incorrecto. Por favor, ingrese una fecha válida.");
+            }
+
+
+            List<VentasWS> ventas = gestorDeVentas.FiltrarVentasPorFechaDeAlta(fecha);
+            foreach (VentasWS v in ventas)
+            {
+                Console.WriteLine(v.ToString());
+            }
+            Console.WriteLine();
+            Thread.Sleep(2000);
+
         }
 
         private void DevolverVentas(string idUsuarioActual)

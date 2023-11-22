@@ -63,17 +63,31 @@ namespace AccesoDatos
             }
         }
 
-        //PATCH modificar, NO ES obligatorio
-        public static void ModificacionProveedor(ProveedoresWS proveedor)
-        {
-            var jsonRequest = JsonConvert.SerializeObject(proveedor);
-            HttpResponseMessage response = WebHelper.Patch("Proveedor/ModificarProveedor", jsonRequest);
+        //PATCH modificar
 
-            if (!response.IsSuccessStatusCode)
+        public static void ModificarProveedor(string id, string idUsuario, string nombre, string apellido, string email, string cuit)
+        {
+            try
+            {
+                Dictionary<String, String> dict = new Dictionary<String, String>();
+                dict.Add("id", id);
+                dict.Add("idUsuario", idUsuario);
+                dict.Add("nombre", nombre);
+                dict.Add("apellido", apellido);
+                dict.Add("email", email);
+                dict.Add("cuit", cuit);
+
+                var jsonRequest = JsonConvert.SerializeObject(dict);
+
+                HttpResponseMessage response = WebHelper.Patch("/Proveedor/ModificarProveedor", jsonRequest);
+
+            }
+            catch (Exception ex)
             {
                 throw new Exception("Verifique los datos ingresados");
             }
         }
+
 
 
     }

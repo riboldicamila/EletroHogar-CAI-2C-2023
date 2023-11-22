@@ -1,9 +1,12 @@
 ﻿using AccesoDatos;
 using Modelo;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Reflection;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,9 +14,13 @@ namespace Negocio
 {
     public class GestorDeVentas
     {
+        //REPORTES: por stock y vendor.Genere una lista total por ventas, conectando las listas del ws por id de cliente.
+        //pero no encuentro los campos para hacer relación. El ws, no devuelve esos datos. 
+        //Mi idea era en base a la lista total de ventas hacer la relación con idVendedor y idProducto.
+        //Con idProducto poner saber la cantidad y eso compararlo con el stock cuando se da de alta el producto.
+        //El ws de getVentas, no provee esos datos. Lo deje hasta ahí. 
+        //IDEA REPORTE nuestro de VENTAS POR FECHA DE ALTA
 
-        //REPORTES: por stock y vendor. Genere una lista total por ventas
-        //no encuentro los campos para hacer relación. El ws, no devuelve esos datos. 
 
 
         public List<VentasWS> ListadoVentasDeCliente(string idCliente)
@@ -36,9 +43,6 @@ namespace Negocio
             return ids;
         }
 
-        //LA IDEA ERA FILTRAR LAS VENTAS POR VENDEDOR PARA HACER REPORTE
-        //REPORTES: por stock y vendor. Genere una lista total por ventas
-        //no encuentro los campos para hacer relación. El ws, no devuelve esos datos. 
         public List<VentasWS> ObtenerTodasLasVentas()
         {
             List<VentasWS> todasLasVentas = new List<VentasWS>();
@@ -53,6 +57,15 @@ namespace Negocio
             }
 
             return todasLasVentas;
+        }
+
+
+        //IDEA REPORTE VENTAS POR FECHA DE ALTA
+        public List<VentasWS> FiltrarVentasPorFechaDeAlta(DateTime fechaDeAlta)
+        {
+            List<VentasWS> todasLasVentas = ObtenerTodasLasVentas();
+            List<VentasWS> ventasFiltradas = todasLasVentas.Where(venta => venta.fechaAlta.Date == fechaDeAlta.Date).ToList();
+            return ventasFiltradas;
         }
 
 
