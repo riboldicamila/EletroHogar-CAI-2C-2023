@@ -12,6 +12,9 @@ namespace Negocio
     public class GestorDeVentas
     {
 
+        //REPORTES: por stock y vendor. Genere una lista total por ventas
+        //no encuentro los campos para hacer relación. El ws, no devuelve esos datos. 
+
 
         public List<VentasWS> ListadoVentasDeCliente(string idCliente)
         {
@@ -34,7 +37,8 @@ namespace Negocio
         }
 
         //LA IDEA ERA FILTRAR LAS VENTAS POR VENDEDOR PARA HACER REPORTE
-        //PERO NO LO DEVUELVE EL WS, no encuentro como relacionar ventas con ws y con vendedor.
+        //REPORTES: por stock y vendor. Genere una lista total por ventas
+        //no encuentro los campos para hacer relación. El ws, no devuelve esos datos. 
         public List<VentasWS> ObtenerTodasLasVentas()
         {
             List<VentasWS> todasLasVentas = new List<VentasWS>();

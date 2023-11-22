@@ -107,7 +107,7 @@ namespace MyApp
             if (PerfilUsuarioLogeado == "vendedor")
             {
                 Console.WriteLine("1. Agregar una Venta");
-                Console.WriteLine("2. Reporte de ventas por vendedor");
+                Console.WriteLine("2. Reporte de ventas total (por vendedor, no puede lograr relacion)");
                 Console.WriteLine("3. Agregar/Registrar Cliente");
                 Console.WriteLine("4. Modificar Cliente");
                 Console.WriteLine("5. Salir");
@@ -119,11 +119,9 @@ namespace MyApp
                 Console.WriteLine("2. Modificación de Productos");
                 Console.WriteLine("3. Baja de Productos");
                 Console.WriteLine("4. Devolución");
-                Console.WriteLine("5. Reporte de stock crítico");
-                Console.WriteLine("6. Reporte de ventas por vendedor");
-                Console.WriteLine("7. Reporte de productos más vendidos por categoría");
-                Console.WriteLine("8. Reactivar producto");
-                Console.WriteLine("9. Salir");
+                Console.WriteLine("5. Reporte de ventas total (por vendedor, no puede lograr relacion)");
+                Console.WriteLine("6. Reactivar producto");
+                Console.WriteLine("7. Salir");
             }
             else if (PerfilUsuarioLogeado == "administrador")
             {
@@ -139,10 +137,8 @@ namespace MyApp
                 Console.WriteLine("10. Alta de Productos");
                 Console.WriteLine("11. Modificación de Productos");
                 Console.WriteLine("12. Baja de Productos");
-                Console.WriteLine("13. Reporte de stock crítico");
-                Console.WriteLine("14. Reporte de ventas por vendedor");
-                Console.WriteLine("15. Reporte de productos más vendidos por categoría");
-                Console.WriteLine("16. Salir");
+                Console.WriteLine("13. Reporte de ventas total (por vendedor, no puede lograr relacion)"); Console.WriteLine("15. Reporte de productos más vendidos por categoría");
+                Console.WriteLine("14. Salir");
             }
 
             Console.Write("Seleccione una opción: ");
@@ -226,7 +222,12 @@ namespace MyApp
                     BajaProducto(IdUsuarioLogueado);
                 }
 
-                if (opcionSeleccionada == "16")
+                if (opcionSeleccionada == "13")
+                {
+                    ListarTodosLasVentas();
+                }
+
+                if (opcionSeleccionada == "14")
                 {
                     Iniciar();
                 }
@@ -255,12 +256,17 @@ namespace MyApp
                     DevolverVentas(IdUsuarioLogueado);
                 }
 
-                if (opcionSeleccionada == "8")
+                if (opcionSeleccionada == "5")
+                {
+                    ListarTodosLasVentas();
+                }
+
+                if (opcionSeleccionada == "6")
                 {
                     ReactivarProducto(IdUsuarioLogueado);
                 }
 
-                if(opcionSeleccionada == "9")
+                if(opcionSeleccionada == "7")
                 {
                     Iniciar();
                 }
