@@ -4,6 +4,10 @@ using Modelo;
 
 namespace Negocio
 {    
+    //STOCK: solo se verifica antes de hacer la venta (elemento). 
+    //se compara stock contra la cantidad total del alta, ya que no encontre
+    //relacion entre ventasWS con algún identificador de producto (Id)
+    //que permita después descontar del stock inicial. 
     
     public class GestorDeProductos
     {
