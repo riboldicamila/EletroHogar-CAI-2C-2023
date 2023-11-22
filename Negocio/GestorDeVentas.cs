@@ -3,6 +3,7 @@ using Modelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,12 +11,43 @@ namespace Negocio
 {
     public class GestorDeVentas
     {
+
+
         public List<VentasWS> ListadoVentasDeCliente(string idCliente)
         {
             return VentasDatos.BuscarVentasPorCliente(idCliente);
         }
 
         //List<VentasWS> ventasCliente = gestorDeVentas.ListadoVentasDeCliente(idCliente);
+
+        public List<string> ListarClientesIds()
+        {
+            List<Cliente> clientes = ClienteDatos.DevolverClientes();
+            List<string> ids = new List<string>();
+
+            foreach (var cliente in clientes)
+            {
+                ids.Add(cliente.id);
+            }
+
+            return ids;
+        }
+
+        public List<VentasWS> ObtenerTodasLasVentas()
+        {
+            List<VentasWS> todasLasVentas = new List<VentasWS>();
+            List<string> idsClientes = ListarClientesIds();
+
+
+            // la lista de id de clientes y agregar todas las ventas a la lista general
+            foreach (var idCliente in idsClientes)
+            {
+                List<VentasWS> ventasCliente = ListadoVentasDeCliente(idCliente);
+                todasLasVentas.AddRange(ventasCliente);
+            }
+
+            return todasLasVentas;
+        }
 
 
         public bool AgregarAListaVenta(ProductosVenta productosVenta)

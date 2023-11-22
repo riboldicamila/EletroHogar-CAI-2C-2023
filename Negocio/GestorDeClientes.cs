@@ -45,6 +45,8 @@ namespace Negocio
             return ClienteDatos.DevolverClientes();
         }
 
+
+
         //Para ver si es un cliente nuevo.
         public Cliente BuscarCliente(string idCliente)
         {

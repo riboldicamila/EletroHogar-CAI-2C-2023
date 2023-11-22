@@ -49,7 +49,7 @@ namespace AccesoDatos
 
         public static List<VentasWS> BuscarVentasPorCliente(string idCliente)
         {
-            string urlWithId = "Venta/GetVentaByCliente?idCliente=" + idCliente;
+            string urlWithId = "Venta/GetVentaByCliente?id=" + idCliente;
             HttpResponseMessage response = WebHelper.Get(urlWithId);
 
             if (!response.IsSuccessStatusCode)

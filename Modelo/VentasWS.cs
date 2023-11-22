@@ -27,6 +27,11 @@ namespace Modelo
 
         public VentasWS() { }
 
+        public override string ToString()
+        {
+            return id.PadRight(25) + " " + cantidad+ "(" + fechaAlta + ")";
+        }
+
     }
 
 }

@@ -550,6 +550,18 @@ namespace MyApp
 
         }
 
+        private void ListarTodosLasVentas()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Listado de Todas las Ventas:");
+            List<VentasWS> ventas = gestorDeVentas.ObtenerTodasLasVentas();
+            foreach (VentasWS v in ventas)
+            {
+                Console.WriteLine(v.ToString());
+            }
+            Console.WriteLine();
+            Thread.Sleep(2000);
+        }
         private void ListarProductos()
         {
             Console.WriteLine();
@@ -738,7 +750,11 @@ namespace MyApp
 
         }
 
-        private void ReporteVentas() { }
+        private void ReporteVentas() {
+
+            ListarTodosLasVentas();
+        
+        }
 
         private void DevolverVentas(string idUsuarioActual)
         {
