@@ -32,13 +32,17 @@ UML WIP:  https://app.diagrams.net/#G1yOry2OQ5BWdKjcOOe5tt5dqO17SHslxD
 Trello: https://trello.com/invite/b/D7TIHXtl/ATTI85ba716d67eba456454938e422e91d08A40FEBCF/cai-grupo-2
 
 **COMENTARIOS ADICIONALES**
-#REPORTES#
+*REPORTES*
 REPORTES: por stock y vendor. Genere una lista total por ventas, conectando las listas del ws por id de cliente. 
 pero no encuentro los campos para hacer relación. El ws, no devuelve esos datos. 
 Mi idea era en base a la lista total de ventas hacer la relación con idVendedor y idProducto. 
 Con idProducto poner saber la cantidad y eso compararlo con el stock cuando se da de alta el producto. 
-El ws de getVentas, no provee esos datos. Lo deje hasta ahí. 
+El ws de getVentas, no provee esos datos. Hay un reporte de ventas totales (por consola) y uno de ventas por fecha de la venta. 
 
-#UI/OUTPUT#
+*STOCK*:
+STOCK: solo se verifica antes de hacer la venta (elemento). Se compara stock contra la cantidad total del alta, ya que no encontre
+relacion entre ventasWS con algún identificador de producto (Id) que permita después descontar del stock inicial, ventas ya realizadas.
+
+*UI/OUTPUT*
 Esta funcionado por consola. 
 Por forms (tbd)
