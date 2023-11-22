@@ -67,7 +67,19 @@ namespace Negocio
             return ProductosDatos.ListarProductoCategoria(categoria);
         }
 
+        public bool ReactivarProducto(string idReactivar, string idUsuarioActual)
+        {
+            try
+            {
+                ProductosDatos.ReactivarProducto(idReactivar, idUsuarioActual);
 
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
 
         public List<Producto> ObtenerListadoDeProductosElectroHogar()
         {

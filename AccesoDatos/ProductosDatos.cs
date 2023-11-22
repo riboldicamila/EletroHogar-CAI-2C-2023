@@ -66,7 +66,7 @@ namespace AccesoDatos
         }
 
 
-        //get con traer por categoria //hay que filtrarlo de alguna forma 
+        //get con traer por categoria 
 
         public static List<Producto> ListarProductoCategoria(int categoria)
         {
@@ -88,41 +88,25 @@ namespace AccesoDatos
         }
 
 
+        //producto reactivat con patch 
 
-        //NO OBLIGATORIO TODO LO DE ABAJO
-        //
-        //
-        //
-
-        //patch con modificar 
-
-        public static void ModificarProducto(ProductosWS producto)
+        public static void ReactivarProducto(string idProducto, string idUsuarioActual)
         {
-            var jsonRequest = JsonConvert.SerializeObject(producto);
-            HttpResponseMessage response = WebHelper.Patch("Producto/ModificarProducto", jsonRequest);
+            Dictionary<String, String> map = new Dictionary<String, String>();
+            map.Add("id", idProducto);
+            map.Add("idUsuario", idUsuarioActual);
+
+            var jsonRequest = JsonConvert.SerializeObject(map);
+
+            HttpResponseMessage response = WebHelper.Patch("/Producto/ReactivarProducto", jsonRequest);
 
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception("Verifique los datos ingresados");
             }
+
         }
 
-        //delete con baja
 
-
-        //producto reactivat con patch //REHACER
-
-        public static void ReactivarProducto(ProductosWS producto)
-        {
-            var jsonRequest = JsonConvert.SerializeObject(producto);
-            HttpResponseMessage response = WebHelper.Post("Proveedor/AgregarProveedor", jsonRequest);
-
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new Exception("Verifique los datos ingresados. Error al agregar proveedor.");
-            }
-        }
-
-        
     }
 }

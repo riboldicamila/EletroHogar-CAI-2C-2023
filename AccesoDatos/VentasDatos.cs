@@ -45,7 +45,7 @@ namespace AccesoDatos
         }
 
 
-        //GET para traer ventas
+        //GET para ventas por clientes
 
         public static List<VentasWS> BuscarVentasPorCliente(string idCliente)
         {
@@ -67,7 +67,6 @@ namespace AccesoDatos
         }
 
 
-        //GET para ventas por clientes
 
 
 

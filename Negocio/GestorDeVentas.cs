@@ -33,6 +33,8 @@ namespace Negocio
             return ids;
         }
 
+        //LA IDEA ERA FILTRAR LAS VENTAS POR VENDEDOR PARA HACER REPORTE
+        //PERO NO LO DEVUELVE EL WS, no encuentro como relacionar ventas con ws y con vendedor.
         public List<VentasWS> ObtenerTodasLasVentas()
         {
             List<VentasWS> todasLasVentas = new List<VentasWS>();
@@ -48,6 +50,8 @@ namespace Negocio
 
             return todasLasVentas;
         }
+
+
 
 
         public bool AgregarAListaVenta(ProductosVenta productosVenta)
@@ -80,7 +84,6 @@ namespace Negocio
 
         public bool AgregarProductoAVenta(Ventas venta)
         {
-            // Crear un objeto VentasWS  
             try
             {
                 VentasDatos.AgregarVenta(venta);

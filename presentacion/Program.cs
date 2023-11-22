@@ -122,7 +122,8 @@ namespace MyApp
                 Console.WriteLine("5. Reporte de stock crítico");
                 Console.WriteLine("6. Reporte de ventas por vendedor");
                 Console.WriteLine("7. Reporte de productos más vendidos por categoría");
-                Console.WriteLine("8. Salir");
+                Console.WriteLine("8. Reactivar producto");
+                Console.WriteLine("9. Salir");
             }
             else if (PerfilUsuarioLogeado == "administrador")
             {
@@ -255,6 +256,11 @@ namespace MyApp
                 }
 
                 if (opcionSeleccionada == "8")
+                {
+                    ReactivarProducto(IdUsuarioLogueado);
+                }
+
+                if(opcionSeleccionada == "9")
                 {
                     Iniciar();
                 }
@@ -752,6 +758,9 @@ namespace MyApp
 
         private void ReporteVentas() {
 
+            //LA IDEA ERA FILTRAR LAS VENTAS POR VENDEDOR PARA HACER REPORTE
+            //PERO NO LO DEVUELVE EL WS, no encuentro como relacionar ventas con ws y con vendedor.
+
             ListarTodosLasVentas();
         
         }
@@ -1090,7 +1099,29 @@ namespace MyApp
                 Console.WriteLine("Error al rehabilitar usuario. Por favor, inténtelo de nuevo.");
             }
 
-            Thread.Sleep(8000);
+            Thread.Sleep(5000);
+            Console.Clear();
+
+        }
+
+        private void ReactivarProducto(string idUsuarioActual)
+        {
+            ListarProductos();
+            Console.WriteLine("Ingrese el id del producto que desea reactivar:");
+            string idReactivar = Console.ReadLine();
+
+            bool reactivadoExitoso = gestorDeProductos.ReactivarProducto(idReactivar, idUsuarioActual);
+
+            if (reactivadoExitoso)
+            {
+                Console.WriteLine($"El producto con ID {idReactivar} se encuentra Activo.");
+            }
+            else
+            {
+                Console.WriteLine("Error al reactivar producto. Por favor, inténtelo de nuevo.");
+            }
+
+            Thread.Sleep(5000);
             Console.Clear();
 
         }
