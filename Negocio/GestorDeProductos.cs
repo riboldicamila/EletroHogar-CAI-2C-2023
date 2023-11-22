@@ -9,6 +9,7 @@ namespace Negocio
     {
         private List<Producto> productos = new List<Producto>();
 
+
         public void AgregarProducto(Producto producto)
         {
             productos.Add(producto);
@@ -60,6 +61,22 @@ namespace Negocio
         {
             return ProductosDatos.TraerProductos();
         }
+
+        public List<Producto> ObtenerListadoDeProductosElectroHogar()
+        {
+            //SUPONIENDO QUE ID 1 == A PRODUCTO TIPO ELECTRO HOGAR
+            //  la lista desde el webservice
+            List<Producto> listadoProductos = ProductosDatos.TraerProductos();
+
+            // Filtrar la lista  
+            List<Producto> listadoProductosElectro = listadoProductos
+                .Where(producto => producto.idCategoria == 1)
+                .ToList();
+
+            return listadoProductosElectro;
+        }
+
+
     }
 
 }

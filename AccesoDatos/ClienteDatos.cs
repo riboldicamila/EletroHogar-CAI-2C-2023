@@ -26,7 +26,7 @@ namespace AccesoDatos
         }
 
 
-        //get cliente //DEVOLVER SOLO 1 CLIENTE CREO
+        //get cliente 
 
         public static List<Cliente> DevolverClientes()
         {
@@ -70,7 +70,31 @@ namespace AccesoDatos
             }
         }
 
+        //check si cliente es nuevo, get SOLO 1
+
+        public static Cliente BusquedaPorCliente(string idCliente)
+        {
+            string urlWithId = "/api/Cliente/GetCliente?id=" + idCliente;
+            HttpResponseMessage response = WebHelper.Get(urlWithId);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Verifique los datos ingresados");
+            }
+            else
+            {
+
+                var contentStream = response.Content.ReadAsStringAsync().Result;
+                Cliente clienteNuevo = JsonConvert.DeserializeObject<Cliente>(contentStream);
+
+                return clienteNuevo;
+            }
+        }
+
+
+
         //delete con baja
+
 
 
 

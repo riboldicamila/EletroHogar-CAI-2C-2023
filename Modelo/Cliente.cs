@@ -58,6 +58,13 @@ namespace Modelo
             this.host = host;
         }
 
+        //ver si es cliente nuevo
+        public bool TieneFechaAltaHoy()
+        {
+            DateTime fechaActual = DateTime.Today;
+            return fechaAlta.Date == fechaActual;
+        }
+
         public override string ToString()
         {
             return nombre.PadRight(25) + " " + apellido.PadRight(25) + "(" + id + ")";

@@ -29,14 +29,13 @@ namespace Modelo
 
         }
    
-        public Ventas(VentasWS ventasWS)
-        {
-            this.idCliente = ventasWS.IdCliente;
-            this.idUsuario = ventasWS.IdUsuario;
-            this.idProducto = ventasWS.IdProducto;
-            this.cantidad = ventasWS.Cantidad;
+        //public Ventas(VentasWS ventasWS)
+        //{
+        //    this.idCliente = ventasWS.id;
+        //    this.cantidad= ventasWS.cantidad;
+          
 
-        }
+        //}
     }
 
 }

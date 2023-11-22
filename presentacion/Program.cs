@@ -639,9 +639,8 @@ namespace MyApp
             else
             {
                 Console.WriteLine("Resumen de la venta:");
-                //con datos de la lista local
-                //mostrar el descuento aca tambien
-                //sistema de descuentos 
+                ListarCarroDeCompras(productosVenta);
+                ListarTotalConDescuentos(productosVenta, idCliente);
 
             }
         }
@@ -655,6 +654,43 @@ namespace MyApp
                 SubTotal = SubTotal + (item.Precio * item.Cantidad);
             }
             Console.WriteLine("Sub Total:" + SubTotal);
+        }
+
+        private void ListarTotalConDescuentos(ProductosVenta productos, string idCliente)
+        {
+            decimal SubTotal = 0;
+            foreach (ItemProductosVentas item in productos.ListadoProductosVentas)
+            {
+                Console.WriteLine(item.ToString());
+                SubTotal = SubTotal + (item.Precio * item.Cantidad);
+            }
+            Console.WriteLine("Total sin descuentos:" + SubTotal);
+
+
+            Cliente cliente = gestorDeClientes.BuscarCliente(idCliente);
+
+            if (cliente != null && cliente.TieneFechaAltaHoy())
+            {
+                //es un nuevo cliente
+                //se aplicara descuento del 5%
+
+                decimal descuento = SubTotal * 0.05m;
+                decimal totalConDescuento = SubTotal - descuento;
+
+                Console.WriteLine("Descuento aplicado del 5%: " + descuento);
+                Console.WriteLine("Total con descuento: " + totalConDescuento);
+
+
+
+                //otro if anidado
+            }
+            else
+            {
+                //Total normal
+                Console.WriteLine("El cliente no tiene fecha de alta hoy o no se encontró.");
+            }
+
+
         }
 
         private void ReporteVentas() { }

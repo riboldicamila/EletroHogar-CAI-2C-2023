@@ -47,9 +47,10 @@ namespace AccesoDatos
 
         //GET para traer ventas
 
-        public static List<VentasWS> ListarVentas()
+        public static List<VentasWS> BuscarVentasPorCliente(string idCliente)
         {
-            HttpResponseMessage response = WebHelper.Get("Venta/GetVenta");
+            string urlWithId = "Venta/GetVentaByCliente?idCliente=" + idCliente;
+            HttpResponseMessage response = WebHelper.Get(urlWithId);
 
             if (!response.IsSuccessStatusCode)
             {

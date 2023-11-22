@@ -9,6 +9,7 @@ namespace Modelo
 {
     public class Producto
     {
+        //id producto
         public string id { get; set; }
         public int idCategoria { get; set; }
         public string nombre { get; set; }

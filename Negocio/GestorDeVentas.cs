@@ -10,6 +10,12 @@ namespace Negocio
 {
     public class GestorDeVentas
     {
+        public List<VentasWS> ListadoVentasDeCliente(string idCliente)
+        {
+            return VentasDatos.BuscarVentasPorCliente(idCliente);
+        }
+
+        //List<VentasWS> ventasCliente = gestorDeVentas.ListadoVentasDeCliente(idCliente);
 
 
         public bool AgregarAListaVenta(ProductosVenta productosVenta)
@@ -42,10 +48,7 @@ namespace Negocio
 
         public bool AgregarProductoAVenta(Ventas venta)
         {
-            //ID USUARIO ES DE VENDEDOR, SE VALIDA SOLO SI SE ARREGLA EL LOGIN 
-            // Crear un objeto VentasWS
-            //Id cliente hardcodeado, mostrar lista de clientes o similar, mismo con producto
-     
+            // Crear un objeto VentasWS  
             try
             {
                 VentasDatos.AgregarVenta(venta);
@@ -71,6 +74,8 @@ namespace Negocio
                 return false;
             }
         }
+
+
       
 
 
