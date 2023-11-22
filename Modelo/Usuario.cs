@@ -70,6 +70,7 @@ namespace Modelo
         {
             return this.Id+ ""+ this.nombre + " - " + this.apellido;
         }
+
     }
 
 

@@ -92,7 +92,7 @@ namespace MyApp
             }
 
             PerfilUsuarioLogeado = gestorUsuarios.TipoDeUsuarioLogin(IdUsuarioLogueado);
-            PerfilUsuarioLogeado = "vendedor";
+            //PerfilUsuarioLogeado = "vendedor";
             MostrarMenu();
 
         }
@@ -318,9 +318,10 @@ namespace MyApp
 
             }
 
-            Thread.Sleep(1000);
+            Console.WriteLine();
+            Console.WriteLine("Volviendo al menú...");
+            Thread.Sleep(3000);
             MostrarMenu();
-
 
         }
 
@@ -596,7 +597,6 @@ namespace MyApp
             }
         }
 
-
         private void BajaProveedores(string idUsuarioActual)
         {
             Console.Clear();
@@ -751,6 +751,7 @@ namespace MyApp
             {
                 Console.WriteLine("Resumen de la venta:");
                 ListarCarroDeCompras(productosVenta);
+                Console.WriteLine();
                 ListarTotalConDescuentos(productosVenta, idCliente);
             }
             Thread.Sleep(3000);
@@ -820,7 +821,7 @@ namespace MyApp
                     descuentoElectroHogar = totalElectroHogar * 0.05m;
                     totalElectroHogarConDescuento = totalElectroHogar * 0.95m;
                     totalConDescuento = totalConDescuento - totalElectroHogar + totalElectroHogarConDescuento;
-
+                    Console.WriteLine();
                     Console.WriteLine("Descuento aplicado del 5%: " + descuentoElectroHogar);
                     Console.WriteLine("Total con descuento (PROMO ELECTRO HOGAR): " + totalConDescuento);
                 }
@@ -829,7 +830,7 @@ namespace MyApp
             else
             {
                 //Total normal
-
+                Console.WriteLine();
                 Console.WriteLine("Total de la compra: " + SubTotal);
                
             }
@@ -848,28 +849,35 @@ namespace MyApp
 
         private void ReporteVentasPorFechaAlta()
         {
-            //IDEA REPORTE nuestro de VENTAS POR FECHA DE ALTA
+            // IDEA REPORTE nuestro de VENTAS POR FECHA DE ALTA
             Console.WriteLine("REPORTE VENTA POR FECHA DE ALTA:");
-            Console.WriteLine("INGRESE LA FECHA QUE DESEA BUSCAR:");
+            Console.WriteLine();
+            Console.WriteLine("INGRESE LA FECHA QUE DESEA BUSCAR: (YYYY/MM/DD)");
             string fechaStr = Console.ReadLine();
+
             if (DateTime.TryParse(fechaStr, out DateTime fecha))
             {
-                gestorDeVentas.FiltrarVentasPorFechaDeAlta(fecha);
+                List<VentasWS> ventas = gestorDeVentas.FiltrarVentasPorFechaDeAlta(fecha);
+
+                if (ventas.Count > 0)
+                {
+                    foreach (VentasWS v in ventas)
+                    {
+                        Console.WriteLine(v.ToString());
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No se encontraron ventas para la fecha especificada.");
+                }
             }
             else
             {
                 Console.WriteLine("Formato de fecha incorrecto. Por favor, ingrese una fecha válida.");
             }
 
-
-            List<VentasWS> ventas = gestorDeVentas.FiltrarVentasPorFechaDeAlta(fecha);
-            foreach (VentasWS v in ventas)
-            {
-                Console.WriteLine(v.ToString());
-            }
             Console.WriteLine();
             Thread.Sleep(2000);
-
         }
 
         private void DevolverVentas(string idUsuarioActual)
@@ -879,7 +887,7 @@ namespace MyApp
             Console.WriteLine("LISTA DE VENTAS EXISTENTES:");
             //
             Console.WriteLine();
-
+            ListarTodosLasVentas();
             Console.Write("Ingrese el id de la venta que quiere dar de baja: ");
             string idVenta = Console.ReadLine();
 

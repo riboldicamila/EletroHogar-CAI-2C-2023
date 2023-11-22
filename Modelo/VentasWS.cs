@@ -29,8 +29,10 @@ namespace Modelo
 
         public override string ToString()
         {
-            return id.PadRight(25) + " " + cantidad+ "(" + fechaAlta + ")";
+            return id.PadRight(30) + " " + cantidad.ToString().PadRight(10) + "(" + fechaAlta.ToString().PadRight(15) + ")";
         }
+
+
 
     }
 
