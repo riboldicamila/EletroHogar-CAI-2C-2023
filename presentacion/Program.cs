@@ -671,7 +671,7 @@ namespace MyApp
 
             if (cliente != null && cliente.TieneFechaAltaHoy())
             {
-                //es un nuevo cliente
+                //es un nuevo cliente. Promo cliente NUEVO, acumulable
                 //se aplicara descuento del 5%
 
                 decimal descuento = SubTotal * 0.05m;
@@ -680,14 +680,46 @@ namespace MyApp
                 Console.WriteLine("Descuento aplicado del 5%: " + descuento);
                 Console.WriteLine("Total con descuento: " + totalConDescuento);
 
+                //PROMO ELECTRO HOGAR
+                //chequear en la venta la categoria de cada producto
+                //foreach en cada item de ProductosVenta
+                decimal totalElectroHogar = 0;
 
+                foreach (ItemProductosVentas item in productos.ListadoProductosVentas)
+                {
+                    string idProducto = item.IdProducto;
 
-                //otro if anidado
+                    // Buscar si ese ID está dentro de la lista ELECTROHOGAR (supongo que es productos con id 1)
+                    List<Producto> productosElectroHogar = gestorDeProductos.ListaProductosPorCategoria(1);
+
+                    foreach (Producto p in productosElectroHogar)
+                    {
+                        // Verificar si el ID del producto en productosElectroHogar con el ID del item
+                        if (p.id == idProducto)
+                        {
+                            // Sumar el precio del item al total
+                            totalElectroHogar += (item.Precio * item.Cantidad);
+                        }
+                    }
+                }
+                decimal descuentoElectroHogar = 0;
+                decimal totalElectroHogarConDescuento = 0;
+                if (totalElectroHogar > 100000)
+                {
+                    //aplicar otro descuento 
+                    descuentoElectroHogar = totalElectroHogar * 0.05m;
+                    totalElectroHogarConDescuento = totalElectroHogar * 0.95m;
+                }
+
+                totalConDescuento = totalConDescuento - totalElectroHogar + totalElectroHogarConDescuento;
+
             }
             else
             {
                 //Total normal
-                Console.WriteLine("El cliente no tiene fecha de alta hoy o no se encontró.");
+
+                Console.WriteLine("Total:" + SubTotal);
+               
             }
 
 

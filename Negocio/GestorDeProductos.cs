@@ -62,6 +62,13 @@ namespace Negocio
             return ProductosDatos.TraerProductos();
         }
 
+        public List<Producto> ListaProductosPorCategoria(int categoria)
+        {
+            return ProductosDatos.ListarProductoCategoria(categoria);
+        }
+
+
+
         public List<Producto> ObtenerListadoDeProductosElectroHogar()
         {
             //SUPONIENDO QUE ID 1 == A PRODUCTO TIPO ELECTRO HOGAR

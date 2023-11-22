@@ -68,6 +68,26 @@ namespace AccesoDatos
 
         //get con traer por categoria //hay que filtrarlo de alguna forma 
 
+        public static List<Producto> ListarProductoCategoria(int categoria)
+        {
+            string urlWithId = "/Producto/TraerProductosPorCategoria?catnum=" + categoria;
+            HttpResponseMessage response = WebHelper.Get(urlWithId);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Verifique los datos ingresados");
+            }
+            else
+            {
+
+                var contentStream = response.Content.ReadAsStringAsync().Result;
+                List<Producto> productoCategoria = JsonConvert.DeserializeObject<List<Producto>>(contentStream);
+
+                return productoCategoria;
+            }
+        }
+
+
 
         //NO OBLIGATORIO TODO LO DE ABAJO
         //
@@ -90,7 +110,7 @@ namespace AccesoDatos
         //delete con baja
 
 
-        //producto reactivat con patch
+        //producto reactivat con patch //REHACER
 
         public static void ReactivarProducto(ProductosWS producto)
         {
