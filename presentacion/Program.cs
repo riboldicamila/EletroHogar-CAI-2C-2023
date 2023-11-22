@@ -717,20 +717,30 @@ namespace MyApp
                 Console.WriteLine("Ingrese el id del producto:");
                 string idProducto = Console.ReadLine();
                 producto.IdProducto = idProducto;
-                
-                Console.WriteLine("Ingrese la cantidad:");
+
                 int cantidad;
 
-                while (!int.TryParse(Console.ReadLine(), out cantidad))
+                do
                 {
-                    Console.WriteLine("Por favor, ingrese un valor numérico válido para la cantidad:");
-                }
+                    Console.WriteLine("Ingrese la cantidad:");
+
+                    while (!int.TryParse(Console.ReadLine(), out cantidad))
+                    {
+                        Console.WriteLine("Por favor, ingrese un valor numérico válido para la cantidad:");
+                    }
+
+                } while (!gestorDeProductos.VerificarStock(idProducto, cantidad));
+
+
+
                 producto.Cantidad = cantidad;
                 ObtenerPrecioYNombreProductoPorId(producto);
 
                 productosVenta.ListadoProductosVentas.Add(producto);
+                Console.WriteLine();
                 ListarCarroDeCompras(productosVenta);
 
+                Console.WriteLine();
                 Console.WriteLine("¿Desea agregar otro producto? S/N");
                 String respuesta = Console.ReadLine();
 
@@ -754,7 +764,7 @@ namespace MyApp
                 Console.WriteLine();
                 ListarTotalConDescuentos(productosVenta, idCliente);
             }
-            Thread.Sleep(3000);
+            Thread.Sleep(8000);
 
         }
 
@@ -777,6 +787,7 @@ namespace MyApp
                 Console.WriteLine(item.ToString());
                 SubTotal = SubTotal + (item.Precio * item.Cantidad);
             }
+            Console.WriteLine();
             Console.WriteLine("Total sin descuentos:" + SubTotal);
 
 

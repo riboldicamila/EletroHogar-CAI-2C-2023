@@ -95,6 +95,33 @@ namespace Negocio
             return listadoProductosElectro;
         }
 
+        public bool VerificarStock(string idProducto, int cantidad)
+        {
+            List<Producto> productos = ProductosDatos.TraerProductos();
+            Producto productoSeleccionado = productos.FirstOrDefault(p => p.id == idProducto);
+
+            if (productoSeleccionado != null)
+            {
+                if (cantidad <= productoSeleccionado.stock)
+                {
+                    // La cantidad es menor o igual al stock disponible
+                    return true;
+                }
+                else
+                {
+                    // La cantidad es mayor al stock disponible
+                    return false;
+                }
+            }
+            else
+            {
+                // El producto no fue encontrado
+                return false;
+            }
+        }
+
+
+
 
     }
 
