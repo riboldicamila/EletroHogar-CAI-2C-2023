@@ -60,7 +60,6 @@
             txtTelefono = new TextBox();
             txtEmail = new TextBox();
             txtDni = new TextBox();
-            txtFechaNac = new TextBox();
             lblTelefono = new Label();
             lblEmail = new Label();
             lblDNI = new Label();
@@ -105,6 +104,7 @@
             lblNombreProd = new Label();
             btnBajaProd = new Button();
             cmbBajaProd = new ComboBox();
+            fechapicker = new DateTimePicker();
             grpRegistrar.SuspendLayout();
             grpBajaYReactivar.SuspendLayout();
             grpAltaProv.SuspendLayout();
@@ -284,7 +284,6 @@
             btnSalir.TabIndex = 6;
             btnSalir.Text = "Salir";
             btnSalir.UseVisualStyleBackColor = true;
-            btnSalir.Click += btnSalir_Click;
             // 
             // label1
             // 
@@ -407,13 +406,6 @@
             txtDni.Size = new Size(100, 23);
             txtDni.TabIndex = 22;
             // 
-            // txtFechaNac
-            // 
-            txtFechaNac.Location = new Point(148, 143);
-            txtFechaNac.Name = "txtFechaNac";
-            txtFechaNac.Size = new Size(100, 23);
-            txtFechaNac.TabIndex = 23;
-            // 
             // lblTelefono
             // 
             lblTelefono.AutoSize = true;
@@ -471,13 +463,13 @@
             // 
             // grpRegistrar
             // 
+            grpRegistrar.Controls.Add(fechapicker);
             grpRegistrar.Controls.Add(btnRegistrar);
             grpRegistrar.Controls.Add(lblDireccion);
             grpRegistrar.Controls.Add(lblFechaNac);
             grpRegistrar.Controls.Add(lblDNI);
             grpRegistrar.Controls.Add(lblEmail);
             grpRegistrar.Controls.Add(lblTelefono);
-            grpRegistrar.Controls.Add(txtFechaNac);
             grpRegistrar.Controls.Add(txtDni);
             grpRegistrar.Controls.Add(txtEmail);
             grpRegistrar.Controls.Add(txtTelefono);
@@ -835,6 +827,14 @@
             cmbBajaProd.Size = new Size(121, 23);
             cmbBajaProd.TabIndex = 0;
             // 
+            // fechapicker
+            // 
+            fechapicker.CustomFormat = "";
+            fechapicker.Location = new Point(133, 143);
+            fechapicker.Name = "fechapicker";
+            fechapicker.Size = new Size(160, 23);
+            fechapicker.TabIndex = 30;
+            // 
             // MenuAdministrador
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -968,5 +968,6 @@
         private Label lblNombreProd;
         private Button btnBajaProd;
         private ComboBox cmbBajaProd;
+        private DateTimePicker fechapicker;
     }
 }

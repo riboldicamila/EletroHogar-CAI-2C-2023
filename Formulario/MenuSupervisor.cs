@@ -82,7 +82,7 @@ namespace Formulario
             List<Proveedor> proveedores = gestorDeProveedores.ListarProveedores();
             foreach (Proveedor p in proveedores)
             {
-                cmbprovprod.Items.Add(p.Nombre + p.Apellido);
+                cmbprovprod.Items.Add(p.nombre + p.apellido);
             }
         }
         private void CategoriaProducto()
@@ -117,15 +117,15 @@ namespace Formulario
             List<Proveedor> proveedoreslist = gestorDeProveedores.ListarProveedores();
             foreach (Proveedor p in proveedoreslist)
             {
-                cmbprovprod.Items.Add(p.Nombre + p.Apellido);
+                cmbprovprod.Items.Add(p.nombre + p.apellido);
             }
 
             List<Proveedor> proveedores = gestorDeProveedores.ListarProveedores();
             foreach (Proveedor p in proveedores)
             {
-                if (cmbprovprod.Text == p.Nombre + p.Apellido)
+                if (cmbprovprod.Text == p.nombre + p.apellido)
                 {
-                    idProveedor = p.Id.ToString();
+                    idProveedor = p.id.ToString();
                 }
             }
 
@@ -203,7 +203,7 @@ namespace Formulario
         {
             if (MessageBox.Show("Se cerrará la aplicación. CONFIRMAR", "Cerrar", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                MessageBox.Show("The application has been closed successfully.", "Application Closed!", MessageBoxButtons.OK);
+                MessageBox.Show("La aplicación se cerró exitosamente.", "Hasta luego!", MessageBoxButtons.OK);
                 Application.Exit();
             }
             else

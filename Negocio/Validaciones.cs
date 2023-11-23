@@ -15,6 +15,7 @@ namespace Negocio
             {
                 throw new ArgumentException("El nombre no puede estar vacío, debe tener por lo menos 2 caracteres y no puede contener números.");
             }
+            
         }
 
         public static void ValidarApellido(string apellido)
@@ -80,7 +81,7 @@ namespace Negocio
  
         public static void ValidarFecha(string fecha)
         {
-            if (string.IsNullOrEmpty(fecha) || !DateTime.TryParse(fecha, out DateTime fechaSalida))
+            if (!string.IsNullOrEmpty(fecha) || !DateTime.TryParse(fecha, out DateTime fechaSalida) )
             {
                 DateTime fechaDateTime = DateTime.Parse(fecha);
                 if (fechaDateTime < new DateTime(1900, 1, 1))

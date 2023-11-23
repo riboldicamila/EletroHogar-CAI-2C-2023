@@ -6,6 +6,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,7 +20,7 @@ namespace Formulario
         {
             InitializeComponent();
         }
-        
+
         string msj = "";
         private GestorDeProductos gestorDeProductos = new GestorDeProductos();
         private GestorDeVentas gestorDeVentas = new GestorDeVentas();
@@ -82,7 +84,8 @@ namespace Formulario
                     MessageBox.Show("Por favor, ingrese un valor numérico válido para la cantidad:");
                 }
 
-                gestorDeVentas.AgregarAListaVenta(lista, idUsuarioActual, idCliente, idProducto, cantidad);
+
+                //gestorDeVentas.AgregarAListaVenta(lista, idUsuarioActual, idCliente, idProducto, cantidad);
                 bool response;
                 response = gestorDeVentas.LlamarWSporProducto(lista);
 
@@ -128,122 +131,113 @@ namespace Formulario
         private void RegistrarCliente(string idUsuario)
         {
 
-            string nombre;
-            string apellido;
-            while (true)
-            {
-                try
-                {
+            string nombre = "";
+            string apellido = "";
 
-                    nombre = txtNombre.Text;
-                    Validaciones.ValidarNombre(nombre);
-                    break;
-                }
-                catch (ArgumentException ex)
-                {
-                    msj += (ex.Message + System.Environment.NewLine);
-                    
-                }
-            }
-            while (true)
+            try
             {
-                try
-                {
 
-                    apellido = txtApellido.Text;
-                    Validaciones.ValidarApellido(apellido);
-                    break;
-                }
-                catch (ArgumentException ex)
-                {
-                    msj += (ex.Message + System.Environment.NewLine);
-                }
-            }
-            string direccion;
-            while (true)
-            {
-                try
-                {
+                nombre = txtNombre.Text;
+                Validaciones.ValidarNombre(nombre);
 
-                    direccion = txtDireccion.Text;
-                    Validaciones.ValidarDireccion(direccion);
-                    break;
-                }
-                catch (ArgumentException ex)
-                {
-                    msj += (ex.Message + System.Environment.NewLine);
-                }
             }
-            string telefono;
-            while (true)
+            catch (ArgumentException ex)
             {
-                try
-                {
-                    ;
-                    telefono = txtTelefono.Text;
-                    Validaciones.ValidarTelefono(telefono);
-                    break;
-                }
-                catch (ArgumentException ex)
-                {
-                    msj += (ex.Message + System.Environment.NewLine);
-                }
+                MessageBox.Show(ex.Message);
+
             }
 
-            string email;
 
-            while (true)
+            try
             {
-                try
-                {
 
-                    email = txtEmail.Text;
-                    Validaciones.ValidarEmail(email);
-                    break;
-                }
-                catch (ArgumentException ex)
-                {
-                    msj += (ex.Message + System.Environment.NewLine);
-                }
+                apellido = txtApellido.Text;
+                Validaciones.ValidarApellido(apellido);
+
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
-            int dni;
+            string direccion = "";
+
+            try
+            {
+
+                direccion = txtDireccion.Text;
+                Validaciones.ValidarDireccion(direccion);
+
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            string telefono = "";
+
+            try
+            {
+                ;
+                telefono = txtTelefono.Text;
+                Validaciones.ValidarTelefono(telefono);
+
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+            string email = "";
+
+
+            try
+            {
+
+                email = txtEmail.Text;
+                Validaciones.ValidarEmail(email);
+
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+            int dni = 0;
             string dni_entrada;
 
-            while (true)
-            {
-                try
-                {
 
-                    dni_entrada = txtDni.Text;
-                    Validaciones.ValidarDni(dni_entrada);
-                    dni = int.Parse(dni_entrada);
-                    break;
-                }
-                catch (ArgumentException ex)
-                {
-                    msj += (ex.Message + System.Environment.NewLine);
-                }
+            try
+            {
+
+                dni_entrada = txtDni.Text;
+                Validaciones.ValidarDni(dni_entrada);
+                dni = int.Parse(dni_entrada);
+
             }
-            string fecha;
-            DateTime fechaNacimiento;
-            while (true)
+            catch (ArgumentException ex)
             {
-                try
-                {
-
-                    fecha = txtFechaNac.Text;
-                    Validaciones.ValidarFecha(fecha);
-                    fechaNacimiento = DateTime.Parse(fecha);
-                    break;
-                }
-                catch (ArgumentException ex)
-                {
-                    msj += (ex.Message + System.Environment.NewLine);
-                }
+                MessageBox.Show(ex.Message);
             }
 
-            if (gestorDeClientes.AgregarCliente(nombre, "Grupo2", dni, direccion, telefono, apellido, email, FormLogin.id, fechaNacimiento))
+           
+            fechapicker.Format = DateTimePickerFormat.Custom;
+            fechapicker.CustomFormat = "dd-MM-yyyy";
+
+
+            DateTime fecha = fechapicker.Value;
+            if (fechapicker.Value > DateTime.Today || fechapicker.Value < new DateTime(1900, 1, 1))
+            {
+                MessageBox.Show("la fecha es inválida.");
+                fechapicker.ResetText();
+            }
+
+            
+
+
+            if (gestorDeClientes.AgregarCliente(nombre, "Grupo2", dni, direccion, telefono, apellido, email, FormLogin.id, fecha))
             {
                 MessageBox.Show($"Cliente {nombre} agregado con éxito.");
 
@@ -251,7 +245,7 @@ namespace Formulario
             else
             {
                 MessageBox.Show("Error al agregar el cliente. Por favor, inténtelo de nuevo.");
-                MessageBox.Show(msj);
+
             }
 
 
@@ -261,6 +255,19 @@ namespace Formulario
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
             RegistrarCliente(FormLogin.id);
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Se cerrará la aplicación. CONFIRMAR", "Cerrar", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                MessageBox.Show("La aplicación se cerró exitosamente.", "Hasta luego!", MessageBoxButtons.OK);
+                Application.Exit();
+            }
+            else
+            {
+                this.Activate();
+            }
         }
     }
 }

@@ -164,157 +164,161 @@ namespace Formulario
         private void RegistrarUsuario(string idUsuario)
         {
 
-            string nombre;
-            string apellido;
+            string nombre = "";
+            string apellido = "";
+            string username = "";
 
-            while (true)
+            try
             {
-                try
-                {
 
-                    nombre = txtNombre.Text;
-                    Validaciones.ValidarNombre(nombre);
-                    break;
-                }
-                catch (ArgumentException ex)
-                {
-                    msj += (ex.Message + System.Environment.NewLine);
-                    
+                nombre = txtNombre.Text;
+                Validaciones.ValidarNombre(nombre);
 
-                }
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+            finally
+            {
+                txtNombre.Text = "";
             }
 
-            while (true)
+            try
             {
-                try
-                {
 
-                    apellido = txtApellido.Text;
-                    Validaciones.ValidarApellido(apellido);
-                    break;
-                }
-                catch (ArgumentException ex)
-                {
-                    msj += (ex.Message + System.Environment.NewLine);
-                }
+                apellido = txtApellido.Text;
+                Validaciones.ValidarApellido(apellido);
+
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                txtApellido.Text = "";
             }
 
-            string username;
-            while (true)
-            {
-                try
-                {
 
-                    username = txtUsername.Text;
-                    Validaciones.ValidarUsername(nombre, apellido, username);
-                    break;
-                }
-                catch (ArgumentException ex)
-                {
-                    msj += (ex.Message + System.Environment.NewLine);
-                }
+
+            try
+            {
+
+                username = txtUsername.Text;
+                Validaciones.ValidarUsername(nombre, apellido, username);
+
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                txtUsername.Text = "";
             }
 
-            string direccion;
 
-            while (true)
+            string direccion = "";
+
+
+
+            try
             {
-                try
-                {
 
-                    direccion = txtDireccion.Text;
-                    Validaciones.ValidarDireccion(direccion);
-                    break;
-                }
-                catch (ArgumentException ex)
-                {
-                    msj += (ex.Message + System.Environment.NewLine);
-                }
+                direccion = txtDireccion.Text;
+                Validaciones.ValidarDireccion(direccion);
+
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                txtDireccion.Text = "";
             }
 
-            string telefono;
 
-            while (true)
+            string telefono = "";
+
+
+
+            try
             {
-                try
-                {
-                    ;
-                    telefono = txtTelefono.Text;
-                    Validaciones.ValidarTelefono(telefono);
-                    break;
-                }
-                catch (ArgumentException ex)
-                {
-                    msj += (ex.Message + System.Environment.NewLine);
-                }
+                telefono = txtTelefono.Text;
+                Validaciones.ValidarTelefono(telefono);
+
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                txtTelefono.Text = "";
             }
 
-            string email;
 
-            while (true)
+            string email = "";
+
+
+
+            try
             {
-                try
-                {
 
-                    email = txtEmail.Text;
-                    Validaciones.ValidarEmail(email);
-                    break;
-                }
-                catch (ArgumentException ex)
-                {
-                    msj += (ex.Message + System.Environment.NewLine);
-                }
+                email = txtEmail.Text;
+                Validaciones.ValidarEmail(email);
+
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                txtEmail.Text = "";
             }
 
-            int dni;
+
+            int dni = 0;
             string dni_entrada;
 
-            while (true)
-            {
-                try
-                {
 
-                    dni_entrada = txtDni.Text;
-                    Validaciones.ValidarDni(dni_entrada);
-                    dni = int.Parse(dni_entrada);
-                    break;
-                }
-                catch (ArgumentException ex)
-                {
-                    msj += (ex.Message + System.Environment.NewLine);
-                }
+
+            try
+            {
+
+                dni_entrada = txtDni.Text;
+                Validaciones.ValidarDni(dni_entrada);
+                dni = int.Parse(dni_entrada);
+
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                txtDni.Text = "";
             }
 
 
-            string fecha;
-            DateTime fechaNacimiento;
-
-            while (true)
+            fechapicker.Format = DateTimePickerFormat.Custom;
+            fechapicker.CustomFormat = "dd-MM-yyyy";
+            
+            
+            DateTime fecha = fechapicker.Value;
+            if (fechapicker.Value > DateTime.Today || fechapicker.Value < new DateTime(1900, 1, 1))
             {
-                try
-                {
-
-                    fecha = txtFechaNac.Text;
-                    Validaciones.ValidarFecha(fecha);
-                    fechaNacimiento = DateTime.Parse(fecha);
-                    break;
-                }
-                catch (ArgumentException ex)
-                {
-                    msj += (ex.Message + System.Environment.NewLine);
-                }
-            }
-            bool response = false;
-            if (msj == "")
-            {
-                response = gestorUsuarios.AgregarUsuario(nombre, host, dni, direccion, telefono,
-                       apellido, email, FormLogin.id, username, fechaNacimiento);
-            }
-            else
-            {
-                MessageBox.Show(msj);
+                    MessageBox.Show("la fecha es inválida.");
+                    fechapicker.ResetText();
             }
             
+
+            bool response = gestorUsuarios.AgregarUsuario(nombre, host, dni, direccion, telefono,
+                       apellido, email, FormLogin.id, username, fecha);
 
             if (!response)
             {
@@ -363,7 +367,7 @@ namespace Formulario
 
         private void btnReactivar_Click(object sender, EventArgs e)
         {
-            
+
             if (btnReactivar.Text == "Reactivar")//implementar
             {
                 if (cmbInactivos.Items.Count > 0 && cmbInactivos.SelectedIndex > 0)
@@ -420,7 +424,7 @@ namespace Formulario
         {
             foreach (Proveedor p in lista)
             {
-                cmbProvInactivos.Items.Add(p.Nombre + " " + p.Apellido);
+                cmbProvInactivos.Items.Add(p.nombre + " " + p.apellido);
             }
         }
 
@@ -450,8 +454,8 @@ namespace Formulario
             List<Proveedor> proveedores = gestorDeProveedores.ListarProveedores();
             foreach (Proveedor p in proveedores)
             {
-                cmbProv.Items.Add(p.Nombre + p.Apellido);
-                cmbprovprod.Items.Add(p.Nombre + p.Apellido);
+                cmbProv.Items.Add(p.nombre + p.apellido);
+                cmbprovprod.Items.Add(p.nombre + p.apellido);
             }
         }
 
@@ -466,9 +470,9 @@ namespace Formulario
 
             foreach (Proveedor p in listadoProveedores)
             {
-                if (cmbProv.Text == (p.Nombre + " " + p.Apellido))
+                if (cmbProv.Text == (p.nombre + " " + p.apellido))
                 {
-                    string idProvBaja = p.Id.ToString();
+                    string idProvBaja = p.id.ToString();
                     bool bajaProvExitosa = gestorDeProveedores.BajaProveedor(idProvBaja, FormLogin.id);
                     if (bajaProvExitosa)
                     {
@@ -521,7 +525,7 @@ namespace Formulario
 
             }
         }
-        
+
 
         private void btnAltaProducto_Click(object sender, EventArgs e)
         {
@@ -551,9 +555,9 @@ namespace Formulario
             List<Proveedor> proveedores = gestorDeProveedores.ListarProveedores();
             foreach (Proveedor p in proveedores)
             {
-                if (cmbprovprod.Text == p.Nombre + p.Apellido)
+                if (cmbprovprod.Text == p.nombre + p.apellido)
                 {
-                    idProveedor = p.Id.ToString();
+                    idProveedor = p.id.ToString();
                 }
             }
 

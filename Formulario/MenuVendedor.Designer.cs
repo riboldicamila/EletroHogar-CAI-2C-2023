@@ -49,7 +49,6 @@
             lblDNI = new Label();
             lblEmail = new Label();
             lblTelefono = new Label();
-            txtFechaNac = new TextBox();
             txtDni = new TextBox();
             txtEmail = new TextBox();
             txtTelefono = new TextBox();
@@ -58,6 +57,7 @@
             txtNombre = new TextBox();
             lblApellido = new Label();
             lblNombre = new Label();
+            fechapicker = new DateTimePicker();
             grpSeleccion.SuspendLayout();
             grpVenta.SuspendLayout();
             grpRegistrar.SuspendLayout();
@@ -207,13 +207,13 @@
             // 
             // grpRegistrar
             // 
+            grpRegistrar.Controls.Add(fechapicker);
             grpRegistrar.Controls.Add(btnRegistrar);
             grpRegistrar.Controls.Add(lblDireccion);
             grpRegistrar.Controls.Add(lblFechaNac);
             grpRegistrar.Controls.Add(lblDNI);
             grpRegistrar.Controls.Add(lblEmail);
             grpRegistrar.Controls.Add(lblTelefono);
-            grpRegistrar.Controls.Add(txtFechaNac);
             grpRegistrar.Controls.Add(txtDni);
             grpRegistrar.Controls.Add(txtEmail);
             grpRegistrar.Controls.Add(txtTelefono);
@@ -283,13 +283,6 @@
             lblTelefono.TabIndex = 24;
             lblTelefono.Text = "Telefono";
             // 
-            // txtFechaNac
-            // 
-            txtFechaNac.Location = new Point(148, 143);
-            txtFechaNac.Name = "txtFechaNac";
-            txtFechaNac.Size = new Size(100, 23);
-            txtFechaNac.TabIndex = 23;
-            // 
             // txtDni
             // 
             txtDni.Location = new Point(14, 143);
@@ -350,6 +343,14 @@
             lblNombre.TabIndex = 13;
             lblNombre.Text = "Nombre";
             // 
+            // fechapicker
+            // 
+            fechapicker.CustomFormat = "";
+            fechapicker.Location = new Point(133, 143);
+            fechapicker.Name = "fechapicker";
+            fechapicker.Size = new Size(160, 23);
+            fechapicker.TabIndex = 31;
+            // 
             // MenuVendedor
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -392,7 +393,6 @@
         private Label lblDNI;
         private Label lblEmail;
         private Label lblTelefono;
-        private TextBox txtFechaNac;
         private TextBox txtDni;
         private TextBox txtEmail;
         private TextBox txtTelefono;
@@ -401,5 +401,6 @@
         private TextBox txtNombre;
         private Label lblApellido;
         private Label lblNombre;
+        private DateTimePicker fechapicker;
     }
 }
