@@ -18,7 +18,7 @@ Vendedorgdos
 Nuevacontra1
 
 ◻️**DIAGRAMAS:**
-▫️Diagrama caso de uso:
+▫️Diagrama caso de uso (2 opciones):
 https://app.diagrams.net/#G1AEK93r-61uSlVeSC79ns29kdV0_B0bMG
 
 ▫️Diagrama de secuencia:
