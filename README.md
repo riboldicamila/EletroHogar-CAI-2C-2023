@@ -25,6 +25,7 @@ Por forms, se hizo una parte pero no se llegó a terminar.
 
 DIAGRAMAS:
 Los enviamos por mail, pero dejamos los link aca:
+
 Diagrama caso de uso (2 opciones): https://app.diagrams.net/#G1AEK93r-61uSlVeSC79ns29kdV0_B0bMG
 
 Diagrama de secuencia: https://app.diagrams.net/#G1HGZDxq_73Z7e7AXJMiIr3TdvCAaFzGm8
