@@ -1,7 +1,7 @@
 # EletroHogar-CAI-2C-2023
 ◻️**GRUPO 2:**
 ▫️Riboldi Camila
-▫️Rimmeli Juan Martín
+▫️Rimmele Juan Martín
 
 ◻️**USUARIOS WS**:
 ▫️Usuario Administrador WS:
