@@ -1382,6 +1382,27 @@ namespace MyApp
             Console.WriteLine();
         }
 
+        private bool ListarUsuariosInactivos()
+        {
+            List<Usuario> listadoUsuarios = gestorUsuarios.ObtenerListadoDeUsuariosInactivos();
+
+            if (listadoUsuarios.Count == 0)
+            {
+                Console.WriteLine("No hay usuarios inactivos");
+                return false;
+            }
+
+            // Mostrar el listado de usuarios utilizando ToString()
+            foreach (Usuario usuario in listadoUsuarios)
+            {
+                Console.WriteLine(usuario.ToString());
+            }
+            Console.WriteLine();
+
+            return true;
+        }
+
+
         private void ListarUsuariosVendedores()
         {
             List<Usuario> listadoUsuarios = gestorUsuarios.ObtenerListadoDeUsuariosVendedores();
@@ -1395,6 +1416,8 @@ namespace MyApp
 
         private void ReactivarUsuario(string idUsuarioActual)
         {
+            //solo inactivos, la lista ListarUsuariosInactivos, vuelve vacia. 
+
             ListarTodosLosUsuarios();
 
             string idReactivar;
