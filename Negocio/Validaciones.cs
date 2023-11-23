@@ -50,14 +50,14 @@ namespace Negocio
 
         public static void ValidarTelefono(string telefono)
         {
-            if (string.IsNullOrEmpty(telefono)
-                //|| (telefono.All(char.IsDigit)) || (telefono.Length > 10)
-                )
-            {
-                throw new ArgumentException("El numero de telefono no puede estar vacío, debe contener máximo 10 numeros y solo puede contener dígitos del 0 al 9.");
-            }
+            const int minDigitos = 10;
 
+            if (string.IsNullOrEmpty(telefono) || telefono.Length < minDigitos || !telefono.All(char.IsDigit))
+            {
+                throw new ArgumentException($"El número de teléfono debe tener al menos {minDigitos} dígitos y solo puede contener dígitos del 0 al 9.");
+            }
         }
+
 
         public static void ValidarEmail(string email)
         {
@@ -77,14 +77,7 @@ namespace Negocio
             }
         }
 
-        public static void ValidarRegistro(string Registro)
-        {
-            int salida;
-            if (string.IsNullOrEmpty(Registro) || !int.TryParse(Registro, out salida) || Registro.Length != 8)
-            {
-                throw new ArgumentException("El Registro debe ser un numero de 8 digitos, no puede estar vacío");
-            }
-        }
+ 
         public static void ValidarFecha(string fecha)
         {
             if (string.IsNullOrEmpty(fecha) || !DateTime.TryParse(fecha, out DateTime fechaSalida))
@@ -99,14 +92,17 @@ namespace Negocio
 
         public static void ValidarCuit(string cuit)
         {
-            int salida;
-            if (string.IsNullOrEmpty(cuit) 
-                //|| !int.TryParse(cuit, out salida) || cuit.Length != 11 || int.Parse(cuit) < 0
-                )
+            if (string.IsNullOrEmpty(cuit) || cuit.Length != 11 || !EsNumeroPositivo(cuit))
             {
-                throw new ArgumentException("El cuit debe ser un numero positivo de 11 digitos, sin espacios ni guiones. No puede estar vacío");
+                throw new ArgumentException("El CUIT debe ser un número positivo de 11 dígitos, sin espacios ni guiones. No puede estar vacío.");
             }
         }
+
+        private static bool EsNumeroPositivo(string input)
+        {
+            return int.TryParse(input, out int salida) && salida >= 0;
+        }
+
 
         public static void ValidarPrecio(decimal precio)
         {
@@ -137,6 +133,14 @@ namespace Negocio
             if (string.IsNullOrEmpty(id) || !Guid.TryParse(id, out _))
             {
                 throw new ArgumentException("El ID no tiene el formato correcto.");
+            }
+        }
+
+        public static void ValidarCampoString(string generico)
+        {
+            if (string.IsNullOrEmpty(generico))
+            {
+                throw new ArgumentException("No puede dejar el campo vacio. Ingrese un dato.");
             }
         }
 

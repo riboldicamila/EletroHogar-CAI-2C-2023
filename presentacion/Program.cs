@@ -126,7 +126,7 @@ namespace MyApp
             else if (PerfilUsuarioLogeado == "supervisor")
             {
                 Console.WriteLine("1. Alta de Productos");
-                Console.WriteLine("2. Modificación de Productos");
+                //Console.WriteLine("2. Modificación de Productos");
                 Console.WriteLine("3. Baja de Productos");
                 Console.WriteLine("4. Devolución");
                 Console.WriteLine("5. Reporte de ventas total (por vendedor, no puede lograr relacion)");
@@ -145,7 +145,7 @@ namespace MyApp
                 Console.WriteLine("8. Modificación de Proveedores");
                 Console.WriteLine("9. Baja de Proveedores");
                 Console.WriteLine("10. Alta de Productos");
-                Console.WriteLine("11. Modificación de Productos");
+                //Console.WriteLine("11. Modificación de Productos");
                 Console.WriteLine("12. Baja de Productos");
                 Console.WriteLine("13. Reporte de ventas total (por vendedor, no puede lograr relacion)"); 
                 Console.WriteLine("14. Salir");
@@ -207,7 +207,6 @@ namespace MyApp
 
                 if (opcionSeleccionada == "8")
                 {
-                    //NO ESTA IMPLEMENTADO
                     ModificacionProveedores(IdUsuarioLogueado);
                 }
 
@@ -372,6 +371,7 @@ namespace MyApp
             {
                 Console.WriteLine("Ingrese la nueva contraseña:");
                 nuevaContraseña = Console.ReadLine();
+                //se valida en método
 
                 try
                 {
@@ -390,8 +390,23 @@ namespace MyApp
             Console.WriteLine("MODIFICACIÓN DE PRODUCTO");
             ListarProductos();
 
-            Console.WriteLine("Ingrese el nombre del producto que desea modificar:");
-            string nombreProducto = Console.ReadLine();
+            string nombreProducto;
+
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el nombre del producto que desea modificar:");
+                    nombreProducto = Console.ReadLine();
+                    Validaciones.ValidarCampoString(nombreProducto);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
 
             // TODAVIA SIN IMPLEMENTAR 
 
@@ -405,24 +420,109 @@ namespace MyApp
         {
             Console.WriteLine("ALTA DE PRODUCTO");
 
-            Console.WriteLine("Ingrese el nombre del producto:");
-            string nombre = Console.ReadLine();
+            string nombre;
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el nombre del producto:");
+                    nombre = Console.ReadLine();
+                    Validaciones.ValidarCampoString(nombre);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
 
             Console.WriteLine("Ingrese el precio del producto:");
-            decimal precio = decimal.Parse(Console.ReadLine());
+
+            decimal precio;
+            while (true)
+            {
+                try
+                {
+                    string precioInput = Console.ReadLine();
+                    precio = decimal.Parse(precioInput);
+                    Validaciones.ValidarPrecio(precio);
+                    break;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Error: Ingrese un valor numérico para el precio.");
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
 
             Console.WriteLine("Ingrese el stock inicial del producto:");
-            int stock = int.Parse(Console.ReadLine());
+
+            int stock;
+            while (true)
+            {
+                try
+                {
+                    string stockInput = Console.ReadLine();
+                    stock = int.Parse(stockInput);
+                    Validaciones.ValidarStock(stock);
+                    break;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Error: Ingrese un valor numérico para el stock.");
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
 
             Console.WriteLine("Ingrese la categoría del producto:");
-            int categoria = int.Parse(Console.ReadLine());
+
+            int categoria;
+            while (true)
+            {
+                try
+                {
+                    string categoriaInput = Console.ReadLine();
+                    categoria = int.Parse(categoriaInput);
+                    Validaciones.ValidarCategoria(categoria);
+                    break;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Error: Ingrese un valor numérico para la categoría.");
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
 
             //OFRECER LISTA DE PROVEEDORES, en form
             Console.WriteLine("Ingrese el id del proveedor con el cuál lo desea relacionar:");
             ListarProveedores();
 
-            string idProveedor = Console.ReadLine();
-
+            string idProveedor;
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el id del proveedor con el cuál lo desea relacionar:");
+                    idProveedor = Console.ReadLine();
+                    Validaciones.ValidarId(idProveedor);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
 
             if (gestorDeProductos.AgregarProducto(categoria, idUsuarioActual, idProveedor, nombre, precio, stock))
             {
@@ -446,8 +546,21 @@ namespace MyApp
             ListarProductos();
             Console.WriteLine();
 
-            Console.Write("Ingrese el id del producto que quiere dar de baja: ");
-            string idProducto = Console.ReadLine();
+            string idProducto;
+            while (true)
+            {
+                try
+                {
+                    Console.Write("Ingrese el id del producto que quiere dar de baja: ");
+                    idProducto = Console.ReadLine();
+                    Validaciones.ValidarId(idProducto);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
 
             bool bajaExitosa = gestorDeProductos.BajaProductos(idProducto, idUsuarioActual);
 
@@ -482,6 +595,7 @@ namespace MyApp
                     Console.WriteLine("Ingrese el CUIT del proveedor, SIN espacios ni guiones:");
                     cuit = Console.ReadLine();
                     Validaciones.ValidarCuit(cuit);
+                    Console.WriteLine();
                     break;
                 }
                 catch (ArgumentException ex)
@@ -498,6 +612,7 @@ namespace MyApp
                     Console.WriteLine("Ingrese el email del proveedor");
                     email = Console.ReadLine();
                     Validaciones.ValidarEmail(email);
+                    Console.WriteLine();
                     break;
                 }
                 catch (ArgumentException ex)
@@ -529,8 +644,21 @@ namespace MyApp
 
             Console.WriteLine();
 
-            Console.WriteLine("Ingrese el id del que desea modificar: ");
-            string id = Console.ReadLine();
+            string id;
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el id del que desea modificar: ");
+                    id = Console.ReadLine();
+                    Validaciones.ValidarId(id);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
 
             // Devolver objeto proveedor
             Proveedor proveedor = gestorDeProveedores.BuscarProveedor(id);
@@ -605,8 +733,22 @@ namespace MyApp
             ListarProveedores();
             Console.WriteLine();
 
-            Console.Write("Ingrese el id del proveedor que quiere dar de baja: ");
-            string idProveedor = Console.ReadLine();
+            string idProveedor;
+            while (true)
+            {
+                try
+                {
+                    Console.Write("Ingrese el id del proveedor que quiere dar de baja: ");
+                    idProveedor = Console.ReadLine();
+                    Validaciones.ValidarId(idProveedor);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
 
             bool bajaExitosa = gestorDeProveedores.BajaProveedor(idProveedor, idUsuarioActual);
 
@@ -634,6 +776,8 @@ namespace MyApp
                 Console.WriteLine(p.ToString());
             }
             Console.WriteLine();
+            Console.WriteLine();
+
             Thread.Sleep(2000);
 
         }
@@ -659,6 +803,7 @@ namespace MyApp
             {
                 Console.WriteLine(p.ToString());
             }
+            Console.WriteLine();
             Console.WriteLine();
 
             Thread.Sleep(2000);
@@ -777,6 +922,8 @@ namespace MyApp
                 SubTotal = SubTotal + (item.Precio * item.Cantidad);
             }
             Console.WriteLine("Sub Total:" + SubTotal);
+            Console.WriteLine();
+
         }
 
         private void ListarTotalConDescuentos(ProductosVenta productos, string idCliente)
@@ -899,8 +1046,23 @@ namespace MyApp
             //
             Console.WriteLine();
             ListarTodosLasVentas();
-            Console.Write("Ingrese el id de la venta que quiere dar de baja: ");
-            string idVenta = Console.ReadLine();
+
+            string idVenta;
+            while (true)
+            {
+                try
+                {
+                    Console.Write("Ingrese el id de la venta que quiere dar de baja: ");
+                    idVenta = Console.ReadLine();
+                    Validaciones.ValidarId(idVenta);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
 
             bool bajaExitosa = gestorDeVentas.DevolverVenta(idVenta, idUsuarioActual);
 
@@ -1066,7 +1228,22 @@ namespace MyApp
             Console.WriteLine("MODIFICAR CLIENTE");
             ListarClientes();
             Console.WriteLine("Ingrese el Id del cliente a modificar:");
-            string idCliente = Console.ReadLine();
+
+            string idCliente;
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el Id del cliente a modificar:");
+                    idCliente = Console.ReadLine();
+                    Validaciones.ValidarId(idCliente);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
 
             string direccion;
             while (true)
@@ -1144,8 +1321,21 @@ namespace MyApp
             //Listar usuarios, habria que filtrar por tipo de usuario
             Console.WriteLine("Lista de usuario activos:");
             ListarTodosLosUsuarios();
-            Console.Write("Ingrese el id del usuario que quiere dar de baja: ");
-            string idUsuarioBaja = Console.ReadLine();
+            string idUsuarioBaja;
+            while (true)
+            {
+                try
+                {
+                    Console.Write("Ingrese el id del usuario que quiere dar de baja: ");
+                    idUsuarioBaja = Console.ReadLine();
+                    Validaciones.ValidarId(idUsuarioBaja);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
 
             //HABRIA QUE LISTAR A USUARIOS
 
@@ -1211,8 +1401,22 @@ namespace MyApp
         private void ReactivarUsuario(string idUsuarioActual)
         {
             ListarTodosLosUsuarios();
-            Console.WriteLine("Ingrese el id del usuario que desea reactivar:");
-            string idReactivar = Console.ReadLine();
+
+            string idReactivar;
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el id del usuario que desea reactivar:");
+                    idReactivar = Console.ReadLine();
+                    Validaciones.ValidarId(idReactivar);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
 
             bool reactivadoExitoso = gestorUsuarios.ReactivarUsuario(idReactivar, idUsuarioActual);
 
@@ -1233,8 +1437,23 @@ namespace MyApp
         private void ReactivarProducto(string idUsuarioActual)
         {
             ListarProductos();
-            Console.WriteLine("Ingrese el id del producto que desea reactivar:");
-            string idReactivar = Console.ReadLine();
+     
+            string idReactivar;
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Ingrese el id del producto que desea reactivar:");
+                    idReactivar = Console.ReadLine();
+                    Validaciones.ValidarId(idReactivar);
+                    break;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
 
             bool reactivadoExitoso = gestorDeProductos.ReactivarProducto(idReactivar, idUsuarioActual);
 
