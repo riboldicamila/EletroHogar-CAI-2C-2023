@@ -68,7 +68,7 @@ namespace Modelo
 
         override public String ToString()
         {
-            return this.Id+ ""+ this.nombre + " - " + this.apellido;
+            return this.Id+ " - "+ this.nombre + " - " + this.apellido;
         }
 
     }

@@ -230,11 +230,11 @@ namespace Negocio
             List<Usuario> listadoUsuarios = UsuarioDatos.ListarUsuarios();
 
             // Filtrar la lista  solo usuarios inactivos
-            List<Usuario> usuariosVendedores = listadoUsuarios
+            List<Usuario> usuariosInactivos = listadoUsuarios
                 .Where(usr => usr.FechaBaja != null)
                 .ToList();
 
-            return usuariosVendedores;
+            return usuariosInactivos;
         }
 
     }
