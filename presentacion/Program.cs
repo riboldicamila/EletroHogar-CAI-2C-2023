@@ -1,16 +1,11 @@
 ﻿using Negocio;
-using Modelo; //solo para usar PerfilUsuario, no deberiamos llamar nunca  a Usuario directamente acá, siempre sería a través de GestordeUsuarios
+using Modelo; 
 using System.Timers;
 using System.Security.Cryptography.X509Certificates;
 using System;
 using System.Runtime.CompilerServices;
 
-//REPORTES: por stock y vendor.Genere una lista total por ventas, conectando las listas del ws por id de cliente.
-//pero no encuentro los campos para hacer relación. El ws, no devuelve esos datos. 
-//Mi idea era en base a la lista total de ventas hacer la relación con idVendedor y idProducto.
-//Con idProducto poner saber la cantidad y eso compararlo con el stock cuando se da de alta el producto.
-//El ws de getVentas, no provee esos datos. Lo deje hasta ahí. 
-//IDEA REPORTE nuestro de VENTAS POR FECHA DE ALTA
+//Finalmente, hay un reporte de ventas totales (por consola) y uno de ventas por fecha de la venta. 
 
 
 namespace MyApp
@@ -126,11 +121,11 @@ namespace MyApp
             else if (PerfilUsuarioLogeado == "supervisor")
             {
                 Console.WriteLine("1. Alta de Productos");
-                //Console.WriteLine("2. Modificación de Productos");
-                Console.WriteLine("3. Baja de Productos");
-                Console.WriteLine("4. Devolución");
+                Console.WriteLine("2. Baja de Productos");
+                Console.WriteLine("3. Reactivar producto");
+                Console.WriteLine("4. Devolver una venta");
                 Console.WriteLine("5. Reporte de ventas total (por vendedor, no puede lograr relacion)");
-                Console.WriteLine("6. Reactivar producto");
+                Console.WriteLine("6. Reporte de ventas por fecha");
                 Console.WriteLine("7. Salir");
             }
             else if (PerfilUsuarioLogeado == "administrador")
@@ -145,7 +140,7 @@ namespace MyApp
                 Console.WriteLine("8. Modificación de Proveedores");
                 Console.WriteLine("9. Baja de Proveedores");
                 Console.WriteLine("10. Alta de Productos");
-                //Console.WriteLine("11. Modificación de Productos");
+                Console.WriteLine("11. Reporte de ventas por fecha");
                 Console.WriteLine("12. Baja de Productos");
                 Console.WriteLine("13. Reporte de ventas total (por vendedor, no puede lograr relacion)"); 
                 Console.WriteLine("14. Salir");
@@ -223,7 +218,7 @@ namespace MyApp
 
                 if (opcionSeleccionada == "11")
                 {
-                    ModificarProducto();
+                    ReporteVentasPorFechaAlta();
                 }
 
                 if (opcionSeleccionada == "12")
@@ -252,12 +247,12 @@ namespace MyApp
 
                 if (opcionSeleccionada == "2")
                 {
-                    ModificarProducto();
+                    BajaProducto(IdUsuarioLogueado);
                 }
 
                 if (opcionSeleccionada == "3")
                 {
-                    BajaProducto(IdUsuarioLogueado);
+                    ReactivarProducto(IdUsuarioLogueado);
                 }
 
                 if (opcionSeleccionada == "4")
@@ -272,7 +267,7 @@ namespace MyApp
 
                 if (opcionSeleccionada == "6")
                 {
-                    ReactivarProducto(IdUsuarioLogueado);
+                    ReporteVentasPorFechaAlta();
                 }
 
                 if(opcionSeleccionada == "7")
