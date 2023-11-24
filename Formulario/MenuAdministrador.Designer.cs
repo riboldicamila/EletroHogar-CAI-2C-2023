@@ -67,6 +67,7 @@
             lblDireccion = new Label();
             btnRegistrar = new Button();
             grpRegistrar = new GroupBox();
+            fechapicker = new DateTimePicker();
             grpBajaYReactivar = new GroupBox();
             lblListadousuarios = new Label();
             cmbUsuarios = new ComboBox();
@@ -104,7 +105,6 @@
             lblNombreProd = new Label();
             btnBajaProd = new Button();
             cmbBajaProd = new ComboBox();
-            fechapicker = new DateTimePicker();
             grpRegistrar.SuspendLayout();
             grpBajaYReactivar.SuspendLayout();
             grpAltaProv.SuspendLayout();
@@ -284,6 +284,7 @@
             btnSalir.TabIndex = 6;
             btnSalir.Text = "Salir";
             btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
             // 
             // label1
             // 
@@ -485,6 +486,14 @@
             grpRegistrar.Size = new Size(400, 182);
             grpRegistrar.TabIndex = 30;
             grpRegistrar.TabStop = false;
+            // 
+            // fechapicker
+            // 
+            fechapicker.CustomFormat = "";
+            fechapicker.Location = new Point(133, 143);
+            fechapicker.Name = "fechapicker";
+            fechapicker.Size = new Size(160, 23);
+            fechapicker.TabIndex = 30;
             // 
             // grpBajaYReactivar
             // 
@@ -826,14 +835,6 @@
             cmbBajaProd.Name = "cmbBajaProd";
             cmbBajaProd.Size = new Size(121, 23);
             cmbBajaProd.TabIndex = 0;
-            // 
-            // fechapicker
-            // 
-            fechapicker.CustomFormat = "";
-            fechapicker.Location = new Point(133, 143);
-            fechapicker.Name = "fechapicker";
-            fechapicker.Size = new Size(160, 23);
-            fechapicker.TabIndex = 30;
             // 
             // MenuAdministrador
             // 

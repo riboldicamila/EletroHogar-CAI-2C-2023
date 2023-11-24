@@ -59,7 +59,7 @@ namespace Formulario
                 OcultarCampos();
                 host = 2;
                 tipoUsuario = "supervisor";
-                ListarInactivos(listadoInactivos);
+                ListarUsuariosInactivos();
                 btnReactivar.Text = "Reactivar";
                 cmbUsuarios.Hide();
                 grpBajaYReactivar.Show();
@@ -90,7 +90,7 @@ namespace Formulario
                 OcultarCampos();
                 host = 1;
                 tipoUsuario = "vendedor";
-                ListarInactivos(listadoInactivos);
+                ListarUsuariosInactivos();
                 btnReactivar.Text = "Reactivar";
                 cmbUsuarios.Hide();
                 grpBajaYReactivar.Show();
@@ -307,15 +307,15 @@ namespace Formulario
 
             fechapicker.Format = DateTimePickerFormat.Custom;
             fechapicker.CustomFormat = "dd-MM-yyyy";
-            
-            
+
+
             DateTime fecha = fechapicker.Value;
             if (fechapicker.Value > DateTime.Today || fechapicker.Value < new DateTime(1900, 1, 1))
             {
-                    MessageBox.Show("la fecha es inválida.");
-                    fechapicker.ResetText();
+                MessageBox.Show("la fecha es inválida.");
+                fechapicker.ResetText();
             }
-            
+
 
             bool response = gestorUsuarios.AgregarUsuario(nombre, host, dni, direccion, telefono,
                        apellido, email, FormLogin.id, username, fecha);
@@ -358,6 +358,17 @@ namespace Formulario
                 }
             }
         }
+        private void ListarUsuariosInactivos()
+        {
+            List<Usuario> listadoUsuarios = gestorUsuarios.ObtenerListadoDeUsuariosInactivos();
+            foreach (Usuario usuario in listadoUsuarios)
+            {
+                if (usuario.host == host)
+                {
+                    cmbInactivos.Items.Add(usuario.nombre + " " + usuario.apellido);
+                }
+            }
+        }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
@@ -368,13 +379,9 @@ namespace Formulario
         private void btnReactivar_Click(object sender, EventArgs e)
         {
 
-            if (btnReactivar.Text == "Reactivar")//implementar
+            if (btnReactivar.Text == "Reactivar")
             {
-                if (cmbInactivos.Items.Count > 0 && cmbInactivos.SelectedIndex > 0)
-                {
-                    MessageBox.Show("Usuario Reactivado con éxito");
-                }
-                else MessageBox.Show("No se encontraron usuarios inactivos o no seleccionó ninguno.");
+                reactivarUsuario(FormLogin.id, tipoUsuario);
 
 
             }
@@ -410,13 +417,27 @@ namespace Formulario
             }
         }
 
-        private void ListarInactivos(List<Usuario> lista)
+        private void reactivarUsuario(string idUsuarioActual, string tipoUsuario)
         {
-            foreach (Usuario usuario in lista)
+
+            List<Usuario> listadoUsuarios = gestorUsuarios.ObtenerListadoDeUsuariosInactivos();
+
+
+            foreach (Usuario usuario in listadoUsuarios)
             {
-                if (usuario.host == host)
+                if (cmbInactivos.Text == (usuario.nombre + " " + usuario.apellido))
                 {
-                    cmbInactivos.Items.Add(usuario.nombre + " " + usuario.apellido);
+                    string idUsuarioReactivar = usuario.Id.ToString();
+                    bool bajaExitosa = gestorUsuarios.ReactivarUsuario(idUsuarioReactivar, idUsuarioActual);
+                    if (bajaExitosa)
+                    {
+                        listadoInactivos.Add(usuario);
+                        MessageBox.Show($"El usuario con ID {idUsuarioReactivar} se encuentra activo.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al habilitar el usuario. Por favor, inténtelo de nuevo.");
+                    }
                 }
             }
         }
@@ -612,6 +633,19 @@ namespace Formulario
         private void btnBajaProd_Click(object sender, EventArgs e)
         {
             BajaProducto(FormLogin.id);
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Se cerrará la aplicación. CONFIRMAR", "Cerrar", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                MessageBox.Show("La aplicación se cerró exitosamente.", "Hasta luego!", MessageBoxButtons.OK);
+                Application.Exit();
+            }
+            else
+            {
+                this.Activate();
+            }
         }
     }
 }
