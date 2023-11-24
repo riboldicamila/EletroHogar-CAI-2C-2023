@@ -314,7 +314,7 @@ namespace MyApp
 
             Console.WriteLine();
             Console.WriteLine("Volviendo al menú...");
-            Thread.Sleep(3000);
+            Thread.Sleep(5000);
             MostrarMenu();
 
         }
@@ -1382,6 +1382,7 @@ namespace MyApp
             Console.WriteLine();
         }
 
+        //NO FUNCIONA, EL WS SOLO TRAE USUARIOS ACTIVOS.
         private bool ListarUsuariosInactivos()
         {
             List<Usuario> listadoUsuarios = gestorUsuarios.ObtenerListadoDeUsuariosInactivos();

@@ -224,9 +224,10 @@ namespace Negocio
         }
 
 
+        //NO FUNCIONA, EL WS SOLO TRAE USUARIOS ACTIVOS.
         public List<Usuario> ObtenerListadoDeUsuariosInactivos()
         {
-            //  la lista de usuarios desde el webservice
+            //  la lista de usuarios desde el webservice, son solo ACTIVOS
             List<Usuario> listadoUsuarios = UsuarioDatos.ListarUsuarios();
 
             // Filtrar la lista  solo usuarios inactivos
