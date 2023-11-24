@@ -306,7 +306,7 @@ namespace Formulario
 
 
             fechapicker.Format = DateTimePickerFormat.Custom;
-            fechapicker.CustomFormat = "dd-MM-yyyy";
+            fechapicker.CustomFormat = "yyyy-dd-MM";
 
 
             DateTime fecha = fechapicker.Value;
@@ -400,7 +400,7 @@ namespace Formulario
 
             foreach (Usuario usuario in listadoUsuarios)
             {
-                if (cmbUsuarios.Text == (usuario.nombre + " " + usuario.apellido))
+                if (cmbUsuarios.Text == (usuario.nombre.ToString() + " " + usuario.apellido.ToString()))
                 {
                     string idUsuarioBaja = usuario.Id.ToString();
                     bool bajaExitosa = gestorUsuarios.BajaUsuarios(idUsuarioBaja, idUsuarioActual);

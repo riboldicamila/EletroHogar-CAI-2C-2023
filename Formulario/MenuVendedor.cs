@@ -79,7 +79,7 @@ namespace Formulario
 
                 int cantidad;
 
-                while (!int.TryParse(txtcantidad.Text, out cantidad))
+                if (!int.TryParse(txtcantidad.Text, out cantidad))
                 {
                     MessageBox.Show("Por favor, ingrese un valor numérico válido para la cantidad:");
                 }
@@ -224,7 +224,7 @@ namespace Formulario
 
            
             fechapicker.Format = DateTimePickerFormat.Custom;
-            fechapicker.CustomFormat = "dd-MM-yyyy";
+            fechapicker.CustomFormat = "YYYY-DD-MM";
 
 
             DateTime fecha = fechapicker.Value;
