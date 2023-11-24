@@ -1632,6 +1632,8 @@ namespace MyApp
                     Console.WriteLine(ex.Message);
                 }
             }
+
+
             bool response = gestorUsuarios.AgregarUsuario(nombre, 2, dni, direccion, telefono,
                        apellido, email, idUsuarioActual, username, fechaNacimiento);
 
@@ -1774,7 +1776,6 @@ namespace MyApp
                 }
             }
 
-
             string fecha;
             DateTime fechaNacimiento;
 
@@ -1793,6 +1794,7 @@ namespace MyApp
                     Console.WriteLine(ex.Message);
                 }
             }
+
             bool response = gestorUsuarios.AgregarUsuario(nombre, 1, dni, direccion, telefono,
                        apellido, email, idUsuarioActual, username, fechaNacimiento);
 

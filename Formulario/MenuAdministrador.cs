@@ -302,7 +302,6 @@ namespace Formulario
                 fechapicker.ResetText();
             }
 
-
             bool response = gestorUsuarios.AgregarUsuario(nombre, host, dni, direccion, telefono,
                        apellido, email, FormLogin.id, username, fecha);
 

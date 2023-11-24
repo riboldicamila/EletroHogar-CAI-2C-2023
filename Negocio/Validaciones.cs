@@ -78,18 +78,15 @@ namespace Negocio
             }
         }
 
- 
+
         public static void ValidarFecha(string fecha)
         {
-            if (!string.IsNullOrEmpty(fecha) || !DateTime.TryParse(fecha, out DateTime fechaSalida) )
+            if (!DateTime.TryParse(fecha, out DateTime fechaSalida) || fechaSalida < new DateTime(1900, 1, 1))
             {
-                DateTime fechaDateTime = DateTime.Parse(fecha);
-                if (fechaDateTime < new DateTime(1900, 1, 1))
-                {
-                    throw new ArgumentException("La fecha no es válida");
-                }
+                throw new ArgumentException("La fecha no es válida");
             }
         }
+
 
         public static void ValidarCuit(string cuit)
         {
