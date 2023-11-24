@@ -103,6 +103,8 @@ namespace MyApp
         private void MostrarMenu()
         {
             Console.Clear();
+
+            ListarUsuariosInactivos();
             
             Console.WriteLine($"Menu de " + UsuarioLogueado);
 
