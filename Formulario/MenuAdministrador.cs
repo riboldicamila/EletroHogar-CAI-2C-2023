@@ -178,12 +178,11 @@ namespace Formulario
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
+                txtNombre.Text = "";
+
 
             }
-            finally
-            {
-                txtNombre.Text = "";
-            }
+           
 
             try
             {
@@ -195,12 +194,10 @@ namespace Formulario
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-            finally
-            {
                 txtApellido.Text = "";
-            }
 
+            }
+           
 
 
             try
@@ -213,12 +210,10 @@ namespace Formulario
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-            finally
-            {
                 txtUsername.Text = "";
-            }
 
+            }
+          
 
             string direccion = "";
 
@@ -234,12 +229,10 @@ namespace Formulario
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-            finally
-            {
                 txtDireccion.Text = "";
-            }
 
+            }
+           
 
             string telefono = "";
 
@@ -254,12 +247,10 @@ namespace Formulario
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-            finally
-            {
                 txtTelefono.Text = "";
-            }
 
+            }
+         
 
             string email = "";
 
@@ -275,13 +266,10 @@ namespace Formulario
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-            finally
-            {
                 txtEmail.Text = "";
+
             }
-
-
+           
             int dni = 0;
             string dni_entrada;
 
@@ -298,12 +286,10 @@ namespace Formulario
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-            finally
-            {
                 txtDni.Text = "";
-            }
 
+            }
+           
 
             fechapicker.Format = DateTimePickerFormat.Custom;
             fechapicker.CustomFormat = "yyyy-dd-MM";
