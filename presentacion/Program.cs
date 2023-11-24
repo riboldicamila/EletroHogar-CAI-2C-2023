@@ -103,8 +103,6 @@ namespace MyApp
         private void MostrarMenu()
         {
             Console.Clear();
-
-            ListarUsuariosInactivos();
             
             Console.WriteLine($"Menu de " + UsuarioLogueado);
 
@@ -316,7 +314,7 @@ namespace MyApp
 
             Console.WriteLine();
             Console.WriteLine("Volviendo al menú...");
-            Thread.Sleep(3000);
+            Thread.Sleep(5000);
             MostrarMenu();
 
         }
@@ -1418,7 +1416,7 @@ namespace MyApp
 
         private void ReactivarUsuario(string idUsuarioActual)
         {
-            //solo inactivos, la lista ListarUsuariosInactivos, vuelve vacia. 
+            //solo inactivos, el ws hace get y trae solo los activos.
 
             ListarTodosLosUsuarios();
 
@@ -1650,6 +1648,7 @@ namespace MyApp
             ListarTodosLosUsuarios();
             Console.WriteLine();
             Console.WriteLine();
+            
 
         }
         private void RegistrarUsuarioVendedor(string idUsuarioActual)
